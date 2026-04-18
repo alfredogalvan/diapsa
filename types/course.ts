@@ -51,7 +51,7 @@ export interface CourseDetail {
     requirements: string[];
     certification: string;
     graduate_profile: string;
-    technical_specification: string | File;
+    technical_specification: string;
     provider: string;
 
 }

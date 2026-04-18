@@ -80,6 +80,8 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
         | "certificacion"
     >("descripcion");
 
+    console.log('Curso: ', course)
+
     const Icon = iconMap[course.icon] || MonitorIcon;
     const courseTypeName = course.category.name ?? "";
     const requirements = normalizeTextList(course.requirements);
@@ -433,7 +435,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                 <div className="mt-8 space-y-3 pt-6 border-t border-gray-200">
 
                                     {course.technical_specification && (
-                                        <a href="/files/CURSO-TI-I&II.pdf" download="CURSO TI I&II" className="block">
+                                        <a href={`${course.technical_specification}`} target="_blank" rel="noopener noreferrer" className="block">
                                             <Button
                                                 variant="primary"
                                                 className="w-full justify-center text-lg py-4"
