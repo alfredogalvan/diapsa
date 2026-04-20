@@ -5,9 +5,9 @@ import { CoursesNCerts } from "@/components/organisms/CoursesNCerts";
 import CourseTypeSection from "@/components/organisms/CourseTypeSection";
 import { useCourses } from "@/lib/hooks/useCourses";
 import { useCourseCategories } from "@/lib/hooks/useCourseType";
-import CourseMainContent from "@/components/organisms/CourseMainContent";
+// import CourseMainContent from "@/components/organisms/CourseMainContent";
 import { groupCoursesByType } from "@/lib/utils/groupCourses";
-import { GroupedCourses } from "@/types/course";
+
 
 export default function CursosPage() {
   const { courseCategories, loading: loadingCourseCategories } = useCourseCategories();
@@ -24,9 +24,9 @@ export default function CursosPage() {
         <CoursesNCerts />
       </section>
 
-      <section className="bg-white p-5">
+      {/* <section className="bg-white p-5">
         <CourseMainContent />
-      </section>
+      </section> */}
 
       {coursesByType.certificates && (
         <section className="bg-white p-5">
@@ -45,10 +45,6 @@ export default function CursosPage() {
           <CourseTypeSection title="Cursos estrategicos" variant="estrategico" courses={coursesByType.strategics} loading={loading} />
         </section>
       )}
-
-
-
     </main>
   );
 }
-

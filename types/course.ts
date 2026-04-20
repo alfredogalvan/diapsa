@@ -4,7 +4,8 @@ import { Category } from "./category";
 export interface Course {
     id: string;
     name: string;
-    image: string;
+    alt_img: string;
+    url_img: string;
     category: Category;
     provider: string;
     description: string;

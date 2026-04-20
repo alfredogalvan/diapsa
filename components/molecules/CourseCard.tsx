@@ -57,10 +57,10 @@ function CertificateLayout({ course }: { course: Course }) {
 
             {/* Imagen */}
             <div className='relative w-full h-40 bg-linear-to-br from-primary/10 to-secondary/5 overflow-hidden'>
-                {course.image ? (
+                {course.url_img ? (
                     <Image
-                        src={course.image}
-                        alt={course.name}
+                        src={course.url_img}
+                        alt={course.alt_img}
                         fill
                         className="object-cover opacity-85 group-hover:opacity-95 transition-opacity"
                         sizes="200px"
@@ -240,10 +240,10 @@ function WorkshopLayout({ course }: { course: Course }) {
             <div className="flex flex-col sm:flex-row gap-4 p-4 sm:p-5 flex-1">
                 {/* Imagen - Visual hook */}
                 <div className="relative w-full h-40 sm:w-28 sm:h-24 shrink-0 bg-linear-to-br from-secondary/20 to-primary/10 rounded-lg overflow-hidden shadow-sm">
-                    {course.image ? (
+                    {course.url_img ? (
                         <Image
-                            src={course.image}
-                            alt={course.name}
+                            src={course.url_img}
+                            alt={course.alt_img}
                             fill
                             className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
                             sizes="112px"
