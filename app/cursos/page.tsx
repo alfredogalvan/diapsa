@@ -10,7 +10,6 @@ import { groupCoursesByType } from "@/lib/utils/groupCourses";
 
 
 export default function CursosPage() {
-  const { courseCategories, loading: loadingCourseCategories } = useCourseCategories();
   const { courses, loading } = useCourses()
   const coursesByType = groupCoursesByType(courses);
   return (

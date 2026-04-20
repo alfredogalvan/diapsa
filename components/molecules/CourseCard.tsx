@@ -60,7 +60,7 @@ function CertificateLayout({ course }: { course: Course }) {
                 {course.url_img ? (
                     <Image
                         src={course.url_img}
-                        alt={course.alt_img}
+                        alt={course.alt_img || `Imagen de ${course.name}`}
                         fill
                         className="object-cover opacity-85 group-hover:opacity-95 transition-opacity"
                         sizes="200px"
@@ -243,7 +243,7 @@ function WorkshopLayout({ course }: { course: Course }) {
                     {course.url_img ? (
                         <Image
                             src={course.url_img}
-                            alt={course.alt_img}
+                            alt={course.alt_img || `Imagen de ${course.name}`}
                             fill
                             className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
                             sizes="112px"
