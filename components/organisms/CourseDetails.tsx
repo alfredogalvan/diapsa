@@ -16,35 +16,10 @@ import {
     EnergyIcon,
     SecurityIcon,
 } from "@/components/atoms/icons";
-
-interface Course {
-    id: number;
-    name: string;
-    slug: string;
-    tipo_curso: string;
-    icono: string;
-    provider: string;
-    technical_specifications?: string;
-    contenido: {
-        descripcion_general: string;
-        normativa_referencia: string | null;
-        objetivo_general: string;
-        objetivos_especificos: string[] | null;
-        metodologia: string;
-        temario: string[];
-        duracion: string | null;
-        modalidad: string;
-        requisitos: string[];
-        evaluacion: string | null;
-        certificacion: string | null;
-        perfil_egreso: string | null;
-        publico_objetivo?: string | null;
-        instructor_profile?: string | null;
-    };
-}
+import { CourseDetail } from "@/types/course";
 
 interface CourseDetailsProps {
-    course: Course;
+    course: CourseDetail;
 }
 
 // Mapeo de iconos
@@ -59,9 +34,44 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     document: SecurityIcon, // Usar SecurityIcon como fallback para document
 };
 
+const normalizeTextList = (
+    rawValue: unknown,
+    splitPattern: RegExp = /\r?\n|,/
+): string[] => {
+    if (Array.isArray(rawValue)) {
+        return rawValue
+            .map((item) => String(item).trim())
+            .map((item) => item.replace(/^[\[\]"]+|[\[\]"]+$/g, ""))
+            .filter(Boolean);
+    }
+
+    if (typeof rawValue !== "string") {
+        return [];
+    }
+
+    const parsedText = rawValue.trim();
+
+    if (parsedText.startsWith("[") && parsedText.endsWith("]")) {
+        try {
+            const parsed = JSON.parse(parsedText);
+            if (Array.isArray(parsed)) {
+                return parsed
+                    .map((item) => String(item).trim())
+                    .map((item) => item.replace(/^[\[\]"]+|[\[\]"]+$/g, ""))
+                    .filter(Boolean);
+            }
+        } catch {
+            // fallback al split tradicional
+        }
+    }
+
+    return parsedText
+        .split(splitPattern)
+        .map((item) => item.trim().replace(/^[\[\]"]+|[\[\]"]+$/g, ""))
+        .filter(Boolean);
+};
+
 export default function CourseDetails({ course }: CourseDetailsProps) {
-
-
     const [activeTab, setActiveTab] = useState<
         | "descripcion"
         | "objetivos"
@@ -70,17 +80,20 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
         | "certificacion"
     >("descripcion");
 
-    const Icon = iconMap[course.icono] || MonitorIcon;
+    console.log('Curso: ', course)
+
+    const Icon = iconMap[course.icon] || MonitorIcon;
+    const courseTypeName = course.category.name ?? "";
+    const requirements = normalizeTextList(course.requirements);
+    const specificObjectives = normalizeTextList(course.specific_objectives);
+    const syllabusItems = normalizeTextList(course.syllabus, /\r?\n/);
 
     // Scroll suave al formulario de contacto
     const scrollToContact = () => {
         const contactSection = document.getElementById("contacto");
         contactSection?.scrollIntoView({ behavior: "smooth" });
+
     };
-
-    const downloadPDf = () => {
-
-    }
 
     return (
         <div className="w-full bg-white">
@@ -99,7 +112,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                         {course.name}
                                     </h2>
                                     <p className="text-gray-700 leading-relaxed">
-                                        {course.contenido.descripcion_general}
+                                        {course.description}
                                     </p>
                                 </div>
                             </div>
@@ -136,7 +149,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                     Temario
                                 </button>
 
-                                {(course.contenido.certificacion || course.contenido.evaluacion) && (
+                                {course.certification && (
                                     <button
                                         onClick={() => setActiveTab("certificacion")}
                                         className={`pb-4 px-1 font-semibold whitespace-nowrap transition-colors ${activeTab === "certificacion"
@@ -155,13 +168,13 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                             {/* Tab: Descripción */}
                             {activeTab === "descripcion" && (
                                 <div className="space-y-6">
-                                    {course.contenido.normativa_referencia && (
+                                    {course.referecne_norm && (
                                         <div>
                                             <h3 className="text-xl font-bold text-primary mb-3">
                                                 Normativa de Referencia
                                             </h3>
                                             <p className="text-gray-700 bg-blue-50 border-l-4 border-primary p-4 rounded">
-                                                {course.contenido.normativa_referencia}
+                                                {course.referecne_norm}
                                             </p>
                                         </div>
                                     )}
@@ -171,16 +184,16 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                             Metodología
                                         </h3>
                                         <p className="text-gray-700 leading-relaxed">
-                                            {course.contenido.metodologia}
+                                            {course.methodology}
                                         </p>
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold text-primary mb-4">
                                             Requisitos para el Curso
                                         </h3>
-                                        {course.contenido.requisitos.length > 0 ? (
+                                        {requirements.length > 0 ? (
                                             <ul className="space-y-3">
-                                                {course.contenido.requisitos.map((requisito, index) => (
+                                                {requirements.map((requisito, index) => (
                                                     <li
                                                         key={index}
                                                         className="flex items-start gap-3"
@@ -208,28 +221,6 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                             </p>
                                         )}
                                     </div>
-
-                                    {course.contenido.publico_objetivo && (
-                                        <div>
-                                            <h3 className="text-xl font-bold text-primary mb-3">
-                                                ¿Quiénes deben tomar este curso?
-                                            </h3>
-                                            <p className="text-gray-700 leading-relaxed">
-                                                {course.contenido.publico_objetivo}
-                                            </p>
-                                        </div>
-                                    )}
-
-                                    {course.contenido.instructor_profile && (
-                                        <div>
-                                            <h3 className="text-xl font-bold text-primary mb-3">
-                                                Instructor
-                                            </h3>
-                                            <p className="text-gray-700 leading-relaxed">
-                                                {course.contenido.instructor_profile}
-                                            </p>
-                                        </div>
-                                    )}
                                 </div>
                             )}
 
@@ -241,51 +232,50 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                             Objetivo General
                                         </h3>
                                         <p className="text-gray-700 leading-relaxed">
-                                            {course.contenido.objetivo_general}
+                                            {course.objective}
                                         </p>
                                     </div>
 
-                                    {course.contenido.objetivos_especificos &&
-                                        course.contenido.objetivos_especificos.length > 0 && (
-                                            <div>
-                                                <h3 className="text-xl font-bold text-primary mb-4">
-                                                    Objetivos Específicos
-                                                </h3>
-                                                <ul className="space-y-3">
-                                                    {course.contenido.objetivos_especificos.map(
-                                                        (objetivo, index) => (
-                                                            <li
-                                                                key={index}
-                                                                className="flex items-start gap-3"
+                                    {specificObjectives.length > 0 && (
+                                        <div>
+                                            <h3 className="text-xl font-bold text-primary mb-4">
+                                                Objetivos Específicos
+                                            </h3>
+                                            <ul className="space-y-3">
+                                                {specificObjectives.map(
+                                                    (objetivo, index) => (
+                                                        <li
+                                                            key={index}
+                                                            className="flex items-start gap-3"
+                                                        >
+                                                            <svg
+                                                                className="w-6 h-6 text-secondary shrink-0 mt-0.5"
+                                                                fill="currentColor"
+                                                                viewBox="0 0 20 20"
                                                             >
-                                                                <svg
-                                                                    className="w-6 h-6 text-secondary shrink-0 mt-0.5"
-                                                                    fill="currentColor"
-                                                                    viewBox="0 0 20 20"
-                                                                >
-                                                                    <path
-                                                                        fillRule="evenodd"
-                                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                                        clipRule="evenodd"
-                                                                    />
-                                                                </svg>
-                                                                <span className="text-gray-700">
-                                                                    {objetivo}
-                                                                </span>
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            </div>
-                                        )}
+                                                                <path
+                                                                    fillRule="evenodd"
+                                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                                    clipRule="evenodd"
+                                                                />
+                                                            </svg>
+                                                            <span className="text-gray-700">
+                                                                {objetivo}
+                                                            </span>
+                                                        </li>
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
+                                    )}
 
-                                    {course.contenido.perfil_egreso && (
+                                    {course.graduate_profile && (
                                         <div className="bg-linear-to-r from-primary/5 to-secondary/5 rounded-xl p-6 border border-primary/20">
                                             <h3 className="text-xl font-bold text-primary mb-3">
                                                 Perfil de Egreso
                                             </h3>
                                             <p className="text-gray-700 leading-relaxed">
-                                                {course.contenido.perfil_egreso}
+                                                {course.graduate_profile}
                                             </p>
                                         </div>
                                     )}
@@ -298,51 +288,42 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                     <h3 className="text-xl font-bold text-primary mb-4">
                                         Contenido del Curso
                                     </h3>
-                                    <ul className="space-y-3">
-                                        {course.contenido.temario.map((tema, index) => (
-                                            <li
-                                                key={index}
-                                                className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                                            >
-                                                <span className="shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-semibold text-sm">
-                                                    {index + 1}
-                                                </span>
-                                                <span className="text-gray-700 pt-1">{tema}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {syllabusItems.length > 0 ? (
+                                        <ul className="space-y-3">
+                                            {syllabusItems.map((tema, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                                >
+                                                    <span className="shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                                                        {index + 1}
+                                                    </span>
+                                                    <span className="text-gray-700 pt-1">{tema}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p className="text-gray-600 italic">
+                                            No hay temario disponible para este curso.
+                                        </p>
+                                    )}
                                 </div>
                             )}
 
 
                             {/* Tab: Certificación */}
-                            {activeTab === "certificacion" &&
-                                (course.contenido.certificacion ||
-                                    course.contenido.evaluacion) && (
-                                    <div className="space-y-6">
-                                        {course.contenido.evaluacion && (
-                                            <div>
-                                                <h3 className="text-xl font-bold text-primary mb-3">
-                                                    Evaluación
-                                                </h3>
-                                                <p className="text-gray-700 leading-relaxed">
-                                                    {course.contenido.evaluacion}
-                                                </p>
-                                            </div>
-                                        )}
-
-                                        {course.contenido.certificacion && (
-                                            <div className="bg-linear-to-r from-secondary/10 to-primary/10 rounded-xl p-6 border border-secondary/30">
-                                                <h3 className="text-xl font-bold text-primary mb-3">
-                                                    Certificación
-                                                </h3>
-                                                <p className="text-gray-700 leading-relaxed">
-                                                    {course.contenido.certificacion}
-                                                </p>
-                                            </div>
-                                        )}
+                            {activeTab === "certificacion" && course.certification && (
+                                <div className="space-y-6">
+                                    <div className="bg-linear-to-r from-secondary/10 to-primary/10 rounded-xl p-6 border border-secondary/30">
+                                        <h3 className="text-xl font-bold text-primary mb-3">
+                                            Certificación
+                                        </h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            {course.certification}
+                                        </p>
                                     </div>
-                                )}
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -374,13 +355,13 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                         <div>
                                             <p className="text-sm text-gray-500">Tipo de Curso</p>
                                             <p className="font-semibold text-gray-900">
-                                                {course.tipo_curso}
+                                                {courseTypeName}
                                             </p>
                                         </div>
                                     </div>
 
                                     {/* Duración */}
-                                    {course.contenido.duracion && (
+                                    {course.duration && (
                                         <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
                                             <svg
                                                 className="w-6 h-6 text-primary shrink-0"
@@ -398,7 +379,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                             <div>
                                                 <p className="text-sm text-gray-500">Duración</p>
                                                 <p className="font-semibold text-gray-900">
-                                                    {course.contenido.duracion}
+                                                    {course.duration}
                                                 </p>
                                             </div>
                                         </div>
@@ -422,7 +403,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                         <div>
                                             <p className="text-sm text-gray-500">Modalidad</p>
                                             <p className="font-semibold text-gray-900">
-                                                {course.contenido.modalidad}
+                                                {course.modality}
                                             </p>
                                         </div>
                                     </div>
@@ -453,8 +434,8 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
 
                                 <div className="mt-8 space-y-3 pt-6 border-t border-gray-200">
 
-                                    {course.technical_specifications && (
-                                        <a href="/files/CURSO-TI-I&II.pdf" download="CURSO TI I&II" className="block">
+                                    {course.technical_specification && (
+                                        <a href={`${course.technical_specification}`} target="_blank" rel="noopener noreferrer" className="block">
                                             <Button
                                                 variant="primary"
                                                 className="w-full justify-center text-lg py-4"
@@ -479,7 +460,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                             </div>
 
                             {/* Badge de Certificación */}
-                            {course.tipo_curso === 'Certificación' && (
+                            {courseTypeName === 'Certificación' && (
                                 <div className="bg-linear-to-br from-primary to-primary/80 text-white rounded-xl p-6 shadow-lg">
                                     <div className="flex items-center gap-3 mb-3">
                                         <svg

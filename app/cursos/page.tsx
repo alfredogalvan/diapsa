@@ -1,45 +1,49 @@
-import type { Metadata } from "next";
+'use client';
+
 import PageHeader from "@/components/organisms/PageHeader";
 import { CoursesNCerts } from "@/components/organisms/CoursesNCerts";
-import { CoursesListSection } from "@/components/organisms/CoursesListSection";
+import CourseTypeSection from "@/components/organisms/CourseTypeSection";
+import { useCourses } from "@/lib/hooks/useCourses";
+import { useCourseCategories } from "@/lib/hooks/useCourseType";
+// import CourseMainContent from "@/components/organisms/CourseMainContent";
+import { groupCoursesByType } from "@/lib/utils/groupCourses";
 
-export const metadata: Metadata = {
-  title: "Cursos de Capacitación",
-  description:
-    "Cursos profesionales certificados en mantenimiento predictivo: Termografía Categoría 1 y 2, Análisis de Vibraciones, Ultrasonido Industrial. Capacitación presencial y en línea en México.",
-  keywords: [
-    "cursos termografía",
-    "certificación termografía México",
-    "curso análisis de vibraciones",
-    "capacitación ultrasonido",
-    "formación mantenimiento predictivo",
-    "cursos industriales México",
-  ],
-  alternates: {
-    canonical: "/cursos",
-  },
-  openGraph: {
-    title: "Cursos de Capacitación en Mantenimiento Predictivo | DIAPSA",
-    description:
-      "Formación profesional certificada en termografía, vibraciones y ultrasonido. Modalidad presencial y en línea.",
-    url: "/cursos",
-    type: "website",
-  },
-};
 
 export default function CursosPage() {
+  const { courses, loading } = useCourses()
+  const coursesByType = groupCoursesByType(courses);
   return (
-    <main>
+    <main className="bg-gray-50 min-h-screen">
       <PageHeader
         title="CURSOS"
         subtitle="Capacitación profesional certificada en mantenimiento predictivo"
       />
 
-      <section className="w-full bg-white">
+      <section className="w-full bg-white p-5">
         <CoursesNCerts />
       </section>
-      <CoursesListSection />
 
+      {/* <section className="bg-white p-5">
+        <CourseMainContent />
+      </section> */}
+
+      {coursesByType.certificates && (
+        <section className="bg-white p-5">
+          <CourseTypeSection title="Certificados" variant="certificado" courses={coursesByType.certificates} loading={loading} />
+        </section>
+      )}
+
+      {coursesByType.workshops && (
+        <section className="bg-white p-5">
+          <CourseTypeSection title="Talleres practicos" variant="taller" courses={coursesByType.workshops} loading={loading} />
+        </section>
+      )}
+
+      {coursesByType.strategics && (
+        <section className="bg-white p-5">
+          <CourseTypeSection title="Cursos estrategicos" variant="estrategico" courses={coursesByType.strategics} loading={loading} />
+        </section>
+      )}
     </main>
   );
 }
