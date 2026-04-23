@@ -8,6 +8,7 @@ import dataDM from '@/data/servicios/diagnostico-de-maquinaria.json'
 import dataEE from '@/data/servicios/estudios-electricos.json'
 import dataTI from '@/data/servicios/termografia-infrarroja.json'
 import dataVM from '@/data/servicios/vibraciones-mecanicas.json'
+import SuccessCases from "@/components/organisms/SuccessCases";
 const services = [dataDM, dataEE, dataTI, dataUl, dataVM];
 
 export const metadata: Metadata = {
@@ -102,6 +103,7 @@ export default function MonitoreoConditionPage() {
                     </div>
                 </div>
             </section>
+            <SuccessCases />
 
         </main>
     )
