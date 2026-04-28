@@ -38,7 +38,7 @@ export function MisionVisionSection() {
                 <div className="relative w-full h-full rounded-4xl border-b-4 border-s-4 border-primary hidden md:block p-4">
                     <div className="relative w-full h-full overflow-hidden rounded-2xl">
                         <Image
-                            src="/images/vision-image.jpeg"
+                            src="/images/vision-image.jpg"
                             fill
                             className="object-cover"
                             alt="Representación de la misión de la empresa"
