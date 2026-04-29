@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import BackgroundImage from "../atoms/BackgroundImage";
 
 export default function AboutUs() {
@@ -15,7 +17,7 @@ export default function AboutUs() {
         {/* Columna izquierda */}
         <div className="text-white p-12">
           <h2 className="text-2xl lg:text-3xl font-bold mb-6 tracking-wide">
-            ACERCA DE DIAPSA
+            ¿PORQUÉ ELEGIR A DIAPSA?
           </h2>
           <div className="space-y-5 text-lg lg:text-xl text-white/90">
             <p>
@@ -24,11 +26,22 @@ export default function AboutUs() {
               predictivo en la industria.
             </p>
             <p>
-              la termografía, el análisis de vibraciones,
+              La termografía, el análisis de vibraciones,
               ultrasonido y lubricación, elevamos la
               confiabilidad de los equipos e impulsamos la
               eficiencia operativa.
             </p>
+          </div>
+          <div className="mt-8">
+            <Link
+              href="/acerca-de"
+              className="inline-flex items-center gap-2 border-2 border-secondary text-secondary font-bold px-6 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300"
+            >
+              Conoce nuestra historia
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
 
@@ -40,6 +53,19 @@ export default function AboutUs() {
           <p className="text-lg lg:text-xl text-white/90 whitespace-pre-line">
             Ser líderes en las disciplinas que desarrollamos, aportando valor con precisión, rapidez y calidad, garantizando la productividad y seguridad de las plantas industriales.
           </p>
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { label: "+50,000 Fallas detectadas" },
+              { label: "+1,500 Servicios realizados" },
+              { label: "+20 Años de trayectoria" },
+            ].map(({ label }) => (
+              <div key={label} className="flex flex-col items-center">
+                <Image src="/images/LOGRO-DIAPSA.svg" alt={`Logro diapsa - ${label}`} width={100} height={100} />
+                <p className="text-secondary font-bold">{label}</p>
+              </div>
+            ))
+            }
+          </div>
         </div>
       </div>
     </section>

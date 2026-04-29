@@ -1,8 +1,7 @@
 [
     {
-        "slug": "diapsa-start-mitinfra",
+        "slug": "diapsa-start-en-planta-de-tratamiento-de-agua-residual",
         "title": "DIAPSA START en Planta de Tratamiento de Agua Residual",
-        "client": "Mitinfra",
         "industry": "Tratamiento de agua residual",
         "service": "Mantenimiento predictivo y monitoreo de condición",
         "seo": {
@@ -45,7 +44,7 @@
         "conclusion": "DIAPSA START permitió desarrollar capacidades internas, generar información técnica confiable y evolucionar hacia un modelo de mantenimiento predictivo alineado a la confiabilidad operacional."
     },
     {
-        "slug": "keken-mantenimiento-predictivo-termografia",
+        "slug": "vision-predictiva-y-ahorros-millonarios-en-industria-alimenticia",
         "title": "Visión Predictiva y Ahorros Millonarios en Industria Alimenticia",
         "client": "Kekén",
         "industry": "Industria alimenticia",
@@ -83,7 +82,7 @@
         "conclusion": "El programa no solo redujo más del 90% del riesgo operativo, sino que consolidó una estrategia de confiabilidad y control de calidad en activos nuevos y existentes."
     },
     {
-        "slug": "tla-monitoreo-integral-condicion",
+        "slug": "monitoreo-redictivo-en-central-de-ciclo-combinado",
         "title": "Monitoreo Predictivo en Central de Ciclo Combinado",
         "client": "TLA",
         "industry": "Generación de energía",

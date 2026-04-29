@@ -77,10 +77,9 @@ export default function ServiciosProductosPage() {
   return (
     <main>
       <PageHeader
-        title="SERVICIOS Y PRODUCTOS"
+        title="SERVICIOS"
         subtitle="Soluciones integrales de mantenimiento predictivo para tu industria"
       />
-
       <section className="w-full bg-white py-16 lg:py-24">
 
       </section>

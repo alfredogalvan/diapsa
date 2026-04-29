@@ -104,7 +104,7 @@ export default function IdapIntro() {
                 <p className="text-2xl text-center uppercase">Deja de reaccionar ante las fallas. Con IDAP, anticípalas.</p>
                 <Link href='/servicios/idap'>
                     <Button variant="black" className="text-2xl uppercase">
-                        Descubir IDAP
+                        Descubrir IDAP
                     </Button>
                 </Link>
             </div>

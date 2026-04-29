@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/organisms/PageHeader";
 import { MisionVisionSection } from "@/components/organisms/MisionVisionSection";
 import { ValuesSection } from "@/components/organisms/ValuesSection";
-import { AITalkAboutUs } from "@/components/organisms/AITalkAboutUs";
+// import { AITalkAboutUs } from "@/components/organisms/AITalkAboutUs";
 import { WhoIsDiapsaSection } from "@/components/organisms/WhoIsDiapsaSection";
 import { IdapAdvertisementSection } from "@/components/organisms/IdapAdvertisement";
 import { GallerySection } from "@/components/organisms/GallerySection";
