@@ -7,7 +7,7 @@ import ContactForm from "@/components/organisms/ContactForm";
 import { Clients } from "@/components/organisms/Clients";
 import IdapIntro from "@/components/organisms/IdapIntro";
 import AdSection from "@/components/organisms/AdSection";
-import { Advertisement } from "@/components/molecules/AdvsCard";
+import ads from "@/data/ads.json";
 
 export const metadata: Metadata = {
   title: "Inicio | Mantenimiento Predictivo Industrial",
@@ -32,21 +32,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-const ads: Advertisement[] = [
-  {
-    title: "Curso TI Cat 2",
-    badges: ['Curso', 'Online'],
-    img: "/images/ads/course-ti.jpg",
-    date: "19 - 22 mayo",
-    description: "Perfeccionando habilidades, emita analisis valiosos como especialista."
-  },
-  {
-    title: "Taller Herramientas Predictivas",
-    img: "/images/ads/herramientas-predictivas.jpg",
-    date: "26 - 28 mayo",
-    description: "Tecnologias de impacto en el mantenimiento predictivo"
-  }
-]
 
 export default function Home() {
   return (
