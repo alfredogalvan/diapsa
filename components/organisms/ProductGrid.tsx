@@ -198,10 +198,9 @@ function Pagination({
           disabled={currentPage === 1}
           className={`
             px-3 py-2 rounded-lg text-sm font-medium transition-colors
-            ${
-              currentPage === 1
-                ? 'text-gray-400 cursor-not-allowed'
-                : 'text-gray-700 hover:bg-gray-100'
+            ${currentPage === 1
+              ? 'text-gray-400 cursor-not-allowed'
+              : 'text-gray-700 hover:bg-gray-100'
             }
           `}
           aria-label="Página anterior"
@@ -229,11 +228,10 @@ function Pagination({
               key={pageNumber}
               onClick={() => handlePageChange(pageNumber)}
               className={`
-                min-w-[40px] px-3 py-2 rounded-lg text-sm font-medium transition-colors
-                ${
-                  isActive
-                    ? 'bg-primary text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
+                min-w-10 px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                ${isActive
+                  ? 'bg-primary text-white'
+                  : 'text-gray-700 hover:bg-gray-100'
                 }
               `}
               aria-label={`Página ${pageNumber}`}
@@ -250,10 +248,9 @@ function Pagination({
           disabled={currentPage === totalPages}
           className={`
             px-3 py-2 rounded-lg text-sm font-medium transition-colors
-            ${
-              currentPage === totalPages
-                ? 'text-gray-400 cursor-not-allowed'
-                : 'text-gray-700 hover:bg-gray-100'
+            ${currentPage === totalPages
+              ? 'text-gray-400 cursor-not-allowed'
+              : 'text-gray-700 hover:bg-gray-100'
             }
           `}
           aria-label="Página siguiente"
