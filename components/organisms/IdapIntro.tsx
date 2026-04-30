@@ -19,7 +19,7 @@ export default function IdapIntro() {
                     <Image fill src='/images/idap/idap-logo.png' alt="logo de idap" className="object-contain" />
                 </div>
             </div>
-            <div className="w-full max-w-lg lg:max-w-2xl mx-auto border-2 border-primary" />
+            <div className="w-75 max-w-lg lg:max-w-2xl mx-auto border-2 border-primary" />
             <div className="lg:p-10 bg-linear-to-t from-[#fda101] from-85% via-[#fda101] to-white text-black">
                 <p className="text-center text-2xl lg:text-4xl text-black font-extralight tracking-wide my-10">La única plataforma digital de monitoreo <br />
                     predictivo que integra Inteligencia Artificial con el <br />
