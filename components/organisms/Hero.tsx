@@ -46,10 +46,10 @@ const slides: Slide[] = [
       "Detecta vibración, temperatura y corriente en tiempo real. Anticipa paros no planeados con análisis basado en inteligencia artificial.",
     cta: { label: "Ver monitoreo continuo", href: "/servicios/monitoreo-continuo" },
     ctaSecondary: { label: "Solicitar demo", href: "/#contacto" },
-    image: "/images/monitoreo-continuo/sensor-installation.jpg",
+    image: "/images/header-sensores.png",
     imageAlt: "Sensor IoT de vibración instalado en maquinaria industrial",
     imageContain: false,
-    bg: "/images/fondo-mantenimiento.webp",
+    bg: "/images/fondo-hero.webp",
     stats: [
       { value: "24/7", label: "Monitoreo" },
       { value: "IoT", label: "Conectado" },

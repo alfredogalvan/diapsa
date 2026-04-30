@@ -22,7 +22,7 @@ export default function AdvsCard({ adv }: Props) {
             <div className="bg-primary rounded-sm h-full flex max-w-80 flex-col shadow-2xl shadow-black-800 space-y-6">
                 <div className="flex justify-center items-center m-0">
                     <div className="w-80 h-80 relative">
-                        <Image src={adv.img} alt={`Flyer de ${adv.title}`} fill className="object-cover" />
+                        <Image src={adv.img} alt={`Flyer de ${adv.title}`} fill className="object-cover rounded-sm" />
                     </div>
                 </div>
                 <div className="p-2 space-y-2 flex flex-col flex-1">

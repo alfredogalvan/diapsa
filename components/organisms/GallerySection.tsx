@@ -23,14 +23,12 @@ export function GallerySection() {
 
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30 mb-4">
-                            <span className="text-secondary font-semibold text-sm tracking-wider uppercase">
-                                Galería Grupo DIAPSA
-                            </span>
-                        </div>
+                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                            Galería Grupo DIAPSA
+                        </span>
 
-                        <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-4">
-                            Experiencia en <span className="text-secondary">acción</span>
+                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+                            EXPERIENCIA EN <span className="text-secondary">ACCIÓN</span>
                         </h2>
 
                         <p className="max-w-2xl mx-auto text-tertiary text-lg">
@@ -67,7 +65,7 @@ export function GallerySection() {
                             <div
                                 key={image.src}
                                 onClick={() => setOpenImage(image.src)}
-                                className="group relative aspect-4/3 overflow-hidden rounded-2xl cursor-pointer bg-gray-100 shadow-md hover:shadow-2xl transition-all duration-300"
+                                className="group relative aspect-4/3 overflow-hidden rounded-sm cursor-pointer bg-gray-100 shadow-md hover:shadow-2xl transition-all duration-300"
                             >
                                 <Image
                                     src={image.src}
@@ -86,7 +84,8 @@ export function GallerySection() {
                                 </div>
 
                                 {/* Zoom icon */}
-                                <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100">
+                                <div
+                                    className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100">
                                     <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                                     </svg>
@@ -100,7 +99,7 @@ export function GallerySection() {
                         <div className="text-center">
                             <button
                                 onClick={() => !showAll ? setShowAll(true) : setShowAll(false)}
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-secondary hover:text-primary transition-all duration-300 shadow-lg hover:shadow-2xl"
+                                className="inline-flex items-center gap-3 px-8 py-3 bg-primary text-white font-bold rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
                             >
                                 {!showAll ? 'Ver más imagenes' : 'Ver menos imagenes'}
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
