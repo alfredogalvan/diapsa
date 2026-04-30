@@ -63,15 +63,28 @@ export default function TabsSection() {
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
   return (
-    <section className="relative w-full bg-white py-16 lg:py-40 overflow-hidden">
+    <section className="relative w-full bg-white py-16 lg:py-24 pb-24 lg:pb-60">
       {/* Patrón de fondo decorativo */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
+      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
         <Image
           src="/images/FONDO-360-DIANAS.png"
           alt="Fondo decorativo"
           fill
           className="object-cover"
         />
+      </div>
+
+      {/* Header de sección — fuera del contenedor gris */}
+      <div className="relative max-w-7xl mx-auto px-6 text-center mb-10">
+        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+          DIAPSA 360
+        </span>
+        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+          EL DIAGNÓSTICO QUE <span className="text-secondary">HACE LA DIFERENCIA</span>
+        </h2>
+        <p className="text-tertiary text-lg max-w-2xl mx-auto">
+          Entiende el problema industrial y cómo la metodología DIAPSA 360 transforma la forma de anticipar fallas.
+        </p>
       </div>
 
       <div className="max-w-7xl mx-auto bg-gray-400/20 relative">

@@ -35,10 +35,10 @@ export default function AdvsCard({ adv }: Props) {
                             ))}
                         </div>
                     )}
-                    <div className="flex justify-between mt-auto pt-2">
+                    <div className="flex justify-between items-center mt-auto pt-2">
                         <p className="text-sm"> {adv.date}</p>
                         <button onClick={() => setOpenFlyer(true)}
-                            className="text-secondary border-b-2 border-secondary hover:text-white hover:border-white transition-all ease-in-out">Ver flyer</button>
+                            className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-4 py-1 rounded-sm hover:bg-white hover:text-primary transition-all duration-300">Ver flyer</button>
                     </div>
                 </div>
             </div>

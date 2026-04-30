@@ -114,7 +114,7 @@ export default function ContactForm() {
   const mostrarServicios = formData.asunto === "Información de servicios";
 
   return (
-    <section className="w-full bg-black text-white py-12 md:py-20">
+    <section className="w-full bg-black text-white py-16 lg:py-24">
       <div className="lg:max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between gap-8 lg:gap-16 items-center">
 
         {/* COLUMNA IZQUIERDA */}

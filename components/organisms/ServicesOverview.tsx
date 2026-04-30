@@ -24,7 +24,7 @@ export default function ServicesOverview() {
                     {disciplinasData.disciplines.map((discipline) => (
                         <div
                             key={discipline.title}
-                            className="group relative overflow-hidden rounded-xl bg-gray-50 border border-gray-100 hover:border-secondary/40 hover:shadow-xl transition-all duration-300"
+                            className="group relative overflow-hidden rounded-sm bg-gray-50 border border-gray-100 hover:border-secondary/40 hover:shadow-xl transition-all duration-300"
                         >
                             {/* Imagen */}
                             <div className="relative w-full h-48 overflow-hidden">

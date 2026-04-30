@@ -84,8 +84,8 @@ const slides: Slide[] = [
       "Forma a tu equipo con expertos certificados. Presencial, webinar y certificaciones internacionales para llevar tu planta al siguiente nivel.",
     cta: { label: "Ver todos los cursos", href: "/cursos" },
     ctaSecondary: { label: "Inscribirse ahora", href: "/cursos" },
-    image: "/images/gold-coin.png",
-    imageAlt: "Técnico industrial tomando curso de mantenimiento predictivo",
+    image: "/images/itzam-gold-coin.png",
+    imageAlt: "Moneda dorada de instituto ITZAM",
     imageContain: false,
     bg: "/images/fondo-mantenimiento.webp",
     stats: [

@@ -13,11 +13,14 @@ export default function AboutUs() {
         zIndex="-z-10"
       />
 
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-6 py-16 lg:py-42">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-6 py-16 lg:py-24">
         {/* Columna izquierda */}
         <div className="text-white p-12">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-6 tracking-wide">
-            ¿PORQUÉ ELEGIR A DIAPSA?
+          <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+            Nuestra historia
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-extrabold mb-6 tracking-wide">
+            ¿POR QUÉ ELEGIR A DIAPSA?
           </h2>
           <div className="space-y-5 text-lg lg:text-xl text-white/90">
             <p>
@@ -35,7 +38,7 @@ export default function AboutUs() {
           <div className="mt-8">
             <Link
               href="/acerca-de"
-              className="inline-flex items-center gap-2 border-2 border-secondary text-secondary font-bold px-6 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300"
             >
               Conoce nuestra historia
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

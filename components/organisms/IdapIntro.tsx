@@ -12,7 +12,7 @@ export default function IdapIntro() {
 
     return (
 
-        <section className="w-full bg-white">
+        <section className="w-full bg-white pt-16 lg:pt-24">
             <div className="flex items-center justify-center lg:gap-10 bg-white text-black">
 
                 <div className="relative w-80 h-28">
@@ -30,7 +30,7 @@ export default function IdapIntro() {
                     </div>
                     <div className="w-full lg:w-1/2">
                         <div>
-                            <h2>¿QUÉ ES IDAP</h2>
+                            <h2 className="text-2xl font-bold text-primary mb-2">¿QUÉ ES IDAP?</h2>
                             <p className="text-sm font-sans">
                                 IDAP ( Inspection, Diagnostic &amp; Asset Platform) es la plataforma
                                 desarrollada por DIAPSA para la gestión integral de resultados de
@@ -49,7 +49,7 @@ export default function IdapIntro() {
                                                 <span className="text-secondary text-lg font-bold">•</span>
                                             </div>
                                             <div className="flex-1">
-                                                <h3 className="uppercase">
+                                                <h3 className="text-sm font-semibold uppercase text-primary">
                                                     {tab.title}
                                                 </h3>
                                             </div>
@@ -91,7 +91,7 @@ export default function IdapIntro() {
                     </div>
                     {idapdata.questions.map((q) => (
                         <div key={q.title} className="space-y-3 relative z-10 mt-6">
-                            <p>{q.title}</p>
+                            <p className="text-base font-bold text-primary">{q.title}</p>
                             <p className="text-sm p-4">
                                 {q.description}
                             </p>

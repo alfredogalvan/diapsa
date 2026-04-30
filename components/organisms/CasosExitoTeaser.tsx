@@ -56,7 +56,7 @@ export default function CasosExitoTeaser() {
                         <Link
                             key={c.slug}
                             href={`/casos-exito/${c.slug}`}
-                            className="group flex flex-col bg-white rounded-xl border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
+                            className="group flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
                         >
                             {/* Top accent bar + service badge */}
                             <div className="bg-primary px-6 py-4">
@@ -108,7 +108,7 @@ export default function CasosExitoTeaser() {
                 <div className="text-center">
                     <Link
                         href="/casos-exito"
-                        className="inline-flex items-center gap-2 border-2 border-primary text-primary font-bold px-8 py-3 rounded-xs hover:bg-primary hover:text-white transition-all duration-300"
+                        className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
                     >
                         Ver todos los casos de éxito
                     </Link>

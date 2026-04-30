@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Hero from "@/components/organisms/Hero";
-import StatsStrip from "@/components/organisms/StatsStrip";
 import AboutUs from "@/components/organisms/AboutUs";
 import ServicesOverview from "@/components/organisms/ServicesOverview";
 import TabsSection from "@/components/organisms/TabsSection";
@@ -120,10 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Cifras clave — credibilidad inmediata */}
-      <StatsStrip />
-
-      {/* 4. ¿Por qué DIAPSA? */}
+      {/* 3. ¿Por qué DIAPSA? */}
       <AboutUs />
 
       {/* 5. Disciplinas de monitoreo con imágenes reales */}

@@ -1,0 +1,355 @@
+# Guía de Estilos — Grupo DIAPSA Frontend
+
+> Referencia visual y de código para mantener coherencia en toda la aplicación.
+> Aplica a nuevas páginas, secciones y componentes.
+
+---
+
+## 1. Colores de Marca
+
+Definidos en `app/globals.css` y disponibles como clases Tailwind:
+
+| Token | Valor | Clase Tailwind | Uso |
+|---|---|---|---|
+| `--primary` | `#002e46` | `bg-primary`, `text-primary`, `border-primary` | Azul oscuro — color principal de marca |
+| `--secondary` | `#fc9f01` | `bg-secondary`, `text-secondary`, `border-secondary` | Naranja — acentos, highlights, CTAs |
+| `--tertiary` | `#6b7280` | `text-tertiary` | Gris — texto secundario, subtítulos |
+
+**Reglas:**
+- Nunca usar `text-black` para headings — usar `text-primary`
+- Nunca usar hex hardcoded en className cuando exista un token
+- El `bg-black` está reservado **solo** para `ContactForm`
+
+---
+
+## 2. Tipografía
+
+### Headings de sección (h2)
+```tsx
+<h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
+  TÍTULO <span className="text-secondary">DESTACADO</span>
+</h2>
+```
+- Siempre `font-extrabold`
+- Escala: `text-3xl lg:text-4xl`
+- Color base: `text-primary`; highlight con `text-secondary`
+- Texto en **mayúsculas**
+
+### Subtítulo / descripción de sección (p)
+```tsx
+<p className="text-tertiary text-lg max-w-2xl mx-auto">
+  Descripción de la sección...
+</p>
+```
+- `text-tertiary`, `text-lg`, `max-w-2xl` centrado
+
+### Headings internos (h3 dentro de cards)
+```tsx
+<h3 className="font-bold text-primary text-base leading-snug group-hover:text-secondary transition-colors">
+```
+- `font-bold`, `text-base`, `text-primary`
+
+### Texto de cuerpo
+```tsx
+<p className="text-tertiary text-sm leading-relaxed">
+```
+- `text-sm leading-relaxed` para textos dentro de cards
+- `text-base lg:text-lg leading-relaxed` para textos de sección
+
+---
+
+## 3. Patrón de Header de Sección
+
+**Todas las secciones** deben tener este patrón antes del contenido principal:
+
+```tsx
+{/* Sección sobre fondo claro */}
+<div className="text-center mb-12">
+  <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+    Etiqueta de sección
+  </span>
+  <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+    TÍTULO <span className="text-secondary">DESTACADO</span>
+  </h2>
+  <p className="text-tertiary text-lg max-w-2xl mx-auto">
+    Descripción opcional de la sección.
+  </p>
+</div>
+```
+
+**Sección sobre fondo oscuro (`bg-primary`):**
+```tsx
+<div className="text-center mb-12">
+  <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+    Etiqueta
+  </span>
+  <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
+    TÍTULO <span className="text-secondary">DESTACADO</span>
+  </h2>
+  <p className="text-white/70 mt-2">
+    Descripción opcional.
+  </p>
+</div>
+```
+
+---
+
+## 4. Espaciado de Secciones
+
+Padding vertical estándar **para todas las secciones**:
+
+```tsx
+<section className="... py-16 lg:py-24">
+```
+
+| Caso especial | Clase |
+|---|---|
+| Sección sin padding inferior (el contenido llega al borde) | `pt-16 lg:pt-24` |
+| Sección que contiene elemento desbordado abajo (ej. motor) | `py-16 lg:py-24 pb-24 lg:pb-60` |
+
+**Contenedor de contenido:**
+```tsx
+<div className="max-w-7xl mx-auto px-6">
+```
+
+---
+
+## 5. CTAs y Botones de Sección
+
+### Sobre fondo claro (`bg-white`, `bg-gray-50`, `bg-gray-100`)
+```tsx
+{/* CTA principal — sólido primary */}
+<Link
+  href="/ruta"
+  className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
+>
+  Texto del CTA
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+  </svg>
+</Link>
+```
+
+### Sobre fondo oscuro (`bg-primary`, `bg-black`)
+```tsx
+{/* CTA sobre fondo oscuro — sólido secondary */}
+<Link
+  href="/ruta"
+  className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
+>
+  Texto del CTA
+</Link>
+```
+
+### Reglas generales
+- `rounded-xs` en todos los CTAs de sección (no `rounded-lg`, no `rounded-xl`)
+- `font-bold` siempre
+- Transición: `transition-all duration-300`
+- Ícono de flecha cuando hay navegación: `strokeWidth={2.5}`, `d="M9 5l7 7-7 7"`
+- **No usar estilos outline/border** para CTAs de sección — solo sólidos
+
+### Atom `Button` (para botones interactivos, no links de navegación)
+```tsx
+import Button from "@/components/atoms/Button";
+
+// Sobre fondo claro
+<Button variant="primary">Enviar</Button>
+
+// Sobre fondo oscuro (navbar, hero)
+<Button variant="primary" ghost>Contacto</Button>
+<Button variant="primary" ghost ghostVariant="light">Outlined claro</Button>
+```
+
+---
+
+## 6. Cards
+
+### Estructura base de card
+```tsx
+<div className="group flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300">
+  {/* Header de card — fondo primary */}
+  <div className="bg-primary px-6 py-4">
+    ...
+  </div>
+  {/* Body */}
+  <div className="flex flex-col flex-1 p-6 gap-4">
+    ...
+  </div>
+</div>
+```
+
+**Reglas:**
+- `rounded-sm` — en **todas** las cards (no `rounded-xl`, no `rounded-lg`)
+- `border border-gray-100` en reposo, `hover:border-secondary/30` en hover
+- `shadow-sm hover:shadow-xl` — sombra progresiva
+- `transition-all duration-300` para suavizar todos los cambios
+- `overflow-hidden` cuando hay imagen que debe recortarse
+
+### Cards de imagen (disciplinas)
+```tsx
+<div className="group relative overflow-hidden rounded-sm bg-gray-50 border border-gray-100 hover:border-secondary/40 hover:shadow-xl transition-all duration-300">
+  <div className="relative w-full h-48 overflow-hidden">
+    <Image fill className="object-cover transition-transform duration-500 group-hover:scale-105" ... />
+    <div className="absolute inset-0 bg-primary/30 group-hover:bg-primary/10 transition-colors duration-300" />
+  </div>
+  <div className="p-5">
+    <h3 className="font-bold text-primary text-base mb-2 group-hover:text-secondary transition-colors">...</h3>
+    <p className="text-tertiary text-sm leading-relaxed">...</p>
+  </div>
+  {/* Borde inferior animado */}
+  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+</div>
+```
+
+---
+
+## 7. Ritmo de Fondos
+
+El orden de alternancia de fondos en la homepage define el ritmo visual. Para nuevas secciones, seguir esta lógica:
+
+```
+bg-white → bg-gray-50/bg-gray-100 → bg-white → bg-primary → bg-white → bg-black
+```
+
+| Color de fondo | Cuándo usar |
+|---|---|
+| `bg-white` | Secciones de contenido principales |
+| `bg-gray-50` | Secciones de listado/cards (contraste suave) |
+| `bg-gray-100` | Secciones de eventos/anuncios |
+| `bg-primary` | Secciones de impacto/galería/cierre visual |
+| `bg-black` | **Solo ContactForm** |
+| Naranja (`bg-[#fda101]`) | **Solo IdapIntro** — diferenciador de producto |
+
+**Regla:** No poner dos secciones `bg-white` consecutivas sin separación visual. Agregar un fondo diferente entre ellas.
+
+---
+
+## 8. Badge / Eyebrow Pill
+
+El mismo componente en todos lados:
+
+```tsx
+<span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+  Texto del badge
+</span>
+```
+
+- Siempre en **mayúsculas**
+- `text-xs tracking-widest`
+- `rounded-full` (el único elemento con bordes completamente redondos)
+- `mb-4` como separación hacia el h2
+
+---
+
+## 9. Imágenes
+
+### Imagen de fondo de sección
+```tsx
+import BackgroundImage from "@/components/atoms/BackgroundImage";
+
+<BackgroundImage
+  src="/images/fondo-mantenimiento.webp"
+  alt="Descripción"
+  priority
+  zIndex="-z-10"
+/>
+```
+
+### Imagen con Next/Image
+```tsx
+{/* Fill — para contenedores con position relative */}
+<div className="relative w-full h-48">
+  <Image src="..." alt="..." fill className="object-cover" sizes="..." />
+</div>
+
+{/* Hero background */}
+<Image src="..." alt="" fill className="object-cover" priority />
+```
+
+---
+
+## 10. Grid Layout
+
+### Grid de 2 columnas (sección con imagen + texto)
+```tsx
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+```
+
+### Grid de 3 columnas (cards)
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+```
+
+### Grid de 4 columnas (navegación rápida)
+```tsx
+<div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+```
+
+---
+
+## 11. Estructura de una Sección Nueva
+
+Template completo para agregar una nueva sección:
+
+```tsx
+// components/organisms/NuevaSeccion.tsx
+import Link from "next/link";
+
+export default function NuevaSeccion() {
+  return (
+    <section className="w-full bg-white py-16 lg:py-24">
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+            Etiqueta
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+            TÍTULO <span className="text-secondary">DESTACADO</span>
+          </h2>
+          <p className="text-tertiary text-lg max-w-2xl mx-auto">
+            Descripción de la sección.
+          </p>
+        </div>
+
+        {/* Contenido principal */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {/* ... cards ... */}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center">
+          <Link
+            href="/ruta"
+            className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
+          >
+            Ver más
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+```
+
+---
+
+## 12. Checklist para Revisión de Componentes
+
+Antes de hacer merge de una nueva sección, verificar:
+
+- [ ] ¿Tiene badge pill + h2 `font-extrabold text-3xl lg:text-4xl` + párrafo descripción?
+- [ ] ¿El h2 usa `text-primary`? (no `text-black`)
+- [ ] ¿El padding es `py-16 lg:py-24`?
+- [ ] ¿El contenedor usa `max-w-7xl mx-auto px-6`?
+- [ ] ¿Las cards usan `rounded-sm`? (no `rounded-xl`)
+- [ ] ¿Los CTAs de navegación son sólidos (`bg-primary` o `bg-secondary`)? (no outline)
+- [ ] ¿`rounded-xs` en todos los botones/CTAs?
+- [ ] ¿El fondo alterna correctamente con las secciones adyacentes?
+- [ ] ¿No hay dos secciones `bg-white` consecutivas sin separación?
+- [ ] ¿Los colores usan tokens (`text-primary`, `bg-secondary`) en vez de hex?

@@ -26,7 +26,7 @@ export default function GalleryTeaser() {
                     </div>
                     <Link
                         href="/acerca-de#galeria"
-                        className="self-start lg:self-auto inline-flex items-center gap-2 border-2 border-secondary text-secondary font-bold px-6 py-2.5 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 whitespace-nowrap"
+                        className="self-start lg:self-auto inline-flex items-center gap-2 bg-secondary text-primary font-bold px-6 py-2.5 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md whitespace-nowrap"
                     >
                         Ver galería completa
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,7 +41,7 @@ export default function GalleryTeaser() {
                         <Link
                             key={photo.src}
                             href="/acerca-de#galeria"
-                            className="group relative aspect-4/3 overflow-hidden rounded-xl block"
+                            className="group relative aspect-4/3 overflow-hidden rounded-sm block"
                         >
                             <Image
                                 src={photo.src}
