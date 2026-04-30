@@ -1,34 +1,14 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-
+import images from '@/data/images-gallery.json';
+import LightBoxImage from '../molecules/LightBoxImage';
 export function GallerySection() {
     const [activeFilter, setActiveFilter] = useState('Todos');
     const [showAll, setShowAll] = useState(false);
-    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+    const [openImage, setOpenImage] = useState<string | null>(null);
 
     const categories = ['Todos', 'Capacitaciones', 'Trabajo en campo'];
-
-    const images = [
-        { src: '/images/gallery/campo-img-1.jpg', alt: 'Explicación del uso de equipo en campo', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-1.jpg', alt: 'Capacitaciones en DIAPSA', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-2.jpg', alt: 'Monitoreo de condición - DIAPSA', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-2.jpg', alt: 'Curso de Certificación Alineamiento de Ejes y Balanceo', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-3.jpg', alt: 'Inspección en DIAPSA', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-3.jpg', alt: 'Egresados DIAPSA', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-4.jpg', alt: 'Lubricación a equipos', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-4.jpg', alt: 'Capacitación en DIAPSA', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-5.jpg', alt: 'Inspección de corriente', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-5.jpg', alt: 'Redacción de informe de inspección', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-6.jpg', alt: 'Profesionista DIAPSA', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-6.jpg', alt: 'Examen validado por DIAPSA', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-7.jpg', alt: 'Análisis Eléctrico', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-7.jpg', alt: 'Revisión de Informes', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-8.jpg', alt: 'Uso de equipo termográfico', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-8.jpg', alt: 'Capacitación en DIAPSA 2', category: 'Capacitaciones' },
-        { src: '/images/gallery/campo-img-9.jpg', alt: 'Termografía Categoría 3', category: 'Trabajo en campo' },
-        { src: '/images/gallery/capacitacion-img-9.jpg', alt: 'Curso de termografía', category: 'Capacitaciones' },
-    ];
 
     const filteredImages = activeFilter === 'Todos'
         ? images
@@ -86,7 +66,7 @@ export function GallerySection() {
                         {displayedImages.map((image, index) => (
                             <div
                                 key={image.src}
-                                onClick={() => setLightboxImage(image.src)}
+                                onClick={() => setOpenImage(image.src)}
                                 className="group relative aspect-4/3 overflow-hidden rounded-2xl cursor-pointer bg-gray-100 shadow-md hover:shadow-2xl transition-all duration-300"
                             >
                                 <Image
@@ -132,33 +112,11 @@ export function GallerySection() {
                 </div>
             </section>
 
-            {/* Lightbox */}
-            {lightboxImage && (
-                <div
-                    onClick={() => setLightboxImage(null)}
-                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-300"
-                >
-                    <button
-                        className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
-                        onClick={() => setLightboxImage(null)}
-                    >
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    <div className="relative max-w-5xl w-full h-[80vh]">
-                        <Image
-                            src={lightboxImage}
-                            alt="Imagen ampliada"
-                            fill
-                            priority
-                            sizes="100vw"
-                            className="object-contain"
-                        />
-                    </div>
-                </div>
-            )}
+            <LightBoxImage
+                image={openImage ?? ''}
+                isOpen={!!openImage}
+                onClose={() => setOpenImage(null)}
+            />
         </>
     );
 }

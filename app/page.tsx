@@ -12,7 +12,8 @@ import { Clients } from "@/components/organisms/Clients";
 import GalleryTeaser from "@/components/organisms/GalleryTeaser";
 // import BlogSection from "@/components/organisms/BlogSection";
 import ContactForm from "@/components/organisms/ContactForm";
-
+import AdSection from "@/components/organisms/AdSection";
+import ads from "@/data/ads.json";
 const offerings = [
   {
     href: "/servicios/monitoreo-condicion",
@@ -59,6 +60,7 @@ const offerings = [
     ),
   },
 ];
+
 
 export const metadata: Metadata = {
   title: "Inicio | Mantenimiento Predictivo Industrial",
@@ -128,6 +130,7 @@ export default function Home() {
       <ServicesOverview />
 
       {/* 6. El problema industrial → solución DIAPSA 360 */}
+      <AdSection advertisements={ads} />
       <TabsSection />
 
       {/* 7. Casos de éxito con resultados cuantificados */}
