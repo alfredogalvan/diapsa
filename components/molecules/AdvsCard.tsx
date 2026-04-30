@@ -15,13 +15,8 @@ interface Props {
     adv: Advertisement
 }
 
-
 export default function AdvsCard({ adv }: Props) {
     const [openFlyer, setOpenFlyer] = useState<boolean>(false);
-
-    const openModal = () => {
-        setOpenFlyer(true)
-    }
     return (
         <>
             <div className="bg-primary rounded-sm h-full flex max-w-80 flex-col shadow-2xl shadow-black-800 space-y-6">
@@ -42,14 +37,12 @@ export default function AdvsCard({ adv }: Props) {
                     )}
                     <div className="flex justify-between mt-auto pt-2">
                         <p className="text-sm"> {adv.date}</p>
-                        <button onClick={() => openModal()}
+                        <button onClick={() => setOpenFlyer(true)}
                             className="text-secondary border-b-2 border-secondary hover:text-white hover:border-white transition-all ease-in-out">Ver flyer</button>
                     </div>
                 </div>
             </div>
-            {openFlyer && (
-                <LightBoxImage onClose={() => setOpenFlyer(false)} isOpen={openFlyer} image={adv.img} />
-            )}
+            <LightBoxImage onClose={() => setOpenFlyer(false)} isOpen={openFlyer} image={adv.img} />
         </>
     )
 }
