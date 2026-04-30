@@ -6,6 +6,8 @@ import BlogSection from "@/components/organisms/BlogSection";
 import ContactForm from "@/components/organisms/ContactForm";
 import { Clients } from "@/components/organisms/Clients";
 import IdapIntro from "@/components/organisms/IdapIntro";
+import AdSection from "@/components/organisms/AdSection";
+import ads from "@/data/ads.json";
 
 export const metadata: Metadata = {
   title: "Inicio | Mantenimiento Predictivo Industrial",
@@ -36,6 +38,7 @@ export default function Home() {
     <main>
       <Hero />
       <AboutUs />
+      <AdSection advertisements={ads} />
       <TabsSection />
       <IdapIntro />
       <Clients />

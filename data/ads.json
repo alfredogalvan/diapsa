@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Curso TI Cat 2",
+        "badges": [
+            "Certificación",
+            "Online"
+        ],
+        "img": "/images/ads/course-ti.jpg",
+        "date": "19 - 22 mayo",
+        "description": "Perfeccionando habilidades, emita analisis valiosos como especialista."
+    },
+    {
+        "title": "Taller Herramientas Predictivas",
+        "badges": [
+            "Taller",
+            "Online"
+        ],
+        "img": "/images/ads/herramientas-predictivas.jpg",
+        "date": "26 - 28 mayo",
+        "description": "Tecnologias de impacto en el mantenimiento predictivo"
+    }
+]
