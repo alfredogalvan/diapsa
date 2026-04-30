@@ -25,8 +25,8 @@ export default function IdapIntro() {
                     predictivo que integra Inteligencia Artificial con el <br />
                     análisis de expertos</p>
                 <div className="flex flex-wrap py-6 px-6 lg:px-24">
-                    <div className="relative w-full lg:w-1/2 h-96 z-10">
-                        <Image fill src="/images/idap/mockup.png" alt="Muestra Idap" className="object-contain md:scale-100 lg:scale-120" />
+                    <div className="relative w-full lg:w-1/2 h-96">
+                        <Image fill src="/images/idap/mockup.png" alt="Muestra Idap" className="object-contain" />
                     </div>
                     <div className="w-full lg:w-1/2">
                         <div>
