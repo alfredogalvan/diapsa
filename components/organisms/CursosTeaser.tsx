@@ -1,35 +1,12 @@
 'use client'
-import React from "react";
+
 import Link from "next/link";
 import { useCourses } from "@/lib/hooks/useCourses";
 import CourseCard from "../molecules/CourseCard";
-// const FEATURED_IDS = [1, 2, 3];
-
-const iconMap: Record<string, React.ReactElement> = {
-    thermometer: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-                d="M9 3v11.382A4 4 0 1015 14.382V3a3 3 0 00-6 0z" />
-        </svg>
-    ),
-    vibration: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-                d="M9 19V6l2 4 2-7 2 4 2-4v13M3 12h2m14 0h2" />
-        </svg>
-    ),
-    sound: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-                d="M15.536 8.464a5 5 0 010 7.072M12 6a7 7 0 010 12M9 9H6a1 1 0 00-1 1v4a1 1 0 001 1h3l4 4V5L9 9z" />
-        </svg>
-    ),
-};
 
 export default function CursosTeaser() {
-    const { courses, loading, error } = useCourses({ courseType: 'Certificación' });
+    const { courses } = useCourses({ courseType: 'Certificación' });
 
-    console.log('Cursos: ', courses);
     return (
         <section className="w-full bg-white py-16 lg:py-24">
             <div className="max-w-7xl mx-auto px-6">
