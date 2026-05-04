@@ -47,7 +47,7 @@ function CertificateLayout({ course }: { course: Course }) {
 
     return (
         <Link href={`/cursos/${course.slug}`}
-            className="flex flex-col h-full bg-white border border-gray-200 rounded-2xl hover:shadow-xl hover:border-secondary/30 transition-all duration-300 overflow-hidden group"
+            className="flex flex-col h-full bg-white border border-gray-200 rounded-sm hover:shadow-xl hover:border-secondary/30 transition-all duration-300 overflow-hidden group"
         >
             {/* Header con badge ISO */}
             <div className='bg-primary text-white px-4 py-2 flex items-center justify-between'>
@@ -143,7 +143,7 @@ function StrategicLayout({ course }: { course: Course }) {
     return (
         <Link
             href={`/cursos/${course.slug}`}
-            className="flex flex-col h-full bg-white border border-gray-200 rounded-xl hover:border-tertiary hover:shadow-md transition-all duration-300 overflow-hidden group"
+            className="flex flex-col h-full bg-white border border-gray-200 rounded-sm hover:border-tertiary hover:shadow-md transition-all duration-300 overflow-hidden group"
         >
             {/* Header - Categoría prominente (Tu punto de partida) */}
             <div className='bg-tertiary/5 border-b border-tertiary/20 px-4 py-2 flex items-center justify-between'>
@@ -231,7 +231,7 @@ function WorkshopLayout({ course }: { course: Course }) {
     return (
         <Link
             href={`/cursos/${course.slug}`}
-            className="flex flex-col h-full bg-white border border-gray-200 rounded-lg hover:border-secondary hover:shadow-lg transition-all duration-300 overflow-hidden group"
+            className="flex flex-col h-full bg-white border border-gray-200 rounded-sm hover:border-secondary hover:shadow-lg transition-all duration-300 overflow-hidden group"
         >
             {/* Header - Energía visual */}
             <div className='bg-linear-to-r from-secondary/10 to-secondary/5 border-b border-secondary/20 px-4 py-2'>
