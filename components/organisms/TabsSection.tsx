@@ -63,11 +63,11 @@ export default function TabsSection() {
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
   return (
-    <section className="relative w-full bg-white py-16 lg:py-24 pb-24 lg:pb-60">
+    <section className="relative w-full bg-white py-16 lg:py-24 pb-24 lg:pb-60 border-y-4 border-secondary">
       {/* Patrón de fondo decorativo */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 opacity-50 pointer-events-none overflow-hidden">
         <Image
-          src="/images/FONDO-360-DIANAS.png"
+          src="/images/vision-image.jpg"
           alt="Fondo decorativo"
           fill
           className="object-cover"
@@ -80,15 +80,15 @@ export default function TabsSection() {
           DIAPSA 360
         </span>
         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
-          EL DIAGNÓSTICO QUE <span className="text-secondary">HACE LA DIFERENCIA</span>
+          CONOCE NUESTRO ROL <span className="text-secondary">EN LA INDUSTRIA</span>
         </h2>
-        <p className="text-tertiary text-lg max-w-2xl mx-auto">
+        <p className="text-black text-lg max-w-2xl mx-auto">
           Entiende el problema industrial y cómo la metodología DIAPSA 360 transforma la forma de anticipar fallas.
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto bg-gray-400/20 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 lg:py-8">
+      <div className="max-w-7xl mx-auto bg-gray-300/90 relative shadow-2xl rounded-sm lg:min-h-112.5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:py-8 h-full">
           {/* Tabs verticales - Izquierda */}
           <div className="lg:col-span-5">
             {tabs.map((tab) => (
@@ -96,21 +96,37 @@ export default function TabsSection() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  w-full text-left px-6 py-6  font-semibold text-sm lg:text-base
-                  transition-all duration-300 
+                  relative w-full text-center px-6 py-6 font-semibold text-sm lg:text-base
+                  transition-all duration-300 group
                   ${activeTab === tab.id
-                    ? "bg-linear-to-r from-gray-500/80 to-gray-400/10 text-gray-900  shadow-lg"
-                    : " border-transparent  hover:bg-linear-to-r from-gray-500/80 to-gray-400/10 text-gray-900  shadow-lg"
+                    ? "bg-white text-gray-900"
+                    : "border-transparent hover:bg-white text-gray-900"
                   }
                 `}
               >
+                {/* Triángulo indicador */}
+                <div
+                  className={`
+                    absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0
+                    transition-opacity duration-300
+                    ${activeTab === tab.id
+                      ? "opacity-100"
+                      : "opacity-0 group-hover:opacity-100"
+                    }
+                  `}
+                  style={{
+                    borderTop: "32px solid transparent",
+                    borderBottom: "32px solid transparent",
+                    borderLeft: "25px solid #fc9f01",
+                  }}
+                />
                 {tab.title}
               </button>
             ))}
           </div>
 
           {/* Contenido - Derecha */}
-          <div className="lg:col-span-7 lg:border-l-gray-300 lg:border-2 p-8 lg:p-16">
+          <div className="lg:col-span-7 p-8 lg:p-16">
             <div className="grid grid-cols-1 gap-8 items-center">
               {/* Texto */}
               <div className="space-y-4">
