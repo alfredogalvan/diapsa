@@ -31,14 +31,14 @@ export default function AdvsCard({ adv }: Props) {
                     {adv.badges && (
                         <div className="flex gap-3">
                             {adv.badges.map((b) => (
-                                <p key={b} className="rounded-2xl bg-secondary text-black py-1 text-sm px-3">{b}</p>
+                                <p key={b} className="rounded-2xl bg-transparent text-secondary border border-secondary py-1 text-xs px-3">{b}</p>
                             ))}
                         </div>
                     )}
                     <div className="flex justify-between items-center mt-auto pt-2">
                         <p className="text-sm"> {adv.date}</p>
                         <button onClick={() => setOpenFlyer(true)}
-                            className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-4 py-1 rounded-sm hover:bg-white hover:text-primary transition-all duration-300">Ver flyer</button>
+                            className="inline-flex items-center gap-2 bg-secondary text-sm text-primary font-bold px-4 py-1 rounded-sm hover:bg-white hover:text-primary transition-all duration-300">Ver flyer</button>
                     </div>
                 </div>
             </div>
