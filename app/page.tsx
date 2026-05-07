@@ -93,7 +93,7 @@ export default function Home() {
       <Hero />
 
       {/* 2. Navegación rápida a las 4 áreas clave */}
-      <section className="bg-white border-b border-gray-100 py-6">
+      {/* <section className="bg-white border-b border-gray-100 py-6">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {offerings.map((item) => (
@@ -117,18 +117,19 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
+      <ServicesOverview />
       {/* 3. ¿Por qué DIAPSA? */}
       <AboutUs />
 
       {/* 5. Disciplinas de monitoreo con imágenes reales */}
-      <ServicesOverview />
 
       {/* 6. El problema industrial → solución DIAPSA 360 */}
       <AdSection advertisements={ads} />
       <TabsSection />
 
+      <CursosTeaser />
       {/* 7. Casos de éxito con resultados cuantificados */}
       <CasosExitoTeaser />
 
@@ -136,7 +137,6 @@ export default function Home() {
       <IdapIntro />
 
       {/* 9. Cursos y certificaciones ISO */}
-      <CursosTeaser />
 
       {/* 10. Clientes */}
       <Clients />

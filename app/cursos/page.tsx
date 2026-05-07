@@ -7,6 +7,7 @@ import { useCourses } from "@/lib/hooks/useCourses";
 import { useCourseCategories } from "@/lib/hooks/useCourseType";
 // import CourseMainContent from "@/components/organisms/CourseMainContent";
 import { groupCoursesByType } from "@/lib/utils/groupCourses";
+import JsonLd from "@/components/atoms/JsonLd";
 
 
 export default function CursosPage() {

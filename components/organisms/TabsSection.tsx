@@ -63,7 +63,7 @@ export default function TabsSection() {
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
   return (
-    <section className="relative w-full bg-white py-16 lg:py-24 pb-24 lg:pb-60 border-y-4 border-secondary">
+    <section className="relative w-full bg-primary py-16 lg:py-24 pb-24 lg:pb-60 border-y-4 border-secondary">
       {/* Patrón de fondo decorativo */}
       <div className="absolute inset-0 opacity-50 pointer-events-none overflow-hidden">
         <Image
@@ -79,15 +79,15 @@ export default function TabsSection() {
         <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
           DIAPSA 360
         </span>
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+        <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
           CONOCE NUESTRO ROL <span className="text-secondary">EN LA INDUSTRIA</span>
         </h2>
-        <p className="text-black text-lg max-w-2xl mx-auto">
+        <p className="text-white text-lg max-w-2xl mx-auto">
           Entiende el problema industrial y cómo la metodología DIAPSA 360 transforma la forma de anticipar fallas.
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto bg-gray-300/90 relative shadow-2xl rounded-sm lg:min-h-112.5">
+      <div className="max-w-7xl mx-auto bg-white/90 relative shadow-2xl rounded-sm lg:min-h-112.5">
         <div className="grid grid-cols-1 lg:grid-cols-12 lg:py-8 h-full">
           {/* Tabs verticales - Izquierda */}
           <div className="lg:col-span-5">
@@ -99,7 +99,7 @@ export default function TabsSection() {
                   relative w-full text-center px-6 py-6 font-semibold text-sm lg:text-base
                   transition-all duration-300 group
                   ${activeTab === tab.id
-                    ? "bg-white text-gray-900"
+                    ? "bg-gray-300/90 text-gray-900"
                     : "border-transparent hover:bg-white text-gray-900"
                   }
                 `}

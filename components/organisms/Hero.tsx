@@ -15,8 +15,8 @@ type Slide = {
   description: string;
   cta: { label: string; href: string };
   ctaSecondary: { label: string; href: string };
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   imageContain: boolean;
   bg: string;
   stats?: Stat[];
@@ -29,13 +29,11 @@ const slides: Slide[] = [
     title: "MONITOREO PREDICTIVO",
     titleHighlight: "INTEGRAL PARA LA INDUSTRIA",
     description:
-      "Sensores, inteligencia artificial y experiencia humana para anticipar fallas y maximizar confiabilidad operativa.",
+      "Cada paro no planeado cuesta tiempo y dinero. Con sensores, tecnología avanzada y 22 años de experiencia, anticipamos fallas antes de que ocurran.",
     cta: { label: "Nuestros servicios", href: "/servicios" },
     ctaSecondary: { label: "Contáctanos", href: "/#contacto" },
-    image: "/images/ingeniero-predictivo-trascendente.png",
-    imageAlt: "Ingeniero de mantenimiento predictivo DIAPSA",
     imageContain: true,
-    bg: "/images/fondo-hero.webp",
+    bg: "/images/screen.png",
   },
   {
     id: 1,
@@ -49,7 +47,7 @@ const slides: Slide[] = [
     image: "/images/header-sensores.png",
     imageAlt: "Sensor IoT de vibración instalado en maquinaria industrial",
     imageContain: false,
-    bg: "/images/fondo-hero.webp",
+    bg: "/images/fondo-mantenimiento.webp",
     stats: [
       { value: "24/7", label: "Monitoreo" },
       { value: "IoT", label: "Conectado" },
@@ -68,7 +66,7 @@ const slides: Slide[] = [
     image: "/images/header-camaras.png",
     imageAlt: "Cámara acústica para detección de fugas de gas industrial",
     imageContain: true,
-    bg: "/images/fondo-hero.webp",
+    bg: "/images/fondo-mantenimiento.webp",
     stats: [
       { value: "Gas", label: "Fugas" },
       { value: "IR", label: "Térmico" },
@@ -147,43 +145,26 @@ export default function Hero() {
           <div className="absolute inset-0 bg-primary/65" />
 
           {/* Línea secondary al centro */}
-          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-secondary z-10" />
+          {/* <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-secondary z-10" /> */}
 
           {/* Contenido — grid 2 columnas */}
-          <div className="relative z-20 h-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
-            {/* Columna izquierda — imagen del slide */}
-            <div className="relative flex items-end justify-center order-2 lg:order-1">
-              <div className="relative w-full h-[60vh] lg:h-[82vh]">
-                <Image
-                  src={slide.image}
-                  alt={slide.imageAlt}
-                  fill
-                  className={
-                    slide.imageContain
-                      ? "object-contain object-bottom"
-                      : "object-cover object-center"
-                  }
-                  priority={i === 0}
-                />
-              </div>
-            </div>
-
-            {/* Columna derecha — texto */}
-            <div className="flex flex-col justify-center px-6 py-12 pt-28 order-1 lg:order-2">
+          <div className={`relative z-20 h-full max-w-7xl mx-auto grid grid-cols-1 ${slide.id === 0 ? 'lg:grid-cols-[3fr_2fr]' : 'lg:grid-cols-2'}`}>
+            {/* Columna izquierda — texto */}
+            <div className={`flex flex-col justify-center px-6 py-12 pt-28 order-1 ${slide.id === 0 ? 'lg:z-10 lg:-mr-20' : ''}`}>
               {/* Badge */}
-              <span className="self-start text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-5">
+              <span className={`self-start text-secondary text-xs ${slide.id === 0 ? 'lg:text-base' : ''} font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-5`}>
                 {slide.badge}
               </span>
 
               {/* Título */}
-              <h1 className="text-2xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+              <h1 className={`text-2xl ${slide.id === 0 ? 'lg:text-6xl' : 'lg:text-4xl'} font-bold text-white mb-4 leading-tight`}>
                 {slide.title}
                 <br />
-                <span className="text-secondary">{slide.titleHighlight}</span>
+                <span className={`text-secondary`}>{slide.titleHighlight}</span>
               </h1>
 
               {/* Descripción */}
-              <p className="text-base lg:text-lg text-white/85 mb-6 max-w-xl leading-relaxed">
+              <p className={`text-base ${slide.id === 0 ? 'lg:text-xl' : 'lg:text-lg'} text-white/85 mb-6 max-w-xl leading-relaxed`}>
                 {slide.description}
               </p>
 
@@ -217,9 +198,29 @@ export default function Hero() {
                 </Link>
               </div>
             </div>
+
+            {/* Columna derecha — imagen (solo desktop) */}
+            <div className="relative hidden lg:flex items-end justify-center order-2">
+              {slide.id !== 0 && slide.image && slide.imageAlt && (
+                <div className="relative w-full h-[60vh] lg:h-[82vh]">
+                  <Image
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                    fill
+                    className={
+                      slide.imageContain
+                        ? "object-contain object-bottom"
+                        : "object-cover object-center"
+                    }
+                    priority={i === 0}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      ))}
+      ))
+      }
 
       {/* Controles de navegación */}
       <div className="absolute bottom-8 left-0 right-0 z-30 flex items-center justify-center gap-3">
@@ -263,7 +264,7 @@ export default function Hero() {
       <div className="absolute bottom-8 right-6 z-30 text-white/40 text-xs font-mono tabular-nums">
         {String(current + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
       </div>
-    </section>
+    </section >
   );
 }
 

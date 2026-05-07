@@ -26,7 +26,7 @@ export default function AdSection({ advertisements }: Props) {
                 {/* Header */}
                 <div className="text-center mb-14 space-y-3">
                     <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-2">
-                        Calendario
+                        Tablero de Anuncios
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
                         PRÓXIMOS EVENTOS <span className="text-secondary">EN DIAPSA</span>

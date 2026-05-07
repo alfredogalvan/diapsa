@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const cases = [
@@ -9,7 +10,6 @@ const cases = [
         metricLabel: "en ahorros evitados",
         highlight: "90% reducción del riesgo operativo",
         service: "Termografía Infrarroja",
-        bgColor: "bg-primary",
     },
     {
         slug: "monitoreo-redictivo-en-central-de-ciclo-combinado",
@@ -19,7 +19,6 @@ const cases = [
         metricLabel: "reducción de condiciones críticas",
         highlight: "$5.1M USD en pérdidas evitadas",
         service: "Monitoreo Integral de Condición",
-        bgColor: "bg-primary",
     },
     {
         slug: "diapsa-start-en-planta-de-tratamiento-de-agua-residual",
@@ -29,89 +28,121 @@ const cases = [
         metricLabel: "de transformación técnica",
         highlight: "3 disciplinas integradas en un programa",
         service: "DIAPSA START",
-        bgColor: "bg-primary",
     },
 ];
 
+function CaseCard({ c }: { c: (typeof cases)[0] }) {
+    return (
+        <Link
+            href={`/casos-exito/${c.slug}`}
+            className="group flex flex-col bg-white/10 rounded-sm border border-white/15 hover:border-secondary/50 shadow-md hover:shadow-2xl overflow-hidden transition-all duration-300 h-full"
+        >
+            {/* Top accent */}
+            <div className="px-4 py-3 border-b border-white/10">
+                <div className="flex items-center justify-between gap-1">
+                    <span className="text-secondary text-xs font-semibold uppercase tracking-wider leading-none">
+                        {c.service}
+                    </span>
+                    <span className="text-white/40 text-xs truncate">{c.industry}</span>
+                </div>
+            </div>
+
+            {/* Body */}
+            <div className="flex flex-col flex-1 p-4 gap-3">
+                <div>
+                    <div className="text-2xl font-extrabold text-secondary leading-none">
+                        {c.metric}
+                    </div>
+                    <div className="text-white/50 text-xs uppercase tracking-wide mt-1">
+                        {c.metricLabel}
+                    </div>
+                </div>
+                <h3 className="font-semibold text-white text-sm leading-snug group-hover:text-secondary transition-colors">
+                    {c.title}
+                </h3>
+                <p className="text-xs text-white/60 border-l-2 border-secondary pl-2 italic">
+                    {c.highlight}
+                </p>
+            </div>
+
+            {/* Footer */}
+            <div className="px-4 pb-4">
+                <span className="inline-flex items-center gap-1 text-secondary text-xs font-semibold group-hover:gap-2 transition-all">
+                    Ver caso completo
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+            </div>
+        </Link>
+    );
+}
+
 export default function CasosExitoTeaser() {
     return (
-        <section className="w-full bg-gray-50 py-16 lg:py-24">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                        Casos de Éxito
-                    </span>
-                    <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
-                        RESULTADOS QUE <span className="text-secondary">HABLAN POR SÍ SOLOS</span>
-                    </h2>
-                    <p className="text-tertiary text-lg max-w-2xl mx-auto">
-                        Empresas líderes confían en DIAPSA para proteger sus activos y maximizar su rentabilidad operativa.
-                    </p>
-                </div>
+        <section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+            {/* Glows industriales difuminados */}
+            <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-24 w-100 h-100 bg-primary/40 rounded-full blur-2xl pointer-events-none" />
 
-                {/* Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    {cases.map((c) => (
-                        <Link
-                            key={c.slug}
-                            href={`/casos-exito/${c.slug}`}
-                            className="group flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
-                        >
-                            {/* Top accent bar + service badge */}
-                            <div className="bg-primary px-6 py-4">
-                                <div className="flex items-center justify-between mb-1">
-                                    <span className="text-secondary text-xs font-semibold uppercase tracking-wider">
-                                        {c.service}
-                                    </span>
-                                    <span className="text-white/50 text-xs">{c.industry}</span>
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+                    {/* IZQUIERDA: Imagen del ingeniero */}
+                    <div className="relative w-full h-80 lg:h-full min-h-120 overflow-hidden rounded-sm">
+                        <Image
+                            src="/images/engineer-without-bg.png"
+                            alt="Especialista certificado DIAPSA"
+                            fill
+                            className="object-cover object-top"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                        {/* Gradientes que fusionan la imagen con el fondo claro */}
+                        {/* <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent" /> */}
+                        {/* <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-l from-blue-50/30 to-transparent" /> */}
+                    </div>
+
+                    {/* DERECHA: Headlines + Cards en pirámide invertida */}
+                    <div className="flex flex-col gap-6">
+                        {/* Headlines */}
+                        <div>
+                            <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                                Casos de Éxito
+                            </span>
+                            <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
+                                RESULTADOS QUE <span className="text-secondary">HABLAN POR SÍ SOLOS</span>
+                            </h2>
+                            <p className="text-white/70 text-base mb-5 max-w-md">
+                                Empresas líderes confían en DIAPSA para proteger sus activos y maximizar su rentabilidad operativa.
+                            </p>
+                            <Link
+                                href="/casos-exito"
+                                className="inline-flex w-fit items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
+                            >
+                                Ver todos los casos de éxito
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+
+                        {/* Cards en pirámide invertida */}
+                        <div className="flex flex-col gap-4">
+                            {/* Fila superior: 2 cards */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <CaseCard c={cases[0]} />
+                                <CaseCard c={cases[1]} />
+                            </div>
+                            {/* Fila inferior: 1 card centrada → vértice de la pirámide */}
+                            <div className="flex justify-center">
+                                <div className="w-full sm:w-[calc(50%-8px)]">
+                                    <CaseCard c={cases[2]} />
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            {/* Body */}
-                            <div className="flex flex-col flex-1 p-6 gap-4">
-                                {/* Metric destacada */}
-                                <div>
-                                    <div className="text-4xl font-extrabold text-secondary leading-none">
-                                        {c.metric}
-                                    </div>
-                                    <div className="text-tertiary text-xs uppercase tracking-wide mt-1">
-                                        {c.metricLabel}
-                                    </div>
-                                </div>
-
-                                {/* Título */}
-                                <h3 className="font-semibold text-primary text-base leading-snug group-hover:text-secondary transition-colors">
-                                    {c.title}
-                                </h3>
-
-                                {/* Highlight */}
-                                <p className="text-sm text-tertiary border-l-2 border-secondary pl-3 italic">
-                                    {c.highlight}
-                                </p>
-                            </div>
-
-                            {/* Footer CTA */}
-                            <div className="px-6 pb-5">
-                                <span className="inline-flex items-center gap-1 text-secondary text-sm font-semibold group-hover:gap-2 transition-all">
-                                    Ver caso completo
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-
-                {/* CTA */}
-                <div className="text-center">
-                    <Link
-                        href="/casos-exito"
-                        className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
-                    >
-                        Ver todos los casos de éxito
-                    </Link>
                 </div>
             </div>
         </section>

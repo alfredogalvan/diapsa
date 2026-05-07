@@ -8,8 +8,11 @@ export default function CursosTeaser() {
     const { courses } = useCourses({ courseType: 'Certificación' });
 
     return (
-        <section className="w-full bg-white py-16 lg:py-24">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="w-full bg-white py-16 lg:py-24 relative overflow-hidden">
+            {/* Glows industriales difuminados */}
+            <div className="absolute -top-32 -right-32 w-125 h-125 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-100 h-100 bg-secondary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
                 {/* Header */}
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-12">
                     <div>

@@ -353,3 +353,95 @@ Antes de hacer merge de una nueva sección, verificar:
 - [ ] ¿El fondo alterna correctamente con las secciones adyacentes?
 - [ ] ¿No hay dos secciones `bg-white` consecutivas sin separación?
 - [ ] ¿Los colores usan tokens (`text-primary`, `bg-secondary`) en vez de hex?
+
+---
+
+## 13. Identidad de Diseño — Modern B2B/Industrial Web Design
+
+Grupo DIAPSA sigue la corriente **Modern B2B/Industrial Web Design**. Todo componente nuevo debe respetar este lenguaje visual. Existen dos variantes de tema: **Dark** y **Light**, ambas con glows de fondo difuminados.
+
+---
+
+### Pilares del estilo
+
+**Data Dashboard Aesthetic** (ambas variantes)
+- Métricas KPI con `text-2xl font-extrabold text-secondary`
+- Labels en `uppercase tracking-wider text-xs`
+- Bordes de acento tipo cita: `border-l-2 border-secondary`
+
+**Flat-sharp con micro-elevación** (ambas variantes)
+- `rounded-sm` en cards y contenedores — nunca `rounded-xl` ni `rounded-2xl`
+- `rounded-xs` en botones/CTAs
+- `rounded-full` exclusivamente para badges/pills
+- Sombras: `shadow-sm` en reposo → `shadow-xl` en hover
+- Interacciones: color shift + gap transition (no ripple, no elevación física)
+
+---
+
+### Tema Dark — `bg-primary`
+
+Para secciones de impacto, cierre visual o diferenciación fuerte.
+
+**Fondo con glow:**
+```tsx
+<section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+  {/* Glow principal — esquina opuesta al contenido principal */}
+  <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
+  {/* Glow secundario sutil (opcional) */}
+  <div className="absolute bottom-0 right-0 w-100 h-100 bg-primary/40 rounded-full blur-2xl pointer-events-none" />
+  <div className="max-w-7xl mx-auto px-6 relative z-10">
+    {/* contenido */}
+  </div>
+</section>
+```
+
+**Tokens sobre fondo oscuro:**
+| Elemento | Clase |
+|---|---|
+| Heading h2 | `text-white` + `<span className="text-secondary">` |
+| Descripción párrafo | `text-white/70` |
+| Badge/pill | `text-secondary border-secondary/40 bg-secondary/10` |
+| CTA principal | `bg-secondary text-primary hover:bg-white hover:text-primary` |
+| Cards | `bg-white/10 border border-white/15 hover:border-secondary/50` |
+| Card header interno | Solo `border-b border-white/10` (sin bg redundante) |
+
+---
+
+### Tema Light — `bg-white` / `bg-gray-50`
+
+Para secciones de contenido principal, listados y disciplinas.
+
+**Fondo con glow:**
+```tsx
+<section className="w-full bg-white py-16 lg:py-24 relative overflow-hidden">
+  {/* Glow primary difuminado — esquina superior */}
+  <div className="absolute -top-32 -left-32 w-125 h-125 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+  {/* Glow secondary difuminado — esquina inferior opuesta */}
+  <div className="absolute -bottom-24 -right-24 w-100 h-100 bg-secondary/6 rounded-full blur-3xl pointer-events-none" />
+  <div className="max-w-7xl mx-auto px-6 relative z-10">
+    {/* contenido */}
+  </div>
+</section>
+```
+
+**Tokens sobre fondo claro:**
+| Elemento | Clase |
+|---|---|
+| Heading h2 | `text-primary` + `<span className="text-secondary">` |
+| Descripción párrafo | `text-tertiary` |
+| Badge/pill | `text-secondary border-secondary/40 bg-secondary/10` |
+| CTA principal | `bg-primary text-white hover:bg-secondary hover:text-primary` |
+| Cards (base blanca) | `bg-white border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl` |
+| Cards (base oscura en sección light) | `bg-primary border border-primary/80 hover:border-secondary/40` |
+
+---
+
+### Qué NO hacer en ninguna variante
+| Elemento | Prohibido |
+|---|---|
+| Bordes de card | `rounded-xl`, `rounded-3xl`, `rounded-lg` |
+| Gradientes en botones | `bg-gradient-to-r ...` |
+| Fondo placeholder | `bg-gray-500` como fondo de sección real |
+| Gradiente mixto incoherente | `from-primary via-gray-100 to-primary` |
+| Hex hardcoded en className | Usar siempre tokens `text-primary`, `bg-secondary` |
+| Dos glows del mismo color | Un glow primary + uno secondary por sección |
