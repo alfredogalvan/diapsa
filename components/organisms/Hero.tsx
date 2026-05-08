@@ -157,7 +157,7 @@ export default function Hero() {
               </span>
 
               {/* Título */}
-              <h1 className={`text-2xl ${slide.id === 0 ? 'lg:text-6xl' : 'lg:text-4xl'} font-bold text-white mb-4 leading-tight`}>
+              <h1 className={`text-2xl ${slide.id === 0 ? 'lg:text-6xl' : 'lg:text-5xl'} font-bold text-white mb-4 leading-tight`}>
                 {slide.title}
                 <br />
                 <span className={`text-secondary`}>{slide.titleHighlight}</span>

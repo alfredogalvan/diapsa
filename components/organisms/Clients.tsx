@@ -7,7 +7,8 @@ export function Clients() {
     // Duplicar los clientes para crear el efecto de loop infinito
     // NO usar Math.random() aquí porque causa hydration mismatch entre servidor y cliente
     const duplicatedClients = [...clientsData.clients, ...clientsData.clients];
-    const randomClients = [...clientsData.clients, ...clientsData.clients];
+    const reversedClients = [...clientsData.clients].reverse();
+    const randomClients = [...reversedClients, ...reversedClients];
 
     return (
         <section className="w-full flex flex-col pt-16 lg:pt-24 bg-white">

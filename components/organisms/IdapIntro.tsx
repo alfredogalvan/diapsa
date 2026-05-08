@@ -12,15 +12,38 @@ export default function IdapIntro() {
 
     return (
 
-        <section className="w-full bg-white pt-16 lg:pt-24">
-            <div className="flex items-center justify-center lg:gap-10 bg-white text-black">
+        <section className="w-full bg-white ">
+            <div className="relative overflow-hidden">
+                {/* Grid texture overlay */}
+                <div
+                    className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(#002e46 1px, transparent 1px), linear-gradient(90deg, #002e46 1px, transparent 1px)",
+                        backgroundSize: "48px 48px",
+                    }}
+                />
+                {/* Decorative blobs */}
+                <div className="absolute -top-24 -right-24 w-80 h-80 bg-secondary opacity-10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -top-12 -left-24 w-64 h-64 bg-primary opacity-8 rounded-full blur-3xl pointer-events-none" />
+                <div className="flex items-center justify-center lg:gap-10 text-black">
 
-                <div className="relative w-80 h-28">
-                    <Image fill src='/images/idap/idap-logo.png' alt="logo de idap" className="object-contain" />
+                    <div className="relative w-80 h-28">
+                        <Image fill src='/images/idap/idap-logo.png' alt="logo de idap" className="object-contain" />
+                    </div>
                 </div>
+                <div className="w-75 max-w-lg lg:max-w-2xl mx-auto border-2 border-primary" />
             </div>
-            <div className="w-75 max-w-lg lg:max-w-2xl mx-auto border-2 border-primary" />
-            <div className="lg:p-10 bg-linear-to-t from-[#fda101] from-85% via-[#fda101] to-white text-black">
+            <div className="lg:p-10 bg-linear-to-t from-[#fda101] from-85% via-[#fda101] to-white text-black relative">
+                {/* Grid texture overlay */}
+                <div
+                    className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(#002e46 1px, transparent 1px), linear-gradient(90deg, #002e46 1px, transparent 1px)",
+                        backgroundSize: "48px 48px",
+                    }}
+                />
                 <p className="text-center text-2xl lg:text-4xl text-black font-extralight tracking-wide my-10">La única plataforma digital de monitoreo <br />
                     predictivo que integra Inteligencia Artificial con el <br />
                     análisis de expertos</p>
@@ -99,10 +122,12 @@ export default function IdapIntro() {
                     ))}
                 </div>
             </div>
-            <div className="flex flex-col lg:flex-row justify-around items-center p-6 text-black">
+            <div className="relative bg-transparent flex flex-col lg:flex-row justify-around items-center p-6 text-black overflow-hidden">
+                {/* Dot accent */}
+                <div className="absolute -bottom-16 right-0 w-72 h-72 bg-secondary opacity-10 rounded-full blur-3xl pointer-events-none" />
 
-                <p className="text-2xl text-center uppercase">Deja de reaccionar ante las fallas. Con IDAP, anticípalas.</p>
-                <Link href='/servicios/idap'>
+                <p className="text-2xl text-center uppercase relative z-10">Deja de reaccionar ante las fallas. Con IDAP, anticípalas.</p>
+                <Link href='/servicios/idap' className="relative z-10">
                     <Button variant="black" className="text-2xl uppercase">
                         Descubrir IDAP
                     </Button>
