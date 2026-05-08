@@ -1,0 +1,97 @@
+import Link from "next/link";
+
+const processSteps = [
+    {
+        step: "01",
+        title: "Diagnóstico inicial",
+        description:
+            "Levantamos el inventario de activos críticos, historial de fallas y condición operativa actual. Identificamos los equipos de mayor riesgo para su operación.",
+        time: "1–2 semanas",
+    },
+    {
+        step: "02",
+        title: "Estrategia personalizada",
+        description:
+            "Diseñamos un plan de monitoreo a la medida: frecuencia de medición, tecnologías a aplicar y criterios de criticidad según la industria y los activos.",
+        time: "1 semana",
+    },
+    {
+        step: "03",
+        title: "Mediciones en campo",
+        description:
+            "Nuestros especialistas aplican termografía, análisis de vibraciones, ultrasonido y diagnóstico de maquinaria directamente en su planta, sin detener la operación.",
+        time: "Continuo",
+    },
+    {
+        step: "04",
+        title: "Reporte y acción",
+        description:
+            "Entregamos informes técnicos con hallazgos, severidad y recomendaciones priorizadas. Usted sabe exactamente qué intervenir, cuándo y por qué.",
+        time: "48–72 h post-medición",
+    },
+];
+
+export default function MCProcess() {
+    return (
+        <section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+            <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+                <div className="text-center mb-12">
+                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                        Proceso
+                    </span>
+                    <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
+                        ¿CÓMO <span className="text-secondary">FUNCIONA?</span>
+                    </h2>
+                    <p className="text-white/70 text-lg max-w-2xl mx-auto">
+                        Un proceso claro, probado y orientado a resultados. Así es como transformamos datos técnicos en decisiones de mantenimiento rentables.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {processSteps.map((step, i) => (
+                        <div
+                            key={step.step}
+                            className="group flex flex-col bg-white/10 border border-white/15 hover:border-secondary/50 rounded-sm p-6 gap-4 transition-all duration-300 hover:shadow-xl relative"
+                        >
+                            <span className="text-5xl font-extrabold text-secondary/30 leading-none select-none">
+                                {step.step}
+                            </span>
+                            <h3 className="font-bold text-white text-base leading-snug group-hover:text-secondary transition-colors">
+                                {step.title}
+                            </h3>
+                            <p className="text-white/70 text-sm leading-relaxed flex-1">{step.description}</p>
+                            <div className="flex items-center gap-2 text-xs text-secondary font-semibold uppercase tracking-wider border-t border-white/10 pt-4 mt-auto">
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {step.time}
+                            </div>
+                            {i < processSteps.length - 1 && (
+                                <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-6 h-6 bg-secondary rounded-full items-center justify-center">
+                                    <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-10 text-center">
+                    <Link
+                        href="/contacto"
+                        className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
+                    >
+                        Iniciar mi diagnóstico
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
