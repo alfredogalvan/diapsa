@@ -1,5 +1,5 @@
 import PageHeader from "@/components/organisms/PageHeader";
-import ContactForm from "@/components/organisms/ContactForm";
+// import ContactForm from "@/components/organisms/ContactForm";
 import ContinuosMonitoringValueProp from "@/components/organisms/ContinuosMonitoringValueProp";
 import ContinuosMonitoringStats from "@/components/organisms/ContinuosMonitoringStats";
 import ContinuosMonitoringChallenge from "@/components/organisms/ContinuosMonitoringChallenge";
@@ -23,9 +23,9 @@ export default function ContinuosMonitoringPage() {
             <ContinuosMonitoringStats />
             <ContinuosMonitoringChallenge />
             <ContinuosMonitoringSolutions />
+            <ContinuosMonitoringTechnology />
             <ContinuosMonitoringCta />
-            {/* <ContinuosMonitoringTechnology />
-            <section id="contacto">
+            {/* <section id="contacto">
                 <ContactForm />
             </section> */}
         </main>

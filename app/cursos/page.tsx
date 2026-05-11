@@ -16,7 +16,7 @@ export default function CursosPage() {
   return (
     <main className="bg-gray-50 min-h-screen">
       <PageHeader
-        title="CURSOS"
+        title="Cursos"
         subtitle="Capacitación profesional certificada en mantenimiento predictivo"
       />
 
