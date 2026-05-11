@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const benefits = [
     {
         title: "Cero paros sorpresivos",
@@ -38,43 +40,84 @@ const benefits = [
 ];
 
 export default function MCBenefits() {
-    return (
-        <section className="w-full bg-white py-16 lg:py-24 relative overflow-hidden">
-            <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-secondary/6 rounded-full blur-3xl pointer-events-none" />
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+    const left = benefits.slice(0, 3);
+    const right = benefits.slice(3);
 
-                <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+    return (
+        <section className="w-full bg-gray-50 py-16 lg:py-24">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+
+                {/* Headline arriba */}
+                <div className="flex flex-col items-center text-center gap-3">
+                    <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
                         Beneficios
                     </span>
-                    <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+                    <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
                         QUÉ <span className="text-secondary">CAMBIA</span> EN SU OPERACIÓN
                     </h2>
-                    <p className="text-tertiary text-lg max-w-2xl mx-auto">
+                    <p className="text-tertiary text-base max-w-xl">
                         No vendemos reportes técnicos. Vendemos tranquilidad operativa, ahorro real y la certeza de que sus activos estarán disponibles cuando los necesite.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {benefits.map((b) => (
-                        <div
-                            key={b.title}
-                            className="group flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
-                        >
-                            <div className="bg-primary px-6 py-4">
-                                <h3 className="font-bold text-white text-base leading-snug group-hover:text-secondary transition-colors">
-                                    {b.title}
-                                </h3>
-                            </div>
-                            <div className="flex flex-col flex-1 p-6 gap-3">
-                                <p className="text-tertiary text-sm leading-relaxed flex-1">{b.description}</p>
-                                <div className="text-xs font-semibold text-secondary uppercase tracking-wider border-t border-gray-100 pt-3">
-                                    {b.metric}
+                {/* 3 columnas: cards | imagen | cards */}
+                <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+
+                    {/* Cards izquierda */}
+                    <div className="flex flex-col gap-4 flex-1">
+                        {left.map((b) => (
+                            <div
+                                key={b.title}
+                                className="group flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-md overflow-hidden transition-all duration-300"
+                            >
+                                <div className="bg-primary px-4 py-3">
+                                    <h3 className="font-bold text-white text-sm leading-snug group-hover:text-secondary transition-colors">
+                                        {b.title}
+                                    </h3>
+                                </div>
+                                <div className="flex flex-col flex-1 px-4 py-3 gap-2">
+                                    <p className="text-tertiary text-xs leading-relaxed flex-1">{b.description}</p>
+                                    <div className="text-xs font-semibold text-secondary uppercase tracking-wider border-t border-gray-100 pt-2">
+                                        {b.metric}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
+                    {/* Imagen central */}
+                    <div className="relative h-72 lg:h-auto lg:w-80 shrink-0 rounded-sm overflow-hidden">
+                        <Image
+                            src="/images/monitoreo-condicion/successful-engineer.png"
+                            alt="Ingeniero de mantenimiento predictivo"
+                            fill
+                            className="object-cover object-center"
+                            sizes="(max-width: 1024px) 100vw, 320px"
+                        />
+                    </div>
+
+                    {/* Cards derecha */}
+                    <div className="flex flex-col gap-4 flex-1">
+                        {right.map((b) => (
+                            <div
+                                key={b.title}
+                                className="group flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-md overflow-hidden transition-all duration-300"
+                            >
+                                <div className="bg-primary px-4 py-3">
+                                    <h3 className="font-bold text-white text-sm leading-snug group-hover:text-secondary transition-colors">
+                                        {b.title}
+                                    </h3>
+                                </div>
+                                <div className="flex flex-col flex-1 px-4 py-3 gap-2">
+                                    <p className="text-tertiary text-xs leading-relaxed flex-1">{b.description}</p>
+                                    <div className="text-xs font-semibold text-secondary uppercase tracking-wider border-t border-gray-100 pt-2">
+                                        {b.metric}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
                 </div>
             </div>
         </section>

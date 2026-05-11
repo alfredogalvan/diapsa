@@ -43,7 +43,7 @@ export default function MonitoreoConditionPage() {
         <main>
             {/* 1. Headline magnético */}
             <PageHeader
-                title="MONITOREO DE CONDICIÓN"
+                title="Monitoreo de Condición"
                 subtitle="Consigue operación continua sin paros repentinos ni gastos innecesarios"
                 breadcrumbs={[
                     { label: "Inicio", link: "/" },
@@ -74,7 +74,7 @@ export default function MonitoreoConditionPage() {
             <MCDeliverables />
 
             {/* 9. Planes / Inversion */}
-            <MCPlans />
+            {/* <MCPlans /> */}
 
             {/* 10. FAQ */}
             <MCFaq />
