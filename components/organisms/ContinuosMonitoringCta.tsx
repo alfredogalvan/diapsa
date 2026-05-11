@@ -15,15 +15,19 @@ export default function ContinuosMonitoringCta() {
             </div>
             {/* Línea decorativa */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-secondary" />
+            {/* Glow principal */}
+            <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
+            {/* Glow secundario */}
+            <div className="absolute bottom-1/4 right-1/4 w-100 h-100 bg-primary/40 rounded-full blur-2xl pointer-events-none" />
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6">
-                <span className="inline-block text-secondary font-semibold text-sm tracking-widest uppercase border border-secondary/40 px-8 py-4 rounded-full">
+                <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
                     ¿Listo para empezar?
                 </span>
-                <h2 className="text-3xl lg:text-7xl font-bold text-white leading-tight">
+                <h2 className="text-3xl lg:text-4xl font-extrabold text-white leading-tight">
                     Convierte tus datos en{" "}
                     <span className="text-secondary">decisiones reales</span>
                 </h2>
-                <p className="text-2xl lg:text-3xl text-white/75 max-w-2xl mx-auto">
+                <p className="text-lg text-white/70 max-w-2xl mx-auto">
                     Nuestros especialistas están listos para diagnosticar tu programa y
                     diseñar la solución correcta para tu planta.
                 </p>

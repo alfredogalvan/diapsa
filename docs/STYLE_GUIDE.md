@@ -219,8 +219,11 @@ bg-white → bg-gray-50/bg-gray-100 → bg-white → bg-primary → bg-white →
 | `bg-primary` | Secciones de impacto/galería/cierre visual |
 | `bg-black` | **Solo ContactForm** |
 | Naranja (`bg-[#fda101]`) | **Solo IdapIntro** — diferenciador de producto |
+| `bg-tertiary` | **Solo `ContinuosMonitoringTechnology`** — excepción documentada (ver nota abajo) |
 
 **Regla:** No poner dos secciones `bg-white` consecutivas sin separación visual. Agregar un fondo diferente entre ellas.
+
+> **Excepción — `ContinuosMonitoringTechnology`:** Este componente usa `bg-tertiary` (`#6b7280`, gris medio) como fondo de sección. Es la única sección del sitio que usa este color de fondo. La decisión es intencional: al promocionar la tecnología de **KCF Technologies** (socio aliado), el gris neutro mantiene la identidad visual de la marca aliada sin imponer los colores de DIAPSA. Sobre este fondo se usan `text-white`/`text-white/80` para texto de sección (en lugar de `text-tertiary` que sería invisible), conservando `text-primary` y `text-secondary` para headings y acentos donde el contraste lo permite.
 
 ---
 
