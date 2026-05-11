@@ -34,7 +34,7 @@ export default function AcercaDePage() {
   return (
     <main>
       <PageHeader
-        title="ACERCA DE DIAPSA"
+        title="Acerca de DIAPSA"
         subtitle="Más de 22 años de experiencia en mantenimiento predictivo industrial"
       />
 
