@@ -1,4 +1,3 @@
-import React from "react";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/organisms/PageHeader";
 import ServiceAccordion from "@/components/molecules/ServiceAccordion";
