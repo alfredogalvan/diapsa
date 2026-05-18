@@ -96,7 +96,7 @@ export default function MCSolution() {
                         Un chequeo general <span className="text-secondary">para sus máquinas</span>
                     </h3>
                     <p className="text-tertiary text-base max-w-2xl mx-auto">
-                        Al igual que un médico usa diferentes pruebas para diagnosticar a un paciente, nosotros integramos múltiples tecnologías para una visión de 360° de sus activos.
+                        Al igual que un médico usa diferentes pruebas para diagnosticar a un paciente, nosotros integramos herramientas predictivas para una visión de 360° de sus activos.
                     </p>
                 </div>
 
