@@ -1,99 +1,144 @@
 import PageHeader from "@/components/organisms/PageHeader"
+import StageCard from "@/components/molecules/StageCard"
 import { PlusCircleIcon, ChartIcon, ChartIcon2, WindowIcon, DoubleCircleIcon } from '@/components/atoms/icons/'
+import Image from "next/image";
+
+const stages = [
+    {
+        number: 1,
+        label: "Etapa 01",
+        icon: <DoubleCircleIcon className="text-secondary w-8 h-8" />,
+        title: "Formación técnica aplicada",
+        content: "Capacitación teórica y práctica directamente en planta para asegurar la transferencia de conocimiento real",
+    },
+    {
+        number: 2,
+        label: "Etapa 02 (core)",
+        icon: <WindowIcon className="text-secondary w-8 h-8" />,
+        title: "Diagnóstico situacional",
+        content: [
+            "Levantamiento de datos técnicos",
+            "Revisión de manuales de fabricante",
+            "Historial de fallas críticas",
+            "Definición de KPIs estratégicos",
+        ],
+        featured: true,
+    },
+    {
+        number: 3,
+        label: "Etapa 03",
+        icon: <ChartIcon className="text-secondary w-8 h-8" />,
+        title: "Mediciones",
+        content: "Recolección de datos de alta precisión y confiabilidad para establecer líneas de operación certificadas.",
+    },
+    {
+        number: 4,
+        label: "Etapa 04",
+        icon: <ChartIcon2 className="text-secondary w-8 h-8" />,
+        title: "Gestión de datos",
+        quote: "LO QUE NO SE MIDE, NO SE CONTROLA",
+        content: "Transformamos datos complejos en decisiones estratégicas basadas en evidencia industrial.",
+    },
+];
+
+const breadCrumbs = [
+    { label: "Inicio", link: "/" },
+    { label: "Servicios", link: "/servicios" },
+    { label: "DIAPSA START", link: "/servicios/diapsa-start" }
+];
 
 export default function DiapsaStart() {
     return (
-        <main>
+        <main className="">
             <PageHeader
                 title="DIAPSA START"
                 subtitle="Monitoreo de Condición desde cero o fortalecerlo de manera ordenada"
+                breadcrumbs={breadCrumbs}
             />
 
-            <section className="w-full  py-16 lg:py-12 space-y-32">
-                <div className="space-y-6">
+            <section className="w-full bg-white py-16 lg:py-24 relative overflow-hidden">
+                {/* Glow primary difuminado */}
+                <div className="absolute -top-32 -left-32 w-125 h-125 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+                {/* Glow secondary difuminado */}
+                <div className="absolute -bottom-24 -right-24 w-100 h-100 bg-secondary/6 rounded-full blur-3xl pointer-events-none" />
 
-                    <div className="px-2 lg:px-10 space-y-2">
-                        <h2 className="text-3xl lg:text-6xl font-extrabold">Aprender haciendo. <br /> </h2>
+                <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-                        <h2 className="text-3xl lg:text-6xl font-extrabold"> Construir capacidades.</h2>
-                        <h3 className="text-2xl lg:text-7xl italic text-secondary font-extrabold">Tomar control de los activos</h3>
+                        {/* Header */}
+                        <div className="space-y-6">
+                            <div className="space-y-2">
+                                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                                    Programa de implementación
+                                </span>
+                                <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
+                                    Aprender haciendo. <br />
+                                    Construir capacidades.
+                                </h2>
+                                <h3 className="text-2xl lg:text-3xl italic text-secondary font-extrabold">Tomar control de los activos</h3>
+                            </div>
+
+                            <p className="text-tertiary text-lg leading-relaxed">
+                                El programa DIAPSA Start trasciende la simple instalación técnica. Es una transformación
+                                estructural en la cultura de mantenimiento, diseñada para empresas que demandan una estrategia
+                                de predictibilidad sólida y robusta.
+                            </p>
+
+
+                        </div>
+                        <div className="relative">
+                            <div className="relative aspect-4/3 rounded-sm overflow-hidden shadow-2xl">
+                                <Image
+                                    src="/images/gallery/campo-img-1.jpg"
+                                    alt="Monitoreo continuo en planta industrial IA"
+                                    fill
+                                    className="object-cover"
+                                />
+                                {/* Badge flotante */}
+                                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-sm p-4 shadow-lg">
+                                    <div className="flex items-center gap-3">
+                                        <p className="flex items-center gap-3 text-primary text-lg">
+                                            <PlusCircleIcon className="w-10 h-10 text-secondary shrink-0" />
+                                            Acompañamiento integral
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {/* Elementos decorativos */}
+                            <div className="absolute -top-4 -right-4 w-24 h-24 bg-secondary/10 rounded-full -z-10" />
+                            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-full -z-10" />
+                        </div>s
+
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full px-2 lg:px-24 space-y-4">
-                        <p className="dark:text-gray-300  text-xl">
-                            El programa DIAPSA Start trasciende las simple instalación tecnica. Es una transformación
-                            estructural en la cultura de mantenimiento, diseñada para empresas que demandan una estrategia
-                            de predictibilidad sólida y robusta.
+
+                </div>
+            </section>
+            {/* Cards de etapas */}
+            <section className="w-full bg-black py-16 lg:py-24 relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-12">
+
+                    {/* Header de la sección */}
+                    <div className="text-center max-w-3xl mx-auto space-y-4">
+                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
+                            Proceso estructurado
+                        </span>
+                        <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
+                            Del caos reactivo al{" "}
+                            <span className="text-secondary">control total.</span>
+                        </h2>
+                        <p className="text-white/60 text-lg leading-relaxed">
+                            No es un servicio puntual. Es un método probado en planta que transforma cómo su equipo
+                            entiende, mide y actúa sobre sus activos — etapa por etapa, sin atajos.
                         </p>
-                        <p className="text-center text-xl">
-                            <PlusCircleIcon className="w-12 h-12 text-secondary me-2" />
-                            Acompañamiento integral
-                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {stages.map((stage) => (
+                            <StageCard key={stage.number} {...stage} />
+                        ))}
                     </div>
                 </div>
-
-                <div className="px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-6">
-                    <div className="relative px-8 md:px-12 lg:px-16 py-16 md:py-18 lg:py-18 space-y-6 bg-primary aspect-8/12 w-full overflow-hidden">
-                        <DoubleCircleIcon className="text-secondary w-8 h-8" />
-                        <p className="text-secondary font-bold">Etapa 01</p>
-                        <h3 className="text-xl text-white font-bold">Formación técnica aplicada</h3>
-                        <p className="text-gray-300 text-lg">Capacitación teórica y práctica directamente en planta para asegurar la
-                            transferencia de conocimiento real
-                        </p>
-                        <div className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 -right-4 md:-right-6 lg:-right-8 text-secondary text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold opacity-40 select-none pointer-events-none leading-none">
-                            1
-                        </div>
-                    </div>
-                    <div className="relative px-8 md:px-12 lg:px-16 py-16 md:py-18 lg:py-18 space-y-6 bg-primary border-4 border-secondary aspect-8/12 w-full overflow-hidden">
-                        <WindowIcon className="text-secondary w-8 h-8" />
-                        <p className="text-secondary font-bold">Etapa 02 (core)</p>
-                        <h3 className="text-xl text-white font-bold">Diagnóstico situacional</h3>
-                        <ul className="text-gray-300 text-sm md:text-base lg:text-lg space-y-1">
-                            <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Levatamiento de datos técnicos</p></li>
-                            <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Revisión de manuales de fabricante</p></li>
-                            <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Historial de fallas criticas</p></li>
-                            <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Definición de KPIs estratégicos</p></li>
-                        </ul>
-                        <div className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 -right-4 md:-right-6 lg:-right-8 text-secondary text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold opacity-40 select-none pointer-events-none leading-none">
-                            2
-                        </div>
-                    </div>
-                    <div className="relative px-8 md:px-12 lg:px-16 py-16 md:py-18 lg:py-18 space-y-6 bg-primary aspect-8/12 w-full overflow-hidden">
-                        <ChartIcon className="text-secondary w-8 h-8" />
-                        <p className="text-secondary font-bold">Etapa 03</p>
-                        <h3 className="text-xl text-white font-bold">Mediciones</h3>
-                        <p className="text-gray-300 text-lg">Recolección de datos de alta precisión y confiabilidad para establecer
-                            lineas de operación certificadas.
-
-                        </p>
-                        <div className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 -right-4 md:-right-6 lg:-right-8 text-secondary text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold opacity-40 select-none pointer-events-none leading-none">
-                            3
-                        </div>
-                    </div>
-                    <div className="relative px-8 md:px-12 lg:px-16 py-16 md:py-18 lg:py-18 space-y-6 bg-primary aspect-8/12 w-full overflow-hidden">
-                        <ChartIcon2 className="text-secondary w-8 h-8" />
-                        <p className="text-secondary font-bold">Etapa 04</p>
-                        <h3 className="text-xl text-white font-bold">Gestión de datos</h3>
-                        <p className="font-bold text-white">&ldquo;LO QUE NO SE MIDE, NO SE CONTROLA&rdquo;</p>
-                        <p className="text-gray-300 text-lg">
-                            Transformamos datos complejos en decisiones estratégicas basadas en evidencia industrial.
-                        </p>
-                        <div className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 -right-4 md:-right-6 lg:-right-8 text-secondary text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold opacity-40 select-none pointer-events-none leading-none">
-                            4
-                        </div>
-                    </div>
-                </div>
-                {/* 
-                <div className="px-2 lg:px-24">
-
-                    <div className="border-l-4 border-secondary p-8 flex flex-col lg:flex-row justify-between bg-primary/90">
-                        <div>
-                            <p className="text-2xl font-bold">¿Listo para evolucionar su mantenimiento?</p>
-                            <p className="text-gray-300">Nuestros expertos estan listos para realizar un pre-diagnóstico de sus activos</p>
-                        </div>
-                        <Button variant="secondary">AGENDAR CONSULTORÍA</Button>
-                    </div>
-                </div> */}
-
             </section>
         </main>
     )
