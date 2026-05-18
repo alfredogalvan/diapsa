@@ -61,6 +61,18 @@ const painPoints = [
         description:
             "Cada reparación de emergencia cuesta en promedio cinco veces más que una intervención planificada a tiempo. La urgencia siempre sale cara.",
     },
+    {
+        id: 6,
+        image: '/images/monitoreo-condicion/rodamiento-con-sobre-lubricacion.avif',
+        icon: (
+            <svg className="w-7 h-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3C11 4.5 5 11 5 15a7 7 0 0014 0C19 11 13 4.5 12 3z" />
+            </svg>
+        ),
+        title: "La sobre-lubricación también mata rodamientos",
+        description:
+            "Más no siempre es mejor. Aplicar grasa por calendario —sin saber si el equipo la necesita— genera presión excesiva, calentamiento y falla prematura. El técnico hizo lo que el manual decía, pero el rodamiento no lo sabía.",
+    },
 ];
 
 export default function MCPainPoints() {
@@ -86,7 +98,7 @@ export default function MCPainPoints() {
                     {painPoints.map((p) => (
                         <div
                             key={p.id}
-                            className={`group flex flex-col sm:flex-row items-stretch bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all md:h-60 duration-300 relative${p.id === 1 ? ' md:col-span-2' : ''}`}
+                            className={`group flex flex-col sm:flex-row items-stretch bg-white rounded-sm border border-gray-100 hover:border-secondary/30 shadow-sm hover:shadow-xl overflow-hidden transition-all md:h-60 duration-300 relative`}
                         >
                             {/* Texto */}
                             <div className="flex-1 flex flex-col gap-4 p-6">
@@ -102,7 +114,7 @@ export default function MCPainPoints() {
                                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                             </div>
                             {/* Imagen: ancho fijo en sm+, altura fija en mobile */}
-                            <div className={`relative h-48 sm:h-auto ${p.id === 1 ? 'sm:w-[45%]' : 'sm:w-56'} shrink-0`}>
+                            <div className={`relative h-48 sm:h-auto sm:w-56 shrink-0`}>
                                 <Image src={p.image} fill className="object-cover" alt={`Imagen de ${p.title}`} />
                             </div>
                         </div>
