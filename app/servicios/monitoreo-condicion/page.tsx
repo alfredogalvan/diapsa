@@ -44,7 +44,7 @@ export default function MonitoreoConditionPage() {
             {/* 1. Headline magnético */}
             <PageHeader
                 title="Monitoreo de Condición"
-                subtitle="Consigue operación continua sin paros repentinos ni gastos innecesarios"
+                subtitle="Consigue operación continua sin paros repentinos ni gastos innecesarios. Conoce el estado actual de tus equipos"
                 breadcrumbs={[
                     { label: "Inicio", link: "/" },
                     { label: "Servicios", link: "/servicios" },

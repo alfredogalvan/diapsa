@@ -21,6 +21,14 @@ const operationalResults = [
         label: "PLANEACIÓN",
         text: "Tome decisiones informadas sobre paros de mantenimiento basados en la condición real, no en el calendario.",
     },
+    {
+        label: "SALUD",
+        text: "Conozca el estado y condición de su equipo y cree lineas bases desde su intalación (nuevos o reparados).",
+    },
+    {
+        label: "CONTENCIÓN",
+        text: "Identificamos e informamos puntualmente durante el recorrido las condiciones criticas o falla potencial no detectadas previamente que ponen en riego la operación, para una toa de desición inmediata",
+    },
 ];
 
 export default function MCSolution() {
