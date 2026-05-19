@@ -38,9 +38,9 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
     return (
       <div className={containerClassName}>
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor={name} className="block text-sm font-semibold text-primary mb-1.5">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-secondary ml-1">*</span>}
         </label>
 
         <input
@@ -50,12 +50,12 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           name={name}
           required={required}
           className={`
-            w-full px-4 py-2 border rounded-lg
+            w-full px-4 py-2.5 border rounded-sm
             text-gray-900 placeholder-gray-400
             transition-colors
-            focus:outline-none focus:ring-2 focus:ring-primary/50
-            disabled:bg-gray-100 disabled:cursor-not-allowed
-            ${hasError ? 'border-red-500 focus:ring-red-500/50' : 'border-gray-300'}
+            focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary
+            disabled:bg-gray-50 disabled:cursor-not-allowed
+            ${hasError ? 'border-red-400 focus:ring-red-400/40 focus:border-red-400' : 'border-gray-200 hover:border-primary/30'}
             ${className}
           `}
           aria-invalid={hasError}
@@ -111,9 +111,9 @@ export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>
 
     return (
       <div className={containerClassName}>
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor={name} className="block text-sm font-semibold text-primary mb-1.5">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-secondary ml-1">*</span>}
         </label>
 
         <textarea
@@ -123,12 +123,12 @@ export const TextareaField = forwardRef<HTMLTextAreaElement, TextareaFieldProps>
           rows={rows}
           required={required}
           className={`
-            w-full px-4 py-2 border rounded-lg
+            w-full px-4 py-2.5 border rounded-sm
             text-gray-900 placeholder-gray-400
             transition-colors resize-y
-            focus:outline-none focus:ring-2 focus:ring-primary/50
-            disabled:bg-gray-100 disabled:cursor-not-allowed
-            ${hasError ? 'border-red-500 focus:ring-red-500/50' : 'border-gray-300'}
+            focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary
+            disabled:bg-gray-50 disabled:cursor-not-allowed
+            ${hasError ? 'border-red-400 focus:ring-red-400/40 focus:border-red-400' : 'border-gray-200 hover:border-primary/30'}
             ${className}
           `}
           aria-invalid={hasError}
@@ -194,9 +194,9 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
 
     return (
       <div className={containerClassName}>
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor={name} className="block text-sm font-semibold text-primary mb-1.5">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && <span className="text-secondary ml-1">*</span>}
         </label>
 
         <select
@@ -205,12 +205,12 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
           name={name}
           required={required}
           className={`
-            w-full px-4 py-2 border rounded-lg
+            w-full px-4 py-2.5 border rounded-sm
             text-gray-900
             transition-colors
-            focus:outline-none focus:ring-2 focus:ring-primary/50
-            disabled:bg-gray-100 disabled:cursor-not-allowed
-            ${hasError ? 'border-red-500 focus:ring-red-500/50' : 'border-gray-300'}
+            focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary
+            disabled:bg-gray-50 disabled:cursor-not-allowed
+            ${hasError ? 'border-red-400 focus:ring-red-400/40 focus:border-red-400' : 'border-gray-200 hover:border-primary/30'}
             ${className}
           `}
           aria-invalid={hasError}

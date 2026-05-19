@@ -448,3 +448,143 @@ Para secciones de contenido principal, listados y disciplinas.
 | Gradiente mixto incoherente | `from-primary via-gray-100 to-primary` |
 | Hex hardcoded en className | Usar siempre tokens `text-primary`, `bg-secondary` |
 | Dos glows del mismo color | Un glow primary + uno secondary por sección |
+
+---
+
+## 14. Páginas con Alta Densidad de Imágenes
+
+Las páginas de servicio deben ser **visualmente ricas**. Cada sección debe tener al menos un elemento visual (imagen, fondo fotográfico o imagen de card).
+
+### Regla general
+Toda sección de servicio debe incluir al menos **una imagen por sección**. No dejar secciones con solo texto y fondo plano.
+
+### Placeholder mientras no existe la imagen final
+Usar siempre `/images/servicios/placeholder.jpg` como `src` temporal. **Obligatorio** agregar un comentario `TODO` que describa qué imagen colocar:
+
+```tsx
+{/* TODO: Replace placeholder with a photo of [descripción específica de la escena] */}
+<div className="relative w-full h-48 overflow-hidden">
+  <Image
+    src="/images/servicios/placeholder.jpg"
+    alt="[Descripción accesible de lo que irá aquí]"
+    fill
+    className="object-cover"
+    sizes="..."
+  />
+</div>
+```
+
+En arrays de datos, el campo `image` también lleva el comentario `TODO`:
+```ts
+const items = [
+  {
+    // TODO: Replace with [descripción de la imagen ideal]
+    image: "/images/servicios/placeholder.jpg",
+    title: "...",
+  }
+];
+```
+
+### Patrones de imagen por tipo de sección
+
+#### Sección intro 2 columnas (texto + imagen)
+La columna derecha es la imagen con KPIs superpuestos al fondo:
+```tsx
+<div className="relative rounded-sm overflow-hidden shadow-xl">
+  <div className="relative w-full h-105">
+    <Image src="..." alt="..." fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+    <div className="absolute inset-0 bg-primary/30" />
+  </div>
+  {/* KPI strip superpuesto */}
+  <div className="absolute bottom-0 left-0 right-0 bg-primary/80 backdrop-blur-sm p-5 flex gap-4 justify-around border-t-2 border-secondary">
+    <div className="text-center">
+      <span className="block text-2xl font-extrabold text-secondary">+20 años</span>
+      <span className="block text-xs uppercase tracking-wider text-white/80">Experiencia</span>
+    </div>
+  </div>
+</div>
+```
+
+#### Cards con imagen (pain points, servicios)
+Usar el patrón de imagen de card con overlay y borde inferior animado:
+```tsx
+<div className="group relative flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/40 hover:shadow-xl overflow-hidden transition-all duration-300">
+  <div className="relative w-full h-48 overflow-hidden">
+    <Image src="..." alt="..." fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="..." />
+    <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/30 transition-colors duration-300" />
+    {/* Icono o badge superpuesto */}
+    <span className="absolute top-4 left-4 text-3xl drop-shadow-lg">🔧</span>
+  </div>
+  <div className="flex-1 p-6">
+    <h3 className="font-bold text-primary text-base leading-snug mb-2 group-hover:text-secondary transition-colors">Título</h3>
+    <p className="text-tertiary text-sm leading-relaxed">Descripción</p>
+  </div>
+  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+</div>
+```
+
+#### Cards de proceso con imagen (pasos numerados)
+Número de etapa superpuesto como watermark:
+```tsx
+<div className="group relative flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/40 hover:shadow-xl overflow-hidden transition-all duration-300">
+  <div className="relative w-full h-44 overflow-hidden">
+    <Image src="..." alt="..." fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="..." />
+    <div className="absolute inset-0 bg-primary/40 group-hover:bg-primary/20 transition-colors duration-300" />
+    <span className="absolute bottom-3 left-4 text-5xl font-extrabold text-white/30 leading-none select-none">01</span>
+  </div>
+  <div className="p-6">
+    <h3 className="font-bold text-primary text-base leading-snug mb-2 group-hover:text-secondary transition-colors">Título etapa</h3>
+    <p className="text-tertiary text-sm leading-relaxed">Descripción</p>
+  </div>
+  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+</div>
+```
+
+#### Imagen lateral con KPI cards (beneficios)
+Imagen a la izquierda con quote/label superpuesto, KPI cards apilados a la derecha:
+```tsx
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+  {/* Imagen */}
+  <div className="relative rounded-sm overflow-hidden shadow-xl min-h-85">
+    <Image src="..." alt="..." fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+    <div className="absolute inset-0 bg-primary/20" />
+    <div className="absolute bottom-4 left-4 right-4 bg-primary/80 backdrop-blur-sm rounded-xs px-4 py-3 border-l-2 border-secondary">
+      <p className="text-white text-sm font-semibold leading-snug">"Quote de impacto aquí."</p>
+    </div>
+  </div>
+  {/* KPI cards */}
+  <div className="flex flex-col gap-4">
+    {/* ...benefit cards... */}
+  </div>
+</div>
+```
+
+#### CTA final con imagen de fondo
+Usar `BackgroundImage` con `overlayOpacity` alto para mantener legibilidad:
+```tsx
+<section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+  {/* TODO: Replace placeholder with photo of industrial plant or field inspection */}
+  <BackgroundImage
+    src="/images/servicios/placeholder.jpg"
+    alt="Descripción accesible"
+    overlayOpacity={0.75}
+  />
+  {/* glow + contenido encima con relative z-10 */}
+</section>
+```
+
+### Overlay de imagen — opacidades recomendadas
+| Contexto | Clase de overlay |
+|---|---|
+| Card con texto debajo (solo decorativa) | `bg-primary/30` |
+| Card con texto encima | `bg-primary/50` a `bg-primary/60` |
+| Sección 2 columnas (imagen + texto aparte) | `bg-primary/20` a `bg-primary/30` |
+| CTA final background (texto blanco encima) | `overlayOpacity={0.75}` en `BackgroundImage` |
+| Hover → aligerar overlay | `group-hover:bg-primary/20` |
+
+### Badge / label superpuesto en imagen
+```tsx
+<div className="absolute top-4 right-4 bg-secondary text-primary text-xs font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-xs shadow-md">
+  Texto del badge
+</div>
+```

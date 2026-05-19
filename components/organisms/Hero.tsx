@@ -75,16 +75,16 @@ const slides: Slide[] = [
   },
   {
     id: 3,
-    badge: "Capacitación · Certificaciones ISO",
+    badge: "Certificaciones ISO y SAE · Cursos · Asesorias · Webinar · Talleres",
     title: "CURSOS ESPECIALIZADOS",
-    titleHighlight: "EN MANTENIMIENTO PREDICTIVO",
+    titleHighlight: "EN MANTENIMIENTO PREDICTIVO Y CONFIABILIDAD",
     description:
-      "Forma a tu equipo con expertos certificados. Presencial, webinar y certificaciones internacionales para llevar tu planta al siguiente nivel.",
+      "Forma a tu equipo con técnicos especializados expertos en herramientas predictivas a través de los cursos con proceso de certificación bajo normativas internacionales (ISO y SAE). Contamos con metodologías de enseñanza creada por nuestros especialistas con amplia experiencia en la industria para incrementar su cultura del mantenimiento, confiabilidad y preditivo.",
     cta: { label: "Ver todos los cursos", href: "/cursos" },
     ctaSecondary: { label: "Inscribirse ahora", href: "/cursos" },
     image: "/images/itzam-gold-coin.png",
     imageAlt: "Moneda dorada de instituto ITZAM",
-    imageContain: false,
+    imageContain: true,
     bg: "/images/fondo-mantenimiento.webp",
     stats: [
       { value: "+50", label: "Cursos" },
