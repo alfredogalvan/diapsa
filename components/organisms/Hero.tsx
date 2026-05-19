@@ -31,7 +31,7 @@ const slides: Slide[] = [
     description:
       "Cada paro no planeado cuesta tiempo y dinero. Con sensores, tecnología avanzada y 22 años de experiencia, anticipamos fallas antes de que ocurran.",
     cta: { label: "Nuestros servicios", href: "/servicios" },
-    ctaSecondary: { label: "Contáctanos", href: "/#contacto" },
+    ctaSecondary: { label: "Contáctanos", href: "/contacto" },
     imageContain: true,
     bg: "/images/screen.png",
   },

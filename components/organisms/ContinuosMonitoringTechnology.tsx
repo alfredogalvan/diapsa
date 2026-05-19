@@ -248,7 +248,7 @@ export default function ContinuosMonitoringTechnology() {
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-3 shrink-0">
-                            <Link href="#contacto">
+                            <Link href="/contacto">
                                 <Button variant="primary">Hablar con un experto</Button>
                             </Link>
                             <Link href="/metodologia">

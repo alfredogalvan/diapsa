@@ -66,7 +66,7 @@ export default function NavBar() {
                     <div className="flex items-center gap-4 sm:gap-6">
                         {/* Desktop CTA Button */}
                         <div className="hidden lg:block">
-                            <Link href="/#contacto">
+                            <Link href="/contacto">
                                 <Button variant="primary" ghost ghostVariant="auto">
                                     Contactanos
                                 </Button>
@@ -217,7 +217,7 @@ export default function NavBar() {
 
                             {/* Mobile CTA */}
                             <div className="pt-4 pb-2 px-4">
-                                <Link href="/#contacto" onClick={() => setIsMobileMenuOpen(false)}>
+                                <Link href="/contacto" onClick={() => setIsMobileMenuOpen(false)}>
                                     <Button variant="primary" ghost ghostVariant="auto">
                                         Contactanos
                                     </Button>

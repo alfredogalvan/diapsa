@@ -81,7 +81,7 @@ export default function IdapHero() {
 
                 {/* CTAs */}
                 <div className="flex flex-wrap gap-4 pt-2">
-                    <a href="#contacto">
+                    <a href="/contacto">
                         <Button variant="secondary">Solicitar información</Button>
                     </a>
                     <a href="#plataforma">
