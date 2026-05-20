@@ -8,9 +8,9 @@ import MCProcess from "@/components/organisms/MCProcess";
 import MCBenefits from "@/components/organisms/MCBenefits";
 import MCAudience from "@/components/organisms/MCAudience";
 import MCDeliverables from "@/components/organisms/MCDeliverables";
-import MCPlans from "@/components/organisms/MCPlans";
 import MCFaq from "@/components/organisms/MCFaq";
 import MCCtaFinal from "@/components/organisms/MCCtaFinal";
+import MCReportTypes from "@/components/organisms/MCReportTypes";
 
 export const metadata: Metadata = {
     title: "Monitoreo de Condición | Grupo DIAPSA",
@@ -67,6 +67,7 @@ export default function MonitoreoConditionPage() {
             {/* 6. Prueba social de Casos de exito */}
             <SuccessCases />
 
+            <MCReportTypes />
             {/* 7. Para quien es */}
             <MCAudience />
 

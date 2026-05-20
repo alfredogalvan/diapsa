@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import BackgroundImage from "@/components/atoms/BackgroundImage";
 import PageHeader from "@/components/organisms/PageHeader";
-import ContactFormGeneral from "@/components/organisms/ContactFormGeneral";
+
 
 export const metadata: Metadata = {
     title: "Diagnóstico Situacional | Grupo DIAPSA",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const painPoints = [
     {
         // TODO: Replace with a photo showing an unexpected equipment failure / unplanned downtime
-        image: "/images/servicios/placeholder.jpg",
+        image: "/images/diagnostico-situacional/fallas-en-maquinaria-industrial.jpg",
         icon: "❓",
         title: "¿Sabes cuándo fallará tu equipo?",
         description:
@@ -32,7 +32,7 @@ const painPoints = [
     },
     {
         // TODO: Replace with a photo of scattered paper reports, spreadsheets or disorganized records
-        image: "/images/servicios/placeholder.jpg",
+        image: "/images/diagnostico-situacional/report-production.jpg",
         icon: "📂",
         title: "Registros dispersos o inexistentes",
         description:
@@ -52,7 +52,7 @@ const steps = [
     {
         number: "01",
         // TODO: Replace with a photo of a technician recording equipment data / nameplate
-        image: "/images/servicios/placeholder.jpg",
+        image: "/images/diagnostico-situacional/engineer-checking-machinery.webp",
         title: "Inventario y clasificación de activos",
         description:
             "Registramos cada equipo crítico: placa de datos, historial de reparaciones, antigüedad y condiciones de operación actuales.",
@@ -147,7 +147,7 @@ export default function DiagnosticoSituacionalPage() {
                         <div className="relative rounded-sm overflow-hidden shadow-xl">
                             <div className="relative w-full h-105">
                                 <Image
-                                    src="/images/servicios/placeholder.jpg"
+                                    src="/images/diagnostico-situacional/engineer-checking-machinery.webp"
                                     alt="Especialistas realizando diagnóstico situacional en planta industrial"
                                     fill
                                     className="object-cover"
