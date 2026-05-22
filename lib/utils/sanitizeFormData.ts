@@ -8,10 +8,11 @@ import type {
   ContactFormData,
   ContactFormExpo,
   ContactFormGeneral,
+  ContactFormMain,
   ContactFormWebinar
 } from '@/types/contact';
 
-type AnyContactForm = ContactFormExpo | ContactFormGeneral | ContactFormWebinar | ContacFormGasDetection;
+type AnyContactForm = ContactFormExpo | ContactFormGeneral | ContactFormWebinar | ContacFormGasDetection | ContactFormMain;
 
 /**
  * Sanitiza los datos del formulario para que sean compatibles con ContactFormData

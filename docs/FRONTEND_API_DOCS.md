@@ -9,6 +9,7 @@
 - [API de Categorías](#api-de-categorías)
 - [API de Marcas](#api-de-marcas)
 - [API de Series](#api-de-series)
+- [API de Cursos](#api-de-cursos)
 - [API de Contactos](#api-de-contactos)
 - [Manejo de Errores](#manejo-de-errores)
 - [Ejemplos de Uso](#ejemplos-de-uso)
@@ -726,6 +727,212 @@ GET /api/v1/series/ga-series
       "name": "Compresores de Tornillo"
     },
     "products_count": 15
+  }
+}
+```
+
+---
+
+## API de Cursos
+
+### 1. Listar Cursos
+
+Lista todos los cursos disponibles con paginación.
+
+**Endpoint:**
+```
+GET /api/v1/courses
+```
+
+**Query Parameters:**
+
+| Parámetro | Tipo | Requerido | Descripción |
+|-----------|------|-----------|-------------|
+| `courseType` | string | No | Filtrar por tipo de curso (slug) |
+| `per_page` | integer | No | Resultados por página (default: 15) |
+| `page` | integer | No | Número de página (default: 1) |
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/courses?courseType=certificates&per_page=20&page=1
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Análisis de Vibraciones Nivel I",
+      "slug": "analisis-vibraciones-nivel-1",
+      "description": "Curso de introducción al análisis de vibraciones mecánicas según norma ISO 18436-2.",
+      "provider": "Grupo DIAPSA",
+      "next_date": "2024-06-15",
+      "duration": 40,
+      "modality": "Presencial",
+      "icon": "vibration",
+      "reference_norm": "ISO 18436-2",
+      "alt_img": "Curso de análisis de vibraciones",
+      "url_img": "https://cms.grupodiapsa.com.mx/storage/courses/vibraciones-nivel-1.jpg",
+      "category": {
+        "id": "1",
+        "name": "Certificaciones",
+        "slug": "certificates"
+      }
+    }
+  ],
+  "links": {
+    "first": "http://cms.grupodiapsa.com.mx/api/v1/courses?page=1",
+    "last": "http://cms.grupodiapsa.com.mx/api/v1/courses?page=3",
+    "prev": null,
+    "next": "http://cms.grupodiapsa.com.mx/api/v1/courses?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 3,
+    "per_page": 15,
+    "to": 15,
+    "total": 42
+  }
+}
+```
+
+### 2. Detalle de Curso
+
+Obtiene información completa de un curso específico.
+
+**Endpoint:**
+```
+GET /api/v1/courses/{slug}
+```
+
+**Parámetros de URL:**
+
+| Parámetro | Tipo | Descripción |
+|-----------|------|-------------|
+| `slug` | string | Slug único del curso |
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/courses/analisis-vibraciones-nivel-1
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": {
+    "id": "1",
+    "name": "Análisis de Vibraciones Nivel I",
+    "slug": "analisis-vibraciones-nivel-1",
+    "description": "Curso de introducción al análisis de vibraciones mecánicas.",
+    "objective": "Formar técnicos capacitados en el análisis básico de vibraciones mecánicas.",
+    "specific_objectives": [
+      "Comprender los fundamentos de las vibraciones mecánicas",
+      "Identificar problemas comunes en maquinaria rotativa",
+      "Utilizar analizadores de vibraciones"
+    ],
+    "methodology": "Curso teórico-práctico con sesiones en laboratorio.",
+    "syllabus": "1. Fundamentos de vibraciones\n2. Instrumentación\n3. Análisis de señales\n4. Diagnóstico",
+    "duration": 40,
+    "modality": "Presencial",
+    "requirements": [
+      "Conocimientos básicos de mecánica",
+      "Estudios mínimos de preparatoria o equivalente"
+    ],
+    "certification": "Certificado de participación emitido por Grupo DIAPSA",
+    "graduate_profile": "Técnico capaz de realizar análisis de vibraciones nivel I según ISO 18436-2",
+    "technical_specification": "Incluye manual, material de laboratorio y equipo de medición",
+    "provider": "Grupo DIAPSA",
+    "next_date": "2024-06-15",
+    "icon": "vibration",
+    "reference_norm": "ISO 18436-2",
+    "alt_img": "Curso de análisis de vibraciones",
+    "url_img": "https://cms.grupodiapsa.com.mx/storage/courses/vibraciones-nivel-1.jpg",
+    "category": {
+      "id": "1",
+      "name": "Certificaciones",
+      "slug": "certificates"
+    }
+  }
+}
+```
+
+### 3. Próximo Curso
+
+Obtiene el próximo curso disponible (con fecha más cercana).
+
+**Endpoint:**
+```
+GET /api/v1/courses/next
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/courses/next
+```
+
+**Response:** Mismo formato que "Detalle de Curso"
+
+### 4. Categorías de Cursos
+
+Lista todas las categorías de cursos disponibles.
+
+**Endpoint:**
+```
+GET /api/v1/course-categories
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Certificaciones",
+      "slug": "certificates"
+    },
+    {
+      "id": "2",
+      "name": "Talleres",
+      "slug": "workshops"
+    },
+    {
+      "id": "3",
+      "name": "Cursos Estratégicos",
+      "slug": "strategics"
+    }
+  ]
+}
+```
+
+### 5. Detalle de Categoría de Curso
+
+Obtiene información de una categoría específica.
+
+**Endpoint:**
+```
+GET /api/v1/course-categories/{slug}
+```
+
+**Parámetros de URL:**
+
+| Parámetro | Tipo | Descripción |
+|-----------|------|-------------|
+| `slug` | string | Slug único de la categoría |
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/course-categories/certificates
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": {
+    "id": "1",
+    "name": "Certificaciones",
+    "slug": "certificates"
   }
 }
 ```
