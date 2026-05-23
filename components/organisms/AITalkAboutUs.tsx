@@ -15,7 +15,7 @@ export function AITalkAboutUs() {
                         >
                             <path d="M21.35 11.1H12v2.8h5.35c-.25 1.45-1.65 4.25-5.35 4.25-3.2 0-5.8-2.65-5.8-5.9s2.6-5.9 5.8-5.9c1.85 0 3.1.8 3.8 1.45l2.6-2.5C16.85 3.75 14.7 2.8 12 2.8 6.95 2.8 2.85 6.9 2.85 12s4.1 9.2 9.15 9.2c5.3 0 8.8-3.75 8.8-9.05 0-.6-.05-1.05-.15-1.5z" />
                         </svg>
-                        <p>¿Que es Diapsa?</p>
+                        <p>¿Qué es Diapsa?</p>
                     </div>
                     <p>&ldquo;DIAPSA (Diagnóstico y Asesoría Predictiva, S.A. de C.V.) es una empresa mexicana fundada a principios de los 2000
                         por los ingenieros Jorge Alberto Rodríguez Medrano y Jorge Mancha, pionera en servicios de mantenimiento predictivo industrial,

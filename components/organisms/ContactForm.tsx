@@ -19,11 +19,11 @@ interface FormData {
 }
 
 const SERVICES = [
-  "Termografia Infrarroja",
-  "Vibraciones Mecanicas",
-  "Diagnostico de Maquinaria",
-  "Analisis de Ultrasonido",
-  "Estudios Electricos"
+  "Termografía Infrarroja",
+  "Vibraciones Mecánicas",
+  "Diagnóstico de Maquinaria",
+  "Análisis de Ultrasonido",
+  "Estudios Eléctricos"
 ]
 
 const CURSOS = cursosData.courses.map(course => course.name);
