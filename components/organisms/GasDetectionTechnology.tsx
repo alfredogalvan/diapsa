@@ -7,15 +7,15 @@ interface Props {
 }
 
 const features = [
-    { icon: "01", title: "INNOVACIÓN", description: "La PRIMERA detección ultrasonica y de imagenes térmicas a grandes distancias." },
-    { icon: "02", title: "ALCANCE", description: "Traductor ultrasonico de alta sensibilidad con cobertura audible y ultrasonica" },
-    { icon: "03", title: "SEGURIDAD", description: "Detección a larga distancia mas eficiente y segura sin contacto" },
+    { icon: "01", title: "INNOVACIÓN", description: "La PRIMERA detección ultrasónica y de imágenes térmicas a grandes distancias." },
+    { icon: "02", title: "ALCANCE", description: "Traductor ultrasónico de alta sensibilidad con cobertura audible y ultrasónica" },
+    { icon: "03", title: "SEGURIDAD", description: "Detección a larga distancia más eficiente y segura sin contacto" },
     { icon: "04", title: "AI", description: "Reconocimiento del modo de patrón de la descarga parcial con impulsado con IA." },
 ];
 
 const steps = [
     { step: "1", title: "Cámaras acústicas con fugas", description: "Reducción de ruido avanzada impulsada por procesamiento espacial, de frecuencia, de dominio temporal y aprendizaje profundo" },
-    { step: "2", title: "Cámaras acústicas con equipo mecanico rotatorio", description: "Solución de problemas de desgaste a baja velocidad que los sensores de vibración no pueden manejar" },
+    { step: "2", title: "Cámaras acústicas con equipo mecánico rotatorio", description: "Solución de problemas de desgaste a baja velocidad que los sensores de vibración no pueden manejar" },
 ];
 
 const galleryPlaceholders = [
@@ -46,14 +46,14 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
                     </div>
 
                     <h2 className="text-white text-5xl lg:text-7xl font-bold leading-tight">
-                        Camaras <span className="text-secondary">termicas y acusticas</span>
+                        Cámaras <span className="text-secondary">térmicas y acústicas</span>
                     </h2>
 
                     {/* Intro – highlighted key concepts */}
                     <div className="flex flex-col gap-4 max-w-lg">
                         <p className="text-white/80 text-lg leading-relaxed">
-                            En DIAPSA, creemos en tener el mejor equipo para darte los mejores servicos por ello
-                            usamos las camaras acusticas de <span className="text-secondary font-bold">Hertzinno</span>
+                            En DIAPSA, creemos en tener el mejor equipo para darte los mejores servicios por ello
+                            usamos las cámaras acústicas de <span className="text-secondary font-bold">Hertzinno</span>
                         </p>
 
                         {/* Sensor pills */}
@@ -72,10 +72,10 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
                     {/* Stats row */}
                     <div className="flex flex-wrap gap-10 mt-4 border-t border-white/10 pt-8">
                         {[
-                            { value: "128", label: "Microfonos MEMS" },
-                            { value: "130MP", label: "Cámara optica" },
-                            { value: "7hrs ", label: "Tempo operación" },
-                            { value: "200m", label: "Distancia operación" },
+                            { value: "128", label: "Micrófonos MEMS" },
+                            { value: "130MP", label: "Cámara óptica" },
+                            { value: "7hrs ", label: "Tiempo de operación" },
+                            { value: "200m", label: "Distancia de operación" },
                         ].map(({ value, label }) => (
                             <div key={label} className="flex flex-col gap-1">
                                 <span className="text-secondary text-4xl font-bold">{value}</span>
@@ -111,7 +111,7 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
                     Capacidades
                 </p>
                 <h3 className="text-white text-3xl lg:text-5xl font-bold text-center mb-16 max-w-2xl mx-auto leading-tight">
-                    ¿Que hace <span className="text-secondary font-bold">diferente</span> a las cámaras acusticas de <span className="text-secondary font-bold">Hertzinno?</span>
+                    ¿Qué hace <span className="text-secondary font-bold">diferente</span> a las cámaras acústicas de <span className="text-secondary font-bold">Hertzinno?</span>
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
@@ -165,14 +165,14 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     <div className="col-span-2 row-span-2 relative h-80 lg:h-auto bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center">
 
-                        <Image src="/images/deteccion-gas/acustic_cameras_in_action_1.png" fill alt={`Camara acustica en acción`} />
+                        <Image src="/images/deteccion-gas/acustic_cameras_in_action_1.png" fill alt={`Cámara acústica en acción`} />
                     </div>
                     {galleryPlaceholders.map((src, index) => (
                         <div
                             key={index}
                             className="relative h-44 bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center"
                         >
-                            <Image src={src} fill alt={`Camara acustica en acción. img-${index + 1}`} />
+                            <Image src={src} fill alt={`Cámara acústica en acción. img-${index + 1}`} />
                         </div>
                     ))}
                 </div>

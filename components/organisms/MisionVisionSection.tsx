@@ -4,10 +4,10 @@ export function MisionVisionSection() {
         <section className="w-full bg-white py-10 space-y-4">
             <div className="space-y-2 mb-16 px-8" >
                 <div className="flex flex-col items-center">
-                    <p className="bg-secondary/10 p-2 text-secondary rounded-lg font-bold">Exelencia operativa</p>
+                    <p className="bg-secondary/10 p-2 text-secondary rounded-lg font-bold">Excelencia operativa</p>
                 </div>
                 <h2 className="text-black text-5xl font-extrabold text-center">Comprometidos con la  <span className="text-secondary">Confiabilidad</span></h2>
-                <p className="text-black text-center">Somos lideres en mantenimiento predicivo y monitoreo de condiciones, asegurando que su planta opera con la maxima eficiencia y seguridad</p>
+                <p className="text-black text-center">Somos líderes en mantenimiento predictivo y monitoreo de condiciones, asegurando que su planta opera con la máxima eficiencia y seguridad</p>
 
             </div>
             {/* Misión */}
