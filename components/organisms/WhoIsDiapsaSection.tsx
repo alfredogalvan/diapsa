@@ -23,13 +23,16 @@ export function WhoIsDiapsaSection() {
                                 Vibraciones mecánicas</p>
                             <p className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Ultrasonido</p>
+                                Ultrasonido Pasivo</p>
                             <p className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
                                 Tierras Físicas y Estudios Eléctricos</p>
                             <p className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Alineación y Balanceo</p>
+                                Alineación de ejes</p>
+                            <p className="flex items-center gap-2">
+                                <CheckCircleIcon className="w-6 h-6 text-secondary" />
+                                Balanceo dinámico (en sitio)</p>
                             <p className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
                                 Análisis de Lubricante</p>
