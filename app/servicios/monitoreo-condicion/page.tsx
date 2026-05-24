@@ -12,7 +12,7 @@ import SuccessCases from "@/components/organisms/SuccessCases";
 const services = [dataDM, dataEE, dataTI, dataUl, dataVM];
 
 export const metadata: Metadata = {
-    title: "Monitoreo de Condicion | Grupo Diapsa",
+    title: "Monitoreo de Condición | Grupo Diapsa",
     description:
         "Servicios de mantenimiento predictivo industrial: Termografía Infrarroja, Análisis de Vibraciones, Ultrasonido, Estudios Eléctricos y Diagnóstico de Maquinaria. Soluciones integrales para tu industria en México.",
     keywords: [
