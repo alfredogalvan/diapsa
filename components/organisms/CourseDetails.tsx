@@ -440,7 +440,7 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                                                 variant="primary"
                                                 className="w-full justify-center text-lg py-4"
                                             >
-                                                Obtener ficha tecnica
+                                                Obtener ficha técnica
                                             </Button>
                                         </a>
                                     )}

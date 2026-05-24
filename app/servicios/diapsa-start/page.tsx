@@ -20,7 +20,7 @@ export default function DiapsaStart() {
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center w-full px-2 lg:px-24 space-y-4">
                         <p className="dark:text-gray-300  text-xl">
-                            El programa DIAPSA Start trasciende las simple instalación tecnica. Es una transformación
+                            El programa DIAPSA Start trasciende la simple instalación técnica. Es una transformación
                             estructural en la cultura de mantenimiento, diseñada para empresas que demandan una estrategia
                             de predictibilidad sólida y robusta.
                         </p>
@@ -50,7 +50,7 @@ export default function DiapsaStart() {
                         <ul className="text-gray-300 text-sm md:text-base lg:text-lg space-y-1">
                             <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Levatamiento de datos técnicos</p></li>
                             <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Revisión de manuales de fabricante</p></li>
-                            <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Historial de fallas criticas</p></li>
+                            <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Historial de fallas críticas</p></li>
                             <li className="flex items-center"><span className="text-secondary text-3xl mr-2">•</span> <p>Definición de KPIs estratégicos</p></li>
                         </ul>
                         <div className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 -right-4 md:-right-6 lg:-right-8 text-secondary text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold opacity-40 select-none pointer-events-none leading-none">
@@ -62,7 +62,7 @@ export default function DiapsaStart() {
                         <p className="text-secondary font-bold">Etapa 03</p>
                         <h3 className="text-xl text-white font-bold">Mediciones</h3>
                         <p className="text-gray-300 text-lg">Recolección de datos de alta precisión y confiabilidad para establecer
-                            lineas de operación certificadas.
+                            líneas de operación certificadas.
 
                         </p>
                         <div className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 -right-4 md:-right-6 lg:-right-8 text-secondary text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold opacity-40 select-none pointer-events-none leading-none">

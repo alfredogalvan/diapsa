@@ -102,7 +102,7 @@ export function GallerySection() {
                                 onClick={() => !showAll ? setShowAll(true) : setShowAll(false)}
                                 className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-secondary hover:text-primary transition-all duration-300 shadow-lg hover:shadow-2xl"
                             >
-                                {!showAll ? 'Ver más imagenes' : 'Ver menos imagenes'}
+                                {!showAll ? 'Ver más imágenes' : 'Ver menos imágenes'}
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
