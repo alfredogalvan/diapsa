@@ -53,6 +53,29 @@ const services = [
     ),
   },
   {
+    href: "/servicios/diagnostico-situacional",
+    category: "Diagnóstico inicial",
+    categoryColor: "bg-teal-500/10 text-teal-600 border-teal-400/30",
+    title: "Diagnóstico Situacional",
+    tagline: "El historial médico de tus activos industriales.",
+    description:
+      "El punto de partida de todo programa predictivo eficiente. Documentamos el estado actual, el historial de cada equipo y los patrones de comportamiento para establecer la línea base de tu programa de mantenimiento — porque sin referencia no hay predicción.",
+    features: [
+      "Inventario y clasificación de activos",
+      "Medición de condición base",
+      "Análisis e interpretación de datos",
+      "Reporte ejecutivo con hoja de ruta",
+    ],
+    image: "/images/diagnostico-situacional/engineer-checking-machinery.webp",
+    imageAlt: "Especialista realizando diagnóstico situacional en planta industrial",
+    featured: false,
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+      </svg>
+    ),
+  },
+  {
     href: "/servicios/monitoreo-continuo",
     category: "Monitoreo 24/7",
     categoryColor: "bg-blue-500/10 text-blue-600 border-blue-400/30",
@@ -160,7 +183,8 @@ function SectionLabel({ label }: { label: string }) {
 
 export default function ServiciosProductosPage() {
   const featured = services[0];
-  const rest = services.slice(1);
+  const secondary = services[1];
+  const rest = services.slice(2);
 
   return (
     <main className="bg-white">
@@ -274,6 +298,62 @@ export default function ServiciosProductosPage() {
                   </div>
                 </div>
                 {/* Borde inferior animado */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </article>
+            </Link>
+          </div>
+
+          {/* Servicio secundario destacado — Diagnóstico Situacional */}
+          <div className="mb-8">
+            <Link href={secondary.href} className="group block">
+              <article className="relative bg-white rounded-sm overflow-hidden border border-gray-100 hover:border-secondary/40 transition-all duration-300 shadow-sm hover:shadow-xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                  {/* Contenido — izquierda */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center space-y-5 order-2 lg:order-1">
+                    <span className={`inline-flex items-center self-start border text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full ${secondary.categoryColor}`}>
+                      {secondary.category}
+                    </span>
+                    <div className="text-secondary">{secondary.icon}</div>
+                    <div>
+                      <h2 className="text-2xl lg:text-3xl font-extrabold text-primary mb-2 group-hover:text-secondary transition-colors duration-300">
+                        {secondary.title}
+                      </h2>
+                      <p className="text-secondary font-semibold text-base italic mb-4">
+                        {secondary.tagline}
+                      </p>
+                      <p className="text-tertiary leading-relaxed text-sm lg:text-base">
+                        {secondary.description}
+                      </p>
+                    </div>
+                    <ul className="space-y-2">
+                      {secondary.features.map((f) => (
+                        <li key={f} className="flex items-center gap-3 text-tertiary text-sm">
+                          <span className="w-1.5 h-1.5 bg-secondary rounded-full shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <div>
+                      <span className="inline-flex items-center gap-2 bg-primary text-white font-bold px-6 py-2.5 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 text-sm group-hover:gap-4">
+                        Conocer más
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  {/* Imagen — derecha */}
+                  <div className="relative h-64 lg:h-auto min-h-72 overflow-hidden order-1 lg:order-2">
+                    <Image
+                      src={secondary.image}
+                      alt={secondary.imageAlt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-colors duration-300" />
+                  </div>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </article>
             </Link>
