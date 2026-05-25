@@ -182,11 +182,7 @@ export default function ContactForm() {
     // Sanitizar y enviar
     const sanitizedData = sanitizeContactFormData(dataToSubmit);
 
-    console.log(sanitizedData)
-
     const result = await submitForm(sanitizedData);
-
-    console.log(result)
 
     if (result) {
       // Success - reset form
