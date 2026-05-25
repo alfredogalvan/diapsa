@@ -13,7 +13,6 @@ const reportTypes = [
             "Recomendación de acción inmediata",
             "Evita paros inesperados"
         ],
-        icon: "⚡",
         image: "/images/servicios/placeholder.jpg"
         // TODO: Replace placeholder with photo of real-time monitoring dashboard
     },
@@ -28,7 +27,6 @@ const reportTypes = [
             "Frecuencia configurable",
             "Predicción de vida útil"
         ],
-        icon: "📊",
         image: "/images/servicios/placeholder.jpg"
         // TODO: Replace placeholder with photo of trend analysis or performance metrics
     },
@@ -43,7 +41,6 @@ const reportTypes = [
             "Correlación de eventos y fallas",
             "Trazabilidad total"
         ],
-        icon: "📚",
         image: "/images/servicios/placeholder.jpg"
         // TODO: Replace placeholder with photo of historical data visualization or archive
     }
@@ -88,9 +85,7 @@ export default function MCReportTypes() {
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 />
                                 <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/30 transition-colors duration-300" />
-                                <span className="absolute top-4 right-4 text-4xl drop-shadow-lg">
-                                    {report.icon}
-                                </span>
+
                             </div>
 
                             {/* Header con número */}
