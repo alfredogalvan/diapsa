@@ -36,13 +36,13 @@ export default function CursosPage() {
 
       {coursesByType.workshops && (
         <section className="bg-white p-5">
-          <CourseTypeSection title="Talleres practicos" variant="taller" courses={coursesByType.workshops} loading={loading} />
+          <CourseTypeSection title="Talleres prácticos" variant="taller" courses={coursesByType.workshops} loading={loading} />
         </section>
       )}
 
       {coursesByType.strategics && (
         <section className="bg-white p-5">
-          <CourseTypeSection title="Cursos estrategicos" variant="estrategico" courses={coursesByType.strategics} loading={loading} />
+          <CourseTypeSection title="Cursos estratégicos" variant="estrategico" courses={coursesByType.strategics} loading={loading} />
         </section>
       )}
     </main>

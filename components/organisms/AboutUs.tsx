@@ -29,7 +29,7 @@ export default function AboutUs() {
               predictivo en la industria.
             </p>
             <p>
-              La termografía, el análisis de vibraciones,
+              Con la termografía, el análisis de vibraciones,
               ultrasonido y lubricación, elevamos la
               confiabilidad de los equipos e impulsamos la
               eficiencia operativa.

@@ -110,7 +110,7 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
         }
 
         if (!formData.custom_fields?.subject) {
-            newErrors.subject = 'Selecciona en que parte del servicio estas interesado'
+            newErrors.subject = 'Selecciona en qué parte del servicio estás interesado'
         }
 
         if (Object.keys(newErrors).length > 0) {
@@ -166,7 +166,7 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
                             <div className="">
 
                                 <p className="text-2xl font-semibold text-primary mb-2">Diapsa | Detección de Gas</p>
-                                <p className="text-sm font-medium text-gray-500">Dejenos tus datos y un especialista de DIAPSA se pondra en contacto contigo para asesorarte en tus proyectos de deteccion de gas.</p>
+                                <p className="text-sm font-medium text-gray-500">Dejenos tus datos y un especialista de DIAPSA se pondrá en contacto contigo para asesorarte en tus proyectos de detección de gas.</p>
                             </div>
                             {/* Name */}
                             <InputField
@@ -192,7 +192,7 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
                             />
                             {/* Phone */}
                             <InputField
-                                label="Telefono"
+                                label="Teléfono"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}

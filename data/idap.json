@@ -25,7 +25,7 @@
     "questions": [
         {
             "title": "¿CUÁL ES SU FUNCIÓN?",
-            "description": "Funciona como un puente entre la recabación y análisis del estado de los equipos y la visualización de datos analíticos, transformando la información técnica en herramientas claras para la interpretación, priorización y ejecución de acciones correctivas o preventivas."
+            "description": "Funciona como un puente entre la recopilación y análisis del estado de los equipos y la visualización de datos analíticos, transformando la información técnica en herramientas claras para la interpretación, priorización y ejecución de acciones correctivas o preventivas."
         },
         {
             "title": "¿CÓMO SE INTEGRA A MI OPERACIÓN?",
@@ -105,7 +105,7 @@
             "description": "IDAP integra resultados de todas las disciplinas que se ejecutan en DIAPSA, mostrando la condición real de los equipos desde distintas perspectivas. Con ello, la plataforma une las disciplinas predictivas en un entorno colaborativo.",
             "image": "/images/idap/multidisciplines-2.png",
             "alt": "Iconos representando las seis disciplinas de predictivo: termografía infrarroja, análisis de vibraciones, ultrasonido pasivo, análisis de aceite, análisis eléctrico e integrales",
-            "diciplines": [
+            "disciplines": [
                 {
                     "id": 1,
                     "icon": "termography",
