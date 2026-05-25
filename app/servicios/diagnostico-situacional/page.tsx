@@ -52,7 +52,7 @@ const steps = [
     {
         number: "01",
         // TODO: Replace with a photo of a technician recording equipment data / nameplate
-        image: "/images/diagnostico-situacional/engineer-checking-machinery.webp",
+        image: "/images/diagnostico-situacional/analisis-resultados.png",
         title: "Inventario y clasificación de activos",
         description:
             "Registramos cada equipo crítico: placa de datos, historial de reparaciones, antigüedad y condiciones de operación actuales.",
@@ -60,7 +60,7 @@ const steps = [
     {
         number: "02",
         // TODO: Replace with a photo of vibration analysis or thermography inspection in progress
-        image: "/images/servicios/placeholder.jpg",
+        image: "/images/diagnostico-situacional/tecnico-termografo.jpg",
         title: "Medición de condición base",
         description:
             "Aplicamos técnicas de inspección predictiva — vibraciones, termografía, ultrasonido — para establecer el estado de salud inicial de cada activo.",
@@ -68,7 +68,7 @@ const steps = [
     {
         number: "03",
         // TODO: Replace with a photo of analysts reviewing data on screens / software
-        image: "/images/servicios/placeholder.jpg",
+        image: "/images/diagnostico-situacional/interpretacion-de-resultados.png",
         title: "Análisis e interpretación",
         description:
             "Nuestros especialistas correlacionan los datos para detectar anomalías existentes, riesgos latentes y tendencias de deterioro.",
@@ -76,7 +76,7 @@ const steps = [
     {
         number: "04",
         // TODO: Replace with a photo of an engineer presenting a report to a client
-        image: "/images/servicios/placeholder.jpg",
+        image: "/images/diagnostico-situacional/creacion-reportes.jpg",
         title: "Reporte y hoja de ruta",
         description:
             "Entregamos un informe ejecutivo con prioridades de intervención, recomendaciones de acción y el punto de partida para su programa predictivo.",
@@ -209,9 +209,7 @@ export default function DiagnosticoSituacionalPage() {
                                     />
                                     <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/30 transition-colors duration-300" />
                                     {/* Icono superpuesto */}
-                                    <span className="absolute top-4 left-4 text-3xl drop-shadow-lg">
-                                        {point.icon}
-                                    </span>
+
                                 </div>
                                 <div className="flex-1 p-6">
                                     <h3 className="font-bold text-primary text-base leading-snug mb-2 group-hover:text-secondary transition-colors">
@@ -281,7 +279,7 @@ export default function DiagnosticoSituacionalPage() {
                         <div className="relative rounded-sm overflow-hidden shadow-2xl border border-white/10">
                             <div className="relative w-full h-130">
                                 <Image
-                                    src="/images/servicios/placeholder.jpg"
+                                    src="/images/diagnostico-situacional/analogia-medica.png"
                                     alt="Analogía médica — técnico inspeccionando activo industrial con herramientas predictivas"
                                     fill
                                     className="object-cover"
@@ -374,7 +372,7 @@ export default function DiagnosticoSituacionalPage() {
                         {/* TODO: Replace placeholder with a photo of engineers reviewing diagnostic report with client in a meeting room */}
                         <div className="relative rounded-sm overflow-hidden shadow-xl min-h-85">
                             <Image
-                                src="/images/servicios/placeholder.jpg"
+                                src="/images/diagnostico-situacional/report-review-with-client.jpg"
                                 alt="Ingenieros revisando reporte de diagnóstico situacional con cliente industrial"
                                 fill
                                 className="object-cover"
