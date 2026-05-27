@@ -61,7 +61,7 @@ const slides: Slide[] = [
     titleHighlight: "Y TÉRMICAS INDUSTRIALES",
     description:
       "Visualiza fugas de gas, arcos eléctricos y anomalías térmicas invisibles al ojo humano. Tecnología de vanguardia para la seguridad de tus plantas.",
-    cta: { label: "Explorar cámaras", href: "/camaras" },
+    cta: { label: "Explorar productos", href: "/productos" },
     ctaSecondary: { label: "Cotizar", href: "/#contacto" },
     image: "/images/header-camaras.png",
     imageAlt: "Cámara acústica para detección de fugas de gas industrial",

@@ -38,7 +38,7 @@ export default function ContactPage() {
                                 </h2>
                                 <p className="text-white/70 text-lg leading-relaxed">
                                     Cada hora de paro no programado cuesta más que un año de mantenimiento predictivo.
-                                    Nuestro equipo de ingenieros está listo para diseñar una estrategia a la medida de tu operación.
+                                    Nuestro equipo de ingenieros está listo para diseñar una estrategia a la medida de tu operación — desde programas de monitoreo completos hasta la venta de equipos especializados como cámaras acústicas, térmicas y sensores de vibración.
                                 </p>
                             </div>
 
@@ -62,6 +62,15 @@ export default function ContactPage() {
                                         ),
                                         title: "Disciplinas a la medida de tu planta",
                                         desc: "Termografía infrarroja, vibraciones mecánicas, ultrasonido, estudios eléctricos y monitoreo continuo — la técnica correcta para cada activo.",
+                                    },
+                                    {
+                                        icon: (
+                                            <svg className="w-5 h-5 text-secondary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        ),
+                                        title: "Tecnología de vanguardia disponible",
+                                        desc: "Cámaras acústicas Hertzinno, y sensores de vibración KCF — podemos cotizar el equipo ideal o implementar un programa completo de monitoreo.",
                                     },
                                     {
                                         icon: (
