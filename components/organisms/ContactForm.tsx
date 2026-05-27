@@ -1,122 +1,249 @@
+/**
+ * ContactForm Component
+ * Formulario de contacto principal con selección de cursos y servicios
+ */
+
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, FormEvent } from "react";
 import Button from "@/components/atoms/Button";
-import cursosData from "@/data/cursos/new.json";
+import { useContactForm } from "@/lib/hooks/useContactForm";
+import { useCourses } from "@/lib/hooks/useCourses";
+import { sanitizeContactFormData } from "@/lib/utils/sanitizeFormData";
+import LoadingSpinner from "@/components/atoms/LoadingSpinner";
+import SuccessMessage from "@/components/atoms/SuccessMessage";
+import RateLimitNotice, { RateLimitBanner } from "@/components/molecules/RateLimitNotice";
+import { FormErrors } from "@/components/atoms/FormFieldError";
+import type { ContactFormMain } from "@/types/contact";
+import serviciosData from "@/data/servicios.json";
 
-interface FormData {
-  nombre: string;
-  empresa: string;
-  telefono: string;
-  correo: string;
-  asunto: string;
-  cursos: string[];
-  servicios: string[];
-  region: string;
-  esProveedor: boolean;
-  comentarios: string;
-  aceptaPrivacidad: boolean;
-}
+// Extraer solo servicios principales
+const SERVICES = serviciosData.map(servicio => servicio.label);
 
-const SERVICES = [
-  "Termografía Infrarroja",
-  "Vibraciones Mecánicas",
-  "Diagnóstico de Maquinaria",
-  "Análisis de Ultrasonido",
-  "Estudios Eléctricos"
-]
-
-const CURSOS = cursosData.courses.map(course => course.name);
+const countries = [
+  { value: "México", label: "México" },
+  { value: "Estados Unidos", label: "Estados Unidos" },
+  { value: "Colombia", label: "Colombia" },
+  { value: "Argentina", label: "Argentina" },
+  { value: "Chile", label: "Chile" },
+  { value: "Perú", label: "Perú" },
+  { value: "España", label: "España" },
+  { value: "Otro", label: "Otro" },
+];
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    nombre: "",
-    empresa: "",
-    telefono: "",
-    correo: "",
-    asunto: "",
-    cursos: [],
-    servicios: [],
-    region: "",
-    esProveedor: false,
-    comentarios: "",
-    aceptaPrivacidad: false,
+  const {
+    submitForm,
+    loading,
+    success,
+    errors: apiErrors,
+    rateLimitExceeded,
+    retryAfter,
+    resetForm,
+    validateField,
+  } = useContactForm();
+
+
+  const { courses, loading: loadingCourses } = useCourses();
+
+  const [formData, setFormData] = useState<ContactFormMain>({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    country: "",
+    form_type: "main",
+    custom_fields: {
+      subject: "",
+      coursesOfInterest: [],
+      servicesOfInterest: [],
+      message: "",
+      isProvider: "false",
+      prefered_contact: "email",
+    },
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
+  // Handle input change
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = e.target;
 
-    if (type === "checkbox") {
+    // Campos principales
+    if (["name", "email", "phone", "company", "country"].includes(name)) {
       setFormData((prev) => ({
         ...prev,
-        [name]: (e.target as HTMLInputElement).checked,
+        [name]: value,
       }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+    // Campos custom
+    else {
+      setFormData((prev) => ({
+        ...prev,
+        custom_fields: {
+          ...prev.custom_fields,
+          [name]: value,
+        } as ContactFormMain['custom_fields'],
+      }));
 
-      if (name === "asunto" && value !== "Información de cursos") {
-        setFormData((prev) => ({ ...prev, cursos: [] }));
+      // Limpiar cursos/servicios cuando cambia asunto
+      if (name === "subject") {
+        setFormData((prev) => ({
+          ...prev,
+          custom_fields: {
+            ...prev.custom_fields,
+            coursesOfInterest: [],
+            servicesOfInterest: [],
+          } as ContactFormMain['custom_fields'],
+        }));
       }
+    }
+
+    // Clear field error on change
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
     }
   };
 
-  const handleCursoChange = (curso: string) => {
+  // Handle checkbox arrays (cursos/servicios)
+  const handleCheckboxArrayChange = (field: "coursesOfInterest" | "servicesOfInterest", value: string) => {
     setFormData((prev) => {
-      const cursos = prev.cursos.includes(curso)
-        ? prev.cursos.filter((c) => c !== curso)
-        : [...prev.cursos, curso];
-      return { ...prev, cursos };
-    });
-  };
-  const handleServicioChange = (servicio: string) => {
-    setFormData((prev) => {
-      const servicios = prev.servicios.includes(servicio)
-        ? prev.servicios.filter((c) => c !== servicio)
-        : [...prev.servicios, servicio];
-      return { ...prev, servicios };
+      const currentArray = prev.custom_fields?.[field] || [];
+      const newArray = currentArray.includes(value)
+        ? currentArray.filter((item) => item !== value)
+        : [...currentArray, value];
+
+      return {
+        ...prev,
+        custom_fields: {
+          ...prev.custom_fields,
+          [field]: newArray,
+        } as ContactFormMain['custom_fields'],
+      };
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle blur - validate field
+  const handleBlur = (field: string, value: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+
+    const error = validateField(field, value);
+    if (error) {
+      setFieldErrors((prev) => ({ ...prev, [field]: error }));
+    }
+  };
+
+  // Handle submit
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    console.log("Formulario enviado:", formData);
+    // Validate required fields
+    const newErrors: Record<string, string> = {};
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const nameError = validateField("name", formData.name);
+    if (nameError) newErrors.name = nameError;
 
-    alert("¡Gracias por contactarnos!");
+    const emailError = validateField("email", formData.email);
+    if (emailError) newErrors.email = emailError;
 
-    setFormData({
-      nombre: "",
-      empresa: "",
-      telefono: "",
-      correo: "",
-      asunto: "",
-      cursos: [],
-      servicios: [],
-      region: "",
-      esProveedor: false,
-      comentarios: "",
-      aceptaPrivacidad: false,
-    });
+    if (formData.phone) {
+      const phoneError = validateField("phone", formData.phone);
+      if (phoneError) newErrors.phone = phoneError;
+    }
 
-    setIsSubmitting(false);
+    if (!aceptaPrivacidad) {
+      newErrors.aceptaPrivacidad = "Debes aceptar el aviso de privacidad";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setFieldErrors(newErrors);
+      return;
+    }
+
+    // Preparar datos para envío - convertir arrays a strings
+    const dataToSubmit: ContactFormMain = {
+      ...formData,
+      custom_fields: {
+        ...formData.custom_fields,
+        coursesOfInterest: formData.custom_fields?.coursesOfInterest.join(", "),
+        servicesOfInterest: formData.custom_fields?.servicesOfInterest.join(", "),
+      } as any,
+    };
+
+    // Sanitizar y enviar
+    const sanitizedData = sanitizeContactFormData(dataToSubmit);
+
+    const result = await submitForm(sanitizedData);
+
+    if (result) {
+      // Success - reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        country: "",
+        form_type: "main",
+        custom_fields: {
+          subject: "",
+          coursesOfInterest: [],
+          servicesOfInterest: [],
+          message: "",
+          isProvider: "false",
+          prefered_contact: "email",
+        },
+      });
+      setAceptaPrivacidad(false);
+      setTouched({});
+      setFieldErrors({});
+      formRef.current?.reset();
+    }
   };
 
-  const mostrarCursos = formData.asunto === "Información de cursos";
-  const mostrarServicios = formData.asunto === "Información de servicios";
+  // Get error message for field
+  const getFieldError = (field: string): string | undefined => {
+    if (fieldErrors[field]) return fieldErrors[field];
+    if (apiErrors[field]) return apiErrors[field][0];
+    return undefined;
+  };
+
+  const mostrarCursos = formData.custom_fields?.subject === "cursos" || formData.custom_fields?.subject === 'cursos/servicios';
+  const mostrarServicios = formData.custom_fields?.subject === "servicios" || formData.custom_fields?.subject === 'cursos/servicios';
+
+  // General errors from API
+  const generalErrors = apiErrors.general || [];
 
   return (
-    <section className="w-full bg-black text-white py-12 md:py-20">
-      <div className="lg:max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between gap-8 lg:gap-16 items-center">
+    <section className="w-full bg-black text-white py-16 lg:py-24 relative">
+      {/* Overlay para mensajes de éxito o rate limit */}
+      {(success || (rateLimitExceeded && retryAfter)) && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-6">
+          <div className="w-full max-w-3xl">
+            {success && (
+              <SuccessMessage
+                message="¡Gracias por contactarnos! Hemos recibido tu mensaje y te responderemos pronto."
+                icon
+                onDismiss={resetForm}
+                className="p-8! text-xl! md:text-xl! [&>div]:gap-5 [&_svg]:w-10! [&_svg]:h-10! [&_p]:text-xl! md:[&_p]:text-xl! "
+              />
+            )}
+            {rateLimitExceeded && retryAfter && (
+              <RateLimitNotice retryAfter={retryAfter} onRetryReady={resetForm} />
+            )}
+          </div>
+        </div>
+      )}
 
+      <div className="lg:max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between gap-8 lg:gap-16 items-center">
         {/* COLUMNA IZQUIERDA */}
         <div className="w-full lg:w-auto">
           <h2 className="text-3xl text-center lg:text-end md:text-4xl lg:text-5xl font-extrabold leading-tight">
@@ -137,36 +264,45 @@ export default function ContactForm() {
 
         {/* COLUMNA DERECHA - FORM */}
         <div className="w-full lg:flex-1 max-w-2xl">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full space-y-4"
-          >
+          <form ref={formRef} onSubmit={handleSubmit} className="w-full space-y-4" noValidate>
+            {/* General errors */}
+            {generalErrors.length > 0 && <FormErrors errors={generalErrors} />}
+
+            {/* Rate limit banner */}
+            {retryAfter && retryAfter > 0 && (
+              <RateLimitBanner attemptsRemaining={0} maxAttempts={5} />
+            )}
+
+            {/* Datos personales */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+              {/* Nombre */}
               <div>
-
                 <input
                   type="text"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
+                  onBlur={(e) => handleBlur("name", e.target.value)}
                   required
+                  disabled={loading}
                   className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
                   placeholder="Ingresa tu nombre completo"
                 />
+                {getFieldError("name") && (
+                  <p className="text-sm text-red-500 mt-1">{getFieldError("name")}</p>
+                )}
               </div>
 
               {/* Empresa */}
               <div>
-
                 <input
                   type="text"
-                  id="empresa"
-                  name="empresa"
-                  value={formData.empresa}
+                  id="company"
+                  name="company"
+                  value={formData.company}
                   onChange={handleChange}
-                  required
+                  disabled={loading}
                   className="w-full bg-white px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
                   placeholder="Nombre de tu empresa"
                 />
@@ -174,97 +310,120 @@ export default function ContactForm() {
 
               {/* Correo */}
               <div>
-
                 <input
                   type="email"
-                  id="correo"
-                  name="correo"
-                  value={formData.correo}
+                  id="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
+                  onBlur={(e) => handleBlur("email", e.target.value)}
                   required
+                  disabled={loading}
                   className="w-full bg-white px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
                   placeholder="correo@ejemplo.com"
                 />
+                {getFieldError("email") && (
+                  <p className="text-sm text-red-500 mt-1">{getFieldError("email")}</p>
+                )}
               </div>
 
               {/* Teléfono */}
               <div>
                 <input
                   type="tel"
-                  id="telefono"
-                  name="telefono"
-                  value={formData.telefono}
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
                   onChange={handleChange}
-                  required
+                  onBlur={(e) => handleBlur("phone", e.target.value)}
+                  disabled={loading}
                   className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400"
                   placeholder="(000) 000-0000"
                 />
+                {getFieldError("phone") && (
+                  <p className="text-sm text-red-500 mt-1">{getFieldError("phone")}</p>
+                )}
               </div>
-
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Asunto */}
               <div>
                 <select
-                  id="asunto"
-                  name="asunto"
-                  value={formData.asunto}
+                  id="subject"
+                  name="subject"
+                  value={formData.custom_fields?.subject}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all bg-white text-gray-900"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="Información de cursos">
-                    Información de cursos
-                  </option>
-                  <option value="Información de servicios">
-                    Información de servicios
-                  </option>
+                  <option value="cursos">Información de cursos</option>
+                  <option value="servicios">Información de servicios</option>
+                  <option value="cursos/servicios">Información de cursos y servicios</option>
                 </select>
               </div>
+
+              {/* País */}
               <div>
-                <input
-                  id="region"
-                  type="text"
-                  name="region"
-                  placeholder="PAÍS / REGIÓN"
-                  value={formData.region}
+                <select
+                  id="country"
+                  name="country"
+                  value={formData.country}
                   onChange={handleChange}
+                  disabled={loading}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all bg-white text-gray-900"
-                />
+                >
+                  <option value="">PAÍS / REGIÓN</option>
+                  {countries.map((country) => (
+                    <option key={country.value} value={country.value}>
+                      {country.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
-            {/* Sección de cursos (solo visible si asunto es "Información de cursos") */}
+            {/* Sección de cursos */}
             {mostrarCursos && (
               <div className="p-4 bg-gray-50 border border-gray-700 rounded-lg">
                 <label className="block text-sm font-semibold mb-3 text-gray-900">
                   Selecciona los cursos de tu interés:
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {CURSOS.map((curso) => (
-                    <label
-                      key={curso}
-                      className="flex items-start gap-3 cursor-pointer group"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={formData.cursos.includes(curso)}
-                        onChange={() => handleCursoChange(curso)}
-                        className="mt-1 w-4 h-4 text-secondary bg-white border-gray-300 rounded focus:ring-2 focus:ring-secondary"
-                      />
-                      <span className="text-sm text-gray-900 group-hover:font-bold transition-colors">
-                        {curso}
-                      </span>
-                    </label>
-                  ))}
-                </div>
+                {loadingCourses ? (
+                  <div className="flex justify-center py-4">
+                    <LoadingSpinner size="medium" color="primary" />
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {courses.map((curso) => (
+                      <label
+                        key={curso.id}
+                        className="flex items-start gap-3 cursor-pointer group"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.custom_fields?.coursesOfInterest.includes(curso.name)}
+                          onChange={() => handleCheckboxArrayChange("coursesOfInterest", curso.name)}
+                          disabled={loading}
+                          className="mt-1 w-4 h-4 text-secondary bg-white border-gray-300 rounded focus:ring-2 focus:ring-secondary"
+                        />
+                        <span className="text-sm text-gray-900 group-hover:font-bold transition-colors">
+                          {curso.name}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
+
+            {/* Sección de servicios */}
             {mostrarServicios && (
               <div className="p-4 bg-gray-50 border border-gray-700 rounded-lg">
                 <label className="block text-sm font-semibold mb-3 text-gray-900">
-                  Selecciona los cursos de tu interés:
+                  Selecciona los servicios de tu interés:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {SERVICES.map((servicio) => (
@@ -274,8 +433,9 @@ export default function ContactForm() {
                     >
                       <input
                         type="checkbox"
-                        checked={formData.servicios.includes(servicio)}
-                        onChange={() => handleServicioChange(servicio)}
+                        checked={formData.custom_fields?.servicesOfInterest.includes(servicio)}
+                        onChange={() => handleCheckboxArrayChange("servicesOfInterest", servicio)}
+                        disabled={loading}
                         className="mt-1 w-4 h-4 text-secondary bg-white border-gray-300 rounded focus:ring-2 focus:ring-secondary"
                       />
                       <span className="text-sm text-gray-900 group-hover:font-bold transition-colors">
@@ -287,30 +447,77 @@ export default function ContactForm() {
               </div>
             )}
 
+            {/* Medio de contacto preferido */}
+            <div>
+              <p className="block text-sm font-semibold text-white mb-2">
+                Medio de contacto preferido
+              </p>
+              <div className="flex gap-3">
+                {[
+                  { value: "email", label: "Email" },
+                  { value: "phone", label: "Teléfono" },
+                ].map((opt) => {
+                  const isSelected = formData.custom_fields?.prefered_contact === opt.value;
+                  return (
+                    <label
+                      key={opt.value}
+                      className={`flex items-center gap-2 cursor-pointer px-4 py-2 rounded-sm border text-sm font-semibold transition-all duration-200 select-none
+                        ${isSelected
+                          ? "bg-secondary text-primary border-secondary"
+                          : "bg-white text-gray-600 border-gray-200 hover:border-secondary/40 hover:text-secondary"
+                        }
+                        ${loading ? "opacity-50 cursor-not-allowed" : ""}
+                      `}
+                    >
+                      <input
+                        type="radio"
+                        name="preferred_contact"
+                        value={opt.value}
+                        checked={isSelected}
+                        onChange={handleChange}
+                        disabled={loading}
+                        className="sr-only"
+                      />
+                      {opt.label}
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Proveedor checkbox */}
             <div className="flex items-start gap-3 text-sm">
               <input
                 type="checkbox"
-                id="esProveedor"
-                name="esProveedor"
-                checked={formData.esProveedor}
-                onChange={handleChange}
+                id="isProvider"
+                name="isProvider"
+                checked={formData.custom_fields?.isProvider === "true"}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    custom_fields: {
+                      ...prev.custom_fields,
+                      isProvider: e.target.checked ? "true" : "false",
+                    } as ContactFormMain['custom_fields'],
+                  }))
+                }
+                disabled={loading}
                 className="mt-1 w-4 h-4 text-secondary bg-white border-gray-300 rounded focus:ring-2 focus:ring-secondary"
               />
-              <label htmlFor="esProveedor" className="text-gray-300">
-                Brindo servicios especializados a la industria como proveedor,
-                asesor o coach
+              <label htmlFor="isProvider" className="text-gray-300">
+                Brindo servicios especializados a la industria como proveedor, asesor o coach
               </label>
             </div>
 
             {/* Comentarios */}
             <div>
-
               <textarea
-                id="comentarios"
-                name="comentarios"
-                value={formData.comentarios}
+                id="message"
+                name="message"
+                value={formData.custom_fields?.message}
                 onChange={handleChange}
                 rows={3}
+                disabled={loading}
                 className="w-full bg-white px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all resize-none text-gray-900 placeholder:text-gray-400"
                 placeholder="Cuéntanos más sobre tu consulta..."
               />
@@ -322,22 +529,28 @@ export default function ContactForm() {
                 type="checkbox"
                 id="aceptaPrivacidad"
                 name="aceptaPrivacidad"
-                checked={formData.aceptaPrivacidad}
-                onChange={handleChange}
+                checked={aceptaPrivacidad}
+                onChange={(e) => {
+                  setAceptaPrivacidad(e.target.checked);
+                  if (fieldErrors.aceptaPrivacidad) {
+                    setFieldErrors((prev) => {
+                      const newErrors = { ...prev };
+                      delete newErrors.aceptaPrivacidad;
+                      return newErrors;
+                    });
+                  }
+                }}
                 required
+                disabled={loading}
                 className="mt-1 w-5 h-5 text-secondary border-gray-300 rounded focus:ring-secondary focus:ring-2"
               />
-              <label
-                htmlFor="aceptaPrivacidad"
-                className="text-sm text-gray-700 leading-relaxed"
-              >
-                <span className="font-semibold">
-                  Tratamiento de datos personales.
-                </span>{" "}
-                He leído y acepto el{" "}
+              <label htmlFor="aceptaPrivacidad" className="text-sm text-gray-700 leading-relaxed">
+                <span className="font-semibold">Tratamiento de datos personales.</span> He leído y
+                acepto el{" "}
                 <a
                   href="/aviso-privacidad"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="text-secondary font-semibold hover:underline"
                 >
                   Aviso de Privacidad
@@ -345,14 +558,29 @@ export default function ContactForm() {
                 de Grupo DIAPSA. <span className="text-red-500">*</span>
               </label>
             </div>
+            {fieldErrors.aceptaPrivacidad && (
+              <p className="text-sm text-red-500 mt-1">{fieldErrors.aceptaPrivacidad}</p>
+            )}
+
+            {/* Honeypot field */}
+            <input
+              type="text"
+              name="website"
+              value=""
+              onChange={() => { }}
+              style={{ display: "none" }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
 
             <Button
               type="submit"
               variant="secondary"
-              disabled={isSubmitting}
+              disabled={loading}
               className="w-full py-4 text-lg"
             >
-              {isSubmitting ? "ENVIANDO..." : "ENVIAR"}
+              {loading ? "ENVIANDO..." : "ENVIAR"}
             </Button>
           </form>
         </div>

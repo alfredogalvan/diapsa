@@ -76,7 +76,7 @@ export default function WhatAskPPCIEM() {
                 </div>
 
                 {/* ── Right column – image ── */}
-                <div className="w-full lg:w-1/2 relative h-80 lg:h-[560px] shrink-0">
+                <div className="w-full lg:w-1/2 relative h-80 lg:h-140 shrink-0">
                     {/* Decorative frame */}
                     <div className="absolute -top-3 -left-3 w-full h-full rounded-3xl border-2 border-secondary/30" />
                     <Image

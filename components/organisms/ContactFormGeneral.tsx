@@ -205,31 +205,58 @@ export default function ContactFormGeneral({
         <RateLimitBanner attemptsRemaining={0} maxAttempts={5} />
       )}
 
-      {/* Name */}
-      <InputField
-        label="Nombre completo"
-        name="name"
-        type="text"
-        value={formData.name}
-        onChange={handleChange}
-        onBlur={(e) => handleBlur('name', e.target.value)}
-        error={getFieldError('name')}
-        required
-        disabled={loading}
-      />
+      {/* Datos personales */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Name */}
+        <InputField
+          label="Nombre completo"
+          name="name"
+          type="text"
+          value={formData.name}
+          onChange={handleChange}
+          onBlur={(e) => handleBlur('name', e.target.value)}
+          error={getFieldError('name')}
+          required
+          disabled={loading}
+        />
 
-      {/* Email */}
-      <InputField
-        label="Correo electrónico"
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        onBlur={(e) => handleBlur('email', e.target.value)}
-        error={getFieldError('email')}
-        required
-        disabled={loading}
-      />
+        {/* Email */}
+        <InputField
+          label="Correo electrónico"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          onBlur={(e) => handleBlur('email', e.target.value)}
+          error={getFieldError('email')}
+          required
+          disabled={loading}
+        />
+      </div>
+
+      {/* Datos de empresa */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Company */}
+        <InputField
+          label="Empresa"
+          name="company"
+          type="text"
+          value={formData.company}
+          onChange={handleChange}
+          disabled={loading}
+        />
+
+        {/* Country */}
+        <SelectField
+          label="País"
+          name="country"
+          options={countries}
+          value={formData.country}
+          onChange={handleChange}
+          placeholder="Selecciona tu país"
+          disabled={loading}
+        />
+      </div>
 
       {/* Phone */}
       <InputField
@@ -241,27 +268,6 @@ export default function ContactFormGeneral({
         onBlur={(e) => handleBlur('phone', e.target.value)}
         error={getFieldError('phone')}
         helperText="Formato: +52 55 1234 5678"
-        disabled={loading}
-      />
-
-      {/* Company */}
-      <InputField
-        label="Empresa"
-        name="company"
-        type="text"
-        value={formData.company}
-        onChange={handleChange}
-        disabled={loading}
-      />
-
-      {/* Country */}
-      <SelectField
-        label="País"
-        name="country"
-        options={countries}
-        value={formData.country}
-        onChange={handleChange}
-        placeholder="Selecciona tu país"
         disabled={loading}
       />
 
@@ -278,34 +284,39 @@ export default function ContactFormGeneral({
 
       {/* Preferred contact method */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <p className="block text-sm font-semibold text-primary mb-2">
           Medio de contacto preferido
-        </label>
-        <div className="flex gap-4">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              name="preferred_contact"
-              value="email"
-              checked={formData.custom_fields?.preferred_contact === 'email'}
-              onChange={handleChange}
-              disabled={loading}
-              className="w-4 h-4 text-primary border-gray-300 focus:ring-primary cursor-pointer"
-            />
-            <span className="text-sm text-gray-700">Email</span>
-          </label>
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              name="preferred_contact"
-              value="phone"
-              checked={formData.custom_fields?.preferred_contact === 'phone'}
-              onChange={handleChange}
-              disabled={loading}
-              className="w-4 h-4 text-primary border-gray-300 focus:ring-primary cursor-pointer"
-            />
-            <span className="text-sm text-gray-700">Teléfono</span>
-          </label>
+        </p>
+        <div className="flex gap-3">
+          {[
+            { value: 'email', label: 'Email' },
+            { value: 'phone', label: 'Teléfono' },
+          ].map((opt) => {
+            const isSelected = formData.custom_fields?.preferred_contact === opt.value;
+            return (
+              <label
+                key={opt.value}
+                className={`flex items-center gap-2 cursor-pointer px-4 py-2 rounded-sm border text-sm font-semibold transition-all duration-200 select-none
+                  ${isSelected
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-primary/40 hover:text-primary'
+                  }
+                  ${loading ? 'opacity-50 cursor-not-allowed' : ''}
+                `}
+              >
+                <input
+                  type="radio"
+                  name="preferred_contact"
+                  value={opt.value}
+                  checked={isSelected}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="sr-only"
+                />
+                {opt.label}
+              </label>
+            );
+          })}
         </div>
       </div>
 
@@ -326,10 +337,10 @@ export default function ContactFormGeneral({
         type="submit"
         disabled={loading}
         className="
-          w-full px-6 py-3 bg-primary text-white rounded-lg
-          font-semibold hover:bg-primary/90 transition-colors
+          w-full px-6 py-3 bg-primary text-white rounded-xs
+          font-bold hover:bg-secondary hover:text-primary transition-all duration-300
           disabled:opacity-50 disabled:cursor-not-allowed
-          flex items-center justify-center gap-2
+          flex items-center justify-center gap-2 shadow-md
         "
       >
         {loading ? (
@@ -338,14 +349,19 @@ export default function ContactFormGeneral({
             Enviando...
           </>
         ) : (
-          'Enviar mensaje'
+          <>
+            Enviar mensaje
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </>
         )}
       </button>
 
       {/* Privacy notice */}
-      <p className="text-xs text-gray-500 text-center">
+      <p className="text-xs text-tertiary text-center">
         Al enviar este formulario, aceptas nuestra{' '}
-        <a href="/privacidad" className="text-primary hover:underline">
+        <a href="/privacidad" className="text-secondary hover:underline font-semibold">
           política de privacidad
         </a>
       </p>

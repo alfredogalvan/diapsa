@@ -22,7 +22,7 @@ export default function AdvsCard({ adv }: Props) {
             <div className="bg-primary rounded-sm h-full flex max-w-80 flex-col shadow-2xl shadow-black-800 space-y-6">
                 <div className="flex justify-center items-center m-0">
                     <div className="w-80 h-80 relative">
-                        <Image src={adv.img} alt={`Flyer de ${adv.title}`} fill className="object-cover" />
+                        <Image src={adv.img} alt={`Flyer de ${adv.title}`} fill className="object-cover rounded-sm" />
                     </div>
                 </div>
                 <div className="p-2 space-y-2 flex flex-col flex-1">
@@ -31,14 +31,14 @@ export default function AdvsCard({ adv }: Props) {
                     {adv.badges && (
                         <div className="flex gap-3">
                             {adv.badges.map((b) => (
-                                <p key={b} className="rounded-2xl bg-secondary text-black py-1 text-sm px-3">{b}</p>
+                                <p key={b} className="rounded-2xl bg-transparent text-secondary border border-secondary py-1 text-xs px-3">{b}</p>
                             ))}
                         </div>
                     )}
-                    <div className="flex justify-between mt-auto pt-2">
+                    <div className="flex justify-between items-center mt-auto pt-2">
                         <p className="text-sm"> {adv.date}</p>
                         <button onClick={() => setOpenFlyer(true)}
-                            className="text-secondary border-b-2 border-secondary hover:text-white hover:border-white transition-all ease-in-out">Ver flyer</button>
+                            className="inline-flex items-center gap-2 bg-secondary text-sm text-primary font-bold px-4 py-1 rounded-sm hover:bg-white hover:text-primary transition-all duration-300">Ver flyer</button>
                     </div>
                 </div>
             </div>

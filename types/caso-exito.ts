@@ -1,7 +1,7 @@
 export interface CasoExito {
     slug: string;
     title: string;
-    client: string;
+    client?: string;
     industry: string;
     service: string;
     seo: {
@@ -22,4 +22,13 @@ export interface CasoExito {
     metrics?: Record<string, number | string>;
     economicImpact: string;
     conclusion: string;
+    content?: SuccessCaseContent[];
 }
+
+interface SuccessCaseContent {
+    id: number;
+    text: string;
+    image?: string;
+    note?: string;
+}
+

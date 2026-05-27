@@ -6,7 +6,7 @@
 /**
  * Form types supported by the API
  */
-export type ContactFormType = 'general' | 'expo' | 'webinar' | 'gas';
+export type ContactFormType = 'general' | 'expo' | 'webinar' | 'gas' | 'main';
 
 /**
  * Base contact form data
@@ -21,7 +21,7 @@ export interface ContactFormData {
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
-  custom_fields?: Record<string, string>;
+  custom_fields?: Record<string, string | string[]>;
   website?: string; // Honeypot field - must be empty
 }
 
@@ -74,16 +74,33 @@ export interface ContactFormExpo {
 }
 
 /**
- * 
+ * Gas detection form
  */
 export interface ContacFormGasDetection extends ContactFormData {
   form_type: 'gas';
   custom_fields?: {
     subject: string;
-    message?: string
+    message?: string;
 
   }
 }
+
+/**
+ * Main form
+ */
+export interface ContactFormMain extends ContactFormData {
+  form_type: 'main';
+  custom_fields?: {
+    subject: '' | 'cursos' | 'servicios' | 'cursos/servicios';
+    message: string;
+    prefered_contact: 'email' | 'phone';
+    isProvider: string;
+    coursesOfInterest: string[];
+    servicesOfInterest: string[];
+  }
+
+}
+
 
 /**
  * Webinar registration form

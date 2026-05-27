@@ -33,14 +33,14 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
       conectividad: "Conectividad",
       camaraVisual: "Cámara Visual",
     };
-    
+
     return labels[key] || key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase());
   };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section - PageHeader style */}
-      <section className="relative w-full h-[50vh] sm:h-[55vh] lg:h-[60vh] overflow-hidden border-b-2 lg:border-b-4 border-secondary">
+      <section className="relative w-full h-[50vh] sm:h-[55vh] lg:h-[80vh] overflow-hidden border-b-2 lg:border-b-4 border-secondary">
         <BackgroundImage
           src="/images/fondo-hero.webp"
           alt="Fondo cámara termográfica"
@@ -93,7 +93,7 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
               {camera.specs.superIR && (
                 <span className="inline-flex items-center bg-white/15 backdrop-blur-sm text-white px-3 py-1.5 rounded-sm text-sm font-medium border border-white/20">
                   <svg className="w-4 h-4 mr-1.5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   Super IR
                 </span>
@@ -101,7 +101,7 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
               {camera.specs.superFocus && (
                 <span className="inline-flex items-center bg-white/15 backdrop-blur-sm text-white px-3 py-1.5 rounded-sm text-sm font-medium border border-white/20">
                   <svg className="w-4 h-4 mr-1.5 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   Super Focus
                 </span>
@@ -120,7 +120,7 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
       <section className="py-12 lg:py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-            
+
             {/* IZQUIERDA: Galería de imágenes (7 columnas) */}
             <div className="lg:col-span-7 space-y-4">
               {camera.images && camera.images.length > 0 ? (
@@ -151,11 +151,10 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
                         <button
                           key={idx}
                           onClick={() => setSelectedImage(idx)}
-                          className={`relative aspect-square rounded-sm overflow-hidden border-2 transition-all duration-200 ${
-                            selectedImage === idx
-                              ? "border-secondary shadow-md ring-2 ring-secondary/30"
-                              : "border-gray-200 hover:border-secondary/50 bg-white"
-                          }`}
+                          className={`relative aspect-square rounded-sm overflow-hidden border-2 transition-all duration-200 ${selectedImage === idx
+                            ? "border-secondary shadow-md ring-2 ring-secondary/30"
+                            : "border-gray-200 hover:border-secondary/50 bg-white"
+                            }`}
                         >
                           <Image
                             src={img}
@@ -184,7 +183,7 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
 
             {/* DERECHA: Información del producto (5 columnas) */}
             <div className="lg:col-span-5 space-y-6">
-              
+
               {/* Card de Especificaciones Técnicas */}
               <div className="bg-white rounded-sm shadow-md border border-gray-100 overflow-hidden">
                 <div className="bg-primary px-6 py-4">
@@ -200,12 +199,12 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
                     {Object.entries(camera.specs).map(([key, value]) => {
                       const label = formatSpecLabel(key);
                       let displayValue: React.ReactNode;
-                      
+
                       if (typeof value === "boolean") {
                         displayValue = value ? (
                           <span className="inline-flex items-center text-green-600 font-semibold">
                             <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                             Sí
                           </span>
@@ -243,10 +242,10 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
                 </div>
                 <div className="p-6 space-y-3">
                   {camera.brochure && (
-                    <a 
-                      href={camera.brochure} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={camera.brochure}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-between w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-sm border border-gray-200 transition-colors group"
                     >
                       <span className="flex items-center text-sm font-medium text-gray-700">
@@ -261,10 +260,10 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
                     </a>
                   )}
                   {camera.fichaTecnica && (
-                    <a 
-                      href={camera.fichaTecnica} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={camera.fichaTecnica}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-between w-full px-4 py-3 bg-primary/5 hover:bg-primary/10 rounded-sm border border-primary/20 transition-colors group"
                     >
                       <span className="flex items-center text-sm font-medium text-primary">
@@ -293,8 +292,8 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
                   Solicita cotización personalizada, demostración o asesoría técnica sin compromiso.
                 </p>
                 <Link href="/contacto" className="block">
-                  <Button 
-                    variant="primary" 
+                  <Button
+                    variant="primary"
                     className="w-full bg-white text-secondary hover:bg-gray-50 font-bold"
                   >
                     Solicitar Información
@@ -320,8 +319,8 @@ export default function CameraDetailContent({ camera, serie }: CameraDetailConte
                   Otros modelos de la serie
                 </h2>
               </div>
-              <Link 
-                href="/camaras" 
+              <Link
+                href="/camaras"
                 className="text-secondary font-medium text-sm hover:underline flex items-center gap-1 self-start sm:self-auto"
               >
                 Ver catálogo completo

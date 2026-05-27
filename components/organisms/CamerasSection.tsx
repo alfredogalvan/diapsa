@@ -49,7 +49,7 @@ function CameraTable({ serie }: CameraTableProps) {
         <h2 className="text-3xl md:text-4xl font-bold text-primary">
           {serie.title}
         </h2>
-        <div className="w-full h-1 bg-gradient-to-r from-transparent via-secondary to-transparent" />
+        <div className="w-full h-1 bg-linear-to-r from-transparent via-secondary to-transparent" />
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           {serie.description}
         </p>
@@ -89,7 +89,7 @@ function CameraTable({ serie }: CameraTableProps) {
       </div>
 
       {/* Separador decorativo */}
-      <div className="w-full h-3 bg-gradient-to-r from-transparent via-secondary to-transparent" />
+      <div className="w-full h-3 bg-linear-to-r from-transparent via-secondary to-transparent" />
     </div>
   );
 }

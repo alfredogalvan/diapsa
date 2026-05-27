@@ -47,7 +47,7 @@ export default function IdapOrigin() {
 
                         <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                             <p>
-                                IDAP nació de la necesidad real de los especialistas de DIAPSA de centralizar, visualizar y comunicar los resultados del mantenimiento predictivo de forma clara y accionable.
+                                IDAP nació de la necesidad real de los especialistas de DIAPSA de centralizar, visualizar y comunicar los resultados del mantenimiento predictivo de forma clara y efectiva.
                             </p>
                             <p>
                                 Después de más de{" "}

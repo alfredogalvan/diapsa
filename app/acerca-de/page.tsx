@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/organisms/PageHeader";
 import { MisionVisionSection } from "@/components/organisms/MisionVisionSection";
 import { ValuesSection } from "@/components/organisms/ValuesSection";
-import { AITalkAboutUs } from "@/components/organisms/AITalkAboutUs";
+// import { AITalkAboutUs } from "@/components/organisms/AITalkAboutUs";
 import { WhoIsDiapsaSection } from "@/components/organisms/WhoIsDiapsaSection";
 import { IdapAdvertisementSection } from "@/components/organisms/IdapAdvertisement";
 import { GallerySection } from "@/components/organisms/GallerySection";
@@ -34,13 +34,13 @@ export default function AcercaDePage() {
   return (
     <main>
       <PageHeader
-        title="ACERCA DE DIAPSA"
+        title="Acerca de DIAPSA"
         subtitle="Más de 22 años de experiencia en mantenimiento predictivo industrial"
       />
 
       <WhoIsDiapsaSection />
       <IdapAdvertisementSection />
-      {/* Seccion de MIsión y Visión */}
+      {/* Sección de Misión y Visión */}
       <MisionVisionSection />
       {/* {Valores} */}
       <ValuesSection />

@@ -14,6 +14,7 @@ export interface Course {
     icon: string;
     reference_norm: string;
     duration: number;
+    modality?: string;
 }
 
 export interface CourseType {
