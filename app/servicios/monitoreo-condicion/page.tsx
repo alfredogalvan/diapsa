@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     keywords: [
         "monitoreo de condición industrial",
         "mantenimiento predictivo México",
-        "termografí­a infrarroja industrial",
+        "termografía­ infrarroja industrial",
         "anÃ¡lisis de vibraciones",
         "ultrasonido industrial",
         "diagnóstico de maquinaria",

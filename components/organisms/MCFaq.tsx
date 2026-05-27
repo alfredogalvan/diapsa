@@ -21,7 +21,7 @@ const faqs = [
     },
     {
         q: "¿Necesitamos personal técnico especializado para interpretar los reportes?",
-        a: "No. Nuestros informes están diseñados para ser comprensibles tanto por el personal técnico de mantenimiento como por gerencia. Incluimos un resumen ejecutivo, hallazgos priorizados por severidad y recomendaciones en lenguaje claro y accionable.",
+        a: "No. Nuestros informes están diseñados para ser comprensibles tanto por el personal técnico de mantenimiento como por gerencia. Incluimos un resumen ejecutivo, hallazgos priorizados por severidad y recomendaciones en lenguaje claro y efectivo.",
     },
     {
         q: "¿Tienen experiencia en nuestra industria?",

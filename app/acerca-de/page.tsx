@@ -40,7 +40,7 @@ export default function AcercaDePage() {
 
       <WhoIsDiapsaSection />
       <IdapAdvertisementSection />
-      {/* Seccion de MIsión y Visión */}
+      {/* Sección de Misión y Visión */}
       <MisionVisionSection />
       {/* {Valores} */}
       <ValuesSection />

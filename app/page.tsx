@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     "Grupo DIAPSA: Más de 22 años de experiencia en mantenimiento predictivo industrial en México. Termografía infrarroja, análisis de vibraciones, ultrasonido y estudios eléctricos para maximizar la confiabilidad de tus equipos.",
   keywords: [
     "mantenimiento predictivo México",
-    "mantenimiento predictivo Latinoamerica",
+    "mantenimiento predictivo Latinoamérica",
     "termografía infrarroja industrial",
     "análisis de vibraciones",
     "ultrasonido industrial",

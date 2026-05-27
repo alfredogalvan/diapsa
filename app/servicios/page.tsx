@@ -43,7 +43,7 @@ const services = [
       "Diagnóstico de maquinaria",
     ],
     image: "/images/disciplinas/termografia.jpg",
-    imageAlt: "Técnico realizando inspección termográfica en planta industrial",
+    imageAlt: "Técnico realizando inspección de termografía en planta industrial",
     featured: true,
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ const services = [
       "Dashboard de condición",
     ],
     image: "/images/monitoreo-continuo/tecnico-laptop.jpeg",
-    imageAlt: "Técnico monitoreando condición de equipos en tiempo real con laptop",
+    imageAlt: "Técnico monitorizando condición de equipos en tiempo real con laptop",
     featured: false,
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -447,7 +447,7 @@ export default function ServiciosProductosPage() {
             href="/contacto"
             className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-10 py-4 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md text-lg"
           >
-            Cuentanos sobre ti →
+            Cuéntanos sobre ti →
           </Link>
         </div>
       </section>

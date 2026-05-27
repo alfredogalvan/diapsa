@@ -1,6 +1,6 @@
 const stats = [
     { value: "22+", label: "Años de experiencia" },
-    { value: "500+", label: "Activos monitoreados" },
+    { value: "500+", label: "Activos monitorizados" },
     { value: "95%", label: "Reducción de falsas alarmas" },
     { value: "24/7", label: "Monitoreo continuo" },
 ];

@@ -166,7 +166,7 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
                             <div className="">
 
                                 <p className="text-2xl font-semibold text-primary mb-2">Diapsa | Detección de Gas</p>
-                                <p className="text-sm font-medium text-gray-500">Dejenos tus datos y un especialista de DIAPSA se pondrá en contacto contigo para asesorarte en tus proyectos de detección de gas.</p>
+                                <p className="text-sm font-medium text-gray-500">Déjenos tus datos y un especialista de DIAPSA se pondrá en contacto contigo para asesorarte en tus proyectos de detección de gas.</p>
                             </div>
                             {/* Name */}
                             <InputField

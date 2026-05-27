@@ -7,7 +7,7 @@ const plans = [
         tagline: "Para plantas que inician su programa predictivo",
         featured: false,
         items: [
-            "Hasta 20 activos monitoreados",
+            "Hasta 20 activos monitorizados",
             "1 ronda de mediciones (termografía + vibraciones)",
             "Informe técnico con hallazgos y recomendaciones",
             "Clasificación por severidad",
@@ -23,7 +23,7 @@ const plans = [
         tagline: "Para plantas con activos críticos y operación continua",
         featured: true,
         items: [
-            "Hasta 60 activos monitoreados",
+            "Hasta 60 activos monitorizados",
             "2 rondas de medición trimestrales",
             "Termografía + Vibraciones + Ultrasonido",
             "Análisis de tendencias y comparativa histórica",
@@ -77,8 +77,8 @@ export default function MCPlans() {
                         <div
                             key={plan.tier}
                             className={`group flex flex-col rounded-sm p-8 gap-5 transition-all duration-300 relative ${plan.featured
-                                    ? "bg-secondary shadow-2xl"
-                                    : "bg-white/10 border border-white/15 hover:border-secondary/50"
+                                ? "bg-secondary shadow-2xl"
+                                : "bg-white/10 border border-white/15 hover:border-secondary/50"
                                 }`}
                         >
                             {plan.featured && (

@@ -41,7 +41,7 @@ const challenges: {
             icon: WarningIcon,
             iconBg: "bg-yellow-100",
             iconColor: "text-yellow-500",
-            title: "Reportes No Conformantes",
+            title: "Reportes No Conformes",
             image: "/images/deteccion-gas/report.jpg",
             description:
                 "Alto riesgo de sanciones por auditorías de ASEA ante informes incompletos o mal documentados.",

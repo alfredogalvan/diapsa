@@ -81,7 +81,7 @@
         "conclusion": "El programa no solo redujo más del 90% del riesgo operativo, sino que consolidó una estrategia de confiabilidad y control de calidad en activos nuevos y existentes. "
     },
     {
-        "slug": "monitoreo-redictivo-en-central-de-ciclo-combinado",
+        "slug": "monitoreo-predictivo-en-central-de-ciclo-combinado",
         "title": "  Generadora de Ciclo Combinado y el Impacto del Monitoreo Predictivo en la Generación de Energía",
         "industry": "Generación de energía",
         "service": "Monitoreo Integral de Condición (MCI)",
@@ -118,13 +118,13 @@
         "content": [
             {
                 "id": 1,
-                "text": "Durante el periodo comprendido entre 2018 y 2024, se registraron un total de 8,613 condiciones monitoreadas en los distintos componentes de la central. De ese universo, el 41% correspondió a condiciones clasificadas dentro de los parámetros operativos normales. Asimismo, un 26% requirió seguimiento programado y sólo un 5% representó condiciones que exigían intervención inmediata en corto plazo. Este balance positivo refleja una tendencia sostenida de mejora en la operación general de la planta."
+                "text": "Durante el periodo comprendido entre 2018 y 2024, se registraron un total de 8,613 condiciones monitorizadas en los distintos componentes de la central. De ese universo, el 41% correspondió a condiciones clasificadas dentro de los parámetros operativos normales. Asimismo, un 26% requirió seguimiento programado y sólo un 5% representó condiciones que exigían intervención inmediata en corto plazo. Este balance positivo refleja una tendencia sostenida de mejora en la operación general de la planta."
             },
             {
                 "id": 2,
                 "text": "Uno de los indicadores más contundentes es la reducción de condiciones críticas (estado \"alarma\"), que pasaron de 155 casos detectados en 2018 a solo 2 en 2024. Esta disminución representa una caída del 98.7% en la presencia de fallas de alta severidad. De manera similar, las condiciones en estado de \"precaución\" se redujeron de 273 en 2018 a 67 en 2024, lo que equivale a una disminución del 75.4%. Estos resultados han sido posibles gracias a la aplicación sistemática del monitoreo predictivo, a la mejora en los tiempos de respuesta y al seguimiento puntual posterior a los mantenimientos.",
                 "image": "/images/casos-exito/grafica-caso-exito-monitoreo-predictivo-generacion-energia.png",
-                "note": "La gráfica ilustra la evolución anual del estado de los equipos monitoreados, expresado tanto en cantidades absolutas como en proporciones. En 2018, del total de condiciones evaluadas, un 20.1% correspondía a estados críticos (alarma), un 35.4% a condiciones de precaución, y solo un 44.6% se encontraba dentro de los parámetros normales. Para 2022, esta proporción cambió drásticamente: las condiciones críticas descendieron al 1.5%, las de precaución al 22.6%, y las óptimas aumentaron al 75.9%. Esta transformación refleja no solo la reducción absoluta de fallas, ya mencionada en el análisis, sino también una mejora estructural en la calidad operativa general de los equipos inspeccionados, atribuible al monitoreo predictivo sistemático y a la intervención oportuna basada en datos."
+                "note": "La gráfica ilustra la evolución anual del estado de los equipos monitorizados, expresado tanto en cantidades absolutas como en proporciones. En 2018, del total de condiciones evaluadas, un 20.1% correspondía a estados críticos (alarma), un 35.4% a condiciones de precaución, y solo un 44.6% se encontraba dentro de los parámetros normales. Para 2022, esta proporción cambió drásticamente: las condiciones críticas descendieron al 1.5%, las de precaución al 22.6%, y las óptimas aumentaron al 75.9%. Esta transformación refleja no solo la reducción absoluta de fallas, ya mencionada en el análisis, sino también una mejora estructural en la calidad operativa general de los equipos inspeccionados, atribuible al monitoreo predictivo sistemático y a la intervención oportuna basada en datos."
             },
             {
                 "id": 3,

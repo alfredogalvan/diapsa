@@ -3,7 +3,7 @@ import Link from "next/link";
 const processSteps = [
     {
         step: "01",
-        title: "Diagnostivo",
+        title: "Diagnostico",
         subtle: 'Evaluación inicial',
         description:
             "Levantamos el inventario de activos críticos, historial de fallas y condición operativa actual. Identificamos los equipos de mayor riesgo para su operación.",
@@ -28,10 +28,10 @@ const processSteps = [
     },
     {
         step: "04",
-        title: "Desicion",
+        title: "Decisión",
         subtle: 'Reporte y Acción',
-        description: "Entregamos informes técnicos de diferente categoria segun su necesidad",
-        list: ['Reportes inmediatos', 'Reportes de Seguimineto', 'Reportes Historicos'],
+        description: "Entregamos informes técnicos de diferente categoría según su necesidad",
+        list: ['Reportes inmediatos', 'Reportes de Seguimiento', 'Reportes Históricos'],
         time: "48–72 h post-medición",
         cta: '#reportes'
     },
@@ -41,7 +41,7 @@ const processSteps = [
         subtle: 'IDAP',
         description:
             "Entregamos informes técnicos con hallazgos, severidad y recomendaciones priorizadas. Usted sabe exactamente qué intervenir, cuándo y por qué.",
-        time: "Persitencia Ilimitada ",
+        time: "Persistencia Ilimitada ",
         cta: "/servicios/idap"
     },
 ];

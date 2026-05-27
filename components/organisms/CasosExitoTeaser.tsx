@@ -12,7 +12,7 @@ const cases = [
         service: "Termografía Infrarroja",
     },
     {
-        slug: "monitoreo-redictivo-en-central-de-ciclo-combinado",
+        slug: "monitoreo-predictivo-en-central-de-ciclo-combinado",
         industry: "Generación de energía",
         title: "Monitoreo predictivo en central de ciclo combinado",
         metric: "98.7%",

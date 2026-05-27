@@ -23,7 +23,7 @@ const operationalResults = [
     },
     {
         label: "SALUD",
-        text: "Conozca el estado y condición de su equipo y cree lineas bases desde su intalación (nuevos o reparados).",
+        text: "Conozca el estado y condición de su equipo y cree lineas bases desde su instalación (nuevos o reparados).",
     },
     {
         label: "CONTENCIÓN",

@@ -63,7 +63,7 @@ export default function AboutUs() {
               { label: "+20 Años de trayectoria" },
             ].map(({ label }) => (
               <div key={label} className="flex flex-col items-center">
-                <Image src="/images/LOGRO-DIAPSA.svg" alt={`Logro diapsa - ${label}`} width={100} height={100} />
+                <Image src="/images/LOGRO-DIAPSA.svg" alt={`Logro DIAPSA - ${label}`} width={100} height={100} />
                 <p className="text-secondary font-bold">{label}</p>
               </div>
             ))

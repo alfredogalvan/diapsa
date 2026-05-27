@@ -32,7 +32,7 @@ const equipos = [
         image: "/images/monitoreo-continuo/base-station-gateway-kcf.png",
 
         description:
-            "DART Wireless es el protoclo de comunicación de KCF utilizado para enviar datos a través de nuestra red de malla de estaciones base. Los sensores no necesitan estar emparejados con una estación base específica. En su lugar, los datos se envían utilizando la ruta de señal más potente, creando una solución modular y escalable para instalaciones de todos los tamaños.",
+            "DART Wireless es el protocolo de comunicación de KCF utilizado para enviar datos a través de nuestra red de malla de estaciones base. Los sensores no necesitan estar emparejados con una estación base específica. En su lugar, los datos se envían utilizando la ruta de señal más potente, creando una solución modular y escalable para instalaciones de todos los tamaños.",
         specs: [],
     },
     {

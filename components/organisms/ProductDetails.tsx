@@ -41,7 +41,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         {/* Image Gallery */}
         <div className="space-y-4">
           {/* Main Image */}
-          <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg overflow-hidden">
+          <div className="relative aspect-square bg-linear-to-br from-gray-50 to-gray-100 rounded-lg overflow-hidden">
             {allImages[selectedImage] ? (
               <Image
                 src={allImages[selectedImage].url}
@@ -276,7 +276,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     transition-all group
                   "
                 >
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <svg
                       className="w-10 h-10 text-gray-400 group-hover:text-primary transition-colors"
                       fill="none"

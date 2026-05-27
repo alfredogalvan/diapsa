@@ -253,7 +253,7 @@ export default function PageIdap() {
                             IDAP es la plataforma que DIAPSA utiliza para dar seguimiento a sus servicios de mantenimiento predictivo y convertir datos técnicos en decisiones operativas.
                         </p>
                         <p>
-                            Si ya eres cliente de DIAPSA o estás evaluando nuestros servicios, contáctanos y un especialista te explicará cómo IDAP puede integrarse a tu operación.
+                            Si ya eres cliente de DIAPSA o estás evaluando nuestros servicios, contáctenos y un especialista te explicará cómo IDAP puede integrarse a tu operación.
                         </p>
                     </div>
 

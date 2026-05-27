@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const benefits = [
     {
-        title: "Cero paros sorpresivos",
+        title: "Cero paros de producción repentinos",
         description:
             "Detectamos fallas incipientes semanas o meses antes de que ocurran. Su producción no se detiene por emergencias.",
         metric: "Hasta 70% menos paros no programados",

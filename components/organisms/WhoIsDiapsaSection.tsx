@@ -35,18 +35,18 @@ export function WhoIsDiapsaSection() {
                                 Balanceo dinámico (en sitio)</p>
                             <p className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Análisis de Lubricante</p>
+                                Análisis de lubricante</p>
 
                         </div>
                         <p className="text-tertiary text-lg">
 
-                            Con más de <strong>22 años de experiencia</strong> , acompañamos a la industria en la toma de decisiones técnicas basadas en datos, seguridad y prevención.
+                            Con más de <strong>22 años de experiencia</strong>, acompañamos a la industria en la toma de decisiones técnicas basadas en datos, seguridad y prevención.
                         </p>
                     </div>
                     <div className="relative hidden md:block overflow-hidden ">
                         <Image
                             src="/images/about.jpg"
-                            alt="representacion de que es Diapsa"
+                            alt="Representación de que es Diapsa"
                             fill
                             className="object-cover" />
                     </div>
