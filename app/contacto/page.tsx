@@ -112,7 +112,7 @@ export default function ContactPage() {
                             {/* Contact details */}
                             <div className="border-t border-white/10 pt-6 flex flex-col gap-3">
                                 <p className="text-xs uppercase tracking-widest text-secondary font-semibold mb-1">
-                                    O contáctanos directamente
+                                    O contáctenos directamente
                                 </p>
                                 <a
                                     href="tel:+528145903792"
