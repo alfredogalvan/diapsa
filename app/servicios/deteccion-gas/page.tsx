@@ -15,7 +15,7 @@ export default function DeteccionGasPage() {
     return (
         <main>
             <ContactFormGasDetection isOpen={openModal} onClose={() => setOpenModal(false)} />
-            <PageHeader title="Deteccion de Gas" />
+            <PageHeader title="Detección de Gas" />
 
             <div className="bg-white font-display">
                 <GasDetectionHero onOpenModal={() => setOpenModal(true)} />

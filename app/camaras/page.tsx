@@ -41,8 +41,8 @@ export default function CamerasPage() {
       <section className="py-10 lg:py-12 px-4 bg-white border-b border-gray-100">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
-            Descubre nuestra línea completa de cámaras termográficas <span className="font-bold text-primary">HIKMIKRO</span>, 
-            diseñadas para profesionales que exigen precisión, durabilidad y tecnología de vanguardia en 
+            Descubre nuestra línea completa de cámaras termográficas <span className="font-bold text-primary">HIKMIKRO</span>,
+            diseñadas para profesionales que exigen precisión, durabilidad y tecnología de vanguardia en
             diagnóstico térmico industrial.
           </p>
         </div>
@@ -84,82 +84,82 @@ export default function CamerasPage() {
                 {serie.cameras
                   .filter((c) => !!c.slug)
                   .map((camera) => (
-                  <Link
-                    key={camera.id}
-                    href={`/camaras/${camera.slug}`}
-                    className="group bg-white rounded-sm overflow-hidden border border-gray-200 hover:border-secondary/50 hover:shadow-lg transition-all duration-300"
-                  >
-                    {/* Imagen del producto */}
-                    <div className="relative aspect-square bg-linear-to-br from-gray-50 to-gray-100 overflow-hidden">
-                      {camera.images && camera.images[0] ? (
-                        <Image
-                          src={camera.images[0]}
-                          alt={camera.modelo}
-                          fill
-                          className="object-contain p-4 lg:p-6 group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <span className="text-gray-400 text-sm">Sin imagen</span>
-                        </div>
-                      )}
-                      {/* Badge de serie */}
-                      <div className="absolute top-3 right-3 bg-secondary text-white text-xs font-bold px-2 py-1 rounded-sm shadow-sm">
-                        {serie.serie}
-                      </div>
-                      {/* Badges de tecnología */}
-                      <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
-                        {camera.specs.superIR && (
-                          <span className="bg-primary/90 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-sm">
-                            Super IR
-                          </span>
+                    <Link
+                      key={camera.id}
+                      href={`/camaras/${camera.slug}`}
+                      className="group bg-white rounded-sm overflow-hidden border border-gray-200 hover:border-secondary/50 hover:shadow-lg transition-all duration-300"
+                    >
+                      {/* Imagen del producto */}
+                      <div className="relative aspect-square bg-linear-to-br from-gray-50 to-gray-100 overflow-hidden">
+                        {camera.images && camera.images[0] ? (
+                          <Image
+                            src={camera.images[0]}
+                            alt={camera.modelo}
+                            fill
+                            className="object-contain p-4 lg:p-6 group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center h-full">
+                            <span className="text-gray-400 text-sm">Sin imagen</span>
+                          </div>
                         )}
-                        {camera.specs.superFocus && (
-                          <span className="bg-secondary/90 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-sm">
-                            Super Focus
+                        {/* Badge de serie */}
+                        <div className="absolute top-3 right-3 bg-secondary text-white text-xs font-bold px-2 py-1 rounded-sm shadow-sm">
+                          {serie.serie}
+                        </div>
+                        {/* Badges de tecnología */}
+                        <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
+                          {camera.specs.superIR && (
+                            <span className="bg-primary/90 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-sm">
+                              Super IR
+                            </span>
+                          )}
+                          {camera.specs.superFocus && (
+                            <span className="bg-secondary/90 text-white text-[10px] font-medium px-1.5 py-0.5 rounded-sm">
+                              Super Focus
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Información del producto */}
+                      <div className="p-4 border-t border-gray-100">
+                        <h3 className="text-lg font-bold text-primary mb-1.5 group-hover:text-secondary transition-colors">
+                          {camera.modelo}
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-4 line-clamp-2 min-h-10">
+                          {camera.descripcion}
+                        </p>
+
+                        {/* Especificaciones clave */}
+                        <div className="space-y-1.5 mb-4 text-xs">
+                          <div className="flex justify-between items-center py-1.5 border-b border-gray-100">
+                            <span className="text-gray-500">Resolución</span>
+                            <span className="font-semibold text-primary">{camera.specs.resolucion}</span>
+                          </div>
+                          <div className="flex justify-between items-center py-1.5 border-b border-gray-100">
+                            <span className="text-gray-500">Enfoque</span>
+                            <span className="font-semibold text-primary">{camera.specs.enfoque}</span>
+                          </div>
+                          <div className="flex justify-between items-center py-1.5">
+                            <span className="text-gray-500">Ángulo de Visión</span>
+                            <span className="font-semibold text-primary">{camera.specs.anguloVision}</span>
+                          </div>
+                        </div>
+
+                        {/* CTA */}
+                        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                          <span className="text-sm font-semibold text-secondary group-hover:underline flex items-center gap-1">
+                            Ver detalles
+                            <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                           </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Información del producto */}
-                    <div className="p-4 border-t border-gray-100">
-                      <h3 className="text-lg font-bold text-primary mb-1.5 group-hover:text-secondary transition-colors">
-                        {camera.modelo}
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-4 line-clamp-2 min-h-10">
-                        {camera.descripcion}
-                      </p>
-
-                      {/* Especificaciones clave */}
-                      <div className="space-y-1.5 mb-4 text-xs">
-                        <div className="flex justify-between items-center py-1.5 border-b border-gray-100">
-                          <span className="text-gray-500">Resolución</span>
-                          <span className="font-semibold text-primary">{camera.specs.resolucion}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-1.5 border-b border-gray-100">
-                          <span className="text-gray-500">Enfoque</span>
-                          <span className="font-semibold text-primary">{camera.specs.enfoque}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-1.5">
-                          <span className="text-gray-500">Ángulo de Visión</span>
-                          <span className="font-semibold text-primary">{camera.specs.anguloVision}</span>
                         </div>
                       </div>
-
-                      {/* CTA */}
-                      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                        <span className="text-sm font-semibold text-secondary group-hover:underline flex items-center gap-1">
-                          Ver detalles
-                          <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))}
               </div>
             </div>
           ))}

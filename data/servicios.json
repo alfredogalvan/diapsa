@@ -40,5 +40,9 @@
     {
         "label": "Detección de Gas",
         "href": "/servicios/deteccion-gas"
+    },
+    {
+        "label": "Diagnostico Situacional",
+        "href": "/servicios/diagnostico-situacional"
     }
 ]

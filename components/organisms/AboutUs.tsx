@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import BackgroundImage from "../atoms/BackgroundImage";
 
 export default function AboutUs() {
@@ -11,11 +13,14 @@ export default function AboutUs() {
         zIndex="-z-10"
       />
 
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-6 py-16 lg:py-42">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-6 py-16 lg:py-24">
         {/* Columna izquierda */}
         <div className="text-white p-12">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-6 tracking-wide">
-            ACERCA DE DIAPSA
+          <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+            Nuestra historia
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-extrabold mb-6 tracking-wide">
+            ¿POR QUÉ ELEGIR A DIAPSA?
           </h2>
           <div className="space-y-5 text-lg lg:text-xl text-white/90">
             <p>
@@ -30,6 +35,17 @@ export default function AboutUs() {
               eficiencia operativa.
             </p>
           </div>
+          <div className="mt-8">
+            <Link
+              href="/acerca-de"
+              className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300"
+            >
+              Conoce nuestra historia
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {/* Columna derecha */}
@@ -40,6 +56,19 @@ export default function AboutUs() {
           <p className="text-lg lg:text-xl text-white/90 whitespace-pre-line">
             Ser líderes en las disciplinas que desarrollamos, aportando valor con precisión, rapidez y calidad, garantizando la productividad y seguridad de las plantas industriales.
           </p>
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { label: "+50,000 Fallas detectadas" },
+              { label: "+1,500 Servicios realizados" },
+              { label: "+20 Años de trayectoria" },
+            ].map(({ label }) => (
+              <div key={label} className="flex flex-col items-center">
+                <Image src="/images/LOGRO-DIAPSA.svg" alt={`Logro DIAPSA - ${label}`} width={100} height={100} />
+                <p className="text-secondary font-bold">{label}</p>
+              </div>
+            ))
+            }
+          </div>
         </div>
       </div>
     </section>

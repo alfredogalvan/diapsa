@@ -2,8 +2,8 @@ import Image from "next/image"
 import { CheckCircleIcon } from "../atoms/icons/CheckCircleIcon"
 export function WhoIsDiapsaSection() {
     return (
-        <section className="w-full bg-white py-16">
-            <div className="px-8 md:px-8 lg:px-24">
+        <section className="w-full bg-white py-16 lg:py-24">
+            <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
                     <div className="py-6 space-y-6">
                         <hr className="border-2 border-secondary w-16 " />
@@ -35,18 +35,18 @@ export function WhoIsDiapsaSection() {
                                 Balanceo dinámico (en sitio)</p>
                             <p className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Análisis de Lubricante</p>
+                                Análisis de lubricante</p>
 
                         </div>
-                        <p className="text-black text-lg">
+                        <p className="text-tertiary text-lg">
 
-                            Con más de <strong>22 años de experiencia</strong> , acompañamos a la industria en la toma de decisiones técnicas basadas en datos, seguridad y prevención.
+                            Con más de <strong>22 años de experiencia</strong>, acompañamos a la industria en la toma de decisiones técnicas basadas en datos, seguridad y prevención.
                         </p>
                     </div>
                     <div className="relative hidden md:block overflow-hidden ">
                         <Image
                             src="/images/about.jpg"
-                            alt="representacion de que es Diapsa"
+                            alt="Representación de que es Diapsa"
                             fill
                             className="object-cover" />
                     </div>

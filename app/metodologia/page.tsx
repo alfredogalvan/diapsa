@@ -34,7 +34,7 @@ export default function MetodologiaPage() {
   return (
     <main>
       <PageHeader
-        title="NUESTRA METODOLOGÍA"
+        title="Nuestra Metodología"
         subtitle="Un enfoque sistemático para maximizar la confiabilidad de tus equipos"
       />
 
@@ -44,7 +44,7 @@ export default function MetodologiaPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-1 items-center">
             {/* Left side - Image */}
-            <div className="relative flex items-center justify-center h-[400px] lg:h-[450px]">
+            <div className="relative flex items-center justify-center h-100 lg:h-112.5">
               <Image
                 src="/images/metodologia/22-años.jpg"
                 alt="22 años de experiencia DIAPSA"
@@ -54,7 +54,7 @@ export default function MetodologiaPage() {
             </div>
 
             {/* Right side - Content */}
-            <div className="relative bg-black flex flex-col justify-center space-y-6 px-6 lg:px-20 h-[400px] lg:h-[450px]">
+            <div className="relative bg-black flex flex-col justify-center space-y-6 px-6 lg:px-20 h-100 lg:h-112.5">
               {/* Title */}
               <h3 className="relative z-10 text-white text-xl font-bold leading-tight">
                 Este proceso reúne 22 años de experiencia, conocimientos y metodologías de confiabilidad, apoyados en diagnósticos integrales de monitoreos de condición para maximizar el valor
@@ -100,7 +100,7 @@ export default function MetodologiaPage() {
           <div className="max-w-7xl mx-auto mt-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {disciplinasData.disciplines.map((discipline) => (
-                <div key={discipline.title} className="relative h-[350px] rounded-sm overflow-hidden group cursor-pointer">
+                <div key={discipline.title} className="relative h-87.5 rounded-sm overflow-hidden group cursor-pointer">
                   <Image
                     src={discipline.image}
                     alt={discipline.imageAlt}
@@ -135,7 +135,7 @@ export default function MetodologiaPage() {
             <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight uppercase mb-4">
               ¿Y los resultados?
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-secondary to-amber-400 mx-auto rounded-full" />
+            <div className="w-24 h-1.5 bg-linear-to-r from-secondary to-amber-400 mx-auto rounded-full" />
           </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
@@ -155,7 +155,7 @@ export default function MetodologiaPage() {
               }].map((card, index) => (
                 <div key={card.value} className={`relative group ${index === 1 ? "md:-mt-6 lg:-mt-10" : ""}`}>
                   <div
-                    className="flex flex-col justify-center items-center px-6 h-70 items-center shadow-xl transform transition-transform duration-300 hover:-translate-y-2"
+                    className="flex flex-col justify-center px-6 h-70 items-center shadow-xl transform transition-transform duration-300 hover:-translate-y-2"
                     style={{
                       clipPath: "polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%)",
                       backgroundImage: "linear-gradient(180deg, #fcd34d 0%, #fc9f01 60%, #d97706 100%)",

@@ -40,7 +40,7 @@ export default function MethodologyProcess() {
                         </div>
 
                         {/* Right side - Image */}
-                        <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden">
+                        <div className="relative h-100 lg:h-125 rounded-lg overflow-hidden">
                             <Image
                                 src="/images/metodologia/metodologia-1.jpg"
                                 alt="Técnico realizando inspección en instalación industrial"
@@ -52,11 +52,11 @@ export default function MethodologyProcess() {
                 </div>
             </section>
 
-            <section className="w-full py-16 md:py-24 bg-gradient-to-b from-black from-70% via-gray-800 via-85% to-zinc-100 to-100%">
+            <section className="w-full py-16 md:py-24 bg-linear-to-b from-black from-70% via-gray-800 via-85% to-zinc-100 to-100%">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                         {/* Left side - Image */}
-                        <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden">
+                        <div className="relative h-100 lg:h-125 rounded-lg overflow-hidden">
                             <Image
                                 src="/images/metodologia/metodologia-2.png"
                                 alt="Técnico realizando inspección en instalación industrial"
@@ -126,7 +126,7 @@ export default function MethodologyProcess() {
 
                         {/* Right side - Image */}
                         <div >
-                            <div className=" h-[400px] lg:h-[500px] rounded-lg">
+                            <div className=" h-100 lg:h-125 rounded-lg">
                                 <Image
                                     src="/images/360DIAPSADIAGRAMA.svg"
                                     alt="Diagrama DIAPSA 360 de solución integral"

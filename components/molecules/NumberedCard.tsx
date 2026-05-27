@@ -13,7 +13,7 @@ export default function NumberedCard({
 }: NumberedCardProps) {
     if (variant === "dark") {
         return (
-            <div className="relative overflow-hidden rounded-xl border border-primary/10 shadow-sm hover:shadow-lg transition-all group bg-primary">
+            <div className="relative overflow-hidden rounded-sm border border-white/10 hover:border-secondary/50 shadow-sm hover:shadow-lg transition-all group bg-white/10">
                 <div className="absolute top-0 left-0 w-1 h-full bg-secondary" />
                 <div className="p-8 pl-10">
                     <div className="flex items-start gap-5">
@@ -33,7 +33,7 @@ export default function NumberedCard({
     }
 
     return (
-        <div className="bg-white rounded-xl p-8 border border-gray-100 border-t-4 border-t-secondary/30 hover:border-t-secondary shadow-sm hover:shadow-md transition-all group">
+        <div className="bg-white rounded-sm p-8 border border-gray-100 border-t-4 border-t-secondary/30 hover:border-t-secondary shadow-sm hover:shadow-md transition-all group">
             <div className="flex items-start gap-5">
                 <span className="text-5xl font-black text-secondary/30 group-hover:text-secondary/60 transition-colors leading-none select-none">
                     {number}

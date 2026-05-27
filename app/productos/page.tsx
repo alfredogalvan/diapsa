@@ -95,7 +95,7 @@ export default function ProductsPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <PageHeader
-        title="PRODUCTOS"
+        title="Productos"
         subtitle="Encuentra el equipo perfecto para tus necesidades de mantenimiento predictivo"
       />
 

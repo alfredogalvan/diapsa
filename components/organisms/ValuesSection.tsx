@@ -41,17 +41,14 @@ export function ValuesSection() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-4">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/30">
-                        <div className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-                        <span className="text-secondary font-semibold text-sm tracking-wider uppercase">
-                            Nuestra Identidad
-                        </span>
-                    </div>
+                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                        Nuestra Identidad
+                    </span>
 
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
-                        Valores que nos{' '}
-                        <span className="text-transparent bg-clip-text bg-linear-to-r from-secondary to-orange-400">
-                            definen
+                    <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
+                        VALORES QUE NOS{' '}
+                        <span className="text-secondary">
+                            DEFINEN
                         </span>
                     </h2>
 
@@ -72,7 +69,7 @@ export function ValuesSection() {
                         >
                             {/* Card */}
                             <div className={`
-                                relative h-full p-8 rounded-2xl border transition-all duration-500
+                                relative h-full p-8 rounded-sm border transition-all duration-500
                                 ${hoveredIndex === index
                                     ? 'bg-linear-to-br from-secondary/20 to-transparent border-secondary shadow-[0_0_40px_rgba(252,159,1,0.3)] -translate-y-2'
                                     : 'bg-white/5 border-white/10 backdrop-blur-sm hover:border-white/20'
@@ -132,7 +129,7 @@ export function ValuesSection() {
 
                 {/* Bottom CTA or Stats */}
                 <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-8 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                    <div className="inline-flex items-center gap-8 p-6 rounded-sm bg-white/5 border border-white/10 backdrop-blur-sm">
                         <div className="text-center">
                             <div className="text-3xl font-bold text-secondary">100%</div>
                             <div className="text-sm text-gray-400 mt-1">Compromiso</div>

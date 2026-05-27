@@ -30,13 +30,17 @@ const problems = [
 
 export default function ContinuosMonitoringChallenge() {
     return (
-        <section className="bg-gray-50 py-16 lg:py-24">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <section className="bg-gray-50 py-16 lg:py-24 relative overflow-hidden">
+            {/* Glow primary difuminado */}
+            <div className="absolute -top-32 -left-32 w-125 h-125 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+            {/* Glow secondary difuminado */}
+            <div className="absolute -bottom-24 -right-24 w-100 h-100 bg-secondary/6 rounded-full blur-3xl pointer-events-none" />
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
                 {/* Intro del reto */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
                     {/* Imagen */}
                     <div className="relative order-2 lg:order-1">
-                        <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl">
+                        <div className="relative aspect-square rounded-sm overflow-hidden shadow-xl">
                             <Image
                                 src="/images/monitoreo-continuo/tecnico-revision.jpeg"
                                 alt="Equipo industrial con sensores. IA"
@@ -52,20 +56,20 @@ export default function ContinuosMonitoringChallenge() {
 
                     {/* Texto */}
                     <div className="order-1 lg:order-2 space-y-6">
-                        <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase border border-secondary/40 bg-secondary/5 px-4 py-2 rounded-full">
+                        <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase border border-secondary/40 bg-secondary/10 px-3 py-1 rounded-full">
                             Entendamos el reto
                         </span>
-                        <h2 className="text-4xl lg:text-5xl font-bold text-primary leading-tight">
+                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary leading-tight">
                             Los sensores no son la solución universal.
                         </h2>
-                        <p className="text-lg text-primary/70 leading-relaxed">
+                        <p className="text-lg text-tertiary leading-relaxed">
                             El problema comienza desde el enfoque comercial: se vende
                             sensorización como receta universal. Se instrumentan equipos sin
                             haber definido criticidad, modos de falla, condiciones de
                             operación, impacto en seguridad/producción/costo ni el retorno
                             esperado por activo.
                         </p>
-                        <p className="text-lg text-primary/70 leading-relaxed">
+                        <p className="text-lg text-tertiary leading-relaxed">
                             El resultado es un programa que nace mal: con mala selección,
                             expectativas infladas y sin ruta de escalamiento.
                         </p>
