@@ -15,7 +15,7 @@ export default function SubCategoryCard({ subCategory }: Props) {
     return (
         <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-3">
             {/* Ícono decorativo */}
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg bg-linear-to-br from-primary/10 to-primary/5 flex items-center justify-center">
                 <svg
                     className="w-6 h-6 text-primary"
                     fill="none"
