@@ -56,7 +56,7 @@ export default function ProductCard({ product, custom, className = '' }: Product
         label: spec.label,
         value: `${spec.value} ${spec.unit}`,
       })),
-      href: `/productos/${product.slug}`,
+      href: `/productos/${product.category.slug}/${product.slug}`,
       availability: product.availability_status,
       brand: product.brand.name,
     }
@@ -87,7 +87,7 @@ export default function ProductCard({ product, custom, className = '' }: Product
       `}
     >
       {/* Imagen */}
-      <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+      <div className="relative aspect-square bg-linear-to-br from-gray-50 to-gray-100 overflow-hidden">
         {/* Badge */}
         {data.badge && (
           <div className="absolute top-3 right-3 z-10">

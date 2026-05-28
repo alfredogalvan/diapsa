@@ -44,10 +44,16 @@ export default function CategoryPage() {
         const fetchCategory = async () => {
             try {
                 setCategoryLoading(true);
+                setCategoryError(false);
+                console.log('[CategoryPage] Fetching category:', categoria);
                 const data = await getCategoryBySlug(categoria);
+                console.log('[CategoryPage] Category loaded:', data);
                 setCategory(data);
             } catch (error) {
-                console.error('Error loading category:', error);
+                console.error('[CategoryPage] Error loading category:', error);
+                if (error instanceof Error) {
+                    console.error('[CategoryPage] Error message:', error.message);
+                }
                 setCategoryError(true);
             } finally {
                 setCategoryLoading(false);
@@ -148,15 +154,6 @@ export default function CategoryPage() {
         notFound();
     }
 
-    // Estado de carga inicial
-    if (categoryLoading) {
-        return (
-            <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <LoadingSpinner size="large" />
-            </main>
-        );
-    }
-
     return (
         <main className="min-h-screen bg-gray-50">
             {category && (
@@ -170,66 +167,74 @@ export default function CategoryPage() {
                 />
             )}
 
-            <section className="py-8 lg:py-12">
-                <div className="container mx-auto px-4">
-                    {/* Search Bar */}
-                    <div className="mb-8">
-                        <SearchBar
-                            value={searchQuery}
-                            onChange={setSearchQuery}
-                            onSearch={handleSearch}
-                            placeholder="Buscar productos por nombre, modelo o marca..."
-                        />
+            {categoryLoading ? (
+                <section className="py-16 lg:py-24">
+                    <div className="container mx-auto px-4 flex items-center justify-center">
+                        <LoadingSpinner size="large" />
                     </div>
-
-                    <div className="lg:grid lg:grid-cols-4 lg:gap-8">
-                        {/* Filters Sidebar */}
-                        <aside className="lg:col-span-1 mb-8 lg:mb-0">
-                            <div className="lg:sticky lg:top-4">
-                                {brandsLoading || seriesLoading ? (
-                                    <div className="bg-white rounded-lg p-6 shadow">
-                                        <div className="animate-pulse space-y-4">
-                                            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                                            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                                            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <ProductFilter
-                                        filters={filterGroups}
-                                        activeFilters={activeFilters}
-                                        onFilterChange={handleFilterChange}
-                                        onClearFilters={handleClearFilters}
-                                    />
-                                )}
-                            </div>
-                        </aside>
-
-                        {/* Products Grid */}
-                        <div className="lg:col-span-3">
-                            {/* Results count */}
-                            {meta && !loading && (
-                                <div className="mb-6">
-                                    <p className="text-sm text-gray-600">
-                                        {meta.total} {meta.total === 1 ? 'producto encontrado' : 'productos encontrados'}
-                                    </p>
-                                </div>
-                            )}
-
-                            <ProductGrid
-                                products={products}
-                                loading={loading}
-                                error={error}
-                                meta={meta}
-                                onPageChange={handlePageChange}
-                                onRetry={refetch}
-                                emptyMessage="No se encontraron productos en esta categoría"
-                                emptyDescription="Intenta ajustar los filtros o buscar con otros términos"
+                </section>
+            ) : (
+                <section className="py-8 lg:py-12">
+                    <div className="container mx-auto px-4">
+                        {/* Search Bar */}
+                        <div className="mb-8">
+                            <SearchBar
+                                value={searchQuery}
+                                onChange={setSearchQuery}
+                                onSearch={handleSearch}
+                                placeholder="Buscar productos por nombre, modelo o marca..."
                             />
                         </div>
+
+                        <div className="lg:grid lg:grid-cols-4 lg:gap-8">
+                            {/* Filters Sidebar */}
+                            <aside className="lg:col-span-1 mb-8 lg:mb-0">
+                                <div className="lg:sticky lg:top-4">
+                                    {brandsLoading || seriesLoading ? (
+                                        <div className="bg-white rounded-lg p-6 shadow">
+                                            <div className="animate-pulse space-y-4">
+                                                <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                                                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                                                <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <ProductFilter
+                                            filters={filterGroups}
+                                            activeFilters={activeFilters}
+                                            onFilterChange={handleFilterChange}
+                                            onClearFilters={handleClearFilters}
+                                        />
+                                    )}
+                                </div>
+                            </aside>
+
+                            {/* Products Grid */}
+                            <div className="lg:col-span-3">
+                                {/* Results count */}
+                                {meta && !loading && (
+                                    <div className="mb-6">
+                                        <p className="text-sm text-gray-600">
+                                            {meta.total} {meta.total === 1 ? 'producto encontrado' : 'productos encontrados'}
+                                        </p>
+                                    </div>
+                                )}
+
+                                <ProductGrid
+                                    products={products}
+                                    loading={loading}
+                                    error={error}
+                                    meta={meta}
+                                    onPageChange={handlePageChange}
+                                    onRetry={refetch}
+                                    emptyMessage="No se encontraron productos en esta categoría"
+                                    emptyDescription="Intenta ajustar los filtros o buscar con otros términos"
+                                />
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
         </main>
     );
 }

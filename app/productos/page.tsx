@@ -10,14 +10,12 @@ import { useMemo } from 'react';
 import Link from 'next/link';
 import { useCategories } from '@/lib/hooks/useCategories';
 import PageHeader from '@/components/organisms/PageHeader';
-import CategoryCard from '@/components/molecules/CategoryCard';
 import LoadingSpinner from '@/components/atoms/LoadingSpinner';
 import BackgroundImage from '@/components/atoms/BackgroundImage';
 import CategoryProductSection from '@/components/organisms/CategoryProductSection';
 
 export default function ProductsPage() {
   const { categories, loading } = useCategories();
-  console.log('Categories', categories)
 
   // Filtrar solo categorías raíz para la vista principal
   const rootCategories = useMemo(() => {
@@ -28,14 +26,6 @@ export default function ProductsPage() {
   const totalProducts = useMemo(() => {
     return categories.reduce((sum, cat) => sum + (cat.products_count || 0), 0);
   }, [categories]);
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <LoadingSpinner size="large" />
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -139,20 +129,29 @@ export default function ProductsPage() {
             </p>
           </div>
 
-          {/* Categorías Grid */}
-          {rootCategories.length > 0 ? (
-            <div className="space-y-8">
-              {rootCategories.map((category) => (
-                <CategoryProductSection key={category.id} category={category} />
-
-              ))}
+          {/* Loading State */}
+          {loading ? (
+            <div className="flex items-center justify-center py-16">
+              <LoadingSpinner size="large" />
             </div>
           ) : (
-            <div className="text-center py-16">
-              <p className="text-tertiary text-lg">
-                No hay categorías disponibles en este momento.
-              </p>
-            </div>
+            <>
+              {/* Categorías Grid */}
+              {rootCategories.length > 0 ? (
+                <div className="space-y-8">
+                  {rootCategories.map((category) => (
+                    <CategoryProductSection key={category.id} category={category} />
+
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-16">
+                  <p className="text-tertiary text-lg">
+                    No hay categorías disponibles en este momento.
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>

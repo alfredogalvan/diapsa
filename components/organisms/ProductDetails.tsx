@@ -323,7 +323,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     model: related.model,
                     image: getStorageUrl(related.main_image) || undefined,
                     description: related.short_description,
-                    href: `/productos/${related.slug}`,
+                    href: `/productos/${related.category.slug}/${related.slug}`,
                   }}
                 />
               ))}
