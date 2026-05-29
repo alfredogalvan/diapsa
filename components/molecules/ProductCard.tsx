@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/types/product';
 import { getStorageUrl } from '@/lib/api/config';
+import { formatStatusProduct } from '@/lib/utils/formatProductStatus';
 
 interface ProductCardProps {
   // Acepta datos del CMS API
@@ -177,13 +178,13 @@ export default function ProductCard({ product, custom, className = '' }: Product
             <span
               className={`
                 inline-block w-2 h-2 rounded-full mr-1.5
-                ${data.availability.toLowerCase().includes('disponible')
+                ${data.availability.toLowerCase().includes('available')
                   ? 'bg-green-500'
                   : 'bg-yellow-500'
                 }
               `}
             />
-            {data.availability}
+            {formatStatusProduct(data.availability)}
           </p>
         )}
 

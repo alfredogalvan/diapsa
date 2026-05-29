@@ -12,6 +12,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/molecules/ProductCard';
 import type { ProductDetail } from '@/types/product';
 import { getStorageUrl } from '@/lib/api/config';
+import { formatStatusProduct } from '@/lib/utils/formatProductStatus';
 
 interface ProductDetailsProps {
   product: ProductDetail;
@@ -134,11 +135,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             <span
               className={`
                 w-3 h-3 rounded-full
-                ${product.availability_status.toLowerCase().includes('disponible') ? 'bg-green-500' : 'bg-yellow-500'}
+                ${product.availability_status.toLowerCase().includes('available') ? 'bg-green-500' : 'bg-yellow-500'}
               `}
             />
             <span className="text-sm font-medium text-gray-700">
-              {product.availability_status}
+              {formatStatusProduct(product.availability_status)}
             </span>
           </div>
 
