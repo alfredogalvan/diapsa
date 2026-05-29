@@ -156,16 +156,15 @@ export default function CategoryPage() {
 
     return (
         <main className="min-h-screen bg-gray-50">
-            {category && (
-                <PageHeader
-                    title={category.name}
-                    subtitle={category.description || `Encuentra productos de ${category.name}`}
-                    breadcrumbs={breadcrumbItems.map((item) => ({
-                        label: item.label,
-                        link: item.href,
-                    }))}
-                />
-            )}
+            <PageHeader
+                title={category?.name || 'Cargando...'}
+                subtitle={category?.description || ''}
+                breadcrumbs={category ? breadcrumbItems.map((item) => ({
+                    label: item.label,
+                    link: item.href,
+                })) : undefined}
+                loading={categoryLoading}
+            />
 
             {categoryLoading ? (
                 <section className="py-16 lg:py-24">

@@ -241,7 +241,7 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
 
     // Colores dinámicos según el variant
     const labelClasses = isDark ? 'text-white' : 'text-primary';
-    const selectTextClasses = isDark ? 'text-white' : 'text-gray-900';
+    const selectTextClasses = isDark ? 'text-black' : 'text-gray-900';
     const selectBgClasses = isDark ? 'bg-white/5' : 'bg-white';
     const borderClasses = hasError
       ? 'border-red-400 focus:ring-red-400/40 focus:border-red-400'

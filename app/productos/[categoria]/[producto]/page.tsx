@@ -9,6 +9,8 @@ import { getProductBySlug } from '@/lib/api/products';
 import ProductDetails from '@/components/organisms/ProductDetails';
 import PageHeader from '@/components/organisms/PageHeader';
 import JsonLd, { createProductSchema, createBreadcrumbSchema } from '@/components/atoms/JsonLd';
+import ContactFormProduct from '@/components/organisms/ContactFormProduct';
+import BackgroundImage from '@/components/atoms/BackgroundImage';
 
 interface ProductPageProps {
   params: Promise<{ categoria: string; producto: string }>;
@@ -98,7 +100,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <main className="min-h-screen bg-white">
         <PageHeader
           title={product.name}
-          subtitle={product.short_description}
           breadcrumbs={breadcrumbItems.map((item) => ({
             label: item.label,
             link: item.href,
@@ -110,6 +111,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="container mx-auto px-4">
             <ProductDetails product={product} />
           </div>
+        </section>
+        <section id='contacto' className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+          {/* TODO: Replace placeholder with photo of industrial warehouse or equipment showcase */}
+          <BackgroundImage
+            src="/images/servicios/placeholder.jpg"
+            alt="Almacén de equipos industriales"
+            overlayOpacity={0.75}
+          />
+          <ContactFormProduct product={product} className='relative max-w-7xl mx-2 lg:mx-auto bg-gray-100 px-6 lg:px-20 py-16  rounded-sm' />
         </section>
       </main>
     </>

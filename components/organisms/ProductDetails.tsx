@@ -166,15 +166,16 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <button
-              onClick={() => router.push(`/contacto?product=${product.slug}`)}
+            <a
+              href="#contacto"
               className="
                 flex-1 px-6 py-3 bg-primary text-white rounded-lg
                 font-semibold hover:bg-primary/90 transition-colors
+                text-center
               "
             >
               Solicitar cotización
-            </button>
+            </a>
             <Link
               href="/contacto"
               className="
