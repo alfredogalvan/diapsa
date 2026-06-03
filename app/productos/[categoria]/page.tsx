@@ -158,7 +158,6 @@ export default function CategoryPage() {
         <main className="min-h-screen bg-gray-50">
             <PageHeader
                 title={category?.name || 'Cargando...'}
-                subtitle={category?.description || ''}
                 breadcrumbs={category ? breadcrumbItems.map((item) => ({
                     label: item.label,
                     link: item.href,

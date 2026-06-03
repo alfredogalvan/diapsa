@@ -122,7 +122,7 @@ export default function ProductsPage() {
               Explora
             </span>
             <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
-              NUESTRAS <span className="text-secondary">CATEGORÍAS</span>
+              NUESTROS <span className="text-secondary">PRODUCTOS</span>
             </h2>
             <p className="text-tertiary text-lg max-w-2xl mx-auto">
               Selecciona una categoría para ver todos los productos y soluciones disponibles
