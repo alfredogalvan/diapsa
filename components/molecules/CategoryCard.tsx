@@ -39,7 +39,7 @@ export default function CategoryCard({ category, href = '#' }: Props) {
             <div
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="group relative h-72 md:h-80 lg:h-120 rounded-lg overflow-hidden mb-8 lg:mb-10 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="group relative h-96 md:h-80 lg:h-120 rounded-lg overflow-hidden mb-8 lg:mb-10 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
             >
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -129,7 +129,5 @@ export default function CategoryCard({ category, href = '#' }: Props) {
                 />
             </div>
         </Link>
-
-
     );
 }
