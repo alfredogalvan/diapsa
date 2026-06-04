@@ -967,7 +967,7 @@ Accept: application/json
 | `phone` | string | No | Teléfono | Max: 50. Solo números, +, -, espacios, paréntesis |
 | `company` | string | No | Empresa | Max: 255 |
 | `country` | string | No | País | Max: 100 |
-| `form_type` | string | Sí | Tipo de formulario | Valores: `general`, `expo`, `webinar` |
+| `form_type` | string | Sí | Tipo de formulario | Valores: `general`, `expo`, `webinar`, `gas`, `products` |
 | `utm_source` | string | No | UTM Source | Max: 100 |
 | `utm_medium` | string | No | UTM Medium | Max: 100 |
 | `utm_campaign` | string | No | UTM Campaign | Max: 255 |
@@ -981,7 +981,8 @@ Accept: application/json
 | `general` | Contacto general | Ninguno específico |
 | `expo`    | Registro de exposición | `booth_number`, `event_name`, `event_date` |
 | `webinar` | Registro de webinar | `webinar_title`, `webinar_date`, `attendance_confirmed` |
-| `gas`     | Informacion Servicio gas | `subject`,`message`|
+| `gas`     | Informacion Servicio gas | `subject`,`message` |
+| `products` | Solicitud de información de producto | `sector`, `sector_otro`, `problem_to_resolve`, `purchase_stage`, `job_title`, `product`, `brand`, `category` |
 
 **Ejemplo de Request (Contacto General):**
 ```bash
@@ -1039,6 +1040,33 @@ Content-Type: application/json
   "website": ""
 }
 ```
+
+**Ejemplo de Request (Producto):**
+```json
+{
+  "name": "Ana López",
+  "email": "ana.lopez@industrias.com",
+  "phone": "+52 55 8765 4321",
+  "company": "Industrias Manufactureras del Norte",
+  "form_type": "products",
+  "custom_fields": {
+    "sector": "Manufactura",
+    "problem_to_resolve": "Necesitamos optimizar nuestro sistema de aire comprimido para reducir costos de energía",
+    "purchase_stage": "Evaluando Proveedores",
+    "job_title": "Gerente de Mantenimiento",
+    "product": "Compresor GA 30 Atlas Copco",
+    "brand": "Atlas Copco",
+    "category": "Compresores"
+  },
+  "website": ""
+}
+```
+
+**Nota sobre el formulario de productos:**
+- Los campos `phone` y `company` son **obligatorios** para el formulario de productos.
+- El campo `sector` es obligatorio. Si el valor es "Otro", se debe incluir `sector_otro` con la especificación.
+- Los campos `problem_to_resolve`, `purchase_stage` y `job_title` son obligatorios.
+- Los campos `product`, `brand` y `category` son opcionales y se utilizan cuando el usuario solicita información de un producto específico.
 
 **Ejemplo de Response (Success - 201):**
 ```json

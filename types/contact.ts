@@ -6,7 +6,7 @@
 /**
  * Form types supported by the API
  */
-export type ContactFormType = 'general' | 'expo' | 'webinar' | 'gas' | 'main';
+export type ContactFormType = 'general' | 'expo' | 'webinar' | 'gas' | 'main' | 'products';
 
 /**
  * Base contact form data
@@ -126,6 +126,33 @@ export interface ContactFormWebinar {
     como_te_enteraste?: string;
     como_te_enteraste_otro?: string;
     [key: string]: string | undefined;
+  };
+}
+
+/**
+ * Product contact form
+ */
+export interface ContactFormProduct {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  country?: string;
+  form_type: 'products';
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  website?: string; // Honeypot
+  custom_fields: {
+    sector: string;
+    sector_otro?: string;
+    problem_to_resolve: string;
+    purchase_stage: string;
+    job_title: string;
+    amount_product: string;
+    product?: string;
+    brand?: string;
+    category?: string;
   };
 }
 

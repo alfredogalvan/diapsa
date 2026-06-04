@@ -124,6 +124,7 @@ export interface RelatedProduct {
   name: string;
   short_description: string;
   main_image: string | null;
+  category: ProductCategory;
   brand: ProductBrand;
 }
 
