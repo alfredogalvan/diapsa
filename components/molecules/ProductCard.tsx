@@ -55,7 +55,7 @@ export default function ProductCard({ product, custom, className = '' }: Product
       badgeColor: product.is_new ? ('success' as const) : ('secondary' as const),
       specs: product.featured_specs.map((spec) => ({
         label: spec.label,
-        value: `${spec.value} ${spec.unit}`,
+        value: `${spec.value} ${spec.unit ?? ''}`,
       })),
       href: `/productos/${product.category.slug}/${product.slug}`,
       availability: product.availability_status,
@@ -166,7 +166,9 @@ export default function ProductCard({ product, custom, className = '' }: Product
                 className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
               >
                 <span className="font-medium">{spec.label}:</span>
-                <span>{spec.value}</span>
+                {spec.value && (
+                  <span>{spec.value}</span>
+                )}
               </div>
             ))}
           </div>
