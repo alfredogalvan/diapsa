@@ -254,7 +254,7 @@ export default function ContactFormProduct({
             {/* Header */}
             <div className="mb-8 text-center">
                 <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-3">
-                    {product ? 'Solicita información del producto' : 'Contáctanos'}
+                    {product ? 'Solicita cotización del producto' : 'Contáctanos'}
                 </h2>
                 <p className="text-lg text-gray-400 max-w-2xl mx-auto">
                     Completa el formulario y nuestro equipo de expertos te contactará para
