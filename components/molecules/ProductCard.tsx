@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/types/product';
 import { getStorageUrl } from '@/lib/api/config';
+import { formatStatusProduct } from '@/lib/utils/formatProductStatus';
 
 interface ProductCardProps {
   // Acepta datos del CMS API
@@ -54,9 +55,9 @@ export default function ProductCard({ product, custom, className = '' }: Product
       badgeColor: product.is_new ? ('success' as const) : ('secondary' as const),
       specs: product.featured_specs.map((spec) => ({
         label: spec.label,
-        value: `${spec.value} ${spec.unit}`,
+        value: `${spec.value} ${spec.unit ?? ''}`,
       })),
-      href: `/productos/${product.slug}`,
+      href: `/productos/${product.category.slug}/${product.slug}`,
       availability: product.availability_status,
       brand: product.brand.name,
     }
@@ -87,7 +88,7 @@ export default function ProductCard({ product, custom, className = '' }: Product
       `}
     >
       {/* Imagen */}
-      <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+      <div className="relative aspect-square bg-linear-to-br from-gray-50 to-gray-100 overflow-hidden">
         {/* Badge */}
         {data.badge && (
           <div className="absolute top-3 right-3 z-10">
@@ -165,7 +166,9 @@ export default function ProductCard({ product, custom, className = '' }: Product
                 className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
               >
                 <span className="font-medium">{spec.label}:</span>
-                <span>{spec.value}</span>
+                {spec.value && (
+                  <span>{spec.value}</span>
+                )}
               </div>
             ))}
           </div>
@@ -177,13 +180,13 @@ export default function ProductCard({ product, custom, className = '' }: Product
             <span
               className={`
                 inline-block w-2 h-2 rounded-full mr-1.5
-                ${data.availability.toLowerCase().includes('disponible')
+                ${data.availability.toLowerCase().includes('available')
                   ? 'bg-green-500'
                   : 'bg-yellow-500'
                 }
               `}
             />
-            {data.availability}
+            {formatStatusProduct(data.availability)}
           </p>
         )}
 

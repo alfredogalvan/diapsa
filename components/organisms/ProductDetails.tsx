@@ -12,6 +12,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/molecules/ProductCard';
 import type { ProductDetail } from '@/types/product';
 import { getStorageUrl } from '@/lib/api/config';
+import { formatStatusProduct } from '@/lib/utils/formatProductStatus';
 
 interface ProductDetailsProps {
   product: ProductDetail;
@@ -134,11 +135,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             <span
               className={`
                 w-3 h-3 rounded-full
-                ${product.availability_status.toLowerCase().includes('disponible') ? 'bg-green-500' : 'bg-yellow-500'}
+                ${product.availability_status.toLowerCase().includes('available') ? 'bg-green-500' : 'bg-yellow-500'}
               `}
             />
             <span className="text-sm font-medium text-gray-700">
-              {product.availability_status}
+              {formatStatusProduct(product.availability_status)}
             </span>
           </div>
 
@@ -166,15 +167,16 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <button
-              onClick={() => router.push(`/contacto?product=${product.slug}`)}
+            <a
+              href="#contacto"
               className="
                 flex-1 px-6 py-3 bg-primary text-white rounded-lg
                 font-semibold hover:bg-primary/90 transition-colors
+                text-center
               "
             >
               Solicitar cotización
-            </button>
+            </a>
             <Link
               href="/contacto"
               className="
@@ -323,7 +325,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     model: related.model,
                     image: getStorageUrl(related.main_image) || undefined,
                     description: related.short_description,
-                    href: `/productos/${related.slug}`,
+                    href: `/productos/${related.category.slug}/${related.slug}`,
                   }}
                 />
               ))}
