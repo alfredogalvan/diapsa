@@ -6,7 +6,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductCard from '@/components/molecules/ProductCard';
@@ -19,7 +18,6 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState<'specs' | 'docs' | 'related'>('specs');
 
@@ -81,7 +79,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               {allImages.map((image, index) => (
                 <button
                   key={image.id}
+                  type="button"
                   onClick={() => setSelectedImage(index)}
+                  aria-label={`Ver imagen ${index + 1} de ${allImages.length}: ${image.alt || product.name}`}
+                  aria-current={selectedImage === index ? 'true' : undefined}
                   className={`
                     relative aspect-square bg-gray-100 rounded-lg overflow-hidden
                     border-2 transition-all
@@ -149,19 +150,19 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                 Características destacadas
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <dl className="grid grid-cols-2 gap-3">
                 {product.specifications[0]?.items
                   .filter((item) => item.featured)
                   .slice(0, 4)
                   .map((spec, index) => (
                     <div key={index} className="bg-gray-50 p-3 rounded-lg">
-                      <p className="text-xs text-gray-600 mb-1">{spec.label}</p>
-                      <p className="text-lg font-bold text-primary">
+                      <dt className="text-xs text-gray-600 mb-1">{spec.label}</dt>
+                      <dd className="text-lg font-bold text-primary">
                         {spec.value} {spec.unit}
-                      </p>
+                      </dd>
                     </div>
                   ))}
-              </div>
+              </dl>
             </div>
           )}
 
@@ -194,9 +195,14 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       <div>
         {/* Tab Headers */}
         <div className="border-b border-gray-200">
-          <div className="flex gap-8">
+          <div className="flex gap-8" role="tablist" aria-label="Informacion del producto">
             <button
+              type="button"
+              id="product-specs-tab"
+              role="tab"
               onClick={() => setActiveTab('specs')}
+              aria-selected={activeTab === 'specs'}
+              aria-controls="product-specs-panel"
               className={`
                 pb-4 px-1 border-b-2 font-medium text-sm transition-colors
                 ${activeTab === 'specs' ? 'border-primary text-primary' : 'border-transparent text-gray-600 hover:text-gray-900'}
@@ -206,7 +212,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </button>
             {product.documents.length > 0 && (
               <button
+                type="button"
+                id="product-docs-tab"
+                role="tab"
                 onClick={() => setActiveTab('docs')}
+                aria-selected={activeTab === 'docs'}
+                aria-controls="product-docs-panel"
                 className={`
                   pb-4 px-1 border-b-2 font-medium text-sm transition-colors
                   ${activeTab === 'docs' ? 'border-primary text-primary' : 'border-transparent text-gray-600 hover:text-gray-900'}
@@ -217,7 +228,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             )}
             {product.related_products.length > 0 && (
               <button
+                type="button"
+                id="product-related-tab"
+                role="tab"
                 onClick={() => setActiveTab('related')}
+                aria-selected={activeTab === 'related'}
+                aria-controls="product-related-panel"
                 className={`
                   pb-4 px-1 border-b-2 font-medium text-sm transition-colors
                   ${activeTab === 'related' ? 'border-primary text-primary' : 'border-transparent text-gray-600 hover:text-gray-900'}
@@ -233,7 +249,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className="py-8">
           {/* Specifications Tab */}
           {activeTab === 'specs' && (
-            <div className="space-y-8">
+            <div
+              id="product-specs-panel"
+              role="tabpanel"
+              aria-labelledby="product-specs-tab"
+              className="space-y-8"
+            >
               {/* Description */}
               {product.description && (
                 <div className="prose max-w-none">
@@ -245,19 +266,19 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               {product.specifications.map((group, index) => (
                 <div key={index}>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">{group.group}</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <dl className="grid md:grid-cols-2 gap-4">
                     {group.items.map((spec, specIndex) => (
                       <div
                         key={specIndex}
                         className="flex justify-between items-center py-3 px-4 bg-gray-50 rounded-lg"
                       >
-                        <span className="text-sm font-medium text-gray-700">{spec.label}</span>
-                        <span className="text-sm font-bold text-gray-900">
+                        <dt className="text-sm font-medium text-gray-700">{spec.label}</dt>
+                        <dd className="text-sm font-bold text-gray-900">
                           {spec.value} {spec.unit}
-                        </span>
+                        </dd>
                       </div>
                     ))}
-                  </div>
+                  </dl>
                 </div>
               ))}
             </div>
@@ -265,7 +286,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           {/* Documents Tab */}
           {activeTab === 'docs' && (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div
+              id="product-docs-panel"
+              role="tabpanel"
+              aria-labelledby="product-docs-tab"
+              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
               {product.documents.map((doc) => (
                 <a
                   key={doc.id}
@@ -314,7 +340,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           {/* Related Products Tab */}
           {activeTab === 'related' && (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              id="product-related-panel"
+              role="tabpanel"
+              aria-labelledby="product-related-tab"
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {product.related_products.map((related) => (
                 <ProductCard
                   key={related.id}
