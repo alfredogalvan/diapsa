@@ -4,8 +4,10 @@
  */
 
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getProductBySlug } from '@/lib/api/products';
+import { getStorageUrl } from '@/lib/api/config';
 import ProductDetails from '@/components/organisms/ProductDetails';
 import PageHeader from '@/components/organisms/PageHeader';
 import JsonLd, { createProductSchema, createBreadcrumbSchema } from '@/components/atoms/JsonLd';
@@ -22,6 +24,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   try {
     const product = await getProductBySlug(producto);
+    const productPath = `/productos/${product.category.slug}/${product.slug}`;
+    const mainImages = product.images
+      .filter((img) => img.type === 'main')
+      .map((img) => ({
+        url: getStorageUrl(img.url) || img.url,
+        alt: img.alt,
+      }));
 
     return {
       title: product.seo.title,
@@ -35,22 +44,17 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
         'equipos industriales',
       ],
       alternates: {
-        canonical: `/productos/${producto}`,
+        canonical: productPath,
       },
       openGraph: {
         title: product.seo.title,
         description: product.seo.description,
-        url: `/productos/${producto}`,
+        url: productPath,
         type: 'website',
-        images: product.images
-          .filter((img) => img.type === 'main')
-          .map((img) => ({
-            url: img.url,
-            alt: img.alt,
-          })),
+        images: mainImages,
       },
     };
-  } catch (error) {
+  } catch {
 
     return {
       title: 'Producto no encontrado',
@@ -64,9 +68,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
   let product;
   try {
     product = await getProductBySlug(producto);
-  } catch (error) {
+  } catch {
     console.log('Producto no encontrado:', producto)
 
+    notFound();
+  }
+
+  if (product.category.slug !== categoria) {
     notFound();
   }
   // Breadcrumb items
@@ -120,6 +128,36 @@ export default async function ProductPage({ params }: ProductPageProps) {
             overlayOpacity={0.75}
           />
           <ContactFormProduct product={product} className='relative max-w-7xl mx-2 lg:mx-auto bg-gray-100 px-6 lg:px-20 py-16  rounded-sm' />
+        </section>
+        <section className="bg-white py-12">
+          <div className="container mx-auto px-4">
+            <div className="grid gap-6 lg:grid-cols-3">
+              <Link
+                href={`/productos/${product.category.slug}`}
+                className="rounded-lg border border-gray-200 bg-gray-50 p-6 transition-colors hover:border-secondary"
+              >
+                <p className="text-sm font-semibold uppercase tracking-wide text-secondary">Categoria</p>
+                <h2 className="mt-2 text-xl font-bold text-primary">{product.category.name}</h2>
+                <p className="mt-2 text-sm text-gray-700">Ver mas equipos de esta familia de productos.</p>
+              </Link>
+              <Link
+                href="/servicios/monitoreo-condicion"
+                className="rounded-lg border border-gray-200 bg-gray-50 p-6 transition-colors hover:border-secondary"
+              >
+                <p className="text-sm font-semibold uppercase tracking-wide text-secondary">Servicio relacionado</p>
+                <h2 className="mt-2 text-xl font-bold text-primary">Monitoreo de condicion</h2>
+                <p className="mt-2 text-sm text-gray-700">Integra este equipo a una estrategia de confiabilidad industrial.</p>
+              </Link>
+              <Link
+                href="/servicios/diagnostico-situacional"
+                className="rounded-lg border border-gray-200 bg-gray-50 p-6 transition-colors hover:border-secondary"
+              >
+                <p className="text-sm font-semibold uppercase tracking-wide text-secondary">Diagnostico</p>
+                <h2 className="mt-2 text-xl font-bold text-primary">Diagnostico situacional</h2>
+                <p className="mt-2 text-sm text-gray-700">Define prioridades tecnicas antes de invertir en instrumentos.</p>
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
     </>

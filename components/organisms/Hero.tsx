@@ -158,11 +158,23 @@ export default function Hero() {
               </span>
 
               {/* Título */}
-              <h1 className={`text-2xl ${slide.id === 0 ? 'lg:text-6xl' : 'lg:text-5xl'} font-bold text-white mb-4 leading-tight`}>
-                {slide.title}
-                <br />
-                <span className={`text-secondary`}>{slide.titleHighlight}</span>
-              </h1>
+              {slide.id === 0 ? (
+                <h1 className="text-2xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                  {slide.title}
+                  <br />
+                  <span className="text-secondary">{slide.titleHighlight}</span>
+                </h1>
+              ) : (
+                <p
+                  role="heading"
+                  aria-level={2}
+                  className="text-2xl lg:text-5xl font-bold text-white mb-4 leading-tight"
+                >
+                  {slide.title}
+                  <br />
+                  <span className="text-secondary">{slide.titleHighlight}</span>
+                </p>
+              )}
 
               {/* Descripción */}
               <p className={`text-base ${slide.id === 0 ? 'lg:text-xl' : 'lg:text-lg'} text-white/85 mb-6 max-w-xl leading-relaxed`}>
