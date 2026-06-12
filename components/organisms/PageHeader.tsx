@@ -16,7 +16,7 @@ interface PageHeaderProps {
 
 export default function PageHeader({ title, subtitle, breadcrumbs, loading }: PageHeaderProps) {
   return (
-    <section className="relative w-full h-[50vh] sm:h-[55vh] lg:h-[60vh] overflow-hidden border-b-2 lg:border-b-4 border-secondary">
+    <header className="relative w-full h-[50vh] sm:h-[55vh] lg:h-[60vh] overflow-hidden border-b-2 lg:border-b-4 border-secondary">
       {/* Fondo hero */}
       <BackgroundImage
         src="/images/fondo-hero.webp"
@@ -65,6 +65,6 @@ export default function PageHeader({ title, subtitle, breadcrumbs, loading }: Pa
           </div>
         )}
       </div>
-    </section>
+    </header>
   );
 }

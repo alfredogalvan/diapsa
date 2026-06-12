@@ -35,9 +35,11 @@ export const metadata: Metadata = {
     template: "%s | Grupo DIAPSA",
   },
   description:
-    "Empresa líder en mantenimiento predictivo industrial con más de 22 años de experiencia. Servicios de termografía, análisis de vibraciones, ultrasonido y estudios eléctricos en México.",
+    "Empresa líder en mantenimiento predictivo industrial, monitoreo de condición y servicios de mantenimiento para Mexico y Sudamérica.",
   keywords: [
     "mantenimiento predictivo",
+    "monitoreo de condición",
+    "servicios de mantenimiento",
     "termografía infrarroja",
     "análisis de vibraciones",
     "ultrasonido industrial",
@@ -46,6 +48,8 @@ export const metadata: Metadata = {
     "cámaras termográficas",
     "HIKMIKRO",
     "mantenimiento industrial México",
+    "mantenimiento predictivo Sudamérica",
+    "monitoreo de condición Sudamérica",
     "confiabilidad de equipos",
     "Grupo DIAPSA",
   ],
@@ -64,10 +68,10 @@ export const metadata: Metadata = {
     siteName: "Grupo DIAPSA",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Más de 22 años liderando el mantenimiento predictivo industrial en México. Termografía, vibraciones, ultrasonido y estudios eléctricos.",
+      "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Grupo DIAPSA - Mantenimiento Predictivo Industrial",
@@ -78,8 +82,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Más de 22 años liderando el mantenimiento predictivo industrial en México.",
-    images: ["/images/og-image.jpg"],
+      "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
+    images: ["/images/og-image.png"],
     creator: "@grupodiapsa",
   },
   robots: {
@@ -107,10 +111,7 @@ export const metadata: Metadata = {
     ],
   },
   category: "Industrial Services",
-  // Placeholder para verificación - reemplazar con código real cuando esté disponible
-  // verification: {
-  //   google: "tu-codigo-de-google-search-console",
-  // },
+
 };
 
 export default function RootLayout({
