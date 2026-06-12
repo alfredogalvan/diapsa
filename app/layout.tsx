@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     template: "%s | Grupo DIAPSA",
   },
   description:
-    "Empresa lider en mantenimiento predictivo industrial, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
+    "Empresa líder en mantenimiento predictivo industrial, monitoreo de condición y servicios de mantenimiento para Mexico y Sudamérica.",
   keywords: [
     "mantenimiento predictivo",
-    "monitoreo de condicion",
+    "monitoreo de condición",
     "servicios de mantenimiento",
     "termografía infrarroja",
     "análisis de vibraciones",
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     "cámaras termográficas",
     "HIKMIKRO",
     "mantenimiento industrial México",
-    "mantenimiento predictivo Sudamerica",
-    "monitoreo de condicion Sudamerica",
+    "mantenimiento predictivo Sudamérica",
+    "monitoreo de condición Sudamérica",
     "confiabilidad de equipos",
     "Grupo DIAPSA",
   ],
@@ -68,10 +68,10 @@ export const metadata: Metadata = {
     siteName: "Grupo DIAPSA",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Sudamerica.",
+      "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Grupo DIAPSA - Mantenimiento Predictivo Industrial",
@@ -82,8 +82,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Sudamerica.",
-    images: ["/images/og-image.jpg"],
+      "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
+    images: ["/images/og-image.png"],
     creator: "@grupodiapsa",
   },
   robots: {
