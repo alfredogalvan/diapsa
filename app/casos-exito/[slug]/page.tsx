@@ -38,10 +38,14 @@ export async function generateMetadata({
     if (!caso) return { title: "Caso de Éxito no encontrado" };
 
     const keywords = [
-        ...(caso.client ? [caso.client] : []),
         caso.industry,
-        "caso de éxito",
+        caso.service,
+        "caso de exito",
         "mantenimiento predictivo",
+        "monitoreo de condicion",
+        "servicios de mantenimiento",
+        "confiabilidad industrial",
+        "mantenimiento predictivo Latinoamerica",
         "DIAPSA",
         "resultados",
     ];
@@ -73,13 +77,61 @@ export default async function CasoExitoDetailPage({
     const breadcrumbItems = [
         { name: "Inicio", url: "/" },
         { name: "Casos de Éxito", url: "/casos-exito" },
-        { name: caso.client ?? caso.title, url: `/casos-exito/${slug}` },
+        { name: caso.title, url: `/casos-exito/${slug}` },
     ];
     const breadcrumbJsonLd = createBreadcrumbSchema(breadcrumbItems);
+    const caseStudyJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: caso.title,
+        description: caso.seo.description,
+        articleSection: "Casos de exito",
+        keywords: [
+            caso.industry,
+            caso.service,
+            "mantenimiento predictivo",
+            "monitoreo de condición",
+            "servicios de mantenimiento",
+            "confiabilidad industrial",
+        ],
+        author: {
+            "@type": "Organization",
+            name: "Grupo DIAPSA",
+            url: "https://grupodiapsa.com",
+        },
+        publisher: {
+            "@type": "Organization",
+            name: "Grupo DIAPSA",
+            logo: {
+                "@type": "ImageObject",
+                url: "https://grupodiapsa.com/images/logo-diapsa.webp",
+            },
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://grupodiapsa.com/casos-exito/${slug}`,
+        },
+        inLanguage: "es-MX",
+        about: [
+            {
+                "@type": "Thing",
+                name: "Mantenimiento predictivo",
+            },
+            {
+                "@type": "Thing",
+                name: "Monitoreo de condición",
+            },
+            {
+                "@type": "Thing",
+                name: caso.service,
+            },
+        ],
+    };
 
     return (
         <main className="bg-white">
             <JsonLd data={breadcrumbJsonLd} />
+            <JsonLd data={caseStudyJsonLd} />
 
             {/* ── APERTURA: Hero editorial ─────────────────────────────────── */}
             <section className="bg-primary relative overflow-hidden">
@@ -127,12 +179,6 @@ export default async function CasoExitoDetailPage({
                         {caso.introduction}
                     </p>
 
-                    {/* Atribución al cliente */}
-                    {caso.client && (
-                        <p className="mt-8 text-white/40 text-sm font-medium uppercase tracking-widest">
-                            Cliente: <span className="text-white/70">{caso.client}</span>
-                        </p>
-                    )}
                 </div>
             </section>
 
@@ -337,9 +383,7 @@ export default async function CasoExitoDetailPage({
                     </h2>
                     <p className="text-lg text-white/70 max-w-xl mx-auto mb-10">
                         Nuestras soluciones de mantenimiento predictivo han transformado operaciones en múltiples industrias.
-                        {caso.client
-                            ? ` Como ${caso.client}, tu empresa puede dar el siguiente paso hacia una operación más confiable.`
-                            : " Da el siguiente paso hacia una operación más confiable con DIAPSA."}
+                        Da el siguiente paso hacia una operacion mas confiable con DIAPSA.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link

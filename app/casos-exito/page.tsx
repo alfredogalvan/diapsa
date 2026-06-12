@@ -3,38 +3,65 @@ import PageHeader from "@/components/organisms/PageHeader";
 import Link from "next/link";
 import casosExitoData from "@/data/casos-exito.json";
 import type { CasoExito } from "@/types/caso-exito";
+import JsonLd, { createBreadcrumbSchema } from "@/components/atoms/JsonLd";
 
 const casosExito = casosExitoData as unknown as CasoExito[];
 
 export const metadata: Metadata = {
-    title: "Casos de Éxito | Grupo DIAPSA",
+    title: "Casos de Exito en Mantenimiento Predictivo",
     description:
-        "Descubre cómo Grupo DIAPSA ha transformado la operación de empresas líderes con soluciones de mantenimiento predictivo. Casos de éxito reales con resultados comprobados.",
+        "Casos de exito de Grupo DIAPSA en mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Latinoamerica.",
     keywords: [
-        "casos de éxito mantenimiento predictivo",
-        "testimonios DIAPSA",
+        "casos de exito mantenimiento predictivo",
+        "mantenimiento predictivo",
+        "monitoreo de condicion",
+        "servicios de mantenimiento",
         "resultados mantenimiento industrial",
-        "éxito termografía industrial",
+        "casos de exito monitoreo de condicion",
         "ahorro mantenimiento predictivo",
+        "mantenimiento predictivo Latinoamerica",
     ],
     alternates: {
         canonical: "/casos-exito",
     },
     openGraph: {
-        title: "Casos de Éxito | Grupo DIAPSA",
+        title: "Casos de Exito en Mantenimiento Predictivo | Grupo DIAPSA",
         description:
-            "Resultados reales de empresas que confiaron en DIAPSA para su mantenimiento predictivo.",
+            "Resultados reales de mantenimiento predictivo, monitoreo de condicion y confiabilidad industrial con Grupo DIAPSA.",
         url: "/casos-exito",
         type: "website",
     },
 };
 
 export default function CasosExitoPage() {
+    const breadcrumbJsonLd = createBreadcrumbSchema([
+        { name: "Inicio", url: "/" },
+        { name: "Casos de Exito", url: "/casos-exito" },
+    ]);
+
+    const itemListJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Casos de exito de mantenimiento predictivo",
+        description:
+            "Resultados de mantenimiento predictivo, monitoreo de condicion y confiabilidad industrial implementados por Grupo DIAPSA.",
+        itemListElement: casosExito.map((caso, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `https://grupodiapsa.com/casos-exito/${caso.slug}`,
+            name: caso.title,
+            description: caso.seo.description,
+        })),
+    };
+
     return (
         <main>
+            <JsonLd data={breadcrumbJsonLd} />
+            <JsonLd data={itemListJsonLd} />
+
             <PageHeader
-                title="CASOS DE ÉXITO"
-                subtitle="Resultados reales que transforman la industria"
+                title="CASOS DE EXITO"
+                subtitle="Resultados reales en mantenimiento predictivo y monitoreo de condicion"
             />
 
             {/* Introducción */}
@@ -44,10 +71,10 @@ export default function CasosExitoPage() {
                         Excelencia Comprobada
                     </h2>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                        Durante más de dos décadas, hemos ayudado a empresas líderes a
-                        optimizar sus operaciones, reducir costos y mejorar la confiabilidad
-                        de sus activos críticos. Estos son algunos de nuestros casos de éxito
-                        más destacados.
+                        Durante mas de dos decadas, Grupo DIAPSA ha ayudado a industrias en
+                        Mexico y Latinoamerica a reducir fallas, optimizar servicios de mantenimiento
+                        y mejorar la confiabilidad de activos criticos con mantenimiento predictivo
+                        y monitoreo de condicion.
                     </p>
                 </div>
             </section>
@@ -72,9 +99,6 @@ export default function CasosExitoPage() {
                                         <h3 className="text-white text-xl font-bold leading-tight mb-3 group-hover:text-secondary transition-colors">
                                             {caso.title}
                                         </h3>
-                                        {/* <p className="text-gray-300 text-sm">
-                                            Cliente: <span className="font-semibold">{caso.client}</span>
-                                        </p> */}
                                     </div>
                                 </div>
 
@@ -151,7 +175,8 @@ export default function CasosExitoPage() {
                     </h2>
                     <p className="text-lg text-gray-300">
                         Permítenos ayudarte a optimizar tus operaciones y alcanzar resultados
-                        extraordinarios con nuestras soluciones de mantenimiento predictivo.
+                        extraordinarios con nuestras soluciones de mantenimiento predictivo,
+                        monitoreo de condicion y confiabilidad industrial.
                     </p>
                     <div className="pt-4">
                         <Link
