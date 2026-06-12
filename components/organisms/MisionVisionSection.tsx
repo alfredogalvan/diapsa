@@ -27,7 +27,7 @@ export function MisionVisionSection() {
                             src="/images/mision-image.jpeg"
                             fill
                             className="object-cover"
-                            alt="Representación de la misión de la empresa"
+                            alt="Representación de la misión de la Grupo Diapsa"
                         />
                     </div>
                 </div>
@@ -41,7 +41,7 @@ export function MisionVisionSection() {
                             src="/images/vision-image.jpg"
                             fill
                             className="object-cover"
-                            alt="Representación de la misión de la empresa"
+                            alt="Representación de la visión de la Grupo Diapsa"
                         />
                     </div>
                 </div>

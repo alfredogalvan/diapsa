@@ -23,14 +23,20 @@ export const organizationSchema = {
   name: "Grupo DIAPSA",
   alternateName: "DIAPSA",
   url: "https://grupodiapsa.com",
-  logo: "https://grupodiapsa.com/images/logo.png",
+  logo: "https://grupodiapsa.com/images/logo-diapsa.webp",
   description:
-    "Empresa líder en mantenimiento predictivo industrial con más de 22 años de experiencia en termografía, análisis de vibraciones, ultrasonido y estudios eléctricos.",
+    "Empresa líder en mantenimiento predictivo industrial, monitoreo de condición y servicios de mantenimiento para Mexico y Latinoamérica.",
   foundingDate: "2002",
-  areaServed: {
-    "@type": "Country",
-    name: "México",
-  },
+  areaServed: [
+    {
+      "@type": "Country",
+      name: "Mexico",
+    },
+    {
+      "@type": "Place",
+      name: "Latinoamérica",
+    },
+  ],
   address: {
     "@type": "PostalAddress",
     addressCountry: "MX",
@@ -47,6 +53,8 @@ export const organizationSchema = {
   ],
   knowsAbout: [
     "Mantenimiento Predictivo",
+    "Monitoreo de Condición",
+    "Servicios de Mantenimiento",
     "Termografía Infrarroja",
     "Análisis de Vibraciones",
     "Ultrasonido Industrial",
@@ -60,10 +68,10 @@ export const localBusinessSchema = {
   "@type": "LocalBusiness",
   "@id": "https://grupodiapsa.com/#organization",
   name: "Grupo DIAPSA",
-  image: "https://grupodiapsa.com/images/logo.png",
+  image: "https://grupodiapsa.com/images/logo-diapsa.webp",
   url: "https://grupodiapsa.com",
   description:
-    "Servicios de mantenimiento predictivo industrial: termografía, vibraciones, ultrasonido y estudios eléctricos.",
+    "Servicios de mantenimiento predictivo industrial, monitoreo de condición, termografía, vibraciones, ultrasonido y estudios electricos para Mexico y Latinoamerica.",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -80,6 +88,16 @@ export const localBusinessSchema = {
     opens: "09:00",
     closes: "18:00",
   },
+  areaServed: [
+    {
+      "@type": "Country",
+      name: "Mexico",
+    },
+    {
+      "@type": "Place",
+      name: "Latinoamérica",
+    },
+  ],
 };
 
 export function createProductSchema(product: {
@@ -136,10 +154,16 @@ export function createServiceSchema(service: {
       name: "Grupo DIAPSA",
       url: "https://grupodiapsa.com",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "México",
-    },
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "Mexico",
+      },
+      {
+        "@type": "Place",
+        name: "Latinoamérica",
+      },
+    ],
   };
 }
 
@@ -204,7 +228,7 @@ export function createArticleSchema(article: {
       name: "Grupo DIAPSA",
       logo: {
         "@type": "ImageObject",
-        url: "https://grupodiapsa.com/images/logo.png",
+        url: "https://grupodiapsa.com/images/logo-diapsa.webp",
       },
     },
     articleSection: article.category,
@@ -218,7 +242,7 @@ export function createWebsiteSchema() {
     name: "Grupo DIAPSA",
     url: "https://grupodiapsa.com",
     description:
-      "Mantenimiento predictivo industrial: termografía, vibraciones, ultrasonido y estudios eléctricos.",
+      "Mantenimiento predictivo industrial, monitoreo de condicion y servicios de mantenimiento para Mexico y Latinoamerica.",
     publisher: {
       "@type": "Organization",
       name: "Grupo DIAPSA",

@@ -10,24 +10,24 @@ const casosExito = casosExitoData as unknown as CasoExito[];
 export const metadata: Metadata = {
     title: "Casos de Exito en Mantenimiento Predictivo",
     description:
-        "Casos de exito de Grupo DIAPSA en mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Latinoamerica.",
+        "Casos de éxito de Grupo DIAPSA en mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Latinoamerica.",
     keywords: [
-        "casos de exito mantenimiento predictivo",
+        "casos de éxito mantenimiento predictivo",
         "mantenimiento predictivo",
-        "monitoreo de condicion",
+        "monitoreo de condición",
         "servicios de mantenimiento",
         "resultados mantenimiento industrial",
-        "casos de exito monitoreo de condicion",
+        "casos de éxito monitoreo de condición",
         "ahorro mantenimiento predictivo",
-        "mantenimiento predictivo Latinoamerica",
+        "mantenimiento predictivo Latinoamérica",
     ],
     alternates: {
         canonical: "/casos-exito",
     },
     openGraph: {
-        title: "Casos de Exito en Mantenimiento Predictivo | Grupo DIAPSA",
+        title: "Casos de Éxito en Mantenimiento Predictivo | Grupo DIAPSA",
         description:
-            "Resultados reales de mantenimiento predictivo, monitoreo de condicion y confiabilidad industrial con Grupo DIAPSA.",
+            "Resultados reales de mantenimiento predictivo, monitoreo de condición y confiabilidad industrial con Grupo DIAPSA.",
         url: "/casos-exito",
         type: "website",
     },
