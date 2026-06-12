@@ -111,10 +111,7 @@ export const metadata: Metadata = {
     ],
   },
   category: "Industrial Services",
-  // Placeholder para verificación - reemplazar con código real cuando esté disponible
-  // verification: {
-  //   google: "tu-codigo-de-google-search-console",
-  // },
+
 };
 
 export default function RootLayout({

@@ -71,7 +71,7 @@ export const localBusinessSchema = {
   image: "https://grupodiapsa.com/images/logo-diapsa.webp",
   url: "https://grupodiapsa.com",
   description:
-    "Servicios de mantenimiento predictivo industrial, monitoreo de condición, termografía, vibraciones, ultrasonido y estudios electricos para Mexico y Sudamerica.",
+    "Servicios de mantenimiento predictivo industrial, monitoreo de condición, termografía, vibraciones, ultrasonido y estudios eléctricos para Mexico y Sudamérica.",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -242,7 +242,7 @@ export function createWebsiteSchema() {
     name: "Grupo DIAPSA",
     url: "https://grupodiapsa.com",
     description:
-      "Mantenimiento predictivo industrial, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
+      "Mantenimiento predictivo industrial, monitoreo de condición y servicios de mantenimiento para Mexico y Sudamérica.",
     publisher: {
       "@type": "Organization",
       name: "Grupo DIAPSA",
