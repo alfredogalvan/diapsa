@@ -82,7 +82,6 @@ export default function ContactFormProduct({
     });
 
     const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
     const formRef = useRef<HTMLFormElement>(null);
 
     // Handle input change
@@ -125,8 +124,6 @@ export default function ContactFormProduct({
 
     // Handle blur - validate field
     const handleBlur = (field: string, value: string) => {
-        setTouched((prev) => ({ ...prev, [field]: true }));
-
         const error = validateField(field, value);
         if (error) {
             setFieldErrors((prev) => ({ ...prev, [field]: error }));
@@ -210,7 +207,6 @@ export default function ContactFormProduct({
                     category: product?.category.name || '',
                 },
             });
-            setTouched({});
             setFieldErrors({});
             formRef.current?.reset();
             onSuccess?.();
@@ -278,10 +274,10 @@ export default function ContactFormProduct({
 
                 {/* Información del producto (solo lectura) */}
                 {product && (
-                    <div className="">
-                        <h3 className="text-xl font-bold text-primary mb-4">
+                    <fieldset className="border-0 p-0 m-0">
+                        <legend className="text-xl font-bold text-primary mb-4">
                             Información del producto
-                        </h3>
+                        </legend>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <InputField
                                 label="Producto"
@@ -305,14 +301,14 @@ export default function ContactFormProduct({
                                 disabled
                             />
                         </div>
-                    </div>
+                    </fieldset>
                 )}
 
                 {/* Datos personales */}
-                <div>
-                    <h3 className="text-xl font-bold text-primary mb-4">
+                <fieldset className="border-0 p-0 m-0">
+                    <legend className="text-xl font-bold text-primary mb-4">
                         Cuéntanos sobre ti
-                    </h3>
+                    </legend>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {/* Name */}
                         <InputField
@@ -408,13 +404,13 @@ export default function ContactFormProduct({
                             />
                         </div>
                     )}
-                </div>
+                </fieldset>
 
                 {/* Información adicional */}
-                <div>
-                    <h3 className="text-xl font-bold text-primary mb-4">
+                <fieldset className="border-0 p-0 m-0">
+                    <legend className="text-xl font-bold text-primary mb-4">
                         Información adicional
-                    </h3>
+                    </legend>
 
                     {/* Problem to resolve */}
                     <TextareaField
@@ -455,7 +451,7 @@ export default function ContactFormProduct({
                             disabled={loading}
                         />
                     </div>
-                </div>
+                </fieldset>
 
                 {/* Honeypot field - hidden */}
                 <input

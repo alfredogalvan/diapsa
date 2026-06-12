@@ -86,6 +86,26 @@ export const metadata: Metadata = {
       "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamerica.",
     url: "/",
     type: "website",
+    locale: "es_MX",
+    siteName: "Grupo DIAPSA",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Grupo DIAPSA - Mantenimiento Predictivo Industrial",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@grupodiapsa",
+    creator: "@grupodiapsa",
+    title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
+    description:
+      "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
+    images: ["/images/og-image.png"],
   },
 };
 

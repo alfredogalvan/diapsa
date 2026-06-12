@@ -19,7 +19,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const BASE_URL = "https://grupodiapsa.com";
+const BASE_URL = "https://www.grupodiapsa.com.mx";
+const OG_IMAGE = "/images/og-image.png";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -71,20 +72,22 @@ export const metadata: Metadata = {
       "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
     images: [
       {
-        url: "/images/og-image.png",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: "Grupo DIAPSA - Mantenimiento Predictivo Industrial",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@grupodiapsa",
+    creator: "@grupodiapsa",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
       "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
-    images: ["/images/og-image.png"],
-    creator: "@grupodiapsa",
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
@@ -103,6 +106,8 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/icon.ico" },
       { url: "/icon.ico", sizes: "192x192", type: "image/x-icon" },
     ],
