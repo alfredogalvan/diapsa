@@ -1,7 +1,6 @@
 export interface CasoExito {
     slug: string;
     title: string;
-    client?: string;
     industry: string;
     service: string;
     seo: {

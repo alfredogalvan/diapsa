@@ -9,12 +9,16 @@ import { GallerySection } from "@/components/organisms/GallerySection";
 
 
 export const metadata: Metadata = {
-  title: "Acerca de Nosotros",
+  title: "Acerca de Grupo DIAPSA",
   description:
-    "Conoce a Grupo DIAPSA: Más de 22 años de experiencia en mantenimiento predictivo industrial. Nuestra historia, misión, visión y el equipo de expertos que respalda la confiabilidad de tu maquinaria.",
+    "Grupo DIAPSA es especialista en mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
   keywords: [
     "Grupo DIAPSA",
     "empresa mantenimiento predictivo",
+    "mantenimiento predictivo",
+    "monitoreo de condicion",
+    "servicios de mantenimiento",
+    "mantenimiento predictivo Sudamerica",
     "historia DIAPSA",
     "expertos termografía México",
     "consultoría industrial",
@@ -25,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Acerca de Grupo DIAPSA",
     description:
-      "Más de 22 años de experiencia en mantenimiento predictivo industrial. Conoce nuestra historia y equipo de expertos.",
+      "Especialistas en mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
     url: "/acerca-de",
     type: "website",
   },
@@ -35,7 +39,7 @@ export default function AcercaDePage() {
     <main>
       <PageHeader
         title="Acerca de DIAPSA"
-        subtitle="Más de 22 años de experiencia en mantenimiento predictivo industrial"
+        subtitle="Mantenimiento predictivo y monitoreo de condicion para Mexico y Sudamerica"
       />
 
       <WhoIsDiapsaSection />

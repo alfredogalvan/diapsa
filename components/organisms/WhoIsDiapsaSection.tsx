@@ -7,37 +7,35 @@ export function WhoIsDiapsaSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
                     <div className="py-6 space-y-6">
                         <hr className="border-2 border-secondary w-16 " />
-                        <h1 className="text-black text-4xl font-extrabold leading-tight">¿Quiénes son <br /> <span className="text-secondary">GRUPO DIAPSA?</span> </h1>
-                        <p className="text-black text-lg">Somos una empresa mexicana líder en mantenimiento predictivo industrial, especializada en ofrecer servicios,
-                            equipos y capacitación en monitoreo de condición para sectores estratégicos. </p>
+                        <h2 className="text-black text-4xl font-extrabold leading-tight">¿Quiénes son <br /> <span className="text-secondary">GRUPO DIAPSA?</span> </h2>
+                        <p className="text-black text-lg">Somos una empresa mexicana lider en mantenimiento predictivo industrial, especializada en ofrecer servicios,
+                            equipos y capacitacion en monitoreo de condicion para sectores estrategicos en Mexico y Sudamerica. </p>
                         <p className="text-black text-lg"> Ayudamos a las organizaciones a
                             incrementar la confiabilidad de sus equipos críticos, reducir fallas no programadas y optimizar la operación, mediante el uso de tecnologías
                         </p>
-
-                        <div className="grid grid-cols-1 lg:grid-cols-2 text-black text-lg">
-                            <p className="flex items-center gap-2">
+                        <ul className="text-black grid grid-cols-1 lg:grid-cols-2 gap-1">
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Termografía Infrarroja</p>
-                            <p className="flex items-center gap-2">
+                                Termografía Infrarroja</li>
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Vibraciones mecánicas</p>
-                            <p className="flex items-center gap-2">
+                                Vibraciones mecánicas</li>
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Ultrasonido Pasivo</p>
-                            <p className="flex items-center gap-2">
+                                Ultrasonido Pasivo</li>
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Tierras Físicas y Estudios Eléctricos</p>
-                            <p className="flex items-center gap-2">
+                                Tierras Físicas y Estudios Eléctricos</li>
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Alineación de ejes</p>
-                            <p className="flex items-center gap-2">
+                                Alineación de ejes</li>
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Balanceo dinámico (en sitio)</p>
-                            <p className="flex items-center gap-2">
+                                Balanceo dinámico (en sitio)</li>
+                            <li className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-6 h-6 text-secondary" />
-                                Análisis de lubricante</p>
-
-                        </div>
+                                Análisis de lubricante</li>
+                        </ul>
                         <p className="text-tertiary text-lg">
 
                             Con más de <strong>22 años de experiencia</strong>, acompañamos a la industria en la toma de decisiones técnicas basadas en datos, seguridad y prevención.
