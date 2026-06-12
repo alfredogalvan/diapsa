@@ -45,7 +45,7 @@ export async function generateMetadata({
         "monitoreo de condicion",
         "servicios de mantenimiento",
         "confiabilidad industrial",
-        "mantenimiento predictivo Latinoamerica",
+        "mantenimiento predictivo Sudamerica",
         "DIAPSA",
         "resultados",
     ];

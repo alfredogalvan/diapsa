@@ -25,7 +25,7 @@ export const organizationSchema = {
   url: "https://grupodiapsa.com",
   logo: "https://grupodiapsa.com/images/logo-diapsa.webp",
   description:
-    "Empresa líder en mantenimiento predictivo industrial, monitoreo de condición y servicios de mantenimiento para Mexico y Latinoamérica.",
+    "Empresa líder en mantenimiento predictivo industrial, monitoreo de condición y servicios de mantenimiento para Mexico y Sudamérica.",
   foundingDate: "2002",
   areaServed: [
     {
@@ -34,7 +34,7 @@ export const organizationSchema = {
     },
     {
       "@type": "Place",
-      name: "Latinoamérica",
+      name: "Sudamérica",
     },
   ],
   address: {
@@ -71,7 +71,7 @@ export const localBusinessSchema = {
   image: "https://grupodiapsa.com/images/logo-diapsa.webp",
   url: "https://grupodiapsa.com",
   description:
-    "Servicios de mantenimiento predictivo industrial, monitoreo de condición, termografía, vibraciones, ultrasonido y estudios electricos para Mexico y Latinoamerica.",
+    "Servicios de mantenimiento predictivo industrial, monitoreo de condición, termografía, vibraciones, ultrasonido y estudios electricos para Mexico y Sudamerica.",
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -95,7 +95,7 @@ export const localBusinessSchema = {
     },
     {
       "@type": "Place",
-      name: "Latinoamérica",
+      name: "Sudamérica",
     },
   ],
 };
@@ -161,7 +161,7 @@ export function createServiceSchema(service: {
       },
       {
         "@type": "Place",
-        name: "Latinoamérica",
+        name: "Sudamérica",
       },
     ],
   };
@@ -242,7 +242,7 @@ export function createWebsiteSchema() {
     name: "Grupo DIAPSA",
     url: "https://grupodiapsa.com",
     description:
-      "Mantenimiento predictivo industrial, monitoreo de condicion y servicios de mantenimiento para Mexico y Latinoamerica.",
+      "Mantenimiento predictivo industrial, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
     publisher: {
       "@type": "Organization",
       name: "Grupo DIAPSA",

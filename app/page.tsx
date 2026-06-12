@@ -64,10 +64,13 @@ const offerings = [
 export const metadata: Metadata = {
   title: "Inicio | Mantenimiento Predictivo Industrial",
   description:
-    "Grupo DIAPSA: Más de 22 años de experiencia en mantenimiento predictivo industrial en México. Termografía infrarroja, análisis de vibraciones, ultrasonido y estudios eléctricos para maximizar la confiabilidad de tus equipos.",
+    "Grupo DIAPSA ofrece mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamerica.",
   keywords: [
     "mantenimiento predictivo México",
-    "mantenimiento predictivo Latinoamérica",
+    "mantenimiento predictivo Sudamérica",
+    "mantenimiento predictivo",
+    "monitoreo de condición",
+    "servicios de mantenimiento",
     "termografía infrarroja industrial",
     "análisis de vibraciones",
     "ultrasonido industrial",
@@ -80,7 +83,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Más de 22 años liderando el mantenimiento predictivo industrial en México. Soluciones integrales para la confiabilidad de tus equipos.",
+      "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamerica.",
     url: "/",
     type: "website",
   },
@@ -120,6 +123,23 @@ export default function Home() {
       </section> */}
 
       <ServicesOverview />
+
+      <section className="bg-white py-12 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-secondary font-bold uppercase tracking-widest text-xs mb-4">
+            Cobertura regional
+          </p>
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
+            Mantenimiento predictivo y monitoreo de condición para Sudamérica
+          </h2>
+          <p className="text-tertiary text-lg leading-relaxed max-w-3xl mx-auto">
+            Grupo DIAPSA brinda servicios de mantenimiento industrial, monitoreo de condicion,
+            diagnostico de maquinaria y confiabilidad de activos a plantas en Mexico y toda
+            Sudamérica.
+          </p>
+        </div>
+      </section>
+
       {/* 3. ¿Por qué DIAPSA? */}
       <AboutUs />
 

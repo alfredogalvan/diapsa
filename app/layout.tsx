@@ -35,9 +35,11 @@ export const metadata: Metadata = {
     template: "%s | Grupo DIAPSA",
   },
   description:
-    "Empresa líder en mantenimiento predictivo industrial con más de 22 años de experiencia. Servicios de termografía, análisis de vibraciones, ultrasonido y estudios eléctricos en México.",
+    "Empresa lider en mantenimiento predictivo industrial, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
   keywords: [
     "mantenimiento predictivo",
+    "monitoreo de condicion",
+    "servicios de mantenimiento",
     "termografía infrarroja",
     "análisis de vibraciones",
     "ultrasonido industrial",
@@ -46,6 +48,8 @@ export const metadata: Metadata = {
     "cámaras termográficas",
     "HIKMIKRO",
     "mantenimiento industrial México",
+    "mantenimiento predictivo Sudamerica",
+    "monitoreo de condicion Sudamerica",
     "confiabilidad de equipos",
     "Grupo DIAPSA",
   ],
@@ -64,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "Grupo DIAPSA",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Más de 22 años liderando el mantenimiento predictivo industrial en México. Termografía, vibraciones, ultrasonido y estudios eléctricos.",
+      "Mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Sudamerica.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -78,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
-      "Más de 22 años liderando el mantenimiento predictivo industrial en México.",
+      "Mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento industrial para Mexico y Sudamerica.",
     images: ["/images/og-image.jpg"],
     creator: "@grupodiapsa",
   },

@@ -6,10 +6,14 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Servicios | Grupo DIAPSA",
   description:
-    "Descubre el ecosistema de soluciones de mantenimiento predictivo de Grupo DIAPSA: monitoreo de condición, monitoreo continuo, DIAPSA START, IDAP y detección de gas en el sector hidrocarburos.",
+    "Servicios de mantenimiento predictivo, monitoreo de condicion, monitoreo continuo, diagnostico industrial e inteligencia operativa para Mexico y Sudamerica.",
   keywords: [
     "servicios mantenimiento predictivo",
+    "servicios de mantenimiento",
+    "mantenimiento predictivo",
+    "monitoreo de condicion",
     "monitoreo de condición industrial",
+    "mantenimiento industrial Sudamerica",
     "monitoreo continuo",
     "DIAPSA START",
     "IDAP plataforma activos industriales",
@@ -20,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Servicios | Grupo DIAPSA",
     description:
-      "El ecosistema completo para proteger tus activos industriales: desde la primera inspección hasta la inteligencia operativa en tiempo real.",
+      "Servicios de mantenimiento predictivo y monitoreo de condicion para proteger activos industriales en Mexico y Sudamerica.",
     url: "/servicios",
     type: "website",
   },
@@ -190,7 +194,7 @@ export default function ServiciosProductosPage() {
     <main className="bg-white">
       <PageHeader
         title="SERVICIOS"
-        subtitle="Soluciones integrales de mantenimiento predictivo para tu industria"
+        subtitle="Soluciones integrales de mantenimiento predictivo para industrias en Mexico y Sudamerica"
       />
 
       {/* ── Filosofía: el ecosistema ──────────────────────────────────── */}
@@ -209,7 +213,8 @@ export default function ServiciosProductosPage() {
                 Cada servicio de DIAPSA está diseñado para un momento
                 específico en la madurez de tu programa de mantenimiento.
                 Puedes empezar desde cero o integrar lo que ya tienes —
-                siempre con un objetivo claro: cero paros no programados.
+                siempre con un objetivo claro: cero paros no programados en plantas
+                industriales de Mexico y Sudamerica.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
