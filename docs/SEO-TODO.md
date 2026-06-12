@@ -5,7 +5,7 @@ This checklist comes from the current project audit. It is grouped so we can sta
 ## Pick A Starting Section
 
 - [x] Semantic HTML improvements
-- [ ] Product/category SEO
+- [x] Product/category SEO
 - [ ] Sitemap and crawler files
 - [ ] Structured data
 - [ ] OpenGraph and social previews
@@ -25,16 +25,15 @@ This checklist comes from the current project audit. It is grouped so we can sta
 
 ## Product And Category SEO
 
-- [ ] Add `metadata` or `generateMetadata` to `app/productos/page.tsx`.
-- [ ] Add `generateMetadata` to `app/productos/[categoria]/page.tsx`.
-- [ ] Move initial category data loading from client-only `useEffect` to server-side fetching where practical.
-- [ ] Move initial product list data loading for category pages to the server where practical.
-- [ ] Keep filtering, search, and pagination as client components after the initial crawlable content is rendered.
-- [ ] Fix product detail canonical URL in `app/productos/[categoria]/[producto]/page.tsx`.
-- [ ] Fix product detail OpenGraph URL in `app/productos/[categoria]/[producto]/page.tsx`.
-- [ ] Use the full route format for product pages: `/productos/[categoria]/[producto]`.
-- [ ] Add category descriptions/content blocks so category pages target real search intent, not only product grids.
-- [ ] Add internal links from product details to related categories, related products, and relevant services.
+- [x] Add `metadata` or `generateMetadata` to `app/productos/page.tsx`.
+- [x] Add `generateMetadata` to `app/productos/[categoria]/page.tsx`.
+- [x] Move initial category data loading from client-only `useEffect` to server-side fetching where practical.
+- [x] Move initial product list data loading for category pages to the server where practical.
+- [x] Keep filtering, search, and pagination as client components after the initial crawlable content is rendered.
+- [x] Fix product detail canonical URL in `app/productos/[categoria]/[producto]/page.tsx`.
+- [x] Fix product detail OpenGraph URL in `app/productos/[categoria]/[producto]/page.tsx`.
+- [x] Use the full route format for product pages: `/productos/[categoria]/[producto]`.
+- [x] Add internal links from product details to related categories, related products, and relevant services.
 
 ## Sitemap And Crawler Files
 
