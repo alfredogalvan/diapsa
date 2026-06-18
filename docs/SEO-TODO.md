@@ -72,9 +72,9 @@ This checklist comes from the current project audit. It is grouped so we can sta
   - [ ] cámaras termograficas industriales
   - [ ] mantenimiento predictivo industrial en Mexico
   - [ ] analisis de vibraciones para maquinaria
-  - [ ] termografia infrarroja industrial
-  - [ ] monitoreo de condicion
-  - [ ] deteccion de fugas de gas con camara acustica
+  - [ ] termografía infrarroja industrial
+  - [ ] monitoreo de condición
+  - [ ] detección de fugas de gas con camara acustica
 - [ ] Add short, useful intro copy to product categories.
 - [ ] Add comparison/use-case sections for important product families.
 - [ ] Add FAQs to major service and product category pages.

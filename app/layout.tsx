@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 const BASE_URL = "https://www.grupodiapsa.com.mx";
-const OG_IMAGE = "/images/og-image.png";
+const OG_IMAGE = "/images/og-images/og-image.jpg";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        type: "image/png",
+        type: "image/jpeg",
         alt: "Grupo DIAPSA - Mantenimiento Predictivo Industrial",
       },
     ],
