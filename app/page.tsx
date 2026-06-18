@@ -60,6 +60,14 @@ const offerings = [
   },
 ];
 
+// const OG_IMAGE = `/api/og?title=${encodeURIComponent(
+//   "Mantenimiento Predictivo Industrial"
+// )}&subtitle=${encodeURIComponent(
+//   "Monitoreo de condicion, diagnostico y confiabilidad de activos"
+// )}`;
+
+const OG_IMAGE = "/images/og-images/og-image.jpg";
+
 
 export const metadata: Metadata = {
   title: "Inicio | Mantenimiento Predictivo Industrial",
@@ -90,10 +98,10 @@ export const metadata: Metadata = {
     siteName: "Grupo DIAPSA",
     images: [
       {
-        url: "/images/og-image.png",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        type: "image/png",
+        type: "image/jpeg",
         alt: "Grupo DIAPSA - Mantenimiento Predictivo Industrial",
       },
     ],
@@ -105,7 +113,7 @@ export const metadata: Metadata = {
     title: "Grupo DIAPSA | Mantenimiento Predictivo Industrial",
     description:
       "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
-    images: ["/images/og-image.png"],
+    images: [OG_IMAGE],
   },
 };
 
