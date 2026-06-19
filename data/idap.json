@@ -1,22 +1,36 @@
 {
+    "homeIntro": {
+        "title": "Monitoreo predictivo con",
+        "titleHighlight": "inteligencia artificial y análisis experto",
+        "description": "Centraliza inspecciones, diagnósticos y tendencias para conocer la condición de tus equipos y priorizar acciones de mantenimiento.",
+        "aboutTitle": "¿Qué es",
+        "aboutTitleHighlight": "IDAP?",
+        "aboutDescription": "IDAP (Inspection, Diagnostic & Asset Platform) reúne los resultados del monitoreo de condición desarrollado por DIAPSA y los convierte en información útil para mantenimiento.",
+        "informationTitle": "Información clara para",
+        "informationTitleHighlight": "actuar mejor",
+        "informationDescription": "Conoce cómo IDAP se integra a la operación, organiza los hallazgos técnicos y facilita el seguimiento de cada activo.",
+        "ctaTitle": "Anticipa las fallas con información técnica confiable.",
+        "ctaDescription": "Conoce las funciones de IDAP y su aplicación en una estrategia de mantenimiento predictivo.",
+        "closingStatement": "IDAP combina tecnología con el criterio de especialistas DIAPSA para interpretar tendencias, priorizar riesgos y recomendar acciones de mantenimiento."
+    },
     "tabs": [
         {
             "id": "visualiza",
-            "title": "VISUALIZA EL ESTADO DE TU MAQUINARIA",
+            "title": "Visualiza el estado de tu maquinaria",
             "text": [
                 "Consulta el estado, historial y métricas clave de tu maquinaria en un solo lugar. IDAP combina tecnología y análisis experto para convertir datos en decisiones confiables."
             ]
         },
         {
             "id": "reportes",
-            "title": "OBTÉN REPORTES A TU MEDIDA",
+            "title": "Obtén reportes a tu medida",
             "text": [
                 "Obtén métricas y reportes adaptados a tu operación, con información clara que responde preguntas específicas y facilita decisiones oportunas."
             ]
         },
         {
             "id": "historial",
-            "title": "ANALIZA EL HISTORIAL DE TUS EQUIPOS",
+            "title": "Analiza el historial de tus equipos",
             "text": [
                 "Cada inspección registra diagnósticos, tendencias y recomendaciones. Este historial permite detectar fallas, comparar el desempeño de los equipos y evaluar las acciones preventivas."
             ]
@@ -24,19 +38,19 @@
     ],
     "questions": [
         {
-            "title": "¿QUÉ HACE IDAP?",
+            "title": "¿Qué hace IDAP?",
             "description": "Convierte los datos de tus equipos en información clara para interpretar su estado, priorizar riesgos y ejecutar acciones preventivas o correctivas."
         },
         {
-            "title": "¿CÓMO SE INTEGRA?",
+            "title": "¿Cómo se integra?",
             "description": "Comienza con un levantamiento técnico para definir puntos de monitoreo y alcances. Después, las revisiones programadas validan condiciones, ajustan parámetros y anticipan necesidades de mantenimiento."
         },
         {
-            "title": "¿QUÉ VALOR APORTA?",
+            "title": "¿Qué valor aporta?",
             "description": "Especialistas interpretan alarmas, lecturas y tendencias para priorizar acciones, optimizar recursos y mejorar la disponibilidad, eficiencia y ahorro de tu operación."
         },
         {
-            "title": "¿POR QUÉ ELEGIR IDAP?",
+            "title": "¿Por qué elegir IDAP?",
             "description": "IDAP integra tecnología con más de 22 años de experiencia de DIAPSA. Nuestros especialistas analizan anomalías, proponen mejoras y dan seguimiento para generar resultados reales."
         }
     ],
