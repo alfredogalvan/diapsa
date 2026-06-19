@@ -24,9 +24,9 @@ export default function GasDetectionHero({ onOpenModal }: Props) {
                     </span>
                 </div>
 
-                <h1 className="text-5xl lg:text-7xl font-bold text-black">
+                <h2 className="text-5xl lg:text-7xl font-bold text-black">
                     Detección de <span className="text-secondary lg:block">Gases</span>
-                </h1>
+                </h2>
 
                 <p className="text-black/70 text-xl lg:w-5/6 leading-relaxed">
                     Cumplimiento regulatorio <strong>PPCIEM</strong> y mitigación de riesgos
