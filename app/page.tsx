@@ -85,8 +85,8 @@ export default function Home() {
       <AboutUs />
       <AdSection advertisements={ads} />
       <TabsSection />
-      <CursosTeaser />
       <CasosExitoTeaser />
+      <CursosTeaser />
       <IdapIntro />
       <Clients />
       <GalleryTeaser />

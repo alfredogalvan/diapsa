@@ -35,15 +35,21 @@ export default function AboutUs() {
               eficiencia operativa.
             </p>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 flex gap-4">
             <Link
               href="/acerca-de"
               className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300"
             >
-              Conoce nuestra historia
+              Conócenos
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
               </svg>
+            </Link>
+            <Link
+              href="#contacto"
+              className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300"
+            >
+              Contáctanos
             </Link>
           </div>
         </div>

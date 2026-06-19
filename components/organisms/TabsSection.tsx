@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface TabContent {
   id: string;
@@ -21,9 +22,9 @@ const tabs: TabContent[] = [
     title: "EL PROBLEMA",
     content: {
       text: [
-        "En la operación industrial, cada máquina habla: ruidos, vibraciones, temperaturas inusuales: son señales que revelan el estado real de los equipos. Si estas señales no se interpretan a tiempo, pueden convertirse en fallas críticas, paros imprevistos y pérdidas millonarias.",
         "El reto no está solo en detectar anomalías, sino en darles sentido. Sin una interpretación adecuada, las empresas enfrentan altos costos de mantenimiento correctivo, paradas continuas de producción y falta de visibilidad sobre la condición de sus activos.",
       ],
+      image: '/images/monitoreo-condicion/hombre-confuso.jpg'
     },
   },
   {
@@ -34,6 +35,7 @@ const tabs: TabContent[] = [
       text: [
         "Al igual que en la medicina, un diagnóstico certero no se obtiene con un solo estudio. Revisar únicamente vibraciones, termografía o ultrasonido de manera aislada ofrece una visión parcial del problema. En DIAPSA integramos estas disciplinas dentro de un mismo servicio para obtener una visión 360° del equipo, validar hallazgos entre técnicas y entender la causa real de las fallas.",
       ],
+      image: "/images/monitoreo-continuo/tecnico-revision.jpeg"
     },
   },
   {
@@ -42,8 +44,9 @@ const tabs: TabContent[] = [
     title: "METODOLOGÍA",
     content: {
       text: [
-        "Nuestro servicio ofrece una visión integral del estado y desempeño de los activos mediante un levantamiento técnico especializado. Este proceso permite identificar riesgos, condiciones críticas y áreas de oportunidad que no siempre son evidentes a simple vista. A partir de este entendimiento global, se establece un marco claro para orientar evaluaciones, definir prioridades y alinear las acciones técnicas con las necesidades reales de la operación, generando información confiable que respalda decisiones sólidas y una gestión operativa más efectiva.",
+        "Obtén una visión clara y completa del estado de tus activos. Identificamos riesgos, condiciones críticas y oportunidades de mejora para ayudarte a priorizar acciones, optimizar recursos y tomar decisiones basadas en información confiable."
       ],
+      image: "/images/metodologia/metodologia-1.jpg"
     },
   },
   {
@@ -54,6 +57,7 @@ const tabs: TabContent[] = [
       text: [
         "Estos resultados demuestran un impacto económico significativo, reflejado en ahorros medibles gracias a la mejora en eficiencia operativa y la prevención de fallas antes de que ocurran.",
       ],
+      image: "/images/monitoreo-continuo/tecnico-laptop.jpeg",
       stats: [
         { value: "95%", label: "Efectividad en detección temprana de fallas críticas" },
         { value: "150%", label: "Retorno de inversión durante el primer año" },
@@ -69,22 +73,17 @@ export default function TabsSection() {
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
   return (
-    <section className="relative w-full bg-primary py-16 lg:py-24 pb-24 lg:pb-60 border-y-4 border-secondary">
-      {/* Patrón de fondo decorativo */}
+    <section className="relative w-full bg-primary py-16 lg:py-24 pb-24  border-y-4 border-secondary">
       <div className="absolute inset-0 opacity-50 pointer-events-none overflow-hidden">
         <Image
-          src="/images/vision-image.jpg"
+          src={currentTab.content.image ?? "/images/vision-image.jpg"}
           alt="Fondo decorativo"
           fill
           className="object-cover"
         />
       </div>
 
-
       <div className="relative max-w-7xl mx-auto px-6 text-center mb-10">
-        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-          DIAPSA 360
-        </span>
         <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
           CONOCE NUESTRO ROL <span className="text-secondary">EN LA INDUSTRIA</span>
         </h2>
@@ -93,8 +92,8 @@ export default function TabsSection() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto bg-white/90 relative shadow-2xl rounded-sm lg:min-h-112.5">
-        <div className="grid grid-cols-1 lg:grid-cols-12 lg:py-8 h-full">
+      <div className="max-w-7xl mx-auto bg-white/90 relative shadow-2xl rounded-sm lg:min-h-80">
+        <div className="grid grid-cols-1 lg:grid-cols-12 h-full">
           {/* Tabs verticales - Izquierda */}
           <div className="lg:col-span-5">
             {tabs.map((tab) => (
@@ -110,7 +109,6 @@ export default function TabsSection() {
                   }
                 `}
               >
-                {/* Triángulo indicador */}
                 <div
                   className={`
                     absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0
@@ -134,10 +132,19 @@ export default function TabsSection() {
                 </div>
               </button>
             ))}
+            <div className="flex justify-center py-2">
+
+              <Link href="#contacto"
+                className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
+
+              >
+                Pongámonos en contacto
+              </Link>
+            </div>
           </div>
 
           {/* Contenido - Derecha */}
-          <div className="lg:col-span-7 p-8 lg:p-16">
+          <div className="lg:col-span-7 p-8 lg:p-10">
             <div key={activeTab} className="grid grid-cols-1 gap-8 items-center animate-in">
 
               <div className="space-y-4">
@@ -164,7 +171,7 @@ export default function TabsSection() {
               )}
 
               {/* Imagen (si existe) */}
-              {currentTab.content.image && (
+              {/* {currentTab.content.image && (
                 <div className="relative w-full h-64 lg:h-80">
                   <Image
                     src={currentTab.content.image}
@@ -173,18 +180,11 @@ export default function TabsSection() {
                     className="object-contain"
                   />
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
-
-        {/* Motor superpuesto */}
-        <div className="hidden lg:block lg:absolute -bottom-60 left-1/2 -translate-x-1/2 lg:w-96 lg:h-96 z-10">
-          <Image src="/images/motor.png" alt="Motor" fill className="object-contain drop-shadow-2xl" />
-        </div>
       </div>
-
-
     </section>
   );
 }

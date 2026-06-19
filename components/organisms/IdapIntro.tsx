@@ -2,152 +2,192 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import idapdata from '@/data/idap.json';
-import Button from "../atoms/Button";
 import Link from "next/link";
-
+import idapdata from "@/data/idap.json";
 
 export default function IdapIntro() {
-    const [activeTab, setActiveTab] = useState<string | null>(null);
+    const [activeTab, setActiveTab] = useState<string | null>(idapdata.tabs[0]?.id ?? null);
 
     return (
-
-        <section className="w-full bg-white ">
-            <div className="relative overflow-hidden">
-                {/* Grid texture overlay */}
-                <div
-                    className="absolute inset-0 opacity-[0.06] pointer-events-none"
+        <section className="w-full bg-primary text-white" aria-labelledby="idap-intro-title">
+            <div className="relative overflow-hidden border-b border-white/10">
+                {/* <div
+                    className="absolute inset-0 opacity-[0.035] pointer-events-none"
                     style={{
                         backgroundImage:
-                            "linear-gradient(#002e46 1px, transparent 1px), linear-gradient(90deg, #002e46 1px, transparent 1px)",
+                            "linear-gradient(var(--secondary) 1px, transparent 1px), linear-gradient(90deg, var(--secondary) 1px, transparent 1px)",
                         backgroundSize: "48px 48px",
                     }}
-                />
-                {/* Decorative blobs */}
-                <div className="absolute -top-24 -right-24 w-80 h-80 bg-secondary opacity-10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -top-12 -left-24 w-64 h-64 bg-primary opacity-8 rounded-full blur-3xl pointer-events-none" />
-                <div className="flex items-center justify-center lg:gap-10 text-black">
-
-                    <div className="relative w-80 h-28">
-                        <Image fill src='/images/idap/idap-logo.png' alt="logo de idap" className="object-contain" />
+                /> */}
+                <div className="relative max-w-7xl mx-auto px-6 py-14 lg:py-20 text-center">
+                    <div className="relative mx-auto mb-6 h-20 w-56 sm:h-24 sm:w-72">
+                        <Image
+                            fill
+                            src="/images/idap/idap-logo.png"
+                            alt="IDAP"
+                            className="object-contain"
+                            sizes="(max-width: 640px) 224px, 288px"
+                        />
                     </div>
-                </div>
-                <div className="w-75 max-w-lg lg:max-w-2xl mx-auto border-2 border-primary" />
-            </div>
-            <div className="lg:p-10 bg-linear-to-t from-[#fda101] from-85% via-[#fda101] to-white text-black relative">
-                {/* Grid texture overlay */}
-                <div
-                    className="absolute inset-0 opacity-[0.08] pointer-events-none"
-                    style={{
-                        backgroundImage:
-                            "linear-gradient(#002e46 1px, transparent 1px), linear-gradient(90deg, #002e46 1px, transparent 1px)",
-                        backgroundSize: "48px 48px",
-                    }}
-                />
-                <p className="text-center text-2xl lg:text-4xl text-black font-extralight tracking-wide my-10">La única plataforma digital de monitoreo <br />
-                    predictivo que integra Inteligencia Artificial con el <br />
-                    análisis de expertos</p>
-                <div className="flex flex-wrap py-6 px-6 lg:px-24">
-                    <div className="relative w-full lg:w-1/2 h-96">
-                        <Image fill src="/images/idap/mockup.png" alt="Muestra Idap" className="object-contain" />
-                    </div>
-                    <div className="w-full lg:w-1/2">
-                        <div>
-                            <h2 className="text-2xl font-bold text-primary mb-2">¿QUÉ ES IDAP?</h2>
-                            <p className="text-sm font-sans">
-                                IDAP ( Inspection, Diagnostic &amp; Asset Platform) es la plataforma
-                                desarrollada por DIAPSA para la gestión integral de resultados de
-                                monitoreo de condición.
-                            </p>
-                        </div>
-                        <div className="lg:mt-6 space-y-4">
-                            {idapdata.tabs.map((tab) => (
-                                <div key={tab.id} className={`border-b border-gray-30 px-6 transition-colors duration-300 ease-in-out ${activeTab === tab.id ? ' bg-linear-to-t from-white from-10% to-transparent' : ''}`}>
-                                    <button
-                                        onClick={() => setActiveTab(activeTab === tab.id ? null : tab.id)}
-                                        className={`w-full flex items-start justify-between gap-4 py-4 text-left hover:opacity-80 transition-all `}
-                                    >
-                                        <div className="flex gap-3 flex-1 items-center transition-all">
-                                            <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeTab === tab.id ? 'bg-primary' : 'bg-primary'}`}>
-                                                <span className="text-secondary text-lg font-bold">•</span>
-                                            </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-sm font-semibold uppercase text-primary">
-                                                    {tab.title}
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div className="shrink-0">
-                                            <svg
-                                                className={`w-8 h-8 transition-transform ${activeTab === tab.id ? 'rotate-180' : ''}`}
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                    <div
-                                        className={`overflow-hidden transition-all duration-300 ease-in-out ${activeTab === tab.id
-                                            ? 'max-h-96 opacity-100'
-                                            : 'max-h-0 opacity-0'
-                                            }`}
-                                    >
-                                        <div className="pb-4 pl-16 pr-4">
-                                            {tab.text.map((paragraph, idx) => (
-                                                <p key={idx} className="text-sm leading-relaxed">
-                                                    {paragraph}
-                                                </p>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                </div>
-                <div className="relative grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-32 gap-10">
-                    <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-                        <Image width={800} height={800} src="/images/idap/idap-bco.png" alt="" className="object-contain" />
-                    </div>
-                    {idapdata.questions.map((q) => (
-                        <div key={q.title} className="space-y-3 relative z-10 mt-6">
-                            <p className="text-base font-bold text-primary">{q.title}</p>
-                            <p className="text-sm p-4">
-                                {q.description}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="relative bg-transparent flex flex-col lg:flex-row justify-around items-center p-6 text-black overflow-hidden">
-                {/* Dot accent */}
-                <div className="absolute -bottom-16 right-0 w-72 h-72 bg-secondary opacity-10 rounded-full blur-3xl pointer-events-none" />
-
-                <p className="text-2xl text-center uppercase relative z-10">Deja de reaccionar ante las fallas. Con IDAP, anticípalas.</p>
-                <Link href='/servicios/idap' className="relative z-10">
-                    <Button variant="black" className="text-2xl uppercase">
-                        Descubrir IDAP
-                    </Button>
-                </Link>
-            </div>
-            <div className="relative bg-gray-500 py-8 px-4 md:py-12 md:px-16 lg:py-16 lg:px-32 xl:px-48 flex justify-center items-center">
-
-                <Image src="/images/factory-image.avif" fill className="object-cover opacity-70" alt="Imagen de fondo de una planta" />
-                <div className="relative p-4 md:p-6 lg:p-8 bg-[#002e46cb] ">
-                    <p className="text-base md:text-lg lg:text-4xl text-center">
-                        La diferencia de IDAP está en el factor humano:
-                        no es una plataforma autónoma que solo recopila datos,
-                        sino un sistema vivo donde la tecnología y la experiencia de
-                        especialistas convergen para dar certeza en la toma de
-                        decisiones y confianza en la operación.
-
+                    <h2
+                        id="idap-intro-title"
+                        className="mx-auto max-w-4xl text-3xl font-extrabold uppercase leading-tight text-white lg:text-4xl"
+                    >
+                        Monitoreo predictivo con <span className="text-secondary">inteligencia artificial y análisis experto</span>
+                    </h2>
+                    <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/70 lg:text-lg">
+                        Convierte la información técnica de tus equipos en decisiones claras, oportunas y confiables.
                     </p>
                 </div>
+            </div>
 
+            <div className="relative py-16 lg:py-24">
+                <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
+                <div className="max-w-7xl mx-auto grid grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
+                    <div className="relative order-2 lg:order-1">
+                        <div className="relative h-72 w-full sm:h-96 lg:h-112">
+                            <Image
+                                fill
+                                src="/images/idap/mockup.png"
+                                alt="Panel de monitoreo predictivo de IDAP"
+                                className="object-contain"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="relative order-1 lg:order-2">
+                        <h3 className="text-3xl font-extrabold uppercase text-white lg:text-4xl">¿Qué es <span className="text-secondary">IDAP?</span></h3>
+                        <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 lg:text-lg">
+                            IDAP (Inspection, Diagnostic &amp; Asset Platform) centraliza y gestiona los resultados del monitoreo de condición desarrollado por DIAPSA.
+                        </p>
+
+                        <div className="mt-8 space-y-3">
+                            {idapdata.tabs.map((tab, index) => {
+                                const isActive = activeTab === tab.id;
+                                const panelId = `idap-panel-${tab.id}`;
+                                const triggerId = `idap-trigger-${tab.id}`;
+
+                                return (
+                                    <div
+                                        key={tab.id}
+                                        className={`overflow-hidden rounded-sm border transition-all duration-300 motion-reduce:transition-none ${isActive
+                                            ? "bg-white/10 border-secondary/50 shadow-xl"
+                                            : "bg-white/5 border-white/15 hover:border-secondary/50"
+                                            }`}
+                                    >
+                                        <h4>
+                                            <button
+                                                id={triggerId}
+                                                type="button"
+                                                aria-expanded={isActive}
+                                                aria-controls={panelId}
+                                                onClick={() => setActiveTab(isActive ? null : tab.id)}
+                                                className="flex w-full items-center gap-4 px-5 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-secondary"
+                                            >
+                                                <span className="shrink-0 text-xs font-extrabold tracking-wider text-secondary">
+                                                    {String(index + 1).padStart(2, "0")}
+                                                </span>
+                                                <span className="flex-1 text-sm font-bold leading-snug text-white sm:text-base">
+                                                    {tab.title}
+                                                </span>
+                                                <svg
+                                                    className={`h-5 w-5 shrink-0 text-white/60 transition-transform duration-300 motion-reduce:transition-none ${isActive ? "rotate-180" : ""
+                                                        }`}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+                                        </h4>
+                                        <div
+                                            id={panelId}
+                                            role="region"
+                                            aria-labelledby={triggerId}
+                                            className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                                                }`}
+                                        >
+                                            <div className="overflow-hidden">
+                                                <div className="border-t border-white/10 px-5 py-4 text-sm leading-relaxed text-white/70 sm:pl-14">
+                                                    {tab.text.map((paragraph, paragraphIndex) => (
+                                                        <p key={paragraphIndex}>{paragraph}</p>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="border-t border-white/10">
+                <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24">
+                    <div className="max-w-2xl">
+                        <h3 className="text-3xl font-extrabold uppercase text-white lg:text-4xl">
+                            Información clara para <span className="text-secondary">actuar mejor</span>
+                        </h3>
+                        <p className="mt-4 text-base leading-relaxed text-white/70 lg:text-lg">
+                            Conoce cómo se integra a tu operación y transforma los datos en resultados medibles.
+                        </p>
+                    </div>
+
+                    <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+                        {idapdata.questions.map((question) => (
+                            <article
+                                key={question.title}
+                                className="rounded-sm border border-white/15 bg-white/10 p-6 shadow-sm transition-all duration-300 hover:border-secondary/50 hover:shadow-xl motion-reduce:transition-none"
+                            >
+                                <div className="border-l-2 border-secondary pl-4">
+                                    <h4 className="text-lg font-bold text-white">{question.title}</h4>
+                                    <p className="mt-2 text-sm leading-relaxed text-white/70">{question.description}</p>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="border-y border-white/10">
+                <div className="max-w-7xl mx-auto flex flex-col items-start justify-between gap-6 px-6 py-10 sm:flex-row sm:items-center lg:px-12">
+                    <div>
+                        <p className="text-xl font-bold text-white sm:text-2xl">
+                            Deja de reaccionar ante las fallas. Anticípalas.
+                        </p>
+                        <p className="mt-2 text-sm text-white/65">Descubre cómo IDAP puede fortalecer tu estrategia predictiva.</p>
+                    </div>
+                    <Link
+                        href="/servicios/idap"
+                        className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xs bg-secondary px-8 py-3 font-bold text-primary shadow-md transition-all duration-300 hover:bg-white hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
+                    >
+                        Conocer IDAP
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </Link>
+                </div>
+            </div>
+
+            <div className="relative isolate overflow-hidden px-6 py-16 lg:py-24">
+                <Image
+                    src="/images/factory-image.avif"
+                    fill
+                    className="-z-20 object-cover"
+                    alt="Planta industrial monitoreada con IDAP"
+                    sizes="100vw"
+                />
+                <div className="absolute inset-0 -z-10 bg-primary/88" />
+                <blockquote className="mx-auto max-w-4xl text-center">
+                    <p className="text-xl font-semibold leading-relaxed text-white sm:text-2xl lg:text-3xl">
+                        La diferencia de IDAP está en el factor humano: tecnología y especialistas trabajan juntos para dar certeza a cada decisión.
+                    </p>
+                </blockquote>
             </div>
         </section>
-    )
+    );
 }
