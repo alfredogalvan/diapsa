@@ -103,11 +103,11 @@ export default function CasosExitoTeaser() {
                     <div className="flex flex-col gap-6">
                         {/* Headlines */}
                         <div>
-                            <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                            <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
                                 Casos de Éxito
                             </span>
                             <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-                                RESULTADOS QUE <span className="text-secondary">HABLAN POR SÍ SOLOS</span>
+                                Resultados que <span className="text-secondary">Hablan por sí solos</span>
                             </h2>
                             <p className="text-white/70 text-base mb-5 max-w-md">
                                 Empresas líderes confían en DIAPSA para proteger sus activos y maximizar su rentabilidad operativa.

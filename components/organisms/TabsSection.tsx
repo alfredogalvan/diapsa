@@ -85,7 +85,7 @@ export default function TabsSection() {
 
       <div className="relative max-w-7xl mx-auto px-6 text-center mb-10">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-          CONOCE NUESTRO ROL <span className="text-secondary">EN LA INDUSTRIA</span>
+          Conoce Nuestro Rol <span className="text-secondary">en la Industria</span>
         </h2>
         <p className="text-white text-lg max-w-2xl mx-auto">
           Entiende el problema industrial y cómo la metodología DIAPSA 360 transforma la forma de anticipar fallas.
