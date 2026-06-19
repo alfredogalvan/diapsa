@@ -76,7 +76,7 @@ export default function Home() {
             Mantenimiento predictivo y monitoreo de condición para Sudamérica
           </h2>
           <p className="text-tertiary text-lg leading-relaxed max-w-3xl mx-auto">
-            Grupo DIAPSA brinda servicios de mantenimiento industrial, monitoreo de condicion,
+            Grupo DIAPSA brinda servicios de mantenimiento industrial, monitoreo de condición,
             diagnostico de maquinaria y confiabilidad de activos a plantas en Mexico y toda
             Sudamérica.
           </p>
