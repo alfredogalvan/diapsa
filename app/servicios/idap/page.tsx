@@ -4,7 +4,47 @@ import IdapPillars from "@/components/organisms/IdapPillars";
 import IdapFaq from "@/components/organisms/IdapFaq";
 import { information as idapdata } from "@/data/idap.json";
 import Image from "next/image";
-import ContactLandingForm from "@/components/organisms/ContactLandingForm";
+import { Metadata } from "next";
+
+const OG_IMAGE = "/images/og-images/og-image-idap.jpg";
+
+export const metadata: Metadata = {
+    title: "IDAP ",
+    description: "Plataforma desarrollada para la gestión integral de resultados basados en el monitoreo de condición de activos industriales.",
+    keywords: [
+        "software para predictivo",
+        "gestión de activos",
+        "IDAP"
+    ],
+    alternates: {
+        canonical: "/servicios/idap"
+    },
+    openGraph: {
+        title: "IDAP | Grupo DIAPSA",
+        description: "Plataforma desarrollada para la gestión integral de resultados basados en el monitoreo de condición de activos industriales.",
+        url: "/servicios/idap",
+        type: "website",
+        locale: "es_MX",
+        siteName: "Grupo DIAPSA",
+        images: [
+            {
+                url: OG_IMAGE,
+                width: 1200,
+                height: 630,
+                type: "image/jpeg",
+                alt: "IDAP - Inspection, Diagnostic & Asset Platform"
+            }
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@grupodiapsa",
+        creator: "@grupodiapsa",
+        title: "IDAP | Inspection, Diagnostic & Asset Platform",
+        description: "Plataforma desarrollada para la gestión integral de resultados basados en el monitoreo de condición de activos industriales.",
+        images: [OG_IMAGE]
+    }
+}
 
 type InfoBlock = {
     bg?: boolean;
