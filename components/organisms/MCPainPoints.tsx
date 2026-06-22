@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const painPoints = [
     {
@@ -125,6 +126,13 @@ export default function MCPainPoints() {
                     <p className="text-tertiary text-base lg:text-lg">
                         Si reconoce alguna de estas situaciones, <strong className="text-primary">no está solo</strong>. Y existe una solución que ya está funcionando en cientos de plantas.
                     </p>
+                    <Link
+                        href="/contacto"
+                        className="mt-6 inline-flex items-center gap-2 rounded-xs bg-primary px-8 py-3 font-bold text-white shadow-md transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                        Evaluar el estado de mis equipos
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </div>
             </div>
         </section>

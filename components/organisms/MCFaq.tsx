@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const faqs = [
     {
         q: "¿Necesito detener la producción para las mediciones?",
@@ -73,6 +75,19 @@ export default function MCFaq() {
                             </div>
                         </details>
                     ))}
+                </div>
+
+                <div className="mt-10 text-center">
+                    <p className="mb-5 text-sm text-tertiary">
+                        ¿Su equipo o condición operativa requiere una respuesta más específica?
+                    </p>
+                    <Link
+                        href="/contacto"
+                        className="inline-flex items-center gap-2 rounded-xs bg-primary px-8 py-3 font-bold text-white shadow-md transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                        Resolver una duda sobre mi planta
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </div>
             </div>
         </section>

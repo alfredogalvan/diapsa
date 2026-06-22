@@ -8,7 +8,8 @@ const processSteps = [
         description:
             "Levantamos el inventario de activos críticos, historial de fallas y condición operativa actual. Identificamos los equipos de mayor riesgo para su operación.",
         time: "1–2 semanas",
-        cta: "diagnostico-situacional"
+        cta: "/servicios/diagnostico-situacional",
+        ctaLabel: "Ver diagnóstico situacional",
     },
     {
         step: "02",
@@ -33,7 +34,8 @@ const processSteps = [
         description: "Entregamos informes técnicos de diferente categoría según su necesidad",
         list: ['Reportes inmediatos', 'Reportes de Seguimiento', 'Reportes Históricos'],
         time: "48–72 h post-medición",
-        cta: '#reportes'
+        cta: '#reportes',
+        ctaLabel: 'Comparar reportes',
     },
     {
         step: "05",
@@ -42,20 +44,21 @@ const processSteps = [
         description:
             "Entregamos informes técnicos con hallazgos, severidad y recomendaciones priorizadas. Usted sabe exactamente qué intervenir, cuándo y por qué.",
         time: "Persistencia Ilimitada ",
-        cta: "/servicios/idap"
+        cta: "/servicios/idap",
+        ctaLabel: "Conocer IDAP",
     },
 ];
 
 export default function MCProcess() {
     return (
-        <section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+        <section id="proceso" className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
             <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-2xl pointer-events-none" />
             <div className="max-w-7xl mx-auto px-6 relative z-10">
 
                 <div className="text-center mb-12">
                     <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                        Las 5D's de Diapsa
+                        Las 5D de DIAPSA
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
                         ¿CÓMO <span className="text-secondary">FUNCIONA?</span>
@@ -97,8 +100,10 @@ export default function MCProcess() {
                                     </svg>
                                     {step.time}
                                 </div>
-                                {step.cta && (
-                                    <a href={step.cta} className="text-sm text-secondary ms-auto border-b-2 border-secondary hover:text-white hover:border-white transition-all duration-300 ease-in-out" >Saber mas</a>
+                                {step.cta && step.ctaLabel && (
+                                    <Link href={step.cta} className="text-sm text-secondary ms-auto border-b-2 border-secondary hover:text-white hover:border-white transition-all duration-300 ease-in-out">
+                                        {step.ctaLabel}
+                                    </Link>
                                 )}
                             </div>
                             {i < processSteps.length - 1 && (

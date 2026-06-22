@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const isForYou = [
     "Tiene maquinaria crítica cuya falla detiene la producción.",
     "Ha experimentado paros no programados en los últimos 12 meses.",
@@ -75,10 +77,20 @@ export default function MCAudience() {
                         </ul>
                         <div className="mt-6 p-4 bg-secondary/10 border-l-2 border-secondary rounded-sm">
                             <p className="text-xs text-primary leading-relaxed">
-                                <strong>¿No está seguro?</strong> Contáctenos y con una conversación de 15 minutos le diremos honestamente si el Monitoreo de Condición es la herramienta correcta para su situación.
+                                <strong>¿No está seguro?</strong> Una evaluación breve de su operación permite determinar si el Monitoreo de Condición es la herramienta correcta para su situación.
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div className="mt-10 text-center">
+                    <Link
+                        href="/contacto"
+                        className="inline-flex items-center gap-2 rounded-xs bg-primary px-8 py-3 font-bold text-white shadow-md transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                        ¿Aun tienes dudas? Contáctanos
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </div>
             </div>
         </section>
