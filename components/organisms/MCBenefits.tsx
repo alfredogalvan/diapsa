@@ -50,7 +50,7 @@ export default function MCBenefits() {
 
                 {/* Headline arriba */}
                 <div className="flex flex-col items-center text-center gap-3">
-                    <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
+                    <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase ">
                         Beneficios
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
