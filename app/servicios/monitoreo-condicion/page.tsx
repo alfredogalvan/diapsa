@@ -45,7 +45,7 @@ export const metadata: Metadata = {
                 width : 1200,
                 height : 630,
                 type : "image/jpeg",
-                alt : "Gripo DIAPSA - Monitoreo de Condición"
+                alt : "Grupo DIAPSA - Monitoreo de Condición"
             }
         ]
     },
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         site: "@grupodiapsa",
         creator: "@grupodiapsa",
-        title: "Grupo DIAPSA | Monitoreo de COndición",
+        title: "Grupo DIAPSA | Monitoreo de Condición",
         description:
           "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
         images: [OG_IMAGE],

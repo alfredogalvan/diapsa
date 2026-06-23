@@ -2,6 +2,48 @@ import PageHeader from "@/components/organisms/PageHeader"
 import StageCard from "@/components/molecules/StageCard"
 import { PlusCircleIcon, ChartIcon, ChartIcon2, WindowIcon, DoubleCircleIcon } from '@/components/atoms/icons/'
 import Image from "next/image";
+import { Metadata } from "next";
+
+const OG_IMAGE = "/images/og-images/og-image-diapsa-start.jpg";
+
+export const metadata: Metadata = {
+    title: "DIAPSA START",
+    description: "Programa para iniciar o fortalecer el monitoreo de condición con capacitación, diagnóstico situacional, mediciones y gestión de datos.",
+    keywords: [
+        "DIAPSA START",
+        "monitoreo de condición desde cero",
+        "mantenimiento predictivo",
+        "capacitación técnica en planta",
+        "diagnóstico situacional",
+    ],
+    alternates: {
+        canonical: "/servicios/diapsa-start",
+    },
+    openGraph: {
+        title: "DIAPSA START | Grupo DIAPSA",
+        description: "Programa estructurado para construir capacidades de mantenimiento predictivo y tomar control de los activos industriales.",
+        url: "/servicios/diapsa-start",
+        type: "website",
+        locale: "es_MX",
+        siteName: "Grupo DIAPSA",
+        images: [
+            {
+                url: OG_IMAGE,
+                width: 1200,
+                height: 630,
+                type: "image/jpeg",
+                alt: "DIAPSA START Grupo DIAPSA",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@grupodiapsa",
+        title: "DIAPSA START | Grupo DIAPSA",
+        description: "Programa para iniciar o fortalecer el monitoreo de condición de manera ordenada.",
+        images: [OG_IMAGE],
+    },
+};
 
 const stages = [
     {
