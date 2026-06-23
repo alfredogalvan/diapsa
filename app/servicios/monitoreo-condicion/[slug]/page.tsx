@@ -10,6 +10,8 @@ import JsonLd, {
     createBreadcrumbSchema,
 } from "@/components/atoms/JsonLd";
 
+const OG_IMAGE = "/images/og-images/og-image-monitoreo-condicion.jpg";
+
 // Lista de slugs disponibles
 const serviceSlugs = [
     "termografia-infrarroja",
@@ -71,16 +73,24 @@ export async function generateMetadata({
             description: service.header.subtitle,
             url: `/servicios/monitoreo-condicion/${slug}`,
             type: "website",
-            images: service.content?.image
-                ? [
-                    {
-                        url: service.content.image,
-                        width: 1200,
-                        height: 630,
-                        alt: service.header.title,
-                    },
-                ]
-                : undefined,
+            locale: "es_MX",
+            siteName: "Grupo DIAPSA",
+            images: [
+                {
+                    url: OG_IMAGE,
+                    width: 1200,
+                    height: 630,
+                    type: "image/jpeg",
+                    alt: `${service.header.title} Grupo DIAPSA`,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            site: "@grupodiapsa",
+            title: `${service.header.title} | Grupo DIAPSA`,
+            description: service.header.subtitle,
+            images: [OG_IMAGE],
         },
     };
 }

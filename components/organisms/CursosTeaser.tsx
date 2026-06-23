@@ -16,11 +16,11 @@ export default function CursosTeaser() {
                 {/* Header */}
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-12">
                     <div>
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase">
                             Formación Profesional
                         </span>
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
-                            CURSOS Y <span className="text-secondary">CERTIFICACIONES</span>
+                            Cursos y <span className="text-secondary">Certificaciones</span>
                         </h2>
                         <p className="text-tertiary mt-2 max-w-xl">
                             Certifica a tu equipo bajo estándares ISO 18436 con instructores con experiencia real en campo.

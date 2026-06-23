@@ -97,34 +97,42 @@ export default function CasosExitoTeaser() {
                             className="object-cover object-top"
                             sizes="(max-width: 1024px) 100vw, 50vw"
                         />
-                        {/* Gradientes que fusionan la imagen con el fondo claro */}
-                        {/* <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent" /> */}
-                        {/* <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent" />
-                        <div className="absolute inset-0 bg-gradient-to-l from-blue-50/30 to-transparent" /> */}
                     </div>
 
                     {/* DERECHA: Headlines + Cards en pirámide invertida */}
                     <div className="flex flex-col gap-6">
                         {/* Headlines */}
                         <div>
-                            <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                            <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
                                 Casos de Éxito
                             </span>
                             <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
-                                RESULTADOS QUE <span className="text-secondary">HABLAN POR SÍ SOLOS</span>
+                                Resultados que <span className="text-secondary">Hablan por sí solos</span>
                             </h2>
                             <p className="text-white/70 text-base mb-5 max-w-md">
                                 Empresas líderes confían en DIAPSA para proteger sus activos y maximizar su rentabilidad operativa.
                             </p>
-                            <Link
-                                href="/casos-exito"
-                                className="inline-flex w-fit items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
-                            >
-                                Ver todos los casos de éxito
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </Link>
+                            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
+                                <Link
+                                    href="/casos-exito"
+                                    className="inline-flex w-full sm:w-fit items-center justify-center gap-2 bg-secondary text-primary font-bold px-6 py-3 rounded-xs hover:bg-white transition-all duration-300 shadow-md"
+                                >
+                                    Explorar casos de éxito
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </Link>
+                                <Link
+                                    href="/contacto"
+                                    className="inline-flex w-full sm:w-fit items-center justify-center gap-2 border border-white/60 bg-white/5 text-white font-bold px-6 py-3 rounded-xs hover:bg-white hover:border-white hover:text-primary transition-all duration-300"
+                                >
+                                    Quiero lograr estos resultados
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </Link>
+                            </div>
+
                         </div>
 
                         {/* Cards en pirámide invertida */}

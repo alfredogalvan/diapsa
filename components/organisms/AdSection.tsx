@@ -25,11 +25,11 @@ export default function AdSection({ advertisements }: Props) {
             <div className="relative z-10">
                 {/* Header */}
                 <div className="text-center mb-14 space-y-3">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-2">
+                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-2">
                         Tablero de Anuncios
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
-                        PRÓXIMOS EVENTOS <span className="text-secondary">EN DIAPSA</span>
+                        Próximos eventos <span className="text-secondary">en DIAPSA</span>
                     </h2>
                 </div>
 

@@ -13,14 +13,14 @@ export default function AboutUs() {
         zIndex="-z-10"
       />
 
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-6 py-16 lg:py-24">
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 px-6 py-16 lg:py-32">
         {/* Columna izquierda */}
-        <div className="text-white p-12">
-          <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+        <div className="text-white">
+          <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
             Nuestra historia
           </span>
           <h2 className="text-3xl lg:text-4xl font-extrabold mb-6 tracking-wide">
-            ¿POR QUÉ ELEGIR A DIAPSA?
+            ¿Por qué elegir a DIAPSA?
           </h2>
           <div className="space-y-5 text-lg lg:text-xl text-white/90">
             <p>
@@ -35,21 +35,27 @@ export default function AboutUs() {
               eficiencia operativa.
             </p>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 flex gap-4">
             <Link
               href="/acerca-de"
               className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300"
             >
-              Conoce nuestra historia
+              Conócenos
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
               </svg>
+            </Link>
+            <Link
+              href="#contacto"
+              className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300"
+            >
+              Contáctanos
             </Link>
           </div>
         </div>
 
         {/* Columna derecha */}
-        <div className="text-white text-center p-12">
+        <div className="text-white text-center">
           <h3 className="text-secondary text-2xl lg:text-3xl font-semibold mb-6">
             Nuestra misión:
           </h3>

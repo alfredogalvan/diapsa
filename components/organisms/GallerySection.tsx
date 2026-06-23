@@ -23,7 +23,7 @@ export function GallerySection() {
 
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
                             Galería Grupo DIAPSA
                         </span>
 

@@ -4,20 +4,45 @@ import Image from "next/image";
 import BackgroundImage from "@/components/atoms/BackgroundImage";
 import PageHeader from "@/components/organisms/PageHeader";
 
+const OG_IMAGE = "/images/og-images/og-image-diagnostico-situacional.jpg";
 
 export const metadata: Metadata = {
     title: "Diagnóstico Situacional | Grupo DIAPSA",
     description:
         "Conoce el estado real de tus activos industriales con un análisis exhaustivo realizado por especialistas. El punto de partida de todo programa de mantenimiento predictivo eficiente.",
+        keywords : [
+            'análisis predictivo',
+            'análisis de equipos',
+            'historial de salud de maquinaria',
+        ],
     alternates: {
         canonical: "/servicios/diagnostico-situacional",
     },
     openGraph: {
         title: "Diagnóstico Situacional | Grupo DIAPSA",
         description:
-            "El historial médico de tus equipos. Análisis exhaustivo de activos industriales para predecir fallas antes de que ocurran.",
+            "Mas de 22 años en análisis exhaustivo de activos industriales para predecir fallas antes de que ocurran.",
         url: "/servicios/diagnostico-situacional",
         type: "website",
+        locale: "es_MX",
+        siteName: "Grupo DIAPSA",
+        images: [
+            {
+                url: OG_IMAGE,
+                width: 1200,
+                height: 630,
+                type: "image/jpeg",
+                alt: "Diagnóstico Situacional Grupo DIAPSA",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@grupodiapsa",
+        title: "Diagnóstico Situacional | Grupo DIAPSA",
+        description:
+            "Conoce el estado real de tus activos industriales con un análisis exhaustivo realizado por especialistas.",
+        images: [OG_IMAGE],
     },
 };
 
@@ -239,7 +264,7 @@ export default function DiagnosticoSituacionalPage() {
                             </span>
                             <blockquote className="border-l-2 border-secondary pl-6 mb-8">
                                 <p className="text-white text-xl lg:text-2xl font-bold leading-snug italic mb-3">
-                                    "Un médico sin expediente clínico está adivinando. Un técnico sin historial de equipo también."
+                                    &quot;Un médico sin expediente clínico está adivinando. Un técnico sin historial de equipo también.&quot;
                                 </p>
                                 <cite className="text-white/60 text-sm not-italic">
                                     — Principio fundamental del mantenimiento predictivo
@@ -382,7 +407,7 @@ export default function DiagnosticoSituacionalPage() {
                             {/* Label superpuesto */}
                             <div className="absolute bottom-4 left-4 right-4 bg-primary/80 backdrop-blur-sm rounded-xs px-4 py-3 border-l-2 border-secondary">
                                 <p className="text-white text-sm font-semibold leading-snug">
-                                    "El diagnóstico es el paso cero que hace posible todo lo demás."
+                                    &quot;El diagnóstico es el paso cero que hace posible todo lo demás.&quot;
                                 </p>
                             </div>
                         </div>

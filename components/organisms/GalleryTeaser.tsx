@@ -14,11 +14,11 @@ export default function GalleryTeaser() {
                 {/* Header */}
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
                     <div>
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase">
                             Galería
                         </span>
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
-                            EXPERIENCIA EN <span className="text-secondary">ACCIÓN</span>
+                            Experiencia en <span className="text-secondary">Acción</span>
                         </h2>
                         <p className="text-white/70 mt-2">
                             22 años de trabajo real en campo y capacitación técnica especializada.

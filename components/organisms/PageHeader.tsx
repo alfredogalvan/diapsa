@@ -14,7 +14,12 @@ interface PageHeaderProps {
   loading?: boolean;
 }
 
-export default function PageHeader({ title, subtitle, breadcrumbs, loading }: PageHeaderProps) {
+export default function PageHeader({
+  title,
+  subtitle,
+  breadcrumbs,
+  loading
+}: PageHeaderProps) {
   return (
     <header className="relative w-full h-[50vh] sm:h-[55vh] lg:h-[60vh] overflow-hidden border-b-2 lg:border-b-4 border-secondary">
       {/* Fondo hero */}

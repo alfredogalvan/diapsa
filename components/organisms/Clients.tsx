@@ -14,7 +14,7 @@ export function Clients() {
         <section className="w-full flex flex-col pt-16 lg:pt-24 bg-white">
             {/* Header Section */}
             <div className="w-full flex flex-col items-center gap-4 mb-8">
-                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
+                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase">
                     Clientes Satisfechos
                 </span>
                 <h2 className="text-3xl lg:text-4xl font-extrabold text-primary text-center leading-tight">

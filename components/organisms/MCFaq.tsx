@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const faqs = [
     {
         q: "¿Necesito detener la producción para las mediciones?",
@@ -40,7 +42,7 @@ export default function MCFaq() {
             <div className="max-w-4xl mx-auto px-6 relative z-10">
 
                 <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
                         Preguntas frecuentes
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
@@ -73,6 +75,19 @@ export default function MCFaq() {
                             </div>
                         </details>
                     ))}
+                </div>
+
+                <div className="mt-10 text-center">
+                    <p className="mb-5 text-sm text-tertiary">
+                        ¿Su equipo o condición operativa requiere una respuesta más específica?
+                    </p>
+                    <Link
+                        href="/contacto"
+                        className="inline-flex items-center gap-2 rounded-xs bg-primary px-8 py-3 font-bold text-white shadow-md transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                        Resolver una duda sobre mi planta
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </div>
             </div>
         </section>

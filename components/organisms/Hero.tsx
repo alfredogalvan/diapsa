@@ -153,7 +153,7 @@ export default function Hero() {
             {/* Columna izquierda — texto */}
             <div className={`flex flex-col justify-center px-6 py-12 pt-28 order-1 ${slide.id === 0 ? 'lg:z-10 lg:-mr-20' : ''}`}>
               {/* Badge */}
-              <span className={`self-start text-secondary text-xs ${slide.id === 0 ? 'lg:text-base' : ''} font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-5`}>
+              <span className={`self-start text-secondary text-xs ${slide.id === 0 ? 'lg:text-base' : ''} font-semibold tracking-widest uppercase mb-5`}>
                 {slide.badge}
               </span>
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const benefits = [
     {
@@ -49,7 +50,7 @@ export default function MCBenefits() {
 
                 {/* Headline arriba */}
                 <div className="flex flex-col items-center text-center gap-3">
-                    <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
+                    <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase ">
                         Beneficios
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
@@ -118,6 +119,16 @@ export default function MCBenefits() {
                         ))}
                     </div>
 
+                </div>
+
+                <div className="text-center">
+                    <Link
+                        href="/contacto"
+                        className="inline-flex items-center gap-2 rounded-xs bg-primary px-8 py-3 font-bold text-white shadow-md transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                        Identificar oportunidades de mejora
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </div>
             </div>
         </section>
