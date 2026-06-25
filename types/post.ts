@@ -35,14 +35,22 @@ export interface SuccessCase extends Post {
 
 interface SuccessCaseDetail {
     industry: string;
+    methodology_name: string | null;
     service: string;
     introduction: string;
     challenge: string;
     results: string;
+    metrics: SuccessCaseMetric[] | null;
     economic_impact: string;
     conclusion: string;
     stages: SuccessCaseStage[];
 }
+
+interface SuccessCaseMetric {
+    label: string;
+    number: string;
+};
+
 
 interface SuccessCaseStage {
     id: string | number;

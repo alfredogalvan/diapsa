@@ -1,37 +1,15 @@
+import { SuccessCase } from "@/types/post";
 import Image from "next/image";
 import Link from "next/link";
 
-const cases = [
-    {
-        slug: "vision-predictiva-y-ahorros-millonarios-en-industria-alimenticia",
-        industry: "Industria alimenticia",
-        title: "Ahorros millonarios con termografía predictiva",
-        metric: "$12.2M USD",
-        metricLabel: "en ahorros evitados",
-        highlight: "90% reducción del riesgo operativo",
-        service: "Termografía Infrarroja",
-    },
-    {
-        slug: "monitoreo-predictivo-en-central-de-ciclo-combinado",
-        industry: "Generación de energía",
-        title: "Monitoreo predictivo en central de ciclo combinado",
-        metric: "98.7%",
-        metricLabel: "reducción de condiciones críticas",
-        highlight: "$5.1M USD en pérdidas evitadas",
-        service: "Monitoreo Integral de Condición",
-    },
-    {
-        slug: "diapsa-start-en-planta-de-tratamiento-de-agua-residual",
-        industry: "Tratamiento de agua residual",
-        title: "De inspecciones aisladas a estrategia de confiabilidad",
-        metric: "4 Etapas",
-        metricLabel: "de transformación técnica",
-        highlight: "3 disciplinas integradas en un programa",
-        service: "DIAPSA START",
-    },
-];
+type CaseCardProps = {
+    c: SuccessCase;
+}
 
-function CaseCard({ c }: { c: (typeof cases)[0] }) {
+function CaseCard({ c }: CaseCardProps) {
+    const primaryMetric = c.success_case.metrics?.[0];
+    const secondMetric = c.success_case.metrics?.[1];
+
     return (
         <Link
             href={`/casos-exito/${c.slug}`}
@@ -41,9 +19,9 @@ function CaseCard({ c }: { c: (typeof cases)[0] }) {
             <div className="px-4 py-3 border-b border-white/10">
                 <div className="flex items-center justify-between gap-1">
                     <span className="text-secondary text-xs font-semibold uppercase tracking-wider leading-none">
-                        {c.service}
+                        {c.success_case.service}
                     </span>
-                    <span className="text-white/40 text-xs truncate">{c.industry}</span>
+                    <span className="text-white/40 text-xs truncate">{c.success_case.industry}</span>
                 </div>
             </div>
 
@@ -51,17 +29,17 @@ function CaseCard({ c }: { c: (typeof cases)[0] }) {
             <div className="flex flex-col flex-1 p-4 gap-3">
                 <div>
                     <div className="text-2xl font-extrabold text-secondary leading-none">
-                        {c.metric}
+                        {primaryMetric?.number ?? "Destacado"}
                     </div>
                     <div className="text-white/50 text-xs uppercase tracking-wide mt-1">
-                        {c.metricLabel}
+                        {primaryMetric?.label ?? "Caso documentado"}
                     </div>
                 </div>
                 <h3 className="font-semibold text-white text-sm leading-snug group-hover:text-secondary transition-colors">
                     {c.title}
                 </h3>
                 <p className="text-xs text-white/60 border-l-2 border-secondary pl-2 italic">
-                    {c.highlight}
+                    {secondMetric ? `${secondMetric.number} ${secondMetric.label}` : c.excerpt}
                 </p>
             </div>
 
@@ -78,7 +56,17 @@ function CaseCard({ c }: { c: (typeof cases)[0] }) {
     );
 }
 
-export default function CasosExitoTeaser() {
+type CasosExitoTeaserProps = {
+    cases: SuccessCase[]
+}
+
+export default function CasosExitoTeaser({ cases }: CasosExitoTeaserProps) {
+    const featuredCases = cases.slice(0, 4);
+
+    if (featuredCases.length === 0) {
+        return null;
+    }
+
     return (
         <section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
             {/* Glows industriales difuminados */}
@@ -136,18 +124,12 @@ export default function CasosExitoTeaser() {
                         </div>
 
                         {/* Cards en pirámide invertida */}
-                        <div className="flex flex-col gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {/* Fila superior: 2 cards */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <CaseCard c={cases[0]} />
-                                <CaseCard c={cases[1]} />
-                            </div>
+                            {featuredCases.map((successCase) => (
+                                <CaseCard key={successCase.id} c={successCase} />
+                            ))}
                             {/* Fila inferior: 1 card centrada → vértice de la pirámide */}
-                            <div className="flex justify-center">
-                                <div className="w-full sm:w-[calc(50%-8px)]">
-                                    <CaseCard c={cases[2]} />
-                                </div>
-                            </div>
                         </div>
                     </div>
 

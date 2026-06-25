@@ -10,7 +10,7 @@ import { Clients } from "@/components/organisms/Clients";
 import GalleryTeaser from "@/components/organisms/GalleryTeaser";
 import ContactForm from "@/components/organisms/ContactForm";
 import AdSection from "@/components/organisms/AdSection";
-import { getFeaturedAnnouncements } from "@/lib/api/posts";
+import { getFeaturedAnnouncements, getFeaturedSuccessCases } from "@/lib/api/posts";
 
 const OG_IMAGE = "/images/og-images/og-image.jpg";
 
@@ -64,6 +64,8 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const announcements = await getFeaturedAnnouncements();
+  const cases = await getFeaturedSuccessCases();
+
   return (
     <main>
       <Hero />
@@ -86,7 +88,7 @@ export default async function Home() {
       <AboutUs />
       <AdSection advertisements={announcements} />
       <TabsSection />
-      <CasosExitoTeaser />
+      <CasosExitoTeaser cases={cases} />
       <CursosTeaser />
       <IdapIntro />
       <Clients />
