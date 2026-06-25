@@ -10,7 +10,7 @@ import { Clients } from "@/components/organisms/Clients";
 import GalleryTeaser from "@/components/organisms/GalleryTeaser";
 import ContactForm from "@/components/organisms/ContactForm";
 import AdSection from "@/components/organisms/AdSection";
-import ads from "@/data/ads.json";
+import { getFeaturedAnnouncements } from "@/lib/api/posts";
 
 const OG_IMAGE = "/images/og-images/og-image.jpg";
 
@@ -62,7 +62,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const announcements = await getFeaturedAnnouncements();
   return (
     <main>
       <Hero />
@@ -83,7 +84,7 @@ export default function Home() {
         </div>
       </section>
       <AboutUs />
-      <AdSection advertisements={ads} />
+      <AdSection advertisements={announcements} />
       <TabsSection />
       <CasosExitoTeaser />
       <CursosTeaser />

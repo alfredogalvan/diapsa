@@ -10,6 +10,7 @@
 - [API de Marcas](#api-de-marcas)
 - [API de Series](#api-de-series)
 - [API de Cursos](#api-de-cursos)
+- [API de Publicaciones](#api-de-publicaciones)
 - [API de Contactos](#api-de-contactos)
 - [Manejo de Errores](#manejo-de-errores)
 - [Ejemplos de Uso](#ejemplos-de-uso)
@@ -936,6 +937,360 @@ GET /api/v1/course-categories/certificates
   }
 }
 ```
+
+---
+
+## API de Publicaciones
+
+La tabla `posts` se consume publicamente por tipo de contenido. No existe un endpoint publico generico `/posts`; cada superficie debe usar su endpoint especifico.
+
+**Implementacion frontend:**
+
+| Archivo | Descripcion |
+|---------|-------------|
+| `lib/api/posts.ts` | Funciones para consumir anuncios, casos de exito y blogs destacados |
+| `types/post.ts` | Tipos `Post`, `Announcement`, `SuccessCase` y `Blog` |
+
+### 1. Listar Anuncios
+
+Lista anuncios publicados y vigentes. Un anuncio vigente es aquel cuyo `end_date` esta vacio o es mayor/igual a la fecha actual del servidor.
+
+**Endpoint:**
+```
+GET /api/v1/announcements
+```
+
+**Query Parameters:**
+
+| Parametro | Tipo | Requerido | Descripcion |
+|-----------|------|-----------|-------------|
+| `limit` | integer | No | Limita la cantidad de anuncios devueltos |
+
+**Funcion API:**
+```typescript
+import { getAnnouncements } from '@/lib/api/posts';
+
+const announcements = await getAnnouncements({ limit: 3 });
+```
+
+**Hook disponible:**
+```typescript
+import { useAnnouncements } from '@/lib/hooks/useAnnouncements';
+
+const { announcements, loading, error, refetch } = useAnnouncements({ limit: 3 });
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/announcements?limit=3
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "slug": "webinar-mantenimiento-predictivo",
+      "title": "Webinar de Mantenimiento Predictivo",
+      "excerpt": "Aprende como reducir fallas no planeadas con monitoreo de condicion.",
+      "content": "Contenido del anuncio...",
+      "cover_image": "announcements/webinar-mantenimiento.jpg",
+      "featured": true,
+      "published_at": "2026-06-01T10:00:00.000000Z",
+      "announcement": {
+        "badge": "Webinar",
+        "start_date": "2026-06-10",
+        "end_date": "2026-07-10",
+        "url": "https://grupodiapsa.com.mx/webinar",
+        "button_text": "Registrarme"
+      },
+      "seo": {
+        "title": "Webinar de Mantenimiento Predictivo - Grupo Diapsa",
+        "description": "Webinar para equipos de mantenimiento industrial."
+      }
+    }
+  ]
+}
+```
+
+### 2. Anuncios Destacados
+
+Obtiene anuncios destacados para home, heroes, carruseles o bloques promocionales.
+
+**Endpoint:**
+```
+GET /api/v1/announcements/featured
+```
+
+**Parametros:** Ninguno
+
+**Funcion API:**
+```typescript
+import { getFeaturedAnnouncements } from '@/lib/api/posts';
+
+const announcements = await getFeaturedAnnouncements();
+```
+
+**Hook disponible:**
+```typescript
+import { useFeaturedAnnouncements } from '@/lib/hooks/useFeaturedAnnouncements';
+
+const { announcements, loading, error, refetch } = useFeaturedAnnouncements();
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/announcements/featured
+```
+
+**Response:** Mismo formato que "Listar Anuncios" sin paginacion.
+
+### 3. Detalle de Anuncio
+
+Obtiene el detalle de un anuncio por `slug`.
+
+**Endpoint:**
+```
+GET /api/v1/announcements/{slug}
+```
+
+**Parametros de URL:**
+
+| Parametro | Tipo | Descripcion |
+|-----------|------|-------------|
+| `slug` | string | Slug unico del anuncio |
+
+**Funcion API:**
+```typescript
+import { getAnnouncementBySlug } from '@/lib/api/posts';
+
+const announcement = await getAnnouncementBySlug('webinar-mantenimiento-predictivo');
+```
+
+**Hook disponible:**
+```typescript
+import { useAnnouncementDetail } from '@/lib/hooks/useAnnouncementDetail';
+
+const { announcement, loading, error, notFound, refetch } =
+  useAnnouncementDetail('webinar-mantenimiento-predictivo');
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/announcements/webinar-mantenimiento-predictivo
+```
+
+**Response:** Mismo objeto individual de "Listar Anuncios".
+
+### 4. Listar Casos de Exito
+
+Lista casos de exito publicados.
+
+**Endpoint:**
+```
+GET /api/v1/success-cases
+```
+
+**Query Parameters:**
+
+| Parametro | Tipo | Requerido | Descripcion |
+|-----------|------|-----------|-------------|
+| `limit` | integer | No | Limita la cantidad de casos devueltos |
+
+**Funcion API:**
+```typescript
+import { getSuccessCases } from '@/lib/api/posts';
+
+const successCases = await getSuccessCases({ limit: 6 });
+```
+
+**Hook disponible:**
+```typescript
+import { useSuccessCases } from '@/lib/hooks/useSuccessCases';
+
+const { successCases, loading, error, refetch } = useSuccessCases({ limit: 6 });
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/success-cases?limit=6
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "slug": "monitoreo-predictivo-generacion-energia",
+      "title": "Monitoreo predictivo en generacion de energia",
+      "excerpt": "Caso de exito sobre reduccion de paros no planeados.",
+      "content": "Contenido del caso de exito...",
+      "cover_image": "success-cases/generacion-energia.jpg",
+      "featured": true,
+      "published_at": "2026-06-01T10:00:00.000000Z",
+      "success_case": {
+        "industry": "Generacion de energia",
+        "service": "Monitoreo de condicion",
+        "introduction": "Contexto inicial del proyecto.",
+        "challenge": "Reto operativo del cliente.",
+        "results": "Resultados obtenidos.",
+        "economic_impact": "Impacto economico estimado.",
+        "conclusion": "Conclusion del caso.",
+        "stages": [
+          {
+            "id": 1,
+            "stage_label": "Etapa 1",
+            "title": "Diagnostico",
+            "description": "Levantamiento inicial de informacion.",
+            "sort_order": 1
+          }
+        ]
+      },
+      "seo": {
+        "title": "Monitoreo predictivo en generacion de energia - Grupo Diapsa",
+        "description": "Caso de exito de monitoreo predictivo industrial."
+      }
+    }
+  ]
+}
+```
+
+**Nota sobre etapas:**
+- Si la vista necesita garantizar el orden visual de las etapas, ordenar `success_case.stages` por `sort_order`.
+
+### 5. Casos de Exito Destacados
+
+Obtiene casos de exito destacados para home o secciones de prueba social.
+
+**Endpoint:**
+```
+GET /api/v1/success-cases/featured
+```
+
+**Parametros:** Ninguno
+
+**Funcion API:**
+```typescript
+import { getFeaturedSuccessCases } from '@/lib/api/posts';
+
+const successCases = await getFeaturedSuccessCases();
+```
+
+**Hook disponible:**
+```typescript
+import { useFeaturedSuccessCases } from '@/lib/hooks/useFeaturedSuccessCases';
+
+const { successCases, loading, error, refetch } = useFeaturedSuccessCases();
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/success-cases/featured
+```
+
+**Response:** Mismo formato que "Listar Casos de Exito" sin paginacion.
+
+### 6. Detalle de Caso de Exito
+
+Obtiene el detalle de un caso de exito por `slug`.
+
+**Endpoint:**
+```
+GET /api/v1/success-cases/{slug}
+```
+
+**Parametros de URL:**
+
+| Parametro | Tipo | Descripcion |
+|-----------|------|-------------|
+| `slug` | string | Slug unico del caso de exito |
+
+**Funcion API:**
+```typescript
+import { getSuccessCaseBySlug } from '@/lib/api/posts';
+
+const successCase = await getSuccessCaseBySlug(
+  'monitoreo-predictivo-generacion-energia'
+);
+```
+
+**Hook disponible:**
+```typescript
+import { useSuccessCaseDetail } from '@/lib/hooks/useSuccessCaseDetail';
+
+const { successCase, loading, error, notFound, refetch } =
+  useSuccessCaseDetail('monitoreo-predictivo-generacion-energia');
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/success-cases/monitoreo-predictivo-generacion-energia
+```
+
+**Response:** Mismo objeto individual de "Listar Casos de Exito".
+
+### 7. Blogs Destacados
+
+Actualmente la API publica expone solo entradas destacadas de blog. Usar este endpoint para home o secciones editoriales.
+
+**Endpoint:**
+```
+GET /api/v1/blogs/featured
+```
+
+**Parametros:** Ninguno
+
+**Funcion API:**
+```typescript
+import { getFeaturedBlogs } from '@/lib/api/posts';
+
+const blogs = await getFeaturedBlogs();
+```
+
+**Hook disponible:**
+```typescript
+import { useFeaturedBlogs } from '@/lib/hooks/useFeaturedBlogs';
+
+const { blogs, loading, error, refetch } = useFeaturedBlogs();
+```
+
+**Ejemplo de Request:**
+```bash
+GET /api/v1/blogs/featured
+```
+
+**Ejemplo de Response:**
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "slug": "guia-mantenimiento-predictivo",
+      "title": "Guia de mantenimiento predictivo",
+      "excerpt": "Conceptos clave para empezar con mantenimiento predictivo.",
+      "content": {
+        "type": "doc",
+        "content": []
+      },
+      "cover_image": "blogs/guia-mantenimiento-predictivo.jpg",
+      "featured": true,
+      "published_at": "2026-06-01T10:00:00.000000Z",
+      "seo": {
+        "title": "Guia de mantenimiento predictivo - Grupo Diapsa",
+        "description": "Articulo destacado sobre mantenimiento predictivo."
+      }
+    }
+  ]
+}
+```
+
+**Notas de consumo:**
+- El campo `content` de blog puede venir como documento JSON, no siempre como texto plano.
+- El campo `cover_image` puede ser una ruta relativa. Resolverla con `getStorageUrl` desde `lib/api/config.ts` cuando se necesite una URL absoluta.
+- Los hooks de contenido destacado usan cache en memoria por 5 minutos, siguiendo el patron de `useFeaturedProducts`.
+- Los hooks de detalle exponen `notFound` para manejar respuestas `404`.
 
 ---
 

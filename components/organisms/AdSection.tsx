@@ -1,7 +1,9 @@
-import AdvsCard, { Advertisement } from "../molecules/AdvsCard"
+import { Announcement } from "@/types/post"
+import AdvsCard from "@/components/molecules/AdvsCard"
+
 
 interface Props {
-    advertisements: Advertisement[]
+    advertisements: Announcement[]
 }
 
 export default function AdSection({ advertisements }: Props) {
@@ -34,7 +36,7 @@ export default function AdSection({ advertisements }: Props) {
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
                     {advertisements.map((adv) => (
                         <div key={adv.title} className="flex justify-center">
                             <AdvsCard adv={adv} />
