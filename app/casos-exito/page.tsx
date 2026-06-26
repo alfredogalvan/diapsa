@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         canonical: "/casos-exito",
     },
     openGraph: {
-        title: "Casos de Exito en Mantenimiento Predictivo | Grupo DIAPSA",
+        title: "Casos de Éxito en Mantenimiento Predictivo | Grupo DIAPSA",
         description:
             "Resultados reales de mantenimiento predictivo, monitoreo de condición y confiabilidad industrial con Grupo DIAPSA.",
         url: "/casos-exito",
@@ -111,6 +111,8 @@ function SuccessCaseCard({ successCase }: { successCase: SuccessCase }) {
 export default async function CasosExitoPage() {
     const casosExito = await getSuccessCases();
 
+    console.log('Casos de Éxito', casosExito)
+
     const breadcrumbJsonLd = createBreadcrumbSchema([
         { name: "Inicio", url: "/" },
         { name: "Casos de Éxito", url: "/casos-exito" },
@@ -138,19 +140,19 @@ export default async function CasosExitoPage() {
 
             <PageHeader
                 title="Casos de Éxito"
-                subtitle="Proyectos realizados por Grupo DIAPSA y resultados obtenidos en activos industriales criticos"
+                subtitle="Proyectos realizados por Grupo DIAPSA y resultados obtenidos en activos industriales críticos"
             />
 
             <section className="w-full bg-white py-16 lg:py-24">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4 leading-tight">
-                            Resultados tecnicos con <span className="text-secondary">impacto operativo</span>
+                            Resultados técnicos con <span className="text-secondary">impacto operativo</span>
                         </h2>
                         <p className="text-tertiary text-lg leading-relaxed max-w-3xl mx-auto">
                             Aqui presentamos proyectos ejecutados por nuestro equipo, las condiciones
                             atendidas y los resultados obtenidos mediante mantenimiento predictivo,
-                            monitoreo de condicion y diagnostico especializado.
+                            monitoreo de condición y diagnostico especializado.
                         </p>
                     </div>
 
@@ -163,10 +165,10 @@ export default async function CasosExitoPage() {
                     ) : (
                         <div className="bg-white rounded-sm border border-gray-100 p-8 text-center shadow-sm">
                             <h3 className="text-xl font-bold text-primary mb-3">
-                                Casos de exito en preparacion
+                                Casos de éxito en preparación
                             </h3>
                             <p className="text-tertiary text-base leading-relaxed max-w-2xl mx-auto">
-                                Estamos documentando nuevos resultados para compartirlos aqui.
+                                Estamos documentando nuevos resultados para compartirlos aquí.
                             </p>
                         </div>
                     )}
@@ -186,11 +188,11 @@ export default async function CasosExitoPage() {
 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
-                        Listo para construir tu proximo <span className="text-secondary">caso de exito</span>
+                        Listo para construir tu proximo <span className="text-secondary">caso de éxito</span>
                     </h2>
                     <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
                         Permitenos ayudarte a optimizar tus operaciones con soluciones de mantenimiento
-                        predictivo, monitoreo de condicion y confiabilidad industrial.
+                        predictivo, monitoreo de condición y confiabilidad industrial.
                     </p>
                     <Link
                         href="/contacto"

@@ -1,45 +1,100 @@
 import { notFound } from "next/navigation";
-import type { CasoExito } from "@/types/caso-exito";
-import JsonLd, { createBreadcrumbSchema } from "@/components/atoms/JsonLd";
-import casosExitoData from "@/data/casos-exito.json";
-import Link from "next/link";
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import JsonLd, { createBreadcrumbSchema } from "@/components/atoms/JsonLd";
+import ArticleIndex, { type ArticleIndexItem } from "@/components/molecules/ArticleIndex";
+import PageHeader from "@/components/organisms/PageHeader";
+import { getStorageUrl } from "@/lib/api/config";
+import { getSuccessCaseBySlug } from "@/lib/api/posts";
+import { formatDate } from "@/lib/utils/formatDate";
+import ContactForm from "@/components/organisms/ContactForm";
 
-// Componente reutilizable para etiquetas de capítulo
-function ChapterLabel({ label }: { label: string }) {
+interface SuccessCasePageProps {
+    params: Promise<{ slug: string }>;
+}
+
+function SectionHeading({ title }: { title: string }) {
     return (
-        <div className="flex items-center gap-4">
-            <span className="text-secondary font-bold text-xs uppercase tracking-[0.2em] shrink-0">
-                {label}
-            </span>
-            <div className="flex-1 h-px bg-secondary/25" />
-        </div>
+        <header className="mb-4">
+            <h2 className="text-2xl lg:text-3xl font-extrabold leading-tight text-primary">
+                {title}
+            </h2>
+        </header>
     );
 }
 
-const casosExito = casosExitoData as unknown as CasoExito[];
-
-export async function generateStaticParams() {
-    return casosExito.map((caso) => ({ slug: caso.slug }));
+function DocumentSection({
+    id,
+    title,
+    children,
+    className = "",
+}: {
+    id: string;
+    title: string;
+    children: ReactNode;
+    className?: string;
+}) {
+    return (
+        <section id={id} className={`scroll-mt-28 border-t border-gray-100 pt-8 lg:pt-10 ${className}`}>
+            <SectionHeading title={title} />
+            {children}
+        </section>
+    );
 }
 
-function getCasoExitoData(slug: string): CasoExito | null {
-    return casosExito.find((c) => c.slug === slug) ?? null;
+function formatMetricLabel(label: string) {
+    return label
+        .replace(/([A-Z])/g, " $1")
+        .replace(/^./, (s) => s.toUpperCase())
+        .replace("Percent", "%")
+        .replace("USD", "(USD)");
+}
+
+function SuccessCaseCta() {
+    return (
+        <section className="border-y border-gray-100 bg-secondary/20 py-12 lg:py-14">
+            <div className="mx-auto max-w-6xl px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10 lg:px-8">
+                <div>
+                    <h2 className="text-2xl font-extrabold leading-tight text-primary lg:text-3xl">
+                        Si este caso se parece a tu operación, vale la pena revisarlo antes del proximo paro.
+                    </h2>
+                    <p className="mt-3 max-w-2xl text-base leading-7 text-tertiary">
+                        Podemos ayudarte a identificar señales tempranas, priorizar activos críticos y definir un plan técnico con impacto medible.
+                    </p>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:mt-0">
+                    <Link
+                        href="#contacto"
+                        className="inline-flex items-center justify-center rounded-xs bg-primary px-6 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-secondary hover:text-primary"
+                    >
+                        Solicitar revision técnica
+                    </Link>
+                    <Link
+                        href="/casos-exito"
+                        className="inline-flex items-center justify-center rounded-xs border border-primary px-6 py-3 text-sm font-bold text-primary transition-colors hover:bg-white hover:text-primary hover:border-white"
+                    >
+                        Ver mas casos
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
 }
 
 export async function generateMetadata({
     params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
+}: SuccessCasePageProps): Promise<Metadata> {
     const { slug } = await params;
-    const caso = getCasoExitoData(slug);
+    const caso = await getSuccessCaseBySlug(slug);
 
-    if (!caso) return { title: "Caso de Éxito no encontrado" };
+    if (!caso) return { title: "Caso de exito no encontrado" };
 
     const keywords = [
-        caso.industry,
-        caso.service,
+        caso.success_case.industry,
+        caso.success_case.service,
         "caso de exito",
         "mantenimiento predictivo",
         "monitoreo de condicion",
@@ -66,17 +121,35 @@ export async function generateMetadata({
 
 export default async function CasoExitoDetailPage({
     params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
+}: SuccessCasePageProps) {
     const { slug } = await params;
-    const caso = getCasoExitoData(slug);
+    const caso = await getSuccessCaseBySlug(slug);
 
     if (!caso) notFound();
 
+    const coverImage = getStorageUrl(caso.cover_image) || "/images/fondo-mantenimiento.webp";
+    const publishedAt = formatDate(caso.published_at);
+    const heroSubtitle = [
+        caso.success_case.industry,
+        caso.success_case.service,
+        publishedAt,
+    ].filter(Boolean).join(" | ");
+    const pageBreadcrumbs = [
+        { label: "Inicio", link: "/" },
+        { label: "Casos de Exito", link: "/casos-exito" },
+        { label: caso.title, link: `/casos-exito/${slug}` },
+    ];
+    const articleIndexItems: ArticleIndexItem[] = [
+        { id: "introduccion", label: "Introducción" },
+        { id: "reto", label: "El reto" },
+        { id: "metodologia", label: "Metodología" },
+        { id: "resultados", label: "Resultados" },
+        { id: "impacto-economico", label: "Impacto económico" },
+        { id: "conclusion", label: "Conclusion" },
+    ];
     const breadcrumbItems = [
         { name: "Inicio", url: "/" },
-        { name: "Casos de Éxito", url: "/casos-exito" },
+        { name: "Casos de Exito", url: "/casos-exito" },
         { name: caso.title, url: `/casos-exito/${slug}` },
     ];
     const breadcrumbJsonLd = createBreadcrumbSchema(breadcrumbItems);
@@ -87,10 +160,10 @@ export default async function CasoExitoDetailPage({
         description: caso.seo.description,
         articleSection: "Casos de exito",
         keywords: [
-            caso.industry,
-            caso.service,
+            caso.success_case.industry,
+            caso.success_case.service,
             "mantenimiento predictivo",
-            "monitoreo de condición",
+            "monitoreo de condicion",
             "servicios de mantenimiento",
             "confiabilidad industrial",
         ],
@@ -123,115 +196,64 @@ export default async function CasoExitoDetailPage({
             },
             {
                 "@type": "Thing",
-                name: caso.service,
+                name: caso.title,
             },
         ],
     };
 
     return (
-        <main className="bg-white">
+        <main className="bg-white text-primary">
             <JsonLd data={breadcrumbJsonLd} />
             <JsonLd data={caseStudyJsonLd} />
 
-            {/* ── APERTURA: Hero editorial ─────────────────────────────────── */}
-            <section className="bg-primary relative overflow-hidden">
-                {/* Acentos decorativos */}
-                <div className="absolute top-0 right-0 w-lg h-128 rounded-full bg-secondary/5 -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-                <div className="absolute bottom-0 left-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
+            <PageHeader
+                title={caso.title}
+                subtitle={heroSubtitle}
+                breadcrumbs={pageBreadcrumbs}
+            />
+            <SuccessCaseCta />
 
-                <div className="relative max-w-5xl mx-auto px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28">
-                    {/* Navegación de regreso */}
-                    <Link
-                        href="/casos-exito"
-                        className="inline-flex items-center gap-2 text-secondary hover:text-secondary/80 font-semibold text-sm mb-8 transition-colors group"
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 lg:grid-cols-[minmax(0,860px)_220px] lg:items-start lg:px-8 lg:py-12">
+                <article className="max-w-[860px]">
+                    <section id="introduccion" className="scroll-mt-28 pb-8 lg:pb-10">
+                        <SectionHeading title="Introducción" />
+                        <p className="text-xl font-semibold leading-relaxed text-primary lg:text-2xl">
+                            {caso.success_case.introduction}
+                        </p>
+                    </section>
+
+                    <DocumentSection id="reto" title="El reto">
+                        <p className="text-base leading-8 text-tertiary lg:text-lg">
+                            {caso.success_case.challenge}
+                        </p>
+                    </DocumentSection>
+
+                    <DocumentSection
+                        id="metodologia"
+                        title="Metodología"
+                        className="mt-8 lg:mt-10"
                     >
-                        <svg
-                            className="w-4 h-4 group-hover:-translate-x-1 transition-transform"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Casos de Éxito
-                    </Link>
-
-                    {/* Etiquetas de categoría */}
-                    <div className="flex flex-wrap gap-3 mb-8">
-                        <span className="bg-secondary/15 text-secondary font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-widest">
-                            {caso.industry}
-                        </span>
-                        <span className="bg-white/10 text-white/70 font-medium px-4 py-1.5 rounded-full text-xs">
-                            {caso.service}
-                        </span>
-                    </div>
-
-                    {/* Titular principal */}
-                    <h1 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight mb-8 max-w-4xl">
-                        {caso.title}
-                    </h1>
-
-                    {/* Acento visual */}
-                    <div className="w-16 h-1.5 bg-secondary rounded-full mb-8" />
-
-                    {/* Párrafo gancho — la apertura de la historia */}
-                    <p className="text-lg lg:text-xl text-white/80 leading-relaxed max-w-3xl">
-                        {caso.introduction}
-                    </p>
-
-                </div>
-            </section>
-
-            {/* ── CUERPO DEL ARTÍCULO ──────────────────────────────────────── */}
-            <article>
-
-                {/* ── Capítulo I: El Reto ── */}
-                <section className="bg-gray-50 py-16 lg:py-24 border-b border-gray-100">
-                    <div className="max-w-4xl mx-auto px-6 lg:px-8">
-                        <ChapterLabel label="El Reto" />
-                        {/* Pull quote que establece la tensión narrativa */}
-                        <blockquote className="relative mt-10">
-                            <span
-                                aria-hidden="true"
-                                className="absolute -top-6 -left-2 text-8xl leading-none text-secondary/20 font-serif select-none"
-                            >
-                                &ldquo;
-                            </span>
-                            <p className="text-2xl lg:text-3xl font-semibold text-primary leading-relaxed pl-8 lg:pl-12 italic">
-                                {caso.challenge}
+                        {caso.success_case.methodology_name && (
+                            <p className="mb-5 text-lg font-semibold leading-8 text-primary">
+                                {caso.success_case.methodology_name}
                             </p>
-                            <div className="mt-8 pl-8 lg:pl-12">
-                                <div className="w-12 h-1 bg-secondary rounded-full" />
-                            </div>
-                        </blockquote>
-                    </div>
-                </section>
-
-                {/* ── Capítulo II: La Estrategia ── */}
-                <section className="py-16 lg:py-24 border-b border-gray-100">
-                    <div className="max-w-4xl mx-auto px-6 lg:px-8">
-                        <ChapterLabel label="La Estrategia" />
-                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mt-4 mb-12">
-                            {caso.methodology.name}
-                        </h2>
-
-                        {/* Línea de tiempo vertical — el viaje */}
-                        <div className="relative">
-                            <div className="absolute left-5 top-5 bottom-5 w-0.5 bg-gray-200" aria-hidden="true" />
-                            <div className="space-y-10">
-                                {caso.methodology.stages.map((stage, index) => (
-                                    <div key={index} className="relative flex gap-8 items-start">
-                                        <div className="shrink-0 w-10 h-10 bg-secondary text-white rounded-full flex items-center justify-center font-bold text-sm z-10 shadow-md">
+                        )}
+                        <div className="relative mt-6">
+                            <div className="absolute bottom-2 left-5 top-2 w-px bg-gray-200" aria-hidden="true" />
+                            <div className="space-y-6">
+                                {caso.success_case.stages.map((stage, index) => (
+                                    <div key={stage.id || index} className="relative grid grid-cols-[40px_1fr] gap-5">
+                                        <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-white text-sm font-bold text-secondary">
                                             {index + 1}
                                         </div>
-                                        <div className="flex-1 pt-1 pb-6">
-                                            <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-1.5">
-                                                {stage.stage}
+                                        <div className="pb-2">
+                                            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-tertiary">
+                                                {stage.stage_label}
                                             </p>
-                                            <h3 className="text-xl font-bold text-primary mb-3">
+                                            <h3 className="mb-2 text-lg font-extrabold leading-snug text-primary">
                                                 {stage.title}
                                             </h3>
-                                            <p className="text-gray-600 leading-relaxed">
+                                            <p className="text-base leading-7 text-tertiary">
                                                 {stage.description}
                                             </p>
                                         </div>
@@ -239,167 +261,76 @@ export default async function CasoExitoDetailPage({
                                 ))}
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </DocumentSection>
 
-                {/* ── Capítulo III: Los Resultados ── */}
-                <section className="bg-gray-50 py-16 lg:py-24 border-b border-gray-100">
-                    <div className="max-w-4xl mx-auto px-6 lg:px-8">
-                        <ChapterLabel label="Los Resultados" />
-                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mt-4 mb-6">
-                            Una transformación medible
-                        </h2>
-                        <p className="text-lg text-gray-700 leading-relaxed">
-                            {caso.results}
+                    <figure className="my-8 lg:my-10">
+                        <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-gray-100">
+                            <Image
+                                src={coverImage}
+                                alt={`Proceso documentado para ${caso.title}`}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 1024px) 100vw, 860px"
+                            />
+                        </div>
+                    </figure>
+
+                    <DocumentSection id="resultados" title="Resultados">
+                        <p className="text-lg font-semibold leading-8 text-primary lg:text-xl">
+                            {caso.success_case.results}
                         </p>
 
-                        {/* Narrativa extendida con evidencia visual (si existe) */}
-                        {caso.content && caso.content.length > 0 && (
-                            <div className="mt-12 space-y-10">
-                                {caso.content.map((c) => (
-                                    <div key={c.id} className="space-y-6">
-                                        <p className="text-lg text-gray-700 leading-relaxed">
-                                            {c.text}
-                                        </p>
-                                        {c.image && (
-                                            <figure className="my-6">
-                                                <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
-                                                    <Image
-                                                        src={c.image}
-                                                        alt="Evidencia visual del caso de éxito"
-                                                        width={900}
-                                                        height={500}
-                                                        className="w-full h-auto"
-                                                    />
-                                                </div>
-                                            </figure>
-                                        )}
-                                        {c.note && (
-                                            <aside className="bg-white border-l-4 border-primary rounded-r-xl p-6 shadow-sm">
-                                                <p className="text-sm text-gray-600 leading-relaxed">
-                                                    <span className="font-bold text-primary block mb-1">Nota:</span>
-                                                    {c.note}
-                                                </p>
-                                            </aside>
-                                        )}
+                        {caso.success_case.metrics && caso.success_case.metrics.length > 0 && (
+                            <dl className="mt-6 divide-y divide-gray-100 border-y border-gray-100">
+                                {caso.success_case.metrics.map(({ label, number }) => (
+                                    <div
+                                        key={label}
+                                        className="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[180px_1fr] sm:items-baseline sm:gap-6"
+                                    >
+                                        <dt className="text-sm font-semibold text-tertiary">
+                                            {formatMetricLabel(label)}
+                                        </dt>
+                                        <dd className="text-3xl font-extrabold leading-none text-secondary lg:text-4xl">
+                                            {number}
+                                        </dd>
                                     </div>
                                 ))}
-                            </div>
+                            </dl>
                         )}
+                    </DocumentSection>
 
-                        {/* Métricas clave — estilo revista */}
-                        {caso.metrics && Object.keys(caso.metrics).length > 0 && (
-                            <div className="mt-12">
-                                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">
-                                    Métricas clave
-                                </p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                                    {Object.entries(caso.metrics).map(([key, value]) => {
-                                        const metricName = key
-                                            .replace(/([A-Z])/g, " $1")
-                                            .replace(/^./, (s) => s.toUpperCase())
-                                            .replace("Percent", "%")
-                                            .replace("USD", "(USD)");
-
-                                        let formattedValue: string | number = value;
-                                        if (typeof value === "number") {
-                                            if (key.includes("Percent")) {
-                                                formattedValue = `${value}%`;
-                                            } else if (key.includes("USD")) {
-                                                formattedValue = `$${value.toLocaleString("en-US")}`;
-                                            } else {
-                                                formattedValue = value.toLocaleString("en-US");
-                                            }
-                                        }
-
-                                        return (
-                                            <div
-                                                key={key}
-                                                className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow"
-                                            >
-                                                <p className="text-4xl lg:text-5xl font-extrabold text-secondary leading-none mb-3">
-                                                    {formattedValue}
-                                                </p>
-                                                <p className="text-gray-500 text-sm leading-snug">
-                                                    {metricName}
-                                                </p>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </section>
-
-                {/* ── Capítulo IV: Impacto Económico ── */}
-                <section className="py-16 lg:py-24 border-b border-gray-100">
-                    <div className="max-w-4xl mx-auto px-6 lg:px-8">
-                        <ChapterLabel label="Impacto Económico" />
-                        <div className="mt-10 bg-primary rounded-2xl p-8 lg:p-12 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-56 h-56 rounded-full bg-secondary/10 -translate-y-1/3 translate-x-1/4 pointer-events-none" />
-                            <svg
-                                className="w-8 h-8 text-secondary/60 mb-6 relative z-10"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={1.5}
-                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                            <p className="text-xl lg:text-2xl text-white/85 leading-relaxed relative z-10">
-                                {caso.economicImpact}
+                    <DocumentSection id="impacto-economico" title="Impacto económico" className="mt-8 lg:mt-10">
+                        <div className="border-l-4 border-secondary bg-gray-50 px-5 py-5 lg:px-6">
+                            <p className="text-lg font-semibold leading-8 text-primary">
+                                {caso.success_case.economic_impact}
                             </p>
                         </div>
-                    </div>
-                </section>
+                    </DocumentSection>
 
-                {/* ── Capítulo V: La Conclusión ── */}
-                <section className="bg-gray-50 py-16 lg:py-24">
-                    <div className="max-w-4xl mx-auto px-6 lg:px-8">
-                        <ChapterLabel label="La Conclusión" />
-                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mt-4 mb-6">
-                            La lección detrás del éxito
-                        </h2>
-                        <p className="text-lg lg:text-xl text-gray-700 leading-relaxed">
-                            {caso.conclusion}
+                    <DocumentSection id="conclusion" title="Conclusion" className="mt-8 lg:mt-10">
+                        <p className="text-base leading-8 text-tertiary lg:text-lg">
+                            {caso.success_case.conclusion}
                         </p>
-                    </div>
-                </section>
-            </article>
+                        <div className="mt-8 border-t border-gray-100 pt-6">
+                            <Link
+                                href="/casos-exito"
+                                className="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-secondary"
+                            >
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                                Volver a casos de éxito
+                            </Link>
+                        </div>
+                    </DocumentSection>
+                </article>
 
-            {/* ── CTA: La invitación al siguiente capítulo ── */}
-            <section className="bg-primary py-16 lg:py-24">
-                <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-                    <p className="text-secondary font-bold uppercase tracking-widest text-xs mb-4">
-                        ¿Listo para escribir tu propia historia?
-                    </p>
-                    <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-6">
-                        Tu industria también puede lograr resultados así
-                    </h2>
-                    <p className="text-lg text-white/70 max-w-xl mx-auto mb-10">
-                        Nuestras soluciones de mantenimiento predictivo han transformado operaciones en múltiples industrias.
-                        Da el siguiente paso hacia una operacion mas confiable con DIAPSA.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            href="/casos-exito"
-                            className="inline-block bg-white hover:bg-gray-100 text-primary font-bold px-8 py-3.5 rounded-xl transition-all"
-                        >
-                            Ver más casos
-                        </Link>
-                        <Link
-                            href="/contacto"
-                            className="inline-block bg-secondary hover:bg-secondary/90 text-white font-bold px-8 py-3.5 rounded-xl transition-all"
-                        >
-                            Hablar con un experto →
-                        </Link>
-                    </div>
-                </div>
+                <aside className="order-first lg:sticky lg:top-24 lg:order-none">
+                    <ArticleIndex items={articleIndexItems} />
+                </aside>
+            </div>
+            <section id="contacto" className="scroll-mt-24">
+                <ContactForm />
             </section>
         </main>
     );
