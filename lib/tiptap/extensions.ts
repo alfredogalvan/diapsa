@@ -1,4 +1,4 @@
-import type { Extensions } from "@tiptap/core";
+import { Extension, type Extensions } from "@tiptap/core";
 import Highlight from "@tiptap/extension-highlight";
 import Image from "@tiptap/extension-image";
 import Subscript from "@tiptap/extension-subscript";
@@ -8,10 +8,37 @@ import Typography from "@tiptap/extension-typography";
 import Underline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
 
+const HeadingAnchor = Extension.create({
+    name: "headingAnchor",
+    addGlobalAttributes() {
+        return [
+            {
+                types: ["heading"],
+                attributes: {
+                    id: {
+                        default: null,
+                        parseHTML: (element) => element.getAttribute("id"),
+                        renderHTML: (attributes) => {
+                            if (!attributes.id) {
+                                return {};
+                            }
+
+                            return {
+                                id: attributes.id,
+                            };
+                        },
+                    },
+                },
+            },
+        ];
+    },
+});
+
 export const tiptapExtensions: Extensions = [
     StarterKit.configure({
         underline: false,
     }),
+    HeadingAnchor,
     Underline,
     Highlight.configure({
         multicolor: true,

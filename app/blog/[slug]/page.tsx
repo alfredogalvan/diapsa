@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import JsonLd, { createBreadcrumbSchema } from "@/components/atoms/JsonLd";
 import ArticleIndex, { type ArticleIndexItem } from "@/components/molecules/ArticleIndex";
-import TiptapRenderer from "@/components/tiptap/tiptap-renderer";
+import TiptapRenderer, { prepareTiptapContent } from "@/components/tiptap/tiptap-renderer";
 import PageHeader from "@/components/organisms/PageHeader";
 import { getStorageUrl } from "@/lib/api/config";
 import { getBlogBySlug } from "@/lib/api/posts";
@@ -86,8 +86,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         },
         inLanguage: "es-MX",
     };
+    const preparedContent = prepareTiptapContent(blog.content);
     const articleIndexItems: ArticleIndexItem[] = [
         { id: "contenido", label: "Contenido" },
+        ...preparedContent.h2Items,
     ];
 
     return (
@@ -115,15 +117,15 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                             />
                         </div>
                     </figure>
-
+                    {/*
                     {blog.excerpt && (
                         <p className="mb-8 text-xl font-semibold leading-relaxed text-primary lg:text-2xl">
                             {blog.excerpt}
                         </p>
-                    )}
+                    )} */}
 
                     <section id="contenido" className="scroll-mt-28 border-t border-gray-100 pt-8 lg:pt-10">
-                        <TiptapRenderer content={blog.content} />
+                        <TiptapRenderer content={preparedContent.content} />
                     </section>
 
                     <div className="mt-8 border-t border-gray-100 pt-6">

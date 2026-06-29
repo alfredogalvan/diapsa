@@ -7,6 +7,16 @@ export interface TiptapRendererProps {
     content?: object | string | null;
 }
 
+export interface TiptapHeadingIndexItem {
+    id: string;
+    label: string;
+}
+
+export interface PreparedTiptapContent {
+    content: JSONContent | null;
+    h2Items: TiptapHeadingIndexItem[];
+}
+
 const KNOWN_NODE_TYPES = new Set([
     "blockquote",
     "bulletList",
@@ -127,6 +137,89 @@ function parseContent(content: TiptapRendererProps["content"]): JSONContent | nu
     };
 }
 
+function getNodeText(content: JSONContent): string {
+    if (content.type === "text") {
+        return content.text ?? "";
+    }
+
+    return content.content?.map(getNodeText).join("") ?? "";
+}
+
+function createSlug(value: string) {
+    const slug = value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+    return slug || "seccion";
+}
+
+function getUniqueId(baseId: string, usedIds: Map<string, number>) {
+    const repeatedCount = usedIds.get(baseId) ?? 0;
+
+    usedIds.set(baseId, repeatedCount + 1);
+
+    if (repeatedCount === 0) {
+        return baseId;
+    }
+
+    return `${baseId}-${repeatedCount + 1}`;
+}
+
+function addH2IdsToContent(content: JSONContent, usedIds: Map<string, number>, h2Items: TiptapHeadingIndexItem[]): JSONContent {
+    const nextContent: JSONContent = {
+        ...content,
+    };
+
+    if (content.content) {
+        nextContent.content = content.content.map((child) => addH2IdsToContent(child, usedIds, h2Items));
+    }
+
+    if (content.type === "heading" && content.attrs?.level === 2) {
+        const label = getNodeText(content).trim();
+
+        if (!label) {
+            return nextContent;
+        }
+
+        const baseId = typeof content.attrs.id === "string" && content.attrs.id.trim()
+            ? content.attrs.id.trim()
+            : createSlug(label);
+        const id = getUniqueId(baseId, usedIds);
+
+        nextContent.attrs = {
+            ...content.attrs,
+            id,
+        };
+
+        h2Items.push({ id, label });
+    }
+
+    return nextContent;
+}
+
+export function prepareTiptapContent(content: TiptapRendererProps["content"]): PreparedTiptapContent {
+    const parsedContent = parseContent(content);
+
+    if (!parsedContent || isEmptyTiptapContent(parsedContent)) {
+        return {
+            content: null,
+            h2Items: [],
+        };
+    }
+
+    const h2Items: TiptapHeadingIndexItem[] = [];
+    const contentWithHeadingIds = addH2IdsToContent(parsedContent, new Map(), h2Items);
+
+    return {
+        content: contentWithHeadingIds,
+        h2Items,
+    };
+}
+
 function isEmptyTiptapContent(content: JSONContent) {
     if (!content.type) {
         return true;
@@ -153,9 +246,9 @@ function renderTiptapContent(content: JSONContent) {
 }
 
 export default function TiptapRenderer({ content }: TiptapRendererProps) {
-    const parsedContent = parseContent(content);
+    const { content: parsedContent } = prepareTiptapContent(content);
 
-    if (!parsedContent || isEmptyTiptapContent(parsedContent)) {
+    if (!parsedContent) {
         return null;
     }
 
@@ -167,7 +260,7 @@ export default function TiptapRenderer({ content }: TiptapRendererProps) {
 
     return (
         <div
-            className="tiptap-content text-base leading-8 text-tertiary [&_a]:font-semibold [&_a]:text-primary [&_a]:underline [&_blockquote]:border-l-4 [&_blockquote]:border-secondary [&_blockquote]:bg-gray-50 [&_blockquote]:px-5 [&_blockquote]:py-4 [&_blockquote]:text-primary [&_code]:rounded-xs [&_code]:bg-gray-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_h1]:mb-5 [&_h1]:mt-8 [&_h1]:text-3xl [&_h1]:font-extrabold [&_h1]:leading-tight [&_h1]:text-primary [&_h2]:mb-4 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:leading-tight [&_h2]:text-primary [&_h3]:mb-3 [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-primary [&_hr]:my-8 [&_hr]:border-gray-200 [&_img]:my-8 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-sm [&_img]:object-cover [&_li]:my-1 [&_mark]:rounded-xs [&_mark]:bg-secondary/30 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-5 [&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:bg-primary [&_pre]:p-5 [&_pre]:text-sm [&_pre]:text-white [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_strong]:font-bold [&_strong]:text-primary [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6"
+            className="tiptap-content text-base leading-8 text-tertiary [&_a]:font-semibold [&_a]:text-primary [&_a]:underline [&_blockquote]:border-l-4 [&_blockquote]:border-secondary [&_blockquote]:bg-gray-50 [&_blockquote]:px-5 [&_blockquote]:py-4 [&_blockquote]:text-primary [&_code]:rounded-xs [&_code]:bg-gray-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_h1]:mb-5 [&_h1]:mt-8 [&_h1]:text-3xl [&_h1]:font-extrabold [&_h1]:leading-tight [&_h1]:text-primary [&_h2]:mb-4 [&_h2]:mt-8 [&_h2]:scroll-mt-28 [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:leading-tight [&_h2]:text-primary [&_h3]:mb-3 [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-primary [&_hr]:my-8 [&_hr]:border-gray-200 [&_img]:my-8 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-sm [&_img]:object-cover [&_li]:my-1 [&_mark]:rounded-xs [&_mark]:bg-secondary/30 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-5 [&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:bg-primary [&_pre]:p-5 [&_pre]:text-sm [&_pre]:text-white [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_strong]:font-bold [&_strong]:text-primary [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6"
             dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
         />
     );
