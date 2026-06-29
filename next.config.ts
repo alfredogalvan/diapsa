@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         pathname: '/storage/**',
       },
       {
+        protocol: 'http',
+        hostname: 'cms-dipasa.test',
+        pathname: '/storage/**',
+      },
+      {
         protocol: 'https',
         hostname: 'cms.grupodiapsa.com.mx',
         pathname: '/storage/**',
@@ -23,6 +28,11 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         pathname: '/storage/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**',
+      }
     ],
     // Desactivar optimización en desarrollo para permitir IPs privadas
     unoptimized: process.env.NEXT_IMAGE_UNOPTIMIZED === 'true',

@@ -4,18 +4,32 @@
  */
 
 import { apiFetch } from './config';
-import type { ApiResponse } from '@/types/api';
+import type { ApiResponse, PaginatedResponse } from '@/types/api';
 import type { Announcement, Blog, SuccessCase } from '@/types/post';
 
 export interface PostListFilters {
   limit?: number;
 }
 
-function buildListEndpoint(endpoint: string, filters: PostListFilters = {}) {
+export interface PostPaginationFilters {
+  page?: number;
+  perPage?: number;
+}
+
+function buildListEndpoint(
+  endpoint: string,
+  filters: PostListFilters & PostPaginationFilters = {}
+) {
   const params = new URLSearchParams();
 
   if (filters.limit) {
     params.append('limit', filters.limit.toString());
+  }
+  if (filters.page) {
+    params.append('page', filters.page.toString());
+  }
+  if (filters.perPage) {
+    params.append('per_page', filters.perPage.toString());
   }
 
   const queryString = params.toString();
@@ -73,6 +87,18 @@ export async function getSuccessCases(
 }
 
 /**
+ * Get paginated published success cases.
+ * GET /api/v1/success-cases?page={page}&per_page={perPage}
+ */
+export async function getPaginatedSuccessCases(
+  filters: PostPaginationFilters = {}
+): Promise<PaginatedResponse<SuccessCase>> {
+  return apiFetch<PaginatedResponse<SuccessCase>>(
+    buildListEndpoint('/success-cases', filters)
+  );
+}
+
+/**
  * Get featured success cases.
  * GET /api/v1/success-cases/featured
  */
@@ -102,5 +128,39 @@ export async function getSuccessCaseBySlug(
  */
 export async function getFeaturedBlogs(): Promise<Blog[]> {
   const response = await apiFetch<ApiResponse<Blog[]>>('/blogs/featured');
+  return response.data;
+}
+
+/**
+ * Get published blogs
+ * GET /api/v1/blogs/
+ */
+export async function getBlogs(
+  filters: PostListFilters = {}
+): Promise<Blog[]> {
+  const response = await apiFetch<ApiResponse<Blog[]>>(
+    buildListEndpoint('/blogs', filters)
+  );
+  return response.data;
+}
+
+/**
+ * Get paginated published blogs
+ * GET /api/v1/blogs?page={page}&per_page={perPage}
+ */
+export async function getPaginatedBlogs(
+  filters: PostPaginationFilters = {}
+): Promise<PaginatedResponse<Blog>> {
+  return apiFetch<PaginatedResponse<Blog>>(
+    buildListEndpoint('/blogs', filters)
+  );
+}
+
+/**
+ * Get blogs detail by slug
+ * GET /api/v1/blogs/{slug}
+ */
+export async function getBlogBySlug(slug: string): Promise<Blog> {
+  const response = await apiFetch<ApiResponse<Blog>>(`/blogs/${slug}`);
   return response.data;
 }

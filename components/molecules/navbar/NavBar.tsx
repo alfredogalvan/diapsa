@@ -54,6 +54,9 @@ export default function NavBar() {
                             <NavLink href="/casos-exito">
                                 Resultados
                             </NavLink>
+                            <NavLink href="/blog">
+                                Blog
+                            </NavLink>
                         </div>
                     </div>
 
