@@ -3,12 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/organisms/PageHeader";
 import JsonLd, { createBreadcrumbSchema } from "@/components/atoms/JsonLd";
+import Pagination from "@/components/molecules/Pagination";
 import { getStorageUrl } from "@/lib/api/config";
-import { getSuccessCases } from "@/lib/api/posts";
+import { getPaginatedSuccessCases } from "@/lib/api/posts";
 import { formatDate } from "@/lib/utils/formatDate";
 import type { SuccessCase } from "@/types/post";
 
 export const dynamic = "force-dynamic";
+
+const SUCCESS_CASES_PER_PAGE = 9;
+
+type CasosExitoPageProps = {
+    searchParams?: Promise<{
+        page?: string | string[];
+    }>;
+};
 
 export const metadata: Metadata = {
     title: "Casos de Éxito en Mantenimiento Predictivo",
@@ -108,10 +117,26 @@ function SuccessCaseCard({ successCase }: { successCase: SuccessCase }) {
     );
 }
 
-export default async function CasosExitoPage() {
-    const casosExito = await getSuccessCases();
+function getPageParam(page?: string | string[]) {
+    const rawPage = Array.isArray(page) ? page[0] : page;
+    const parsedPage = Number(rawPage);
 
-    console.log('Casos de Éxito', casosExito)
+    if (!Number.isInteger(parsedPage) || parsedPage < 1) {
+        return 1;
+    }
+
+    return parsedPage;
+}
+
+export default async function CasosExitoPage({ searchParams }: CasosExitoPageProps) {
+    const params = await searchParams;
+    const requestedPage = getPageParam(params?.page);
+    const casosResponse = await getPaginatedSuccessCases({
+        page: requestedPage,
+        perPage: SUCCESS_CASES_PER_PAGE,
+    });
+    const casosExito = casosResponse.data;
+    const meta = casosResponse.meta;
 
     const breadcrumbJsonLd = createBreadcrumbSchema([
         { name: "Inicio", url: "/" },
@@ -126,7 +151,7 @@ export default async function CasosExitoPage() {
             "Resultados de mantenimiento predictivo, monitoreo de condición y confiabilidad industrial implementados por Grupo DIAPSA.",
         itemListElement: casosExito.map((caso, index) => ({
             "@type": "ListItem",
-            position: index + 1,
+            position: (meta.from || 1) + index,
             url: `https://grupodiapsa.com/casos-exito/${caso.slug}`,
             name: caso.title,
             description: caso.seo?.description || caso.excerpt,
@@ -172,6 +197,12 @@ export default async function CasosExitoPage() {
                             </p>
                         </div>
                     )}
+
+                    <Pagination
+                        basePath="/casos-exito"
+                        currentPage={meta.current_page}
+                        totalPages={meta.last_page}
+                    />
                 </div>
             </section>
 
