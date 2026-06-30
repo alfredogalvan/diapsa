@@ -160,7 +160,7 @@ export default function MCReportTypes() {
                         href="/contacto"
                         className="inline-flex items-center gap-2 rounded-xs bg-secondary px-8 py-3 font-bold text-primary shadow-md transition-colors hover:bg-white"
                     >
-                        Solicitar un ejemplo de reporte
+                        Solicitar información
                         <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </div>

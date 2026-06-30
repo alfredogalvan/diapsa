@@ -91,7 +91,7 @@ export default function MonitoreoConditionPage() {
             <MCAudience />
 
             {/* 8. Que incluye */}
-            <MCDeliverables />
+            {/* <MCDeliverables /> */}
 
             {/* 9. Planes / Inversion */}
             {/* <MCPlans /> */}

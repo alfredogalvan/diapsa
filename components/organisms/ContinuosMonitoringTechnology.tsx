@@ -198,7 +198,7 @@ export default function ContinuosMonitoringTechnology() {
                                                     {expanded === equipo.id ? "Ocultar specs" : "Ver especificaciones"}
                                                 </button>
                                             )}
-                                            <Link href="#contacto">
+                                            <Link href="/contacto">
                                                 <Button variant="primary" className="text-sm">
                                                     Solicitar información
                                                 </Button>
