@@ -17,7 +17,7 @@ export function TagIcon({ className = "w-6 h-6" }: Props) {
                 strokeWidth="2"
                 strokeLinejoin="round"
             />
-            <path d="M8.5 8.5H8.51" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="8.5" cy="8.5" r="0.75" stroke="currentColor" strokeWidth="2" />
         </svg>
     );
 }

@@ -1,16 +1,18 @@
 interface Props {
-    className?: string
+    className?: string;
 }
-export function CheckCircleIcon({ className = "" }: Props) {
+
+export function CheckCircleIcon({ className = "w-6 h-6" }: Props) {
     return (
         <svg
+            className={className}
             viewBox="0 0 24 24"
-            fill="currentColor"
-            className={`inline-block ${className}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
         >
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.59-3.3-3.3 1.42-1.42L11 13.76l4.88-4.88 1.42 1.42L11 16.59z" />
+            <path d="M21 11.08V12C20.9988 14.1564 20.3005 16.2547 19.0093 17.9818C17.7182 19.709 15.9033 20.9725 13.8354 21.5839C11.7674 22.1953 9.55726 22.1219 7.53447 21.3746C5.51168 20.6273 3.78465 19.2461 2.61096 17.4371C1.43727 15.628 0.87979 13.4881 1.02168 11.3363C1.16356 9.18457 1.99721 7.13631 3.39828 5.49706C4.79935 3.85781 6.69278 2.71537 8.79619 2.24013C10.8996 1.7649 13.1003 1.98232 15.07 2.86" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M21 4L12 13.01L9 10.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
-
 }

@@ -11,13 +11,7 @@ export function ArrowRightIcon({ className = "w-6 h-6" }: Props) {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
         >
-            <path
-                d="M5 12H19M13 6L19 12L13 18"
-                stroke="currentColor"
-                strokeWidth="2.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
+            <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
 }

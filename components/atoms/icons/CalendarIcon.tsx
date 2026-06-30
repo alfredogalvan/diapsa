@@ -18,10 +18,7 @@ export function CalendarIcon({ className = "w-6 h-6" }: Props) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
-            <path
-                d="M8 13H10V15H8V13ZM14 13H16V15H14V13ZM8 17H10V19H8V17Z"
-                fill="currentColor"
-            />
+            <path d="M8 13H8.01M12 13H12.01M16 13H16.01M8 17H8.01M12 17H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
     );
 }
