@@ -38,9 +38,9 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
 
                 {/* Left – text */}
                 <div className="relative z-10 flex flex-col gap-8 lg:w-1/2">
-                    <div className="flex items-center gap-3 w-fit bg-white/10 border border-white/20 rounded-full px-4 py-2">
+                    <div className="flex items-center gap-3 w-fit bg-white/10 border border-white/20 rounded-full px-4 py-1">
                         <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-                        <span className="text-white/80 text-sm font-semibold tracking-widest uppercase">
+                        <span className="text-white/80 text-xs font-semibold tracking-widest uppercase">
                             Tecnología de vanguardia
                         </span>
                     </div>
@@ -107,9 +107,7 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
 
             {/* ── Feature Cards ── */}
             <div className="bg-white/5 border-t border-white/10 px-10 lg:px-24 py-20">
-                <p className="text-secondary font-bold tracking-widest text-sm text-center uppercase mb-4">
-                    Capacidades
-                </p>
+
                 <h3 className="text-white text-3xl lg:text-5xl font-bold text-center mb-16 max-w-2xl mx-auto leading-tight">
                     ¿Qué hace <span className="text-secondary font-bold">diferente</span> a las cámaras acústicas de <span className="text-secondary font-bold">Hertzinno?</span>
                 </h3>
@@ -130,7 +128,6 @@ export default function GasDetectionTechnology({ onOpenModal }: Props) {
 
             {/* ── How it Works ── */}
             <div className="px-10 lg:px-24 py-24">
-                <p className="text-secondary font-bold tracking-widest text-sm uppercase mb-4">Resultados</p>
                 <h3 className="text-white text-3xl lg:text-5xl font-bold mb-16 max-w-xl leading-tight">
                     Impacto de las cámaras acústicas en la industria.
                 </h3>

@@ -42,11 +42,9 @@ export default function MCFaq() {
             <div className="max-w-4xl mx-auto px-6 relative z-10">
 
                 <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
-                        Preguntas frecuentes
-                    </span>
+
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
-                        LO QUE <span className="text-secondary">TODOS PREGUNTAN</span>
+                        PREGUNTAS <span className="text-secondary">FRECUENTES</span>
                     </h2>
                     <p className="text-tertiary text-lg max-w-2xl mx-auto">
                         Respondemos con transparencia las dudas más comunes antes de iniciar.

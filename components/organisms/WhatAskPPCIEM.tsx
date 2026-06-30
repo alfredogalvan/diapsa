@@ -32,9 +32,9 @@ export default function WhatAskPPCIEM() {
                 {/* ── Left column ── */}
                 <div className="w-full lg:w-1/2 space-y-10">
                     {/* Badge */}
-                    <div className="flex items-center gap-3 w-fit bg-primary/8 border border-primary/15 rounded-full px-4 py-2">
+                    <div className="flex items-center gap-3 w-fit bg-primary/8 border border-primary/15 rounded-full px-4 py-1">
                         <span className="w-2 h-2 rounded-full bg-secondary shrink-0" />
-                        <span className="text-primary/70 text-sm font-semibold tracking-widest uppercase">
+                        <span className="text-primary/70 text-xs font-semibold tracking-widest uppercase">
                             Obligaciones regulatorias
                         </span>
                     </div>

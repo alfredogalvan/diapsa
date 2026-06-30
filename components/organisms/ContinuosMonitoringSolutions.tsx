@@ -38,9 +38,6 @@ export default function ContinuosMonitoringSolutions() {
             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
                 {/* Encabezado */}
                 <div className="text-center mb-16 space-y-4">
-                    <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase">
-                        Nuestro enfoque
-                    </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
                         Soluciones
                     </h2>

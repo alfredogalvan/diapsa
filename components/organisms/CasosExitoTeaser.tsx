@@ -91,9 +91,6 @@ export default function CasosExitoTeaser({ cases }: CasosExitoTeaserProps) {
                     <div className="flex flex-col gap-6">
                         {/* Headlines */}
                         <div>
-                            <span className="inline-block w-fit text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
-                                Casos de Éxito
-                            </span>
                             <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
                                 Resultados que <span className="text-secondary">Hablan por sí solos</span>
                             </h2>

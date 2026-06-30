@@ -21,9 +21,6 @@ export default function MCAudience() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
 
                 <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase  mb-4">
-                        Perfil ideal
-                    </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
                         ¿ESTE SERVICIO <span className="text-secondary">ES PARA USTED?</span>
                     </h2>
