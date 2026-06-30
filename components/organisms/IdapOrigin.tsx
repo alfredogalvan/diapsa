@@ -31,8 +31,7 @@ export default function IdapOrigin() {
 
                     {/* Columna izquierda — Narrativa */}
                     <div className="space-y-8">
-                        <div className="inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5">
-                            <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+                        <div className="inline-flex items-center gap-2 rounded-full">
                             <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
                                 Construida desde adentro
                             </span>

@@ -71,7 +71,6 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <ServicesOverview />
       <section className="bg-white py-12 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <p className="text-secondary font-bold uppercase tracking-widest text-xs mb-4">
@@ -89,11 +88,12 @@ export default async function Home() {
       </section>
       <AboutUs />
       <AdSection advertisements={announcements} />
+      <CursosTeaser />
       <BlogSection blogs={blogs} />
+      <ServicesOverview />
+      <IdapIntro />
       <TabsSection />
       <CasosExitoTeaser cases={cases} />
-      <CursosTeaser />
-      <IdapIntro />
       <Clients />
       <GalleryTeaser />
       <section id="contacto">

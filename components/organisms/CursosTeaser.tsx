@@ -5,7 +5,11 @@ import { useCourses } from "@/lib/hooks/useCourses";
 import CourseCard from "../molecules/CourseCard";
 
 export default function CursosTeaser() {
-    const { courses } = useCourses({ courseType: 'Certificación' });
+    const { courses, loading } = useCourses({ courseType: 'Certificación' });
+
+    if (!loading && courses.length === 0) {
+        return null;
+    }
 
     return (
         <section className="w-full bg-white py-16 lg:py-24 relative overflow-hidden">

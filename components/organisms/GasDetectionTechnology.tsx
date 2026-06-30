@@ -19,10 +19,10 @@ const steps = [
 ];
 
 const galleryPlaceholders = [
-    "/images/deteccion-gas/acustic_cameras_in_action_2.jpg",
-    "/images/deteccion-gas/acustic_cameras_in_action_3.jpg",
-    "/images/deteccion-gas/acustic_cameras_in_action_4.jpg",
-    "/images/deteccion-gas/acustic_cameras_in_action_5.jpg",
+    "/images/deteccion-gas/acustic_cameras_in_action_6.webp",
+    "/images/deteccion-gas/acustic_cameras_in_action_7.webp",
+    "/images/deteccion-gas/acustic_cameras_in_action_8.webp",
+    "/images/deteccion-gas/acustic_cameras_in_action_9.webp",
 ];
 
 export default function GasDetectionTechnology({ onOpenModal }: Props) {

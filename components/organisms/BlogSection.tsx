@@ -8,6 +8,9 @@ interface BlogPageProps {
 }
 
 export default function BlogSection({ blogs }: BlogPageProps) {
+  if (blogs.length === 0) {
+    return null;
+  }
 
   return (
     <section className="w-full bg-primary py-16 lg:py-24">
@@ -32,7 +35,7 @@ export default function BlogSection({ blogs }: BlogPageProps) {
             return (
               <article
                 key={post.id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
+                className="group flex h-full flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/40 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
               >
                 {/* Imagen */}
                 <div className="relative w-full h-56 bg-gray-200">
@@ -46,7 +49,7 @@ export default function BlogSection({ blogs }: BlogPageProps) {
                 </div>
 
                 {/* Contenido */}
-                <div className="p-6">
+                <div className="flex flex-1 flex-col p-6">
                   {/* Fecha */}
                   <p className="text-sm text-gray-500 mb-3">
                     {new Date(post.published_at).toLocaleDateString("es-MX", {
@@ -62,14 +65,14 @@ export default function BlogSection({ blogs }: BlogPageProps) {
                   </h3>
 
                   {/* Excerpt */}
-                  <p className="text-gray-600 mb-6 line-clamp-3">
+                  <p className="mb-6 line-clamp-3 text-gray-600">
                     {post.excerpt}
                   </p>
 
                   {/* CTA */}
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-flex w-full items-center justify-center rounded-xs border-2 border-primary bg-transparent px-4 py-2 font-medium text-primary transition-all duration-200 ease-out hover:border-primary/80 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 active:scale-[0.98] active:bg-primary/15"
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-xs border-2 border-primary bg-transparent px-4 py-2 font-medium text-primary transition-all duration-200 ease-out hover:border-primary/80 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 active:scale-[0.98] active:bg-primary/15"
                   >
                     Leer más
                   </Link>

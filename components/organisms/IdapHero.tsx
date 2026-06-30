@@ -34,12 +34,6 @@ export default function IdapHero() {
             <div className="relative z-10 w-full lg:w-1/2 text-white px-8 lg:ps-20 2xl:ps-28 flex flex-col justify-center space-y-8 2xl:space-y-10">
 
                 {/* Badge de categoría */}
-                <div className="inline-flex self-start items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5 backdrop-blur-sm">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-secondary" />
-                    <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
-                        Plataforma Tecnológica
-                    </span>
-                </div>
 
                 {/* Título + subtítulo */}
                 <div className="space-y-3">

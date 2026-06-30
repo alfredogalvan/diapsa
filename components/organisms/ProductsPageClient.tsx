@@ -39,9 +39,6 @@ export default function ProductsPageClient() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Header */}
           <div className="text-center mb-12">
-            <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-              Nuestro Catalogo
-            </span>
             <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
               EQUIPOS Y SOLUCIONES <span className="text-secondary">ESPECIALIZADAS</span>
             </h2>
@@ -113,9 +110,6 @@ export default function ProductsPageClient() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Header */}
           <div className="text-center mb-12">
-            <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-              Explora
-            </span>
             <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
               NUESTROS <span className="text-secondary">PRODUCTOS</span>
             </h2>

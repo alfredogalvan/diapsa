@@ -7,6 +7,10 @@ interface Props {
 }
 
 export default function AdSection({ advertisements }: Props) {
+    if (advertisements.length === 0) {
+        return null;
+    }
+
     return (
         <section className="bg-gray-100 py-16 lg:py-24 px-6 md:px-18 relative overflow-hidden">
 
@@ -27,11 +31,8 @@ export default function AdSection({ advertisements }: Props) {
             <div className="relative z-10">
                 {/* Header */}
                 <div className="text-center mb-14 space-y-3">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-2">
-                        Tablero de Anuncios
-                    </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
-                        Próximos eventos <span className="text-secondary">en DIAPSA</span>
+                        Tablero de Anuncios de <span className="text-secondary">DIAPSA</span>
                     </h2>
                 </div>
 

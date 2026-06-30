@@ -27,11 +27,6 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         pathname: '/storage/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        pathname: '/**',
       }
     ],
     // Desactivar optimización en desarrollo para permitir IPs privadas

@@ -13,7 +13,7 @@ const reportTypes = [
             "Recomendación de acción inmediata",
             "Evita paros inesperados"
         ],
-        image: "/images/servicios/placeholder.jpg"
+        image: "/images/monitoreo-condicion/inmediate-reports.avif"
         // TODO: Replace placeholder with photo of real-time monitoring dashboard
     },
     {
@@ -27,8 +27,7 @@ const reportTypes = [
             "Frecuencia configurable",
             "Predicción de vida útil"
         ],
-        image: "/images/servicios/placeholder.jpg"
-        // TODO: Replace placeholder with photo of trend analysis or performance metrics
+        image: "/images/monitoreo-condicion/reportes-seguimiento.avif"        // TODO: Replace placeholder with photo of trend analysis or performance metrics
     },
     {
         id: "historicos",
@@ -41,7 +40,7 @@ const reportTypes = [
             "Correlación de eventos y fallas",
             "Trazabilidad total"
         ],
-        image: "/images/servicios/placeholder.jpg"
+        image: "/images/monitoreo-condicion/historical-reports.jpg"
         // TODO: Replace placeholder with photo of historical data visualization or archive
     }
 ];

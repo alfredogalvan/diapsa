@@ -4,10 +4,8 @@ import PageHeader from "@/components/organisms/PageHeader";
 import { CoursesNCerts } from "@/components/organisms/CoursesNCerts";
 import CourseTypeSection from "@/components/organisms/CourseTypeSection";
 import { useCourses } from "@/lib/hooks/useCourses";
-import { useCourseCategories } from "@/lib/hooks/useCourseType";
 // import CourseMainContent from "@/components/organisms/CourseMainContent";
 import { groupCoursesByType } from "@/lib/utils/groupCourses";
-import JsonLd from "@/components/atoms/JsonLd";
 
 
 export default function CursosPage() {
@@ -28,19 +26,19 @@ export default function CursosPage() {
         <CourseMainContent />
       </section> */}
 
-      {coursesByType.certificates && (
+      {(loading || coursesByType.certificates.length > 0) && (
         <section className="bg-white p-5">
           <CourseTypeSection title="Certificados" variant="certificado" courses={coursesByType.certificates} loading={loading} />
         </section>
       )}
 
-      {coursesByType.workshops && (
+      {(loading || coursesByType.workshops.length > 0) && (
         <section className="bg-white p-5">
           <CourseTypeSection title="Talleres prácticos" variant="taller" courses={coursesByType.workshops} loading={loading} />
         </section>
       )}
 
-      {coursesByType.strategics && (
+      {(loading || coursesByType.strategics.length > 0) && (
         <section className="bg-white p-5">
           <CourseTypeSection title="Cursos estratégicos" variant="estrategico" courses={coursesByType.strategics} loading={loading} />
         </section>
