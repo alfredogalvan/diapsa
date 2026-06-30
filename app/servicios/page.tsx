@@ -235,7 +235,7 @@ export default function ServiciosProductosPage() {
                 específico en la madurez de tu programa de mantenimiento.
                 Puedes empezar desde cero o integrar lo que ya tienes —
                 siempre con un objetivo claro: cero paros no programados en plantas
-                industriales de Mexico y Sudamerica.
+                industriales de Mexico y Sudamérica.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">

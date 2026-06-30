@@ -32,11 +32,6 @@ export default function IdapPillars() {
 
                 {/* Encabezado de sección */}
                 <div className="text-center space-y-4 max-w-2xl mx-auto">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5">
-                        <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
-                            ¿Qué hace IDAP?
-                        </span>
-                    </div>
                     <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
                         Tres capacidades que transforman{" "}
                         <span className="text-secondary">datos en decisiones</span>

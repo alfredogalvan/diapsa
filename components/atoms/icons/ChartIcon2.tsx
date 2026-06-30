@@ -1,14 +1,13 @@
 
 
 interface Props {
-    className?: string
+    className?: string;
 }
-export function ChartIcon2({ className = "" }: Props) {
+
+export function ChartIcon2({ className = "w-6 h-6" }: Props) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" className={`inline-block ${className}`}>
-            <rect x="15" y="60" width="15" height="30" fill="currentColor" rx="2" />
-            <rect x="37.5" y="45" width="15" height="45" fill="currentColor" rx="2" />
-            <rect x="60" y="25" width="15" height="65" fill="currentColor" rx="2" />
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 20V11M10 20V7M16 20V4M22 20H2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
 }

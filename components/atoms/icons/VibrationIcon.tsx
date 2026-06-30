@@ -1,16 +1,18 @@
 interface Props {
-    className?: string
+    className?: string;
 }
 
-export function VibrationIcon({ className = "" }: Props) {
+export function VibrationIcon({ className = "w-6 h-6" }: Props) {
     return (
         <svg
+            className={className}
             viewBox="0 0 24 24"
-            fill="currentColor"
-            className={`inline-block ${className}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
         >
-            <path d="M0 15h2V9H0v6zm3 2h2V7H3v10zm19-8v6h2V9h-2zm-3 8h2V7h-2v10zM16.5 3h-9C6.67 3 6 3.67 6 4.5v15c0 .83.67 1.5 1.5 1.5h9c.83 0 1.5-.67 1.5-1.5v-15c0-.83-.67-1.5-1.5-1.5zM16 19H8V5h8v14z" />
+            <path d="M8 5H16V19H8V5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+            <path d="M4 8V16M1 10V14M20 8V16M23 10V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
     );
 }

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface Props {
-    image: string;
+    image?: string | null;
     isOpen: boolean
     onClose: () => void;
 }
@@ -20,16 +20,21 @@ export default function LightBoxImage({ image, onClose, isOpen }: Props) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div className="relative max-w-5xl w-full h-[95vh] ">
-                    <Image
-                        src={image}
-                        alt="Imagen ampliada"
-                        fill
-                        priority
-                        sizes="100vw"
-                        className="object-contain"
-
-                    />
+                <div className="relative max-w-5xl w-full h-[95vh] flex items-center justify-center">
+                    {image ? (
+                        <Image
+                            src={image}
+                            alt="Imagen ampliada"
+                            fill
+                            priority
+                            sizes="100vw"
+                            className="object-contain"
+                        />
+                    ) : (
+                        <p className="text-white text-lg text-center">
+                            Imagen no disponible en este momento
+                        </p>
+                    )}
                 </div>
             </div>
         )

@@ -9,13 +9,13 @@
         {
             "title": "Vibraciones Mecánicas",
             "description": "Análisis de patrones de vibración para diagnosticar problemas en maquinaria.",
-            "image": "/images/disciplinas/vibraciones.jpg",
+            "image": "/images/disciplinas/vibraciones-img.jpg",
             "imageAlt": "Vibraciones Mecánicas"
         },
         {
             "title": "Ultrasonido",
             "description": "Detección de fallas incipientes mediante análisis ultrasónico de equipos.",
-            "image": "/images/disciplinas/ultrasonido.jpg",
+            "image": "/images/disciplinas/ultrasonido-img.jpg",
             "imageAlt": "Ultrasonido"
         }
     ]

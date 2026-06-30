@@ -110,7 +110,7 @@ export default function DiapsaStart() {
                         {/* Header */}
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase">
                                     Programa de implementación
                                 </span>
                                 <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
@@ -162,9 +162,7 @@ export default function DiapsaStart() {
 
                     {/* Header de la sección */}
                     <div className="text-center max-w-3xl mx-auto space-y-4">
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
-                            Proceso estructurado
-                        </span>
+
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
                             Del caos reactivo al{" "}
                             <span className="text-secondary">control total.</span>

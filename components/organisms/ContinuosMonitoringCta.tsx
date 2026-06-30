@@ -20,9 +20,6 @@ export default function ContinuosMonitoringCta() {
             {/* Glow secundario */}
             <div className="absolute bottom-1/4 right-1/4 w-100 h-100 bg-primary/40 rounded-full blur-2xl pointer-events-none" />
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6">
-                <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
-                    ¿Listo para empezar?
-                </span>
                 <h2 className="text-3xl lg:text-4xl font-extrabold text-white leading-tight">
                     Convierte tus datos en{" "}
                     <span className="text-secondary">decisiones reales</span>

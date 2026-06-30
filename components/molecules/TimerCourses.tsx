@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { ArrowRightIcon, CertificateIcon, EnergyIcon, SettingsIcon, TrophyIcon } from '@/components/atoms/icons';
 import { getNextCourse } from '@/lib/api/courses';
 import type { CourseDetail } from '@/types/course';
 
@@ -44,26 +45,38 @@ function LoadingSkeleton() {
     );
 }
 
+function getTimeLeft(nextDate: string | Date): TimeLeft | null {
+    const targetDate = new Date(nextDate);
+    const now = new Date();
+    const difference = targetDate.getTime() - now.getTime();
+
+    if (difference <= 0) return null;
+
+    return {
+        dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        horas: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutos: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        segundos: Math.floor((difference % (1000 * 60)) / 1000),
+    };
+}
+
 function CoursePromo() {
     const pillars = [
-        { icon: '🏆', text: 'Certificaciones ISO reconocidas globalmente' },
-        { icon: '⚙️', text: 'Metodología práctica basada en campo real' },
-        { icon: '📈', text: 'Profesionales que reducen fallas hasta un 40%' },
+        { icon: TrophyIcon, text: 'Certificaciones ISO reconocidas globalmente' },
+        { icon: SettingsIcon, text: 'Metodología práctica basada en campo real' },
+        { icon: EnergyIcon, text: 'Profesionales que reducen fallas hasta un 40%' },
     ];
 
     return (
         <div className="relative overflow-hidden flex flex-col gap-6 p-6 md:p-8 bg-linear-to-br from-primary via-primary to-primary/90 rounded-2xl shadow-2xl border border-white/10">
-            {/* Decorative glows */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none" />
 
-            {/* Badge */}
             <span className="inline-flex items-center gap-2 w-fit bg-secondary/20 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
+                <CertificateIcon className="w-4 h-4" />
                 Programa de formación
             </span>
 
-            {/* Punchline principal */}
             <div className="space-y-2">
                 <p className="text-white/60 text-sm uppercase tracking-widest">La diferencia entre</p>
                 <h3 className="text-white text-2xl md:text-3xl font-extrabold leading-tight">
@@ -75,29 +88,27 @@ function CoursePromo() {
                 </h3>
             </div>
 
-            {/* Pilares */}
             <ul className="flex flex-col gap-3">
-                {pillars.map((p) => (
-                    <li key={p.text} className="flex items-center gap-3 text-sm text-white/80">
-                        <span className="text-lg shrink-0">{p.icon}</span>
-                        {p.text}
+                {pillars.map(({ icon: Icon, text }) => (
+                    <li key={text} className="flex items-center gap-3 text-sm text-white/80">
+                        <Icon className="w-5 h-5 text-secondary shrink-0" />
+                        {text}
                     </li>
                 ))}
             </ul>
 
-            {/* Divider */}
             <div className="w-12 h-0.5 rounded-full bg-secondary/50" />
 
-            {/* CTA */}
             <div className="flex flex-col gap-3">
                 <p className="text-white/50 text-xs text-center">
                     Nuevas fechas disponibles próximamente
                 </p>
                 <Link
                     href="/cursos"
-                    className="w-full text-center bg-secondary hover:bg-secondary/90 active:scale-95 transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg text-sm uppercase tracking-wider"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 active:scale-95 transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg text-sm uppercase tracking-wider"
                 >
-                    Explorar todos los cursos →
+                    Explorar todos los cursos
+                    <ArrowRightIcon className="w-4 h-4" />
                 </Link>
             </div>
         </div>
@@ -106,7 +117,6 @@ function CoursePromo() {
 
 export function TimerCourses() {
     const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
-    const [isExpired, setIsExpired] = useState(false);
     const [course, setCourse] = useState<CourseDetail | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -120,36 +130,17 @@ export function TimerCourses() {
     useEffect(() => {
         if (!course?.next_date) return;
 
-        const calculateTimeLeft = (): TimeLeft | null => {
-            const targetDate = new Date(course.next_date);
-            const now = new Date();
-            const difference = targetDate.getTime() - now.getTime();
-
-            if (difference <= 0) {
-                setIsExpired(true);
-                return null;
-            }
-
-            return {
-                dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                horas: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                minutos: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-                segundos: Math.floor((difference % (1000 * 60)) / 1000),
-            };
-        };
-
-        setTimeLeft(calculateTimeLeft());
-
         const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
-            setTimeLeft(calculateTimeLeft());
+            setTimeLeft(getTimeLeft(course.next_date));
         }, 1000);
 
         return () => clearInterval(timer);
     }, [course]);
 
     if (isLoading) return <LoadingSkeleton />;
-    if (!course || isExpired || !timeLeft) return <CoursePromo />;
+    const currentTimeLeft = course?.next_date ? timeLeft ?? getTimeLeft(course.next_date) : null;
+
+    if (!course || !currentTimeLeft) return <CoursePromo />;
 
     const formattedDate = new Date(course.next_date).toLocaleDateString('es-MX', {
         weekday: 'long',
@@ -160,20 +151,17 @@ export function TimerCourses() {
 
     return (
         <div className="relative overflow-hidden flex flex-col gap-5 p-6 md:p-8 bg-linear-to-br from-primary via-primary to-primary/90 rounded-2xl shadow-2xl border border-white/10">
-            {/* Decorative glow */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none" />
 
-            {/* Badge "PRÓXIMO CURSO" */}
             <div className="flex items-center justify-between flex-wrap gap-2">
                 <span className="inline-flex items-center gap-2 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                    <CertificateIcon className="w-4 h-4" />
                     Próximo curso
                 </span>
                 <span className="text-white/50 text-xs">{formattedDate}</span>
             </div>
 
-            {/* Nombre del curso */}
             <div>
                 <p className="text-white/70 text-sm uppercase tracking-widest mb-1">Inscríbete ahora en</p>
                 <h3 className="text-white text-xl md:text-2xl font-extrabold leading-tight">
@@ -181,27 +169,27 @@ export function TimerCourses() {
                 </h3>
             </div>
 
-            {/* Countdown */}
             <div className="flex items-center gap-1 sm:gap-2 justify-center flex-wrap">
-                <TimerUnit value={timeLeft.dias} label="Días" />
+                <TimerUnit value={currentTimeLeft.dias} label="Días" />
                 <Separator />
-                <TimerUnit value={timeLeft.horas} label="Horas" />
+                <TimerUnit value={currentTimeLeft.horas} label="Horas" />
                 <Separator />
-                <TimerUnit value={timeLeft.minutos} label="Min" />
+                <TimerUnit value={currentTimeLeft.minutos} label="Min" />
                 <Separator />
-                <TimerUnit value={timeLeft.segundos} label="Sec" />
+                <TimerUnit value={currentTimeLeft.segundos} label="Sec" />
             </div>
 
-            {/* Urgency + CTA */}
             <div className="flex flex-col gap-3">
-                <p className="text-white/60 text-xs text-center">
-                    ⚡ Los lugares son limitados — asegura el tuyo antes de que se agoten
+                <p className="inline-flex items-center justify-center gap-1.5 text-white/60 text-xs text-center">
+                    <EnergyIcon className="w-4 h-4 text-secondary shrink-0" />
+                    Los lugares son limitados: asegura el tuyo antes de que se agoten
                 </p>
                 <Link
                     href={`/cursos/${course.slug}`}
-                    className="w-full text-center bg-secondary hover:bg-secondary/90 active:scale-95 transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg text-sm uppercase tracking-wider"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 active:scale-95 transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg text-sm uppercase tracking-wider"
                 >
-                    Ver detalles e inscribirme →
+                    Ver detalles e inscribirme
+                    <ArrowRightIcon className="w-4 h-4" />
                 </Link>
             </div>
         </div>

@@ -16,11 +16,6 @@ export default function IdapFaq() {
 
                 {/* Encabezado */}
                 <div className="space-y-4 max-w-2xl">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5">
-                        <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
-                            Preguntas frecuentes
-                        </span>
-                    </div>
                     <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
                         Lo que necesitas saber{" "}
                         <span className="text-secondary italic">sobre IDAP</span>

@@ -66,9 +66,6 @@ export default function LdarServiceCards() {
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 py-24">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-4">
-                    <p className="text-secondary font-bold tracking-widest text-sm uppercase">
-                        Programa Certificado
-                    </p>
                     <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
                         Servicio Trimestral{" "}
                         <span className="text-secondary">LDAR</span> para PPCIEM

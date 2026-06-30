@@ -1,16 +1,18 @@
 interface Props {
-    className?: string
+    className?: string;
 }
 
-export function HistoryIcon({ className = "" }: Props) {
+export function HistoryIcon({ className = "w-6 h-6" }: Props) {
     return (
         <svg
+            className={className}
             viewBox="0 0 24 24"
-            fill="currentColor"
-            className={`inline-block ${className}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
         >
-            <path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" />
+            <path d="M3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12C21 16.97 16.97 21 12 21C9.51 21 7.26 19.99 5.63 18.36" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M3 12H7M3 12L6 9M3 12L6 15M12 7V12L15.5 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
 }

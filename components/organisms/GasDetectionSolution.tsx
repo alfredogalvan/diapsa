@@ -34,14 +34,6 @@ export default function GasDetectionSolution() {
 
                 {/* Content */}
                 <div className="flex flex-col gap-8 text-black">
-                    {/* Overline badge */}
-                    <div className="flex items-center gap-3 w-fit bg-secondary/10 border border-secondary/20 rounded-full px-4 py-2">
-                        <span className="w-2 h-2 rounded-full bg-secondary" />
-                        <span className="text-secondary font-semibold text-sm tracking-widest uppercase">
-                            La Solución DIAPSA
-                        </span>
-                    </div>
-
                     <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
                         Transformamos la detección en cumplimiento integral
                     </h2>

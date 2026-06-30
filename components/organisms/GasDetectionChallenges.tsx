@@ -55,9 +55,6 @@ export default function GasDetectionChallenges() {
                 <div className="absolute -top-32 -right-32 w-150 h-150 rounded-full bg-primary/10 blur-3xl" />
                 <div className="absolute bottom-0 left-0 w-100 h-100 rounded-full bg-primary/10 blur-3xl" />
             </div>
-            <p className="text-center font-bold text-secondary tracking-widest text-sm uppercase mb-4">
-                Desafíos Críticos
-            </p>
             <h2 className="font-bold text-center text-3xl lg:text-5xl text-black mb-16 max-w-2xl mx-auto leading-tight">
                 Identificamos los riesgos que amenazan su cumplimiento
             </h2>

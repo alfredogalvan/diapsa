@@ -17,9 +17,9 @@ export default function GasDetectionHero({ onOpenModal }: Props) {
 
             <div className="relative z-10 space-y-8 text-black flex flex-col justify-center lg:w-1/2">
                 {/* Badge */}
-                <div className="flex items-center gap-3 w-fit bg-primary/10 border border-primary/20 rounded-full px-4 py-2">
+                <div className="flex items-center gap-3 w-fit bg-primary/10 border border-primary/20 rounded-full px-4 py-1">
                     <span className="w-2 h-2 rounded-full bg-secondary" />
-                    <span className="text-primary/70 text-sm font-semibold tracking-widest uppercase">
+                    <span className="text-primary/70 text-xs font-semibold tracking-widest uppercase">
                         Sector Hidrocarburos
                     </span>
                 </div>

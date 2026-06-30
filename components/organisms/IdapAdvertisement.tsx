@@ -13,9 +13,6 @@ export function IdapAdvertisementSection() {
                     />
                 </div>
                 <div className="py-10">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
-                        Plataforma digital
-                    </span>
                     <h2 className="text-3xl lg:text-4xl text-white font-extrabold leading-tight">NUESTRA PLATAFORMA <span className="text-secondary">IDAP</span></h2>
                     <h3 className="text-gray-400"> Inspection, Diagnostic &amp; Asset Platform</h3>
                     <hr className="border-2 border-secondary my-2" />

@@ -386,7 +386,7 @@ export default function ContactForm() {
             </div>
 
             {/* Sección de cursos */}
-            {mostrarCursos && (
+            {mostrarCursos && (loadingCourses || courses.length > 0) && (
               <div className="p-4 bg-gray-50 border border-gray-700 rounded-lg">
                 <label className="block text-sm font-semibold mb-3 text-gray-900">
                   Selecciona los cursos de tu interés:

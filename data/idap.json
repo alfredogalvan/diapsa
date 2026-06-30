@@ -73,7 +73,7 @@
                     "description": "Equipos esenciales para la operación. Su falla detiene el proceso, genera pérdidas productivas o riesgos de seguridad."
                 }
             ],
-            "image": "/images/idap/criticallity_status.png",
+            "image": "/images/idap/estatus-criticidad.png",
             "alt": "Dashboard mostrando indicadores de criticidad de activos industriales con niveles de riesgo bajo, medio y alto"
         },
         {
@@ -117,7 +117,7 @@
             "bg": true,
             "title": "MÚLTIPLES DISCIPLINAS, UN SOLO SISTEMA",
             "description": "IDAP integra resultados de todas las disciplinas que se ejecutan en DIAPSA, mostrando la condición real de los equipos desde distintas perspectivas. Con ello, la plataforma une las disciplinas predictivas en un entorno colaborativo.",
-            "image": "/images/idap/multidisciplines-2.png",
+            "image": "/images/idap/diciplines-idap.png",
             "alt": "Iconos representando las seis disciplinas de predictivo: termografía infrarroja, análisis de vibraciones, ultrasonido pasivo, análisis de aceite, análisis eléctrico e integrales",
             "disciplines": [
                 {
@@ -156,7 +156,7 @@
             "bg": false,
             "title": "Indicadores de Resultados de Inspección y Prioridad",
             "description": "Se proporcionan recomendaciones según el estado del equipo y la interpretación de los indicadores de condición según niveles de riesgo y atención requerida.",
-            "image": "/images/idap/status.png",
+            "image": "/images/idap/status-v2.png",
             "alt": "Indicadores de resultados de inspección con estados Bueno, Observación, Precaución, Alarma y Seguimiento, mostrando recomendaciones según nivel de riesgo",
             "indicadores": [
                 {
