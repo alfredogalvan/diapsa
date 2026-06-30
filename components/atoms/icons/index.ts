@@ -2,9 +2,7 @@ export { ChartIcon } from './ChartIcon';
 export { ChartIcon2 } from "./ChartIcon2";
 export { CheckCircleIcon } from "./CheckCircleIcon";
 export { DoubleCircleIcon } from "./DoubleCircleIcon"
-export { EcoIcon } from "./EcoIcon";
 export { PlusCircleIcon } from "./PlusCircleIcon";
-export { PrecisionManufacturingIcon } from "./PrecisionManufacturingIcon";
 export { SecurityIcon } from "./SecurityIcon";
 export { VibrationIcon } from "./VibrationIcon";
 export { VisibilityIcon } from "./VisibilityIcon";
@@ -16,4 +14,14 @@ export { MonitorIcon } from "./MonitorIcon";
 export { EnergyIcon } from "./EnergyIcon";
 export { HistoryIcon } from "./HistoryIcon";
 export { WarningIcon } from "./WarningIcon";
+export { ArrowRightIcon } from "./ArrowRightIcon";
+export { BuildingIcon } from "./BuildingIcon";
+export { CalendarIcon } from "./CalendarIcon";
+export { CertificateIcon } from "./CertificateIcon";
+export { ClockIcon } from "./ClockIcon";
+export { FactoryIcon } from "./FactoryIcon";
+export { InstructorIcon } from "./InstructorIcon";
+export { TagIcon } from "./TagIcon";
+export { TargetIcon } from "./TargetIcon";
+export { TrophyIcon } from "./TrophyIcon";
 

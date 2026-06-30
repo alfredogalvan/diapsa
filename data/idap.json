@@ -1,43 +1,57 @@
 {
+    "homeIntro": {
+        "title": "Monitoreo predictivo con",
+        "titleHighlight": "inteligencia artificial y análisis experto",
+        "description": "Centraliza inspecciones, diagnósticos y tendencias para conocer la condición de tus equipos y priorizar acciones de mantenimiento.",
+        "aboutTitle": "¿Qué es",
+        "aboutTitleHighlight": "IDAP?",
+        "aboutDescription": "IDAP (Inspection, Diagnostic & Asset Platform) reúne los resultados del monitoreo de condición desarrollado por DIAPSA y los convierte en información útil para mantenimiento.",
+        "informationTitle": "Información clara para",
+        "informationTitleHighlight": "actuar mejor",
+        "informationDescription": "Conoce cómo IDAP se integra a la operación, organiza los hallazgos técnicos y facilita el seguimiento de cada activo.",
+        "ctaTitle": "Anticipa las fallas con información técnica confiable.",
+        "ctaDescription": "Conoce las funciones de IDAP y su aplicación en una estrategia de mantenimiento predictivo.",
+        "closingStatement": "IDAP combina tecnología con el criterio de especialistas DIAPSA para interpretar tendencias, priorizar riesgos y recomendar acciones de mantenimiento."
+    },
     "tabs": [
         {
             "id": "visualiza",
-            "title": "VISUALIZA EL ESTADO E HISTORIAL DE TU MAQUINARIA",
+            "title": "Visualiza el estado de tu maquinaria",
             "text": [
-                "Analizamos las necesidades operativas en tanto a inteligencia y reporteo para elaborar métricos que engloben y diseccionen la información obtenida de maneras inteligentes que brinden respuestas específicas visualizadas de manera clara y contundente. La diferencia de IDAP está en el factor humano: no es una plataforma autónoma que solo recopila datos, sino un sistema vivo donde la tecnología y la experiencia de especialistas convergen para dar certeza en la toma de decisiones y confianza en la operación."
+                "Consulta el estado, historial y métricas clave de tu maquinaria en un solo lugar. IDAP combina tecnología y análisis experto para convertir datos en decisiones confiables."
             ]
         },
         {
             "id": "reportes",
-            "title": "OBTÉN REPORTES A MEDIDA DE TU OPERACIÓN",
+            "title": "Obtén reportes a tu medida",
             "text": [
-                "Analizamos las necesidades operativas en tanto a inteligencia y reporteo para elaborar métricos que engloben y diseccionen la información obtenida de maneras inteligentes que brinden respuestas específicas visualizadas de manera clara y contundente. La diferencia de IDAP está en el factor humano: no es una plataforma autónoma que solo recopila datos, sino un sistema vivo donde la tecnología y la experiencia de especialistas convergen para dar certeza en la toma de decisiones y confianza en la operación."
+                "Obtén métricas y reportes adaptados a tu operación, con información clara que responde preguntas específicas y facilita decisiones oportunas."
             ]
         },
         {
             "id": "historial",
-            "title": "ANALIZA EL HISTORIAL Y TENDENCIAS DE TUS EQUIPOS",
+            "title": "Analiza el historial de tus equipos",
             "text": [
-                "Cada inspección queda registrada en el sistema con su respectivo diagnóstico, gráfica de tendencias y recomendaciones técnicas. Esta trazabilidad histórica permite identificar patrones de falla, comparar el comportamiento de los equipos a lo largo del tiempo y medir la efectividad de las acciones preventivas tomadas."
+                "Cada inspección registra diagnósticos, tendencias y recomendaciones. Este historial permite detectar fallas, comparar el desempeño de los equipos y evaluar las acciones preventivas."
             ]
         }
     ],
     "questions": [
         {
-            "title": "¿CUÁL ES SU FUNCIÓN?",
-            "description": "Funciona como un puente entre la recopilación y análisis del estado de los equipos y la visualización de datos analíticos, transformando la información técnica en herramientas claras para la interpretación, priorización y ejecución de acciones correctivas o preventivas."
+            "title": "¿Qué hace IDAP?",
+            "description": "Convierte los datos de tus equipos en información clara para interpretar su estado, priorizar riesgos y ejecutar acciones preventivas o correctivas."
         },
         {
-            "title": "¿CÓMO SE INTEGRA A MI OPERACIÓN?",
-            "description": "Usar IDAP comienza con un levantamiento técnico especializado, donde se identifican los puntos de monitoreo más relevantes y se definen los alcances de acuerdo con las necesidades de cada operación. A partir de ahí, se implementa al menos una revisión programada que permite validar condiciones, ajustar parámetros y proyectar escenarios de mantenimiento predictivo."
+            "title": "¿Cómo se integra?",
+            "description": "Comienza con un levantamiento técnico para definir puntos de monitoreo y alcances. Después, las revisiones programadas validan condiciones, ajustan parámetros y anticipan necesidades de mantenimiento."
         },
         {
-            "title": "¿CÓMO APORTA VALOR A MI OPERACIÓN?",
-            "description": "El valor surge de convertir datos en decisiones: cada alarma, cada lectura y cada tendencia se interpretan con un criterio experto que prioriza acciones y optimiza recursos. Esto asegura que los reportes no se queden en gráficas, sino que se traduzcan en mejoras tangibles en disponibilidad, eficiencia y ahorro."
+            "title": "¿Qué valor aporta?",
+            "description": "Especialistas interpretan alarmas, lecturas y tendencias para priorizar acciones, optimizar recursos y mejorar la disponibilidad, eficiencia y ahorro de tu operación."
         },
         {
-            "title": "¿POR QUÉ ES LA MEJOR HERRAMIENTA EN SU TIPO?",
-            "description": "Detrás del análisis está la trayectoria de DIAPSA, con más de 22 años de experiencia en diagnóstico de condición, capacitando y acompañando a empresas de distintos sectores industriales. Nuestro equipo no se limita a desplegar información: analiza el flujo de datos, interpreta anomalías, propone mejoras y da seguimiento para que cada hallazgo genere un impacto real."
+            "title": "¿Por qué elegir IDAP?",
+            "description": "IDAP integra tecnología con más de 22 años de experiencia de DIAPSA. Nuestros especialistas analizan anomalías, proponen mejoras y dan seguimiento para generar resultados reales."
         }
     ],
     "information": [
@@ -59,7 +73,7 @@
                     "description": "Equipos esenciales para la operación. Su falla detiene el proceso, genera pérdidas productivas o riesgos de seguridad."
                 }
             ],
-            "image": "/images/idap/criticallity_status.png",
+            "image": "/images/idap/estatus-criticidad.png",
             "alt": "Dashboard mostrando indicadores de criticidad de activos industriales con niveles de riesgo bajo, medio y alto"
         },
         {
@@ -103,7 +117,7 @@
             "bg": true,
             "title": "MÚLTIPLES DISCIPLINAS, UN SOLO SISTEMA",
             "description": "IDAP integra resultados de todas las disciplinas que se ejecutan en DIAPSA, mostrando la condición real de los equipos desde distintas perspectivas. Con ello, la plataforma une las disciplinas predictivas en un entorno colaborativo.",
-            "image": "/images/idap/multidisciplines-2.png",
+            "image": "/images/idap/diciplines-idap.png",
             "alt": "Iconos representando las seis disciplinas de predictivo: termografía infrarroja, análisis de vibraciones, ultrasonido pasivo, análisis de aceite, análisis eléctrico e integrales",
             "disciplines": [
                 {
@@ -142,7 +156,7 @@
             "bg": false,
             "title": "Indicadores de Resultados de Inspección y Prioridad",
             "description": "Se proporcionan recomendaciones según el estado del equipo y la interpretación de los indicadores de condición según niveles de riesgo y atención requerida.",
-            "image": "/images/idap/status.png",
+            "image": "/images/idap/status-v2.png",
             "alt": "Indicadores de resultados de inspección con estados Bueno, Observación, Precaución, Alarma y Seguimiento, mostrando recomendaciones según nivel de riesgo",
             "indicadores": [
                 {

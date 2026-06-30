@@ -3,8 +3,10 @@ import PageHeader from "@/components/organisms/PageHeader";
 import MethodologyProcess from "@/components/organisms/MethodologyProcess";
 import disciplinasData from "@/data/disciplinas.json";
 import Image from "next/image";
+import Link from "next/link";
 import { Clients } from "@/components/organisms/Clients";
-import SuccessCases from "@/components/organisms/SuccessCases";
+import { getFeaturedSuccessCases } from "@/lib/api/posts";
+import CasosExitoTeaser from "@/components/organisms/CasosExitoTeaser";
 
 export const metadata: Metadata = {
   title: "Nuestra Metodología",
@@ -30,7 +32,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function MetodologiaPage() {
+export default async function MetodologiaPage() {
+
+  const cases = await getFeaturedSuccessCases();
+
   return (
     <main>
       <PageHeader
@@ -70,10 +75,13 @@ export default function MetodologiaPage() {
 
               {/* CTA Link */}
               <div className="relative z-10">
-                <a href="#historia" className="text-secondary font-semibold text-lg hover:underline inline-flex items-center gap-2">
-                  CONOCE MÁS ACERCA DE NUESTRA HISTORIA
+                <Link href="/contacto" className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md [&>span]:hidden">
+                  Contáctanos
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
                   <span>→</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -123,6 +131,18 @@ export default function MetodologiaPage() {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/contacto"
+              className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
+            >
+              Solicitar información
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
 
@@ -189,9 +209,31 @@ export default function MetodologiaPage() {
           </div>
         </div>
       </section>
-      <SuccessCases />
 
+      <CasosExitoTeaser cases={cases} />
       <Clients />
+
+      <section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
+        <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
+            Aplica esta metodología en tus <span className="text-secondary">activos críticos</span>
+          </h2>
+          <p className="text-white/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+            Comparte tus datos en el formulario y cuéntanos que equipos, procesos o fallas necesitas evaluar.
+          </p>
+          <Link
+            href="/contacto"
+            className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
+          >
+            Cuéntanos de ti
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
 
     </main>
   );

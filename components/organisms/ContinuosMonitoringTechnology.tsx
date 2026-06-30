@@ -139,7 +139,7 @@ export default function ContinuosMonitoringTechnology() {
                     {/* Diagram placeholder */}
                     <div className="relative w-full aspect-3/1 rounded-sm overflow-hidden bg-white/30 border border-gray-200">
                         <Image
-                            src="https://placehold.net/800x600.png"
+                            src="/images/monitoreo-continuo/kfc-enviroment-v2.png"
                             fill
                             className="object-contain p-4"
                             alt="Diagrama SMARTSensing Suite - KCF Technologies"
@@ -198,7 +198,7 @@ export default function ContinuosMonitoringTechnology() {
                                                     {expanded === equipo.id ? "Ocultar specs" : "Ver especificaciones"}
                                                 </button>
                                             )}
-                                            <Link href="#contacto">
+                                            <Link href="/contacto">
                                                 <Button variant="primary" className="text-sm">
                                                     Solicitar información
                                                 </Button>

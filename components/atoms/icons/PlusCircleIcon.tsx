@@ -1,12 +1,12 @@
 interface Props {
-    className?: string
+    className?: string;
 }
-export function PlusCircleIcon({ className = "" }: Props) {
+
+export function PlusCircleIcon({ className = "w-6 h-6" }: Props) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" className={`inline-block ${className}`}>
-            <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="4" />
-            <rect x="40" y="20" width="20" height="60" fill="currentColor" />
-            <rect x="20" y="40" width="60" height="20" fill="currentColor" />
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+            <path d="M12 8V16M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
     );
 }

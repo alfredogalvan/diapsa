@@ -1,16 +1,18 @@
 interface Props {
-    className?: string
+    className?: string;
 }
 
-export function SecurityIcon({ className = "" }: Props) {
+export function SecurityIcon({ className = "w-6 h-6" }: Props) {
     return (
         <svg
+            className={className}
             viewBox="0 0 24 24"
-            fill="currentColor"
-            className={`inline-block ${className}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
         >
-            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+            <path d="M12 3L4 6.5V11.5C4 16.3 7.4 20.1 12 21C16.6 20.1 20 16.3 20 11.5V6.5L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M9 12L11 14L15.5 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
 }

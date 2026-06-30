@@ -28,7 +28,7 @@ export const metadata: Metadata = {
                 url: OG_IMAGE,
                 width: 1200,
                 height: 630,
-                type: 'image.jpeg',
+                type: 'image/jpeg',
                 alt: 'Detecciones de Gas Grupo DIAPSA'
             }
         ]

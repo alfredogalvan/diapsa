@@ -3,6 +3,8 @@ import PageHeader from "@/components/organisms/PageHeader";
 import Link from "next/link";
 import Image from "next/image";
 
+const OG_IMAGE = "/images/og-images/og-image.jpg";
+
 export const metadata: Metadata = {
   title: "Servicios | Grupo DIAPSA",
   description:
@@ -27,6 +29,25 @@ export const metadata: Metadata = {
       "Servicios de mantenimiento predictivo y monitoreo de condicion para proteger activos industriales en Mexico y Sudamerica.",
     url: "/servicios",
     type: "website",
+    locale: "es_MX",
+    siteName: "Grupo DIAPSA",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+        alt: "Servicios Grupo DIAPSA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@grupodiapsa",
+    title: "Servicios | Grupo DIAPSA",
+    description:
+      "Servicios de mantenimiento predictivo y monitoreo de condicion para proteger activos industriales.",
+    images: [OG_IMAGE],
   },
 };
 
@@ -214,7 +235,7 @@ export default function ServiciosProductosPage() {
                 específico en la madurez de tu programa de mantenimiento.
                 Puedes empezar desde cero o integrar lo que ya tienes —
                 siempre con un objetivo claro: cero paros no programados en plantas
-                industriales de Mexico y Sudamerica.
+                industriales de Mexico y Sudamérica.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">

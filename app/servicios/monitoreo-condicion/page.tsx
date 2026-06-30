@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from "next";
 
 import PageHeader from "@/components/organisms/PageHeader";
-import SuccessCases from "@/components/organisms/SuccessCases";
 import MCPainPoints from "@/components/organisms/MCPainPoints";
 import MCSolution from "@/components/organisms/MCSolution";
 import MCProcess from "@/components/organisms/MCProcess";
@@ -11,6 +10,8 @@ import MCDeliverables from "@/components/organisms/MCDeliverables";
 import MCFaq from "@/components/organisms/MCFaq";
 import MCCtaFinal from "@/components/organisms/MCCtaFinal";
 import MCReportTypes from "@/components/organisms/MCReportTypes";
+
+const OG_IMAGE = "/images/og-images/og-image-monitoreo-condicion.jpg";
 
 export const metadata: Metadata = {
     title: "Monitoreo de Condición | Grupo DIAPSA",
@@ -35,6 +36,26 @@ export const metadata: Metadata = {
             "Consigue operación continua sin paros repentinos ni gastos innecesarios. Más de 20 años protegiendo activos industriales.",
         url: "/servicios/monitoreo-condicion",
         type: "website",
+        locale: "es_MX",
+        siteName: "Grupo DIAPSA",
+        images: [
+            {
+                url: OG_IMAGE,
+                width: 1200,
+                height: 630,
+                type: "image/jpeg",
+                alt: "Grupo DIAPSA - Monitoreo de Condición"
+            }
+        ]
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@grupodiapsa",
+        creator: "@grupodiapsa",
+        title: "Grupo DIAPSA | Monitoreo de Condición",
+        description:
+            "Mantenimiento predictivo, monitoreo de condición y servicios de mantenimiento industrial para Mexico y Sudamérica.",
+        images: [OG_IMAGE],
     },
 };
 
@@ -64,15 +85,13 @@ export default function MonitoreoConditionPage() {
             {/* 5. Beneficios transformacionales */}
             <MCBenefits />
 
-            {/* 6. Prueba social de Casos de exito */}
-            <SuccessCases />
 
             <MCReportTypes />
             {/* 7. Para quien es */}
             <MCAudience />
 
             {/* 8. Que incluye */}
-            <MCDeliverables />
+            {/* <MCDeliverables /> */}
 
             {/* 9. Planes / Inversion */}
             {/* <MCPlans /> */}

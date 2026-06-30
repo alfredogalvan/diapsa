@@ -146,7 +146,7 @@ export default function PageIdap() {
                             {/* Encabezado narrativo */}
                             {label && (
                                 <div className="space-y-3 max-w-2xl">
-                                    <div className="inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5">
+                                    <div className="inline-flex items-center gap-2">
                                         <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
                                             {label.eyebrow}
                                         </span>
@@ -277,7 +277,7 @@ export default function PageIdap() {
 
                 <div className="relative max-w-3xl mx-auto px-6 lg:px-12 text-center space-y-10">
 
-                    <div className="inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-4 py-1.5">
+                    <div className="inline-flex items-center gap-2">
                         <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
                             ¿Te interesa IDAP?
                         </span>

@@ -1,19 +1,16 @@
 import Image from "next/image";
-import Button from "@/components/atoms/Button";
-import blogData from "@/data/blog.json";
+import { Blog } from "@/types/post";
+import { getStorageUrl } from "@/lib/api/config";
+import Link from "next/link";
 
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  category: string;
-  image: string;
-  slug: string;
+interface BlogPageProps {
+  blogs: Blog[]
 }
 
-export default function BlogSection() {
-  const posts: BlogPost[] = blogData.posts;
+export default function BlogSection({ blogs }: BlogPageProps) {
+  if (blogs.length === 0) {
+    return null;
+  }
 
   return (
     <section className="w-full bg-primary py-16 lg:py-24">
@@ -31,66 +28,69 @@ export default function BlogSection() {
 
         {/* Grid de posts */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
-            >
-              {/* Imagen */}
-              <div className="relative w-full h-56 bg-gray-200">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                />
-                {/* Badge de categoría */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-secondary text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    {post.category}
-                  </span>
+          {blogs.map((post) => {
+            const coverImage =
+              getStorageUrl(post.cover_image) || "/images/fondo-mantenimiento.webp";
+
+            return (
+              <article
+                key={post.id}
+                className="group flex h-full flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/40 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300"
+              >
+                {/* Imagen */}
+                <div className="relative w-full h-56 bg-gray-200">
+                  <Image
+                    src={coverImage}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                  {/* Badge de categoría */}
                 </div>
-              </div>
 
-              {/* Contenido */}
-              <div className="p-6">
-                {/* Fecha */}
-                <p className="text-sm text-gray-500 mb-3">
-                  {new Date(post.date).toLocaleDateString("es-MX", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
+                {/* Contenido */}
+                <div className="flex flex-1 flex-col p-6">
+                  {/* Fecha */}
+                  <p className="text-sm text-gray-500 mb-3">
+                    {new Date(post.published_at).toLocaleDateString("es-MX", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
 
-                {/* Título */}
-                <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2">
-                  {post.title}
-                </h3>
+                  {/* Título */}
+                  <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2">
+                    {post.title}
+                  </h3>
 
-                {/* Excerpt */}
-                <p className="text-gray-600 mb-6 line-clamp-3">
-                  {post.excerpt}
-                </p>
+                  {/* Excerpt */}
+                  <p className="mb-6 line-clamp-3 text-gray-600">
+                    {post.excerpt}
+                  </p>
 
-                {/* CTA */}
-                <Button
-                  variant="primary"
-                  ghost
-                  className="w-full justify-center"
-                >
-                  Leer más
-                </Button>
-              </div>
-            </article>
-          ))}
+                  {/* CTA */}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-xs border-2 border-primary bg-transparent px-4 py-2 font-medium text-primary transition-all duration-200 ease-out hover:border-primary/80 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 active:scale-[0.98] active:bg-primary/15"
+                  >
+                    Leer más
+                  </Link>
+
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         {/* CTA para ver más */}
         <div className="text-center mt-12">
-          <Button variant="secondary" className="px-8 py-3">
+          <Link
+            href="/blog"
+            className="inline-flex items-center justify-center rounded-xs bg-secondary px-8 py-3 font-medium text-white shadow-md transition-all duration-200 ease-out hover:bg-secondary hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:ring-offset-2 active:scale-[0.98]"
+          >
             Ver todas las noticias
-          </Button>
+          </Link>
         </div>
       </div>
     </section>

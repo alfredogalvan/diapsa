@@ -41,9 +41,6 @@ export function ValuesSection() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-16 space-y-4">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                        Nuestra Identidad
-                    </span>
 
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
                         VALORES QUE NOS{' '}

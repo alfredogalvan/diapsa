@@ -2,6 +2,48 @@ import PageHeader from "@/components/organisms/PageHeader"
 import StageCard from "@/components/molecules/StageCard"
 import { PlusCircleIcon, ChartIcon, ChartIcon2, WindowIcon, DoubleCircleIcon } from '@/components/atoms/icons/'
 import Image from "next/image";
+import { Metadata } from "next";
+
+const OG_IMAGE = "/images/og-images/og-image-diapsa-start.jpg";
+
+export const metadata: Metadata = {
+    title: "DIAPSA START",
+    description: "Programa para iniciar o fortalecer el monitoreo de condición con capacitación, diagnóstico situacional, mediciones y gestión de datos.",
+    keywords: [
+        "DIAPSA START",
+        "monitoreo de condición desde cero",
+        "mantenimiento predictivo",
+        "capacitación técnica en planta",
+        "diagnóstico situacional",
+    ],
+    alternates: {
+        canonical: "/servicios/diapsa-start",
+    },
+    openGraph: {
+        title: "DIAPSA START | Grupo DIAPSA",
+        description: "Programa estructurado para construir capacidades de mantenimiento predictivo y tomar control de los activos industriales.",
+        url: "/servicios/diapsa-start",
+        type: "website",
+        locale: "es_MX",
+        siteName: "Grupo DIAPSA",
+        images: [
+            {
+                url: OG_IMAGE,
+                width: 1200,
+                height: 630,
+                type: "image/jpeg",
+                alt: "DIAPSA START Grupo DIAPSA",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@grupodiapsa",
+        title: "DIAPSA START | Grupo DIAPSA",
+        description: "Programa para iniciar o fortalecer el monitoreo de condición de manera ordenada.",
+        images: [OG_IMAGE],
+    },
+};
 
 const stages = [
     {
@@ -68,7 +110,7 @@ export default function DiapsaStart() {
                         {/* Header */}
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase">
                                     Programa de implementación
                                 </span>
                                 <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
@@ -120,9 +162,7 @@ export default function DiapsaStart() {
 
                     {/* Header de la sección */}
                     <div className="text-center max-w-3xl mx-auto space-y-4">
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10">
-                            Proceso estructurado
-                        </span>
+
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-white">
                             Del caos reactivo al{" "}
                             <span className="text-secondary">control total.</span>

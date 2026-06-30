@@ -1,16 +1,18 @@
 interface Props {
-    className?: string
+    className?: string;
 }
 
-export function VisibilityIcon({ className = "" }: Props) {
+export function VisibilityIcon({ className = "w-6 h-6" }: Props) {
     return (
         <svg
+            className={className}
             viewBox="0 0 24 24"
-            fill="currentColor"
-            className={`inline-block ${className}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
         >
-            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+            <path d="M2 12C3.73 7.61 7.77 5 12 5C16.23 5 20.27 7.61 22 12C20.27 16.39 16.23 19 12 19C7.77 19 3.73 16.39 2 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
         </svg>
     );
 }

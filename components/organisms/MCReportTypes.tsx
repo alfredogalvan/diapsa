@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const reportTypes = [
     {
@@ -12,7 +13,7 @@ const reportTypes = [
             "Recomendación de acción inmediata",
             "Evita paros inesperados"
         ],
-        image: "/images/servicios/placeholder.jpg"
+        image: "/images/monitoreo-condicion/inmediate-reports.avif"
         // TODO: Replace placeholder with photo of real-time monitoring dashboard
     },
     {
@@ -26,8 +27,7 @@ const reportTypes = [
             "Frecuencia configurable",
             "Predicción de vida útil"
         ],
-        image: "/images/servicios/placeholder.jpg"
-        // TODO: Replace placeholder with photo of trend analysis or performance metrics
+        image: "/images/monitoreo-condicion/reportes-seguimiento.avif"        // TODO: Replace placeholder with photo of trend analysis or performance metrics
     },
     {
         id: "historicos",
@@ -40,7 +40,7 @@ const reportTypes = [
             "Correlación de eventos y fallas",
             "Trazabilidad total"
         ],
-        image: "/images/servicios/placeholder.jpg"
+        image: "/images/monitoreo-condicion/historical-reports.jpg"
         // TODO: Replace placeholder with photo of historical data visualization or archive
     }
 ];
@@ -56,7 +56,7 @@ export default function MCReportTypes() {
 
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase  mb-4">
                         Entregables
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
@@ -153,6 +153,16 @@ export default function MCReportTypes() {
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div className="text-center">
+                    <Link
+                        href="/contacto"
+                        className="inline-flex items-center gap-2 rounded-xs bg-secondary px-8 py-3 font-bold text-primary shadow-md transition-colors hover:bg-white"
+                    >
+                        Solicitar información
+                        <span aria-hidden="true">&rarr;</span>
+                    </Link>
                 </div>
             </div>
         </section>

@@ -49,16 +49,12 @@ export default function ContinuosMonitoringChallenge() {
                             />
                         </div>
                         {/* Tag decorativo */}
-                        <div className="absolute -top-4 -right-4 bg-secondary text-white text-xs font-bold px-4 py-2 rounded-full shadow-md rotate-3">
-                            El problema real
-                        </div>
+
                     </div>
 
                     {/* Texto */}
                     <div className="order-1 lg:order-2 space-y-6">
-                        <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase border border-secondary/40 bg-secondary/10 px-3 py-1 rounded-full">
-                            Entendamos el reto
-                        </span>
+
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary leading-tight">
                             Los sensores no son la solución universal.
                         </h2>

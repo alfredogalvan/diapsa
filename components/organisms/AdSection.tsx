@@ -1,10 +1,16 @@
-import AdvsCard, { Advertisement } from "../molecules/AdvsCard"
+import { Announcement } from "@/types/post"
+import AdvsCard from "@/components/molecules/AdvsCard"
+
 
 interface Props {
-    advertisements: Advertisement[]
+    advertisements: Announcement[]
 }
 
 export default function AdSection({ advertisements }: Props) {
+    if (advertisements.length === 0) {
+        return null;
+    }
+
     return (
         <section className="bg-gray-100 py-16 lg:py-24 px-6 md:px-18 relative overflow-hidden">
 
@@ -25,16 +31,13 @@ export default function AdSection({ advertisements }: Props) {
             <div className="relative z-10">
                 {/* Header */}
                 <div className="text-center mb-14 space-y-3">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-2">
-                        Tablero de Anuncios
-                    </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
-                        PRÓXIMOS EVENTOS <span className="text-secondary">EN DIAPSA</span>
+                        Tablero de Anuncios de <span className="text-secondary">DIAPSA</span>
                     </h2>
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
                     {advertisements.map((adv) => (
                         <div key={adv.title} className="flex justify-center">
                             <AdvsCard adv={adv} />

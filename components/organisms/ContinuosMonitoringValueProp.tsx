@@ -20,7 +20,7 @@ export default function ContinuosMonitoringValueProp() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Texto */}
                     <div className="space-y-8">
-                        <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase border border-secondary/40 bg-secondary/10 px-3 py-1 rounded-full">
+                        <span className="inline-block text-secondary font-semibold text-xs tracking-widest uppercase">
                             No vendemos sensores
                         </span>
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-white leading-tight">

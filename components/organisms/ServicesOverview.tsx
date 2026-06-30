@@ -11,11 +11,11 @@ export default function ServicesOverview() {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
+                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase mb-4">
                         Nuestras Disciplinas
                     </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
-                        SOLUCIONES DE MONITOREO <span className="text-secondary">PREDICTIVO</span>
+                        Soluciones de Monitoreo <span className="text-secondary">Predictivo</span>
                     </h2>
                     <p className="text-tertiary text-lg max-w-2xl mx-auto">
                         Integramos múltiples disciplinas técnicas para obtener una visión 360° del estado real de tus equipos.
@@ -66,7 +66,7 @@ export default function ServicesOverview() {
                 </div>
 
                 {/* CTA */}
-                <div className="text-center">
+                <div className="text-center flex flex-col lg:flex-row justify-center items-center gap-10">
                     <Link
                         href="/servicios/monitoreo-condicion"
                         className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300 shadow-md"
@@ -76,6 +76,9 @@ export default function ServicesOverview() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                         </svg>
                     </Link>
+                    <Link href={'#contacto'}
+                        className="inline-flex border-2 border-secondary items-center gap-2 bg-secondary text-white font-bold px-8 py-3 rounded-xs hover:bg-transparent  hover:text-secondary transition-all duration-300 shadow-md"
+                    >Contáctanos</Link>
                 </div>
             </div>
         </section>

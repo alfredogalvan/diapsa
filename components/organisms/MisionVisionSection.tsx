@@ -3,9 +3,6 @@ export function MisionVisionSection() {
     return (
         <section className="w-full bg-white py-16 lg:py-24 space-y-4">
             <div className="max-w-7xl mx-auto px-6 space-y-2 mb-16" >
-                <div className="flex flex-col items-center">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">Excelencia operativa</span>
-                </div>
                 <h2 className="text-primary text-3xl lg:text-4xl font-extrabold text-center">COMPROMETIDOS CON LA  <span className="text-secondary">CONFIABILIDAD</span></h2>
                 <p className="text-tertiary text-center">Somos líderes en mantenimiento predictivo y monitoreo de condiciones, asegurando que su planta opera con la máxima eficiencia y seguridad</p>
 

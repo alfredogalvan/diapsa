@@ -1,23 +1,60 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import type { ComponentType } from "react";
 import BackgroundImage from "@/components/atoms/BackgroundImage";
 import PageHeader from "@/components/organisms/PageHeader";
+import {
+    ArrowRightIcon,
+    CheckCircleIcon,
+    HistoryIcon,
+    SettingsIcon,
+    ThermometerIcon,
+    VibrationIcon,
+    WarningIcon,
+} from "@/components/atoms/icons";
 
+const OG_IMAGE = "/images/og-images/og-image-diagnostico-situacional.jpg";
+
+type IconComponent = ComponentType<{ className?: string }>;
 
 export const metadata: Metadata = {
     title: "Diagnóstico Situacional | Grupo DIAPSA",
     description:
         "Conoce el estado real de tus activos industriales con un análisis exhaustivo realizado por especialistas. El punto de partida de todo programa de mantenimiento predictivo eficiente.",
+    keywords: [
+        'análisis predictivo',
+        'análisis de equipos',
+        'historial de salud de maquinaria',
+    ],
     alternates: {
         canonical: "/servicios/diagnostico-situacional",
     },
     openGraph: {
         title: "Diagnóstico Situacional | Grupo DIAPSA",
         description:
-            "El historial médico de tus equipos. Análisis exhaustivo de activos industriales para predecir fallas antes de que ocurran.",
+            "Mas de 22 años en análisis exhaustivo de activos industriales para predecir fallas antes de que ocurran.",
         url: "/servicios/diagnostico-situacional",
         type: "website",
+        locale: "es_MX",
+        siteName: "Grupo DIAPSA",
+        images: [
+            {
+                url: OG_IMAGE,
+                width: 1200,
+                height: 630,
+                type: "image/jpeg",
+                alt: "Diagnóstico Situacional Grupo DIAPSA",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        site: "@grupodiapsa",
+        title: "Diagnóstico Situacional | Grupo DIAPSA",
+        description:
+            "Conoce el estado real de tus activos industriales con un análisis exhaustivo realizado por especialistas.",
+        images: [OG_IMAGE],
     },
 };
 
@@ -25,7 +62,6 @@ const painPoints = [
     {
         // TODO: Replace with a photo showing an unexpected equipment failure / unplanned downtime
         image: "/images/diagnostico-situacional/fallas-en-maquinaria-industrial.jpg",
-        icon: "❓",
         title: "¿Sabes cuándo fallará tu equipo?",
         description:
             "Sin un historial documentado, cada falla es una sorpresa. Los paros no programados cuestan entre 3 y 8 veces más que el mantenimiento preventivo.",
@@ -33,7 +69,6 @@ const painPoints = [
     {
         // TODO: Replace with a photo of scattered paper reports, spreadsheets or disorganized records
         image: "/images/diagnostico-situacional/report-production.jpg",
-        icon: "📂",
         title: "Registros dispersos o inexistentes",
         description:
             "La mayoría de las plantas tienen datos valiosos atrapados en hojas de cálculo, reportes en papel o en la memoria del técnico más antiguo.",
@@ -41,7 +76,6 @@ const painPoints = [
     {
         // TODO: Replace with a photo of a technician repairing machinery reactively
         image: "/images/servicios/placeholder.jpg",
-        icon: "🔧",
         title: "Mantenimiento reactivo perpetuo",
         description:
             "Sin una línea base de referencia, el equipo de mantenimiento siempre opera en modo apagafuegos, nunca en modo preventivo.",
@@ -101,6 +135,38 @@ const benefits = [
     },
 ];
 
+const medicalComparison: Array<{
+    medico: string;
+    industrial: string;
+    MedicalIcon: IconComponent;
+    IndustrialIcon: IconComponent;
+}> = [
+        {
+            medico: "Historial clínico del paciente",
+            industrial: "Historial del activo industrial",
+            MedicalIcon: HistoryIcon,
+            IndustrialIcon: HistoryIcon,
+        },
+        {
+            medico: "Signos vitales (presión, temperatura)",
+            industrial: "Variables de condición (vibración, temperatura, ultrasonido)",
+            MedicalIcon: ThermometerIcon,
+            IndustrialIcon: VibrationIcon,
+        },
+        {
+            medico: "Diagnóstico y plan de tratamiento",
+            industrial: "Reporte con prioridades de intervención",
+            MedicalIcon: CheckCircleIcon,
+            IndustrialIcon: CheckCircleIcon,
+        },
+        {
+            medico: "Consultas de seguimiento periódicas",
+            industrial: "Monitoreo de condición continuo o periódico",
+            MedicalIcon: HistoryIcon,
+            IndustrialIcon: SettingsIcon,
+        },
+    ];
+
 export default function DiagnosticoSituacionalPage() {
     return (
         <main>
@@ -123,9 +189,6 @@ export default function DiagnosticoSituacionalPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
                         <div>
-                            <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                                ¿Qué es?
-                            </span>
                             <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-6">
                                 EL ANÁLISIS INICIAL QUE{" "}
                                 <span className="text-secondary">CAMBIA TODO</span>
@@ -181,9 +244,6 @@ export default function DiagnosticoSituacionalPage() {
             <section className="w-full bg-gray-50 py-16 lg:py-24">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-12">
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                            El problema
-                        </span>
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
                             ¿REALMENTE <span className="text-secondary">CONOCES</span> TUS ACTIVOS?
                         </h2>
@@ -193,35 +253,37 @@ export default function DiagnosticoSituacionalPage() {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {painPoints.map((point) => (
-                            <div
-                                key={point.title}
-                                className="group relative flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/40 hover:shadow-xl overflow-hidden transition-all duration-300"
-                            >
-                                {/* Imagen de card */}
-                                <div className="relative w-full h-48 overflow-hidden">
-                                    <Image
-                                        src={point.image}
-                                        alt={point.title}
-                                        fill
-                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                    />
-                                    <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/30 transition-colors duration-300" />
-                                    {/* Icono superpuesto */}
+                        {painPoints.map((point) => {
 
+                            return (
+                                <div
+                                    key={point.title}
+                                    className="group relative flex flex-col bg-white rounded-sm border border-gray-100 hover:border-secondary/40 hover:shadow-xl overflow-hidden transition-all duration-300"
+                                >
+                                    {/* Imagen de card */}
+                                    <div className="relative w-full h-48 overflow-hidden">
+                                        <Image
+                                            src={point.image}
+                                            alt={point.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                        />
+                                        <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/30 transition-colors duration-300" />
+
+                                    </div>
+                                    <div className="flex-1 p-6">
+                                        <h3 className="font-bold text-primary text-base leading-snug mb-2 group-hover:text-secondary transition-colors">
+                                            {point.title}
+                                        </h3>
+                                        <p className="text-tertiary text-sm leading-relaxed">
+                                            {point.description}
+                                        </p>
+                                    </div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                                 </div>
-                                <div className="flex-1 p-6">
-                                    <h3 className="font-bold text-primary text-base leading-snug mb-2 group-hover:text-secondary transition-colors">
-                                        {point.title}
-                                    </h3>
-                                    <p className="text-tertiary text-sm leading-relaxed">
-                                        {point.description}
-                                    </p>
-                                </div>
-                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
                 </div>
             </section>
@@ -234,12 +296,12 @@ export default function DiagnosticoSituacionalPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* Quote / Analogía */}
                         <div>
-                            <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-6">
+                            <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase ">
                                 La analogía que lo explica todo
                             </span>
                             <blockquote className="border-l-2 border-secondary pl-6 mb-8">
                                 <p className="text-white text-xl lg:text-2xl font-bold leading-snug italic mb-3">
-                                    "Un médico sin expediente clínico está adivinando. Un técnico sin historial de equipo también."
+                                    &quot;Un médico sin expediente clínico está adivinando. Un técnico sin historial de equipo también.&quot;
                                 </p>
                                 <cite className="text-white/60 text-sm not-italic">
                                     — Principio fundamental del mantenimiento predictivo
@@ -254,18 +316,15 @@ export default function DiagnosticoSituacionalPage() {
                             </p>
                             {/* Comparación médico vs industrial */}
                             <div className="space-y-3">
-                                {[
-                                    { medico: "Historial clínico del paciente", industrial: "Historial del activo industrial" },
-                                    { medico: "Signos vitales (presión, temperatura)", industrial: "Variables de condición (vibración, temperatura, ultrasonido)" },
-                                    { medico: "Diagnóstico y plan de tratamiento", industrial: "Reporte con prioridades de intervención" },
-                                    { medico: "Consultas de seguimiento periódicas", industrial: "Monitoreo de condición continuo o periódico" },
-                                ].map((row, i) => (
+                                {medicalComparison.map(({ medico, industrial, MedicalIcon, IndustrialIcon }, i) => (
                                     <div key={i} className="grid grid-cols-2 gap-3 text-sm">
-                                        <div className="bg-white/10 border border-white/15 hover:border-secondary/50 rounded-sm px-4 py-3 text-white/80 transition-all duration-300">
-                                            🩺 {row.medico}
+                                        <div className="flex items-start gap-2 bg-white/10 border border-white/15 hover:border-secondary/50 rounded-sm px-4 py-3 text-white/80 transition-all duration-300">
+                                            <MedicalIcon className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
+                                            <span>{medico}</span>
                                         </div>
-                                        <div className="bg-white/10 border border-white/15 hover:border-secondary/50 rounded-sm px-4 py-3 text-white/80 transition-all duration-300">
-                                            ⚙️ {row.industrial}
+                                        <div className="flex items-start gap-2 bg-white/10 border border-white/15 hover:border-secondary/50 rounded-sm px-4 py-3 text-white/80 transition-all duration-300">
+                                            <IndustrialIcon className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
+                                            <span>{industrial}</span>
                                         </div>
                                     </div>
                                 ))}
@@ -302,9 +361,6 @@ export default function DiagnosticoSituacionalPage() {
                 <div className="absolute -bottom-24 -left-24 w-100 h-100 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="text-center mb-12">
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                            Cómo funciona
-                        </span>
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
                             PROCESO DE <span className="text-secondary">4 ETAPAS</span>
                         </h2>
@@ -354,9 +410,6 @@ export default function DiagnosticoSituacionalPage() {
             <section className="w-full bg-gray-50 py-16 lg:py-24">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-12">
-                        <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-4">
-                            ¿Para qué sirve?
-                        </span>
                         <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
                             LO QUE OBTIENES CON UN{" "}
                             <span className="text-secondary">DIAGNÓSTICO</span>
@@ -382,7 +435,7 @@ export default function DiagnosticoSituacionalPage() {
                             {/* Label superpuesto */}
                             <div className="absolute bottom-4 left-4 right-4 bg-primary/80 backdrop-blur-sm rounded-xs px-4 py-3 border-l-2 border-secondary">
                                 <p className="text-white text-sm font-semibold leading-snug">
-                                    "El diagnóstico es el paso cero que hace posible todo lo demás."
+                                    &quot;El diagnóstico es el paso cero que hace posible todo lo demás.&quot;
                                 </p>
                             </div>
                         </div>
@@ -428,9 +481,7 @@ export default function DiagnosticoSituacionalPage() {
                             className="shrink-0 inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md whitespace-nowrap"
                         >
                             Ver Monitoreo de Condición
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                            </svg>
+                            <ArrowRightIcon className="w-4 h-4" />
                         </Link>
                     </div>
                 </div>
@@ -446,9 +497,6 @@ export default function DiagnosticoSituacionalPage() {
                 />
                 <div className="absolute top-1/4 left-1/3 w-150 h-150 bg-secondary/8 rounded-full blur-3xl pointer-events-none" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-                    <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase border border-secondary/40 rounded-full px-3 py-1 bg-secondary/10 mb-6">
-                        Empieza hoy
-                    </span>
                     <h2 className="text-3xl lg:text-4xl font-extrabold text-white mb-4">
                         AGENDA TU <span className="text-secondary">DIAGNÓSTICO SITUACIONAL</span>
                     </h2>
@@ -462,9 +510,7 @@ export default function DiagnosticoSituacionalPage() {
                             className="inline-flex items-center gap-2 bg-secondary text-primary font-bold px-8 py-3 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
                         >
                             Solicitar diagnóstico
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                            </svg>
+                            <ArrowRightIcon className="w-4 h-4" />
                         </Link>
                         <Link
                             href="/servicios"
