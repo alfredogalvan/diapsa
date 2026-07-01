@@ -9,7 +9,7 @@ import type { Product } from "@/types/product";
 
 
 
-const BASE_URL = "https://grupodiapsa.com";
+const BASE_URL = "https://grupodiapsa.com.mx";
 
 type ServiceItem = {
   href: string;
