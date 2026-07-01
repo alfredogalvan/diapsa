@@ -1,20 +1,55 @@
 import type { MetadataRoute } from "next";
-import camerasData from "@/data/camaras.json";
-import blogData from "@/data/blog.json";
+import serviciosData from "@/data/servicios.json";
+import { getBlogs } from "@/lib/api/posts";
+import { getCourses } from "@/lib/api/courses";
+import { getCategories } from "@/lib/api/categories";
+import { getProducts } from "@/lib/api/products";
+import type { Category } from "@/types/category";
+import type { Product } from "@/types/product";
+
+
 
 const BASE_URL = "https://grupodiapsa.com";
 
-// Lista de servicios disponibles
-const serviceSlugs = [
-  "termografia-infrarroja",
-  "vibraciones-mecanicas",
-  "diagnostico-de-maquinaria",
-  "analisis-de-ultrasonido",
-  "estudios-electricos",
-];
+type ServiceItem = {
+  href: string;
+  children?: ServiceItem[];
+};
 
-export default function sitemap(): MetadataRoute.Sitemap {
+function getServiceHrefs(services: ServiceItem[]): string[] {
+  return services.flatMap((service) => [
+    service.href,
+    ...(service.children ? getServiceHrefs(service.children) : []),
+  ]);
+}
+
+function getRootCategorySlugs(categories: Category[]): string[] {
+  return categories
+    .filter((category) => !category.parent)
+    .map((category) => category.slug);
+}
+
+async function getAllProducts(): Promise<Product[]> {
+  const firstPage = await getProducts({ page: 1, per_page: 100 });
+  const products = [...firstPage.data];
+
+  for (let page = 2; page <= firstPage.meta.last_page; page++) {
+    const response = await getProducts({ page, per_page: 100 });
+    products.push(...response.data);
+  }
+
+  return products;
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+
   const now = new Date();
+  const [blogs, courses, categories, products] = await Promise.all([
+    getBlogs(),
+    getCourses(),
+    getCategories(),
+    getAllProducts(),
+  ]);
 
   // Páginas estáticas principales
   const staticPages: MetadataRoute.Sitemap = [
@@ -43,19 +78,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/camaras`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
       url: `${BASE_URL}/servicios`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/servicios/monitoreo-condicion`,
+      url: `${BASE_URL}/productos`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -63,33 +92,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Páginas de servicios
-  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
-    url: `${BASE_URL}/servicios/monitoreo-condicion/${slug}`,
+  const servicePages: MetadataRoute.Sitemap = getServiceHrefs(serviciosData).map((href) => ({
+    url: `${BASE_URL}${href}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  // Páginas de cámaras (productos)
-  const cameraPages: MetadataRoute.Sitemap = [];
-  camerasData.series.forEach((serie) => {
-    serie.cameras.forEach((camera) => {
-      cameraPages.push({
-        url: `${BASE_URL}/camaras/${camera.slug}`,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.7,
-      });
-    });
-  });
 
-  // Páginas de blog (cuando se implemente)
-  const blogPages: MetadataRoute.Sitemap = blogData.posts.map((post) => ({
+  const categoryPages: MetadataRoute.Sitemap = [...new Set(getRootCategorySlugs(categories))].map((slug) => ({
+    url: `${BASE_URL}/productos/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  const productPages: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${BASE_URL}/productos/${product.category.slug}/${product.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const blogPages: MetadataRoute.Sitemap = blogs.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.published_at),
     changeFrequency: "yearly" as const,
     priority: 0.6,
   }));
 
-  return [...staticPages, ...servicePages, ...cameraPages, ...blogPages];
+  const cursosPages: MetadataRoute.Sitemap = courses.data.map((course) => ({
+    url: `${BASE_URL}/cursos/${course.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.7
+  }))
+
+  return [...staticPages, ...servicePages, ...categoryPages, ...productPages, ...blogPages, ...cursosPages];
+
+
 }
