@@ -10,8 +10,7 @@ import {
     HistoryIcon,
     SettingsIcon,
     ThermometerIcon,
-    VibrationIcon,
-    WarningIcon,
+    VibrationIcon
 } from "@/components/atoms/icons";
 
 const OG_IMAGE = "/images/og-images/og-image-diagnostico-situacional.jpg";

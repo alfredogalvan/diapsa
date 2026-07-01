@@ -218,7 +218,7 @@ export default async function ServicePage({
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {detailItems.map((item, index) => (
+                        {detailItems.map((item) => (
                             <article
                                 key={item.id}
                                 className="bg-white rounded-sm border border-gray-100 p-6 lg:p-8 shadow-sm"
