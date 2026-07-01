@@ -13,7 +13,7 @@ import type {
   ContactFormWebinar
 } from '@/types/contact';
 
-type AnyContactForm = ContactFormExpo | ContactFormGeneral | ContactFormWebinar | ContacFormGasDetection | ContactFormMain | ContactFormProduct;
+type AnyContactForm = ContactFormExpo | ContactFormGeneral | ContactFormWebinar | ContacFormGasDetection | ContactFormMain | ContactFormProduct | ContactFormData;
 
 /**
  * Sanitiza los datos del formulario para que sean compatibles con ContactFormData
@@ -23,7 +23,7 @@ export function sanitizeContactFormData(formData: AnyContactForm): ContactFormDa
   const customFieldsSanitized = formData.custom_fields
     ? (Object.fromEntries(
       Object.entries(formData.custom_fields)
-        .filter(([_, value]) => value !== undefined)
+        .filter(([, value]) => value !== undefined)
         .map(([key, value]) => [key, value || ''])
     ) as Record<string, string>)
     : undefined;

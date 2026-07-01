@@ -23,10 +23,14 @@ export function useSeries(options?: UseSeriesOptions) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
+    const brand = options?.brand;
+    const category = options?.category;
+
     useEffect(() => {
         const fetchSeries = async () => {
             // Generar clave de caché basada en los filtros
-            const cacheKey = JSON.stringify(options || {});
+            const filters = { brand, category };
+            const cacheKey = JSON.stringify(filters);
 
             // Verificar caché
             const now = Date.now();
@@ -41,7 +45,7 @@ export function useSeries(options?: UseSeriesOptions) {
                 setLoading(true);
                 setError(null);
 
-                const data = await getSeries(options);
+                const data = await getSeries(filters);
 
                 // Actualizar caché
                 seriesCache.set(cacheKey, { data, timestamp: now });
@@ -57,7 +61,7 @@ export function useSeries(options?: UseSeriesOptions) {
         };
 
         fetchSeries();
-    }, [options?.brand, options?.category]);
+    }, [brand, category]);
 
     return { series, loading, error };
 }

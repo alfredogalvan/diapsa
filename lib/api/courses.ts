@@ -9,8 +9,7 @@ import { Category } from "@/types/category";
 import type {
     Course,
     CourseDetail,
-    CoursesFilters,
-    CourseType
+    CoursesFilters
 } from '@/types/course';
 
 /**

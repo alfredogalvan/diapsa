@@ -14,7 +14,7 @@ import LoadingSpinner from "@/components/atoms/LoadingSpinner";
 import SuccessMessage from "@/components/atoms/SuccessMessage";
 import RateLimitNotice, { RateLimitBanner } from "@/components/molecules/RateLimitNotice";
 import { FormErrors } from "@/components/atoms/FormFieldError";
-import type { ContactFormMain } from "@/types/contact";
+import type { ContactFormData, ContactFormMain } from "@/types/contact";
 import serviciosData from "@/data/servicios.json";
 
 // Extraer solo servicios principales
@@ -64,7 +64,6 @@ export default function ContactForm() {
   });
 
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -72,7 +71,7 @@ export default function ContactForm() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
 
     // Campos principales
     if (["name", "email", "phone", "company", "country"].includes(name)) {
@@ -134,7 +133,6 @@ export default function ContactForm() {
 
   // Handle blur - validate field
   const handleBlur = (field: string, value: string) => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
 
     const error = validateField(field, value);
     if (error) {
@@ -170,13 +168,13 @@ export default function ContactForm() {
     }
 
     // Preparar datos para envío - convertir arrays a strings
-    const dataToSubmit: ContactFormMain = {
+    const dataToSubmit: ContactFormData = {
       ...formData,
       custom_fields: {
         ...formData.custom_fields,
-        coursesOfInterest: formData.custom_fields?.coursesOfInterest.join(", "),
-        servicesOfInterest: formData.custom_fields?.servicesOfInterest.join(", "),
-      } as any,
+        coursesOfInterest: formData.custom_fields?.coursesOfInterest.join(", ") ?? " ",
+        servicesOfInterest: formData.custom_fields?.servicesOfInterest.join(", ") ?? " ",
+      }
     };
 
     // Sanitizar y enviar
@@ -203,7 +201,6 @@ export default function ContactForm() {
         },
       });
       setAceptaPrivacidad(false);
-      setTouched({});
       setFieldErrors({});
       formRef.current?.reset();
     }
