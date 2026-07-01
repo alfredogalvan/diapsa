@@ -40,7 +40,7 @@ export async function generateMetadata({
                 type: "website",
             },
         };
-    } catch (error) {
+    } catch {
         return {
             title: 'Curso no encontrado'
         };
@@ -56,7 +56,7 @@ export default async function CoursePage({
     let course;
     try {
         course = await getCourseBySlug(slug)
-    } catch (error) {
+    } catch {
         notFound();
     }
 

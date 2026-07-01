@@ -6,7 +6,7 @@ import InputField, { SelectField, TextareaField } from "../atoms/InputField";
 import Button from "../atoms/Button";
 import { sanitizeContactFormData } from "@/lib/utils/sanitizeFormData";
 import SuccessMessage from "../atoms/SuccessMessage";
-import RateLimitNotice, { RateLimitBanner } from "../molecules/RateLimitNotice";
+import RateLimitNotice from "../molecules/RateLimitNotice";
 
 interface ContactFormGasDetectionProps {
     isOpen: boolean;
@@ -31,7 +31,6 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
     const {
         submitForm,
         loading,
-        success,
         errors: apiErrors,
         rateLimitExceeded,
         retryAfter,
@@ -50,7 +49,6 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
         }
     });
     const formRef = useRef<HTMLFormElement>(null);
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
     const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
     const [showSuccess, setShowSuccess] = useState(false);
 
@@ -62,7 +60,6 @@ export default function ContactFormGasDetection({ isOpen, onClose, onSuccess }: 
     };
 
     const handleBlur = (field: string, value: string) => {
-        setTouched((prev) => ({ ...prev, [field]: true }));
 
         const error = validateField(field, value);
         if (error) {

@@ -16,13 +16,13 @@ interface UseCoursesResult {
 export function useCourses(filters: CoursesFilters = {}): UseCoursesResult {
     const [courses, setCourses] = useState<Course[]>([]);
     const [meta, setMeta] = useState<PaginationMeta | null>(null);
-    const [loading, setLoding] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
     const filtersKey = JSON.stringify(filters);
 
     const fetchCourses = async () => {
-        setLoding(true);
+        setLoading(true);
         setError(null);
 
         try {
@@ -34,7 +34,7 @@ export function useCourses(filters: CoursesFilters = {}): UseCoursesResult {
             setCourses([]);
             setMeta(null);
         } finally {
-            setLoding(false);
+            setLoading(false);
         }
     };
 

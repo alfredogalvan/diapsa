@@ -1,6 +1,6 @@
 import { Category } from "@/types/category"
 import CategoryCard from "../molecules/CategoryCard";
-import SubCategoryCard from "../molecules/SubCategoryCard";
+// import SubCategoryCard from "../molecules/SubCategoryCard";
 
 interface Props {
     category: Category;

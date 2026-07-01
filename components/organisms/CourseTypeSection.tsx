@@ -8,7 +8,7 @@ import { Course } from '@/types/course';
 interface CourseTypeSectionProps {
     title: string;
     subtle?: string;
-    courses: Course[];
+    courses?: Course[];
     loading?: boolean;
     variant?: 'certificado' | 'taller' | 'estrategico';
 }
@@ -67,7 +67,7 @@ function CertificatesCoursesSection({ title, courses, loading = false, subtle, v
         );
     }
 
-    if (courses.length === 0) return null;
+    if (courses?.length === 0) return null;
 
     return (
         <section className="px-4 md:px-8 py-8 md:py-12 space-y-8">
@@ -79,7 +79,7 @@ function CertificatesCoursesSection({ title, courses, loading = false, subtle, v
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
                     {title}
                     <span className="text-base md:text-lg font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                        {courses.length}
+                        {courses?.length}
                     </span>
                 </h2>
                 {subtle && (
@@ -92,7 +92,7 @@ function CertificatesCoursesSection({ title, courses, loading = false, subtle, v
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                {courses.map((course) => (
+                {courses?.map((course) => (
                     <div key={course.id} className="h-full">
                         <CourseCard course={course} variant={variant} />
                     </div>
@@ -116,7 +116,7 @@ function WorkshopsSection({ title, courses, loading = false, subtle, variant }: 
         );
     }
 
-    if (courses.length === 0) return null;
+    if (courses?.length === 0) return null;
 
     return (
         <section className="px-4 md:px-8 py-8 md:py-12 space-y-8">
@@ -128,7 +128,7 @@ function WorkshopsSection({ title, courses, loading = false, subtle, variant }: 
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
                     {title}
                     <span className="text-base md:text-lg font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                        {courses.length}
+                        {courses?.length}
                     </span>
                 </h2>
                 {subtle && (
@@ -141,7 +141,7 @@ function WorkshopsSection({ title, courses, loading = false, subtle, variant }: 
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                {courses.map((course) => (
+                {courses?.map((course) => (
                     <div key={course.id} className="h-full">
                         <CourseCard course={course} variant={variant} />
                     </div>
@@ -165,7 +165,7 @@ function StrategicCoursesSection({ title, courses, loading = false, subtle, vari
         );
     }
 
-    if (courses.length === 0) return null;
+    if (courses?.length === 0) return null;
 
     return (
         <section className="px-4 md:px-8 py-8 md:py-12 space-y-8">
@@ -177,7 +177,7 @@ function StrategicCoursesSection({ title, courses, loading = false, subtle, vari
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
                     {title}
                     <span className="text-base md:text-lg font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                        {courses.length}
+                        {courses?.length}
                     </span>
                 </h2>
                 {subtle && (
@@ -190,7 +190,7 @@ function StrategicCoursesSection({ title, courses, loading = false, subtle, vari
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {courses.map((course) => (
+                {courses?.map((course) => (
                     <div key={course.id} className="h-full">
                         <CourseCard course={course} variant={variant} />
                     </div>

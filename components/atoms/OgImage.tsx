@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type OgImageProps = {
   title: string;
   subtitle?: string;
@@ -29,7 +31,8 @@ export default function OgImage({
         fontFamily: "Arial, Helvetica, sans-serif",
       }}
     >
-      <img
+
+      <Image
         src={imageUrl}
         alt=""
         width={OG_IMAGE_SIZE.width}

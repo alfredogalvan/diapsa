@@ -6,7 +6,7 @@ import MCSolution from "@/components/organisms/MCSolution";
 import MCProcess from "@/components/organisms/MCProcess";
 import MCBenefits from "@/components/organisms/MCBenefits";
 import MCAudience from "@/components/organisms/MCAudience";
-import MCDeliverables from "@/components/organisms/MCDeliverables";
+// import MCDeliverables from "@/components/organisms/MCDeliverables";
 import MCFaq from "@/components/organisms/MCFaq";
 import MCCtaFinal from "@/components/organisms/MCCtaFinal";
 import MCReportTypes from "@/components/organisms/MCReportTypes";

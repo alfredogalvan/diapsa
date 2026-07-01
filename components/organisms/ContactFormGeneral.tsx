@@ -60,7 +60,6 @@ export default function ContactFormGeneral({
   });
 
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const formRef = useRef<HTMLFormElement>(null);
 
   // Handle input change
@@ -96,7 +95,6 @@ export default function ContactFormGeneral({
 
   // Handle blur - validate field
   const handleBlur = (field: string, value: string) => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
 
     const error = validateField(field, value);
     if (error) {
@@ -146,7 +144,6 @@ export default function ContactFormGeneral({
           preferred_contact: 'email',
         },
       });
-      setTouched({});
       setFieldErrors({});
       formRef.current?.reset();
       onSuccess?.();

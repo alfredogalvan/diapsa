@@ -24,9 +24,9 @@ export interface CourseType {
 }
 
 export interface GroupedCourses {
-    certificates?: Course[];
-    workshops?: Course[];
-    strategics?: Course[];
+    certificates: Course[];
+    workshops: Course[];
+    strategics: Course[];
 }
 
 export interface CoursesFilters {
