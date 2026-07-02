@@ -46,9 +46,9 @@ export default function StageCard({
 
                 <div className="relative flex min-h-[300px] flex-col justify-center px-7 py-9 md:px-9">
                     <div className="mb-5 flex items-center gap-4">
-                        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-sm bg-primary/80 border border-white/10">
+                        {/* <div className="grid h-14 w-14 shrink-0 place-items-center rounded-sm bg-primary/80 border border-white/10">
                             {icon}
-                        </div>
+                        </div> */}
                         <p className="text-secondary font-bold">{label}</p>
                     </div>
 
