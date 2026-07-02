@@ -73,7 +73,7 @@ const stages = [
         number: 3,
         label: "Etapa 03",
         icon: <ChartIcon className="text-secondary w-8 h-8" />,
-        image: "/images/diapsa-start/mediciones.jpg",
+        image: "/images/diapsa-start/mediciones-diapsa-start.jpg",
         title: "Mediciones",
         content: "Recolección de datos de alta precisión y confiabilidad para establecer líneas de operación certificadas.",
     },
