@@ -3,6 +3,7 @@ import StageCard from "@/components/molecules/StageCard"
 import { PlusCircleIcon, ChartIcon, ChartIcon2, WindowIcon, DoubleCircleIcon } from '@/components/atoms/icons/'
 import Image from "next/image";
 import { Metadata } from "next";
+import ContactForm from "@/components/organisms/ContactForm";
 
 const OG_IMAGE = "/images/og-images/og-image-diapsa-start.jpg";
 
@@ -50,6 +51,7 @@ const stages = [
         number: 1,
         label: "Etapa 01",
         icon: <DoubleCircleIcon className="text-secondary w-8 h-8" />,
+        image: "/images/diapsa-start/capacitacion-tecnica.jpg",
         title: "Formación técnica aplicada",
         content: "Capacitación teórica y práctica directamente en planta para asegurar la transferencia de conocimiento real",
     },
@@ -57,6 +59,7 @@ const stages = [
         number: 2,
         label: "Etapa 02 (core)",
         icon: <WindowIcon className="text-secondary w-8 h-8" />,
+        image: "/images/diagnostico-situacional/report-production.jpg",
         title: "Diagnóstico situacional",
         content: [
             "Levantamiento de datos técnicos",
@@ -70,6 +73,7 @@ const stages = [
         number: 3,
         label: "Etapa 03",
         icon: <ChartIcon className="text-secondary w-8 h-8" />,
+        image: "/images/diapsa-start/mediciones.jpg",
         title: "Mediciones",
         content: "Recolección de datos de alta precisión y confiabilidad para establecer líneas de operación certificadas.",
     },
@@ -77,6 +81,7 @@ const stages = [
         number: 4,
         label: "Etapa 04",
         icon: <ChartIcon2 className="text-secondary w-8 h-8" />,
+        image: "/images/diagnostico-situacional/creacion-reportes.jpg",
         title: "Gestión de datos",
         quote: "LO QUE NO SE MIDE, NO SE CONTROLA",
         content: "Transformamos datos complejos en decisiones estratégicas basadas en evidencia industrial.",
@@ -110,14 +115,11 @@ export default function DiapsaStart() {
                         {/* Header */}
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <span className="inline-block text-secondary text-xs font-semibold tracking-widest uppercase">
-                                    Programa de implementación
-                                </span>
-                                <h2 className="text-3xl lg:text-4xl font-extrabold text-primary">
+                                <h2 className="text-3xl lg:text-4xl font-extrabold text-primary leading-tight">
                                     Aprender haciendo. <br />
-                                    Construir capacidades.
+                                    Construir capacidades. <br />
+                                    <span className="text-secondary">Tomar control de los activos.</span>
                                 </h2>
-                                <h3 className="text-2xl lg:text-3xl italic text-secondary font-extrabold">Tomar control de los activos</h3>
                             </div>
 
                             <p className="text-tertiary text-lg leading-relaxed">
@@ -129,7 +131,7 @@ export default function DiapsaStart() {
 
                         </div>
                         <div className="relative">
-                            <div className="relative aspect-4/3 rounded-sm overflow-hidden shadow-2xl">
+                            <div className="relative aspect-4/3 rounded-sm overflow-hidden shadow-xl">
                                 <Image
                                     src="/images/gallery/campo-img-1.jpg"
                                     alt="Monitoreo continuo en planta industrial IA"
@@ -150,14 +152,14 @@ export default function DiapsaStart() {
                             {/* Elementos decorativos */}
                             <div className="absolute -top-4 -right-4 w-24 h-24 bg-secondary/10 rounded-full -z-10" />
                             <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/10 rounded-full -z-10" />
-                        </div>s
+                        </div>
 
                     </div>
 
                 </div>
             </section>
             {/* Cards de etapas */}
-            <section className="w-full bg-black py-16 lg:py-24 relative overflow-hidden">
+            <section className="w-full bg-primary py-16 lg:py-24 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-12">
 
                     {/* Header de la sección */}
@@ -173,13 +175,14 @@ export default function DiapsaStart() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                         {stages.map((stage) => (
                             <StageCard key={stage.number} {...stage} />
                         ))}
                     </div>
                 </div>
             </section>
+            <ContactForm />
         </main>
     )
 }
