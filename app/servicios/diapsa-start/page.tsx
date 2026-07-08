@@ -59,7 +59,7 @@ const stages = [
         number: 2,
         label: "Etapa 02 (core)",
         icon: <WindowIcon className="text-secondary w-8 h-8" />,
-        image: "/images/diagnostico-situacional/d-sit.jpg",
+        image: "/images/diagnostico-situacional/d-situacional.jpg",
         title: "Diagnóstico situacional",
         content: [
             "Levantamiento de datos técnicos",
@@ -73,7 +73,7 @@ const stages = [
         number: 3,
         label: "Etapa 03",
         icon: <ChartIcon className="text-secondary w-8 h-8" />,
-        image: "/images/diapsa-start/med-diapsa.jpg",
+        image: "/images/diapsa-start/medic-diapsa.jpg",
         title: "Mediciones",
         content: "Recolección de datos de alta precisión y confiabilidad para establecer líneas de operación certificadas.",
     },
