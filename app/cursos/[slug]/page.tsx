@@ -20,13 +20,17 @@ export async function generateMetadata({
     try {
         const course = await getCourseBySlug(slug);
 
-        // Si el CMS provee campos SEO propios se usan; si no, se arma el título
-        // con la marca una sola vez para evitar duplicarla.
-        const title = course.meta_title ?? `${course.name} | Grupo DIAPSA`;
+        // El layout raíz aplica el template "%s | Grupo DIAPSA", así que el
+        // <title> del documento solo lleva el nombre (la marca se agrega una
+        // sola vez). Si el CMS trae meta_title se respeta tal cual (absolute).
+        // Para redes sociales sí armamos el título con marca explícita.
         const description = course.meta_description ?? course.description;
+        const brandedTitle = course.meta_title ?? `${course.name} | Grupo DIAPSA`;
 
         return {
-            title,
+            title: course.meta_title
+                ? { absolute: course.meta_title }
+                : course.name,
             description,
             keywords: [
                 course.name,
@@ -36,7 +40,7 @@ export async function generateMetadata({
                 canonical: `/cursos/${slug}`,
             },
             openGraph: {
-                title,
+                title: brandedTitle,
                 description,
                 url: `/cursos/${slug}`,
                 type: "website",
