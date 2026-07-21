@@ -53,7 +53,7 @@ export interface CourseDetail {
     slug: string;
     next_date: string | Date;
     icon: string;
-    referecne_norm: string;
+    reference_norm: string;
     specific_objectives: string[];
     methodology: string;
     syllabus: string;

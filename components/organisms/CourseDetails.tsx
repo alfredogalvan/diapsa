@@ -166,13 +166,13 @@ export default function CourseDetails({ course }: CourseDetailsProps) {
                             {/* Tab: Descripción */}
                             {activeTab === "descripcion" && (
                                 <div className="space-y-6">
-                                    {course.referecne_norm && (
+                                    {course.reference_norm && (
                                         <div>
                                             <h3 className="text-xl font-bold text-primary mb-3">
                                                 Normativa de Referencia
                                             </h3>
                                             <p className="text-gray-700 bg-blue-50 border-l-4 border-primary p-4 rounded">
-                                                {course.referecne_norm}
+                                                {course.reference_norm}
                                             </p>
                                         </div>
                                     )}
