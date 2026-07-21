@@ -170,23 +170,49 @@ export function createServiceSchema(service: {
 export function createCourseSchema(course: {
   name: string;
   description: string;
-  duration?: string;
-  mode?: string;
+  url?: string;
+  provider?: string;
+  courseModes?: string[];
+  duration?: number;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Course",
     name: course.name,
     description: course.description,
+    ...(course.url ? { url: course.url } : {}),
     provider: {
       "@type": "Organization",
-      name: "Grupo DIAPSA",
+      name: course.provider || "Grupo DIAPSA",
       url: "https://grupodiapsa.com",
     },
-    courseMode: course.mode || "Blended",
-    timeRequired: course.duration,
     educationalLevel: "Professional",
-    inLanguage: "es",
+    inLanguage: "es-MX",
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: course.courseModes ?? ["Onsite", "Online"],
+      // Solo se incluye la carga horaria cuando el CMS la provee (> 0).
+      ...(course.duration
+        ? { courseWorkload: `PT${course.duration}H` }
+        : {}),
+    },
+  };
+}
+
+export function createFaqSchema(
+  faqs: Array<{ question: string; answer: string }>
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 }
 
