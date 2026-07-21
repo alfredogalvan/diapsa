@@ -3,10 +3,7 @@ import PageHeader from "@/components/organisms/PageHeader";
 import CourseDetails from "@/components/organisms/CourseDetails";
 import ContactForm from "@/components/organisms/ContactForm";
 import type { Metadata } from "next";
-import JsonLd, {
-    createServiceSchema,
-    createBreadcrumbSchema,
-} from "@/components/atoms/JsonLd";
+import CourseJsonLd from "@/components/molecules/CourseJsonLd";
 import { getCourseBySlug } from "@/lib/api/courses";
 
 
@@ -23,9 +20,14 @@ export async function generateMetadata({
     try {
         const course = await getCourseBySlug(slug);
 
+        // Si el CMS provee campos SEO propios se usan; si no, se arma el título
+        // con la marca una sola vez para evitar duplicarla.
+        const title = course.meta_title ?? `${course.name} | Grupo DIAPSA`;
+        const description = course.meta_description ?? course.description;
+
         return {
-            title: `${course.name} | Cursos DIAPSA`,
-            description: course.description,
+            title,
+            description,
             keywords: [
                 course.name,
                 course.provider
@@ -34,8 +36,8 @@ export async function generateMetadata({
                 canonical: `/cursos/${slug}`,
             },
             openGraph: {
-                title: `${course.name} | Grupo DIAPSA`,
-                description: course.description,
+                title,
+                description,
                 url: `/cursos/${slug}`,
                 type: "website",
             },
@@ -65,20 +67,15 @@ export default async function CoursePage({
         { name: "Cursos", url: "/cursos" },
         { name: course.name, url: `/cursos/${course.slug}` },
     ];
-    // Datos estructurados para el curso
-    const courseJsonLd = createServiceSchema({
-        name: course.name,
-        description: course.description,
-        serviceType: `Curso de ${course.category?.name ?? ''}`,
-    });
-
-    // Breadcrumbs para datos estructurados
-    const breadcrumbJsonLd = createBreadcrumbSchema(breadcrumbItems);
 
     return (
         <main>
-            <JsonLd data={courseJsonLd} />
-            <JsonLd data={breadcrumbJsonLd} />
+            {/* Datos estructurados: Course + BreadcrumbList + FAQPage (si hay FAQs) */}
+            <CourseJsonLd
+                course={course}
+                breadcrumbItems={breadcrumbItems}
+                url={`/cursos/${course.slug}`}
+            />
 
             <PageHeader
                 title={course.name}
