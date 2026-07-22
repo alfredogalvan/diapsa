@@ -35,7 +35,15 @@ const nextConfig: NextConfig = {
 
   /**
    * Redirecciones 301 (permanentes) del sitio anterior hacia las páginas
-   * actuales. Cada URL se declara con y sin slash final.
+   * actuales. Se usa statusCode: 301 explícito (con `permanent: true` Next
+   * emitiría 308); ambos son permanentes, pero mantenemos 301 por consistencia
+   * con el mapa de migración.
+   *
+   * Cada URL se declara con y sin slash final. Con la config por defecto
+   * (trailingSlash: false) Next normaliza "/ruta/" -> "/ruta" antes de aplicar
+   * estas reglas, por lo que la variante con slash encadena un salto extra pero
+   * igualmente llega al destino; la dejamos declarada de forma explícita.
+   *
    * NOTA: pronto llega el resto del mapa desde Search Console; agregar las
    * nuevas entradas dentro de este mismo bloque, ordenadas por sección.
    */
@@ -45,34 +53,34 @@ const nextConfig: NextConfig = {
       {
         source: '/cursos-y-certificaciones/curso-vibraciones-mecanicas',
         destination: '/cursos/vibraciones-mecanicas-curso-de-certificacion',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/cursos-y-certificaciones/curso-vibraciones-mecanicas/',
         destination: '/cursos/vibraciones-mecanicas-curso-de-certificacion',
-        permanent: true,
+        statusCode: 301,
       },
 
       // --- Servicios y soluciones ---
       {
         source: '/servicios-y-soluciones/termografia-infrarroja',
         destination: '/servicios/monitoreo-condicion/termografia-infrarroja',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/servicios-y-soluciones/termografia-infrarroja/',
         destination: '/servicios/monitoreo-condicion/termografia-infrarroja',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/servicios-y-soluciones/vibraciones-mecanicas',
         destination: '/servicios/monitoreo-condicion/vibraciones-mecanicas',
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: '/servicios-y-soluciones/vibraciones-mecanicas/',
         destination: '/servicios/monitoreo-condicion/vibraciones-mecanicas',
-        permanent: true,
+        statusCode: 301,
       },
     ];
   },
