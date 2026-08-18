@@ -9,6 +9,7 @@ import PageHeader from "@/components/organisms/PageHeader";
 import { getStorageUrl } from "@/lib/api/config";
 import { getBlogBySlug } from "@/lib/api/posts";
 import { formatDate } from "@/lib/utils/formatDate";
+import { SITE_CONFIG } from "@/lib/constants";
 
 interface BlogDetailPageProps {
     params: Promise<{ slug: string }>;
@@ -70,19 +71,20 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         author: {
             "@type": "Organization",
             name: "Grupo DIAPSA",
-            url: "https://grupodiapsa.com",
+            url: SITE_CONFIG.baseUrl,
         },
         publisher: {
             "@type": "Organization",
             name: "Grupo DIAPSA",
+            url: SITE_CONFIG.baseUrl,
             logo: {
                 "@type": "ImageObject",
-                url: "https://grupodiapsa.com/images/logo-diapsa.webp",
+                url: `${SITE_CONFIG.baseUrl}/images/logo-diapsa.webp`,
             },
         },
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `https://grupodiapsa.com/blog/${slug}`,
+            "@id": `${SITE_CONFIG.baseUrl}/blog/${slug}`,
         },
         inLanguage: "es-MX",
     };

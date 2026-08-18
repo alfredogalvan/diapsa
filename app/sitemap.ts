@@ -4,12 +4,10 @@ import { getBlogs } from "@/lib/api/posts";
 import { getCourses } from "@/lib/api/courses";
 import { getCategories } from "@/lib/api/categories";
 import { getProducts } from "@/lib/api/products";
+import { SITE_CONFIG } from "@/lib/constants";
 import type { Category } from "@/types/category";
 import type { Product } from "@/types/product";
 
-
-
-const BASE_URL = "https://grupodiapsa.com.mx";
 
 type ServiceItem = {
   href: string;
@@ -54,37 +52,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Páginas estáticas principales
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      url: SITE_CONFIG.baseUrl,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${BASE_URL}/acerca-de`,
+      url: `${SITE_CONFIG.baseUrl}/acerca-de`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/metodologia`,
+      url: `${SITE_CONFIG.baseUrl}/metodologia`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/cursos`,
+      url: `${SITE_CONFIG.baseUrl}/cursos`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/servicios`,
+      url: `${SITE_CONFIG.baseUrl}/servicios`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/productos`,
+      url: `${SITE_CONFIG.baseUrl}/productos`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -93,7 +91,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Páginas de servicios
   const servicePages: MetadataRoute.Sitemap = getServiceHrefs(serviciosData).map((href) => ({
-    url: `${BASE_URL}${href}`,
+    url: `${SITE_CONFIG.baseUrl}${href}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -101,28 +99,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 
   const categoryPages: MetadataRoute.Sitemap = [...new Set(getRootCategorySlugs(categories))].map((slug) => ({
-    url: `${BASE_URL}/productos/${slug}`,
+    url: `${SITE_CONFIG.baseUrl}/productos/${slug}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
-    url: `${BASE_URL}/productos/${product.category.slug}/${product.slug}`,
+    url: `${SITE_CONFIG.baseUrl}/productos/${product.category.slug}/${product.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.8, // Aumentado de 0.7 → 0.8 (son páginas de conversión)
   }));
 
   const blogPages: MetadataRoute.Sitemap = blogs.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
+    url: `${SITE_CONFIG.baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.published_at),
     changeFrequency: "yearly" as const,
     priority: 0.6,
   }));
 
   const cursosPages: MetadataRoute.Sitemap = courses.data.map((course) => ({
-    url: `${BASE_URL}/cursos/${course.slug}`,
+    url: `${SITE_CONFIG.baseUrl}/cursos/${course.slug}`,
     changeFrequency: "monthly",
     priority: 0.7
   }))
