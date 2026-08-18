@@ -93,6 +93,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     brand: product.brand.name,
     sku: product.model,
     category: product.category.name,
+    url: `/productos/${product.category.slug}/${product.slug}`,
   });
 
   const breadcrumbSchema = createBreadcrumbSchema(
