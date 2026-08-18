@@ -28,11 +28,11 @@ export async function generateMetadata({
         return {
             title: blog.seo?.title || blog.title,
             description: blog.seo?.description || blog.excerpt,
-            alternates: { canonical: `/blog/${slug}` },
+            alternates: { canonical: `${SITE_CONFIG.baseUrl}/blog/${slug}` },
             openGraph: {
                 title: blog.seo?.title || blog.title,
                 description: blog.seo?.description || blog.excerpt,
-                url: `/blog/${slug}`,
+                url: `${SITE_CONFIG.baseUrl}/blog/${slug}`,
                 type: "article",
                 images: blog.cover_image ? [getStorageUrl(blog.cover_image) || DEFAULT_BLOG_IMAGE] : undefined,
             },

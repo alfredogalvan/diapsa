@@ -10,6 +10,7 @@ import { getStorageUrl } from "@/lib/api/config";
 import { getSuccessCaseBySlug } from "@/lib/api/posts";
 import { formatDate } from "@/lib/utils/formatDate";
 import ContactForm from "@/components/organisms/ContactForm";
+import { SITE_CONFIG } from "@/lib/constants";
 
 interface SuccessCasePageProps {
     params: Promise<{ slug: string }>;
@@ -109,11 +110,11 @@ export async function generateMetadata({
             title: caso.seo.title,
             description: caso.seo.description,
             keywords,
-            alternates: { canonical: `/casos-exito/${slug}` },
+            alternates: { canonical: `${SITE_CONFIG.baseUrl}/casos-exito/${slug}` },
             openGraph: {
                 title: caso.seo.title,
                 description: caso.seo.description,
-                url: `/casos-exito/${slug}`,
+                url: `${SITE_CONFIG.baseUrl}/casos-exito/${slug}`,
                 type: "article",
             },
         };

@@ -8,6 +8,7 @@ import JsonLd, {
 } from "@/components/atoms/JsonLd";
 import ContactForm from "@/components/organisms/ContactForm";
 import CursosTeaser from "@/components/organisms/CursosTeaser";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const OG_IMAGE = "/images/og-images/og-image-monitoreo-condicion.jpg";
 
@@ -65,12 +66,12 @@ export async function generateMetadata({
         description: service.header.subtitle,
         keywords,
         alternates: {
-            canonical: `/servicios/monitoreo-condicion/${slug}`,
+            canonical: `${SITE_CONFIG.baseUrl}/servicios/monitoreo-condicion/${slug}`,
         },
         openGraph: {
             title: `${service.header.title} | Grupo DIAPSA`,
             description: service.header.subtitle,
-            url: `/servicios/monitoreo-condicion/${slug}`,
+            url: `${SITE_CONFIG.baseUrl}/servicios/monitoreo-condicion/${slug}`,
             type: "website",
             locale: "es_MX",
             siteName: "Grupo DIAPSA",
