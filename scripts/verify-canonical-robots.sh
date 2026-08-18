@@ -32,16 +32,16 @@ else
     echo "❌ robots.txt NO contiene sitemap"
 fi
 
-if echo "$ROBOTS_RESPONSE" | grep -q "Disallow: /\*?\*fbclid=\*"; then
-    echo "✅ robots.txt bloquea fbclid"
+if echo "$ROBOTS_RESPONSE" | grep -q "Disallow: /images/"; then
+    echo "❌ robots.txt bloquea /images/ (saca al sitio de Google Images y rompe la imagen OG)"
 else
-    echo "❌ robots.txt NO bloquea fbclid"
+    echo "✅ robots.txt NO bloquea /images/"
 fi
 
-if echo "$ROBOTS_RESPONSE" | grep -q "Disallow: /images/"; then
-    echo "✅ robots.txt bloquea /images/"
+if echo "$ROBOTS_RESPONSE" | grep -qiE "fbclid|utm_source|gclid"; then
+    echo "❌ robots.txt bloquea parametros de campana (impide rastrear landings legitimas)"
 else
-    echo "❌ robots.txt NO bloquea /images/"
+    echo "✅ robots.txt NO bloquea parametros de campana"
 fi
 
 echo ""

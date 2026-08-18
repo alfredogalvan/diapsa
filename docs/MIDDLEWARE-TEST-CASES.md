@@ -21,8 +21,18 @@ const CANONICAL_DOMAIN = 'www.diapsa.com'; // ⚠️ Cambiar por tu dominio real
 | `https://www.diapsa.com/contacto?l=test` | `https://www.diapsa.com/contacto` | 301 |
 | `https://www.diapsa.com/?_g=123` | `https://www.diapsa.com/` | 301 |
 | `https://www.diapsa.com/nosotros?w=xyz` | `https://www.diapsa.com/nosotros` | 301 |
-| `https://www.diapsa.com/blog?fbclid=IwAR123` | `https://www.diapsa.com/blog` | 301 |
-| `https://www.diapsa.com/blog?utm_source=test&utm_campaign=x` | `https://www.diapsa.com/blog` | 301 |
+
+Los parametros de campana y analitica NO se eliminan, a proposito:
+
+| URL Original | URL Final Esperada | Status |
+|--------------|-------------------|---------|
+| `https://www.diapsa.com/blog?fbclid=IwAR123` | sin cambio | 200 |
+| `https://www.diapsa.com/blog?utm_source=test&utm_campaign=x` | sin cambio | 200 |
+
+Removerlos con un 301 rompe la atribucion en GA4 y en Google/Meta Ads,
+porque el parametro desaparece antes de que la pagina cargue y el tag lo
+lea. Para SEO no hacen falta: Google los consolida en la URL canonica.
+
 
 **Múltiples parámetros spam:**
 ```
@@ -159,8 +169,8 @@ En `middleware.ts`, actualizar:
 ```typescript
 const SPAM_PARAMS = [
   'm', 'r', 'l', '_g', 'w',
-  'fbclid', 'gclid', 'msclkid',
-  // Agregar más aquí:
+  // Agregar más aquí. NO agregar utm_*, gclid, fbclid ni msclkid:
+  // rompen la atribucion de campanas.
   'ref', 'source', 'campaign_id'
 ];
 ```

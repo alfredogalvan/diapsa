@@ -75,7 +75,8 @@ test_redirect "${BASE_URL}/productos?r=abc" "/productos" "Param ?r= should redir
 test_redirect "${BASE_URL}/contacto?l=test" "/contacto" "Param ?l= should redirect"
 test_redirect "${BASE_URL}/?_g=123" "/" "Param ?_g= should redirect"
 test_redirect "${BASE_URL}/nosotros?w=xyz" "/nosotros" "Param ?w= should redirect"
-test_redirect "${BASE_URL}/blog?fbclid=IwAR123" "/blog" "Param ?fbclid= should redirect"
+test_url "${BASE_URL}/blog?fbclid=IwAR123" "200" "Param ?fbclid= should be preserved (attribution)"
+test_url "${BASE_URL}/blog?utm_source=newsletter" "200" "UTM params should be preserved (attribution)"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
