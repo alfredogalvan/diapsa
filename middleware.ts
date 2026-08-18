@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 /**
- * Next.js Middleware para limpiar URLs spam y forzar HTTPS con WWW
- * 
+ * Next.js Middleware para limpiar URLs spam y normalizar el dominio.
+ *
  * Funcionalidades:
- * 1. Redirect 301 de parámetros query spam a URL limpia
- * 2. Forzar https://www. (redirect si falta www o es http)
- * 3. Bloquear rutas spam con 404
- * 4. Preservar parámetros legítimos de Next.js
+ * 1. Bloquear rutas spam con 404
+ * 2. Redirect 301 de parámetros query spam a URL limpia
+ * 3. Normalizar el host al dominio canónico (www)
+ * 4. Preservar parámetros legítimos de Next.js, de campañas y de analítica
  */
 
 // ============================================================================
@@ -16,8 +16,15 @@ import type { NextRequest } from 'next/server';
 // ============================================================================
 
 /**
- * Lista de parámetros query considerados spam
- * Estos serán removidos de la URL con redirect 301
+ * Lista de parámetros query considerados spam.
+ * Estos serán removidos de la URL con redirect 301.
+ *
+ * IMPORTANTE: aquí NO van los parámetros de campaña ni de analítica
+ * (utm_*, gclid, fbclid, msclkid). Removerlos con un 301 rompe la
+ * atribución en GA4 y en Google/Meta Ads, porque el parámetro
+ * desaparece antes de que la página cargue y el tag lo lea. Para SEO no
+ * hacen falta: Google los ignora al consolidar en la URL canónica, que
+ * ya declaramos en cada página.
  */
 const SPAM_PARAMS = [
   'm',    // ?m= - parámetro spam común
@@ -25,19 +32,17 @@ const SPAM_PARAMS = [
   'l',    // ?l= - parámetro spam común
   '_g',   // ?_g= - parámetro spam común
   'w',    // ?w= - parámetro spam común
-  'fbclid', // ?fbclid= - Facebook click ID
-  'gclid',  // ?gclid= - Google click ID (opcional, depende de si usas ads)
-  'msclkid', // ?msclkid= - Microsoft click ID
-  'utm_source', // UTM parameters (opcional, ajustar según necesidad)
-  'utm_medium',
-  'utm_campaign',
-  'utm_term',
-  'utm_content',
 ];
 
 /**
  * Patrones de rutas que deben ser bloqueadas con 404
  * Estas rutas son consideradas spam o maliciosas
+ *
+ * politician, mandate, sponsor y technical se comparan por prefijo a
+ * proposito: las URLs spam reales que aparecen en Search Console llevan
+ * sufijo (/politician-test, /politicians, /mandate-123, /sponsor-abc,
+ * /technical-docs). Si algun dia el sitio necesita una ruta que empiece
+ * con alguna de esas palabras, hay que acotar el patron.
  */
 const SPAM_PATH_PATTERNS = [
   /^\/f\/special\//i,     // /f/special/*
@@ -51,11 +56,10 @@ const SPAM_PATH_PATTERNS = [
 ];
 
 /**
- * Dominio canónico para el sitio (AJUSTAR SEGÚN TU DOMINIO)
- * Todas las URLs serán redirigidas a este formato
+ * Dominio canónico del sitio. Debe coincidir con SITE_CONFIG.baseUrl
+ * en lib/constants.ts.
  */
 const CANONICAL_DOMAIN = 'www.grupodiapsa.com.mx';
-const FORCE_HTTPS = true;
 const FORCE_WWW = true;
 
 // ============================================================================
@@ -70,16 +74,13 @@ export function middleware(request: NextRequest) {
   // -------------------------------------------------------------------------
   // 1. BLOQUEAR RUTAS SPAM (404)
   // -------------------------------------------------------------------------
-  
+
   /**
    * Verifica si la ruta coincide con patrones spam conocidos
    * Retorna 404 para evitar indexación
    */
   for (const pattern of SPAM_PATH_PATTERNS) {
     if (pattern.test(pathname)) {
-      // Log para debugging (opcional, remover en producción)
-      console.log(`[Middleware] Bloqueado ruta spam: ${pathname}`);
-      
       // Retornar 404 - esto evita que Google indexe estas URLs
       return new NextResponse(null, { status: 404 });
     }
@@ -88,7 +89,7 @@ export function middleware(request: NextRequest) {
   // -------------------------------------------------------------------------
   // 2. LIMPIAR PARÁMETROS QUERY SPAM
   // -------------------------------------------------------------------------
-  
+
   /**
    * Analiza los parámetros query y remueve los spam
    * Preserva parámetros legítimos de la aplicación
@@ -98,7 +99,7 @@ export function middleware(request: NextRequest) {
 
   // Crear lista de parámetros a eliminar
   const paramsToDelete: string[] = [];
-  
+
   // Iterar sobre los parámetros de forma compatible
   searchParams.forEach((value, key) => {
     if (SPAM_PARAMS.includes(key.toLowerCase())) {
@@ -110,56 +111,38 @@ export function middleware(request: NextRequest) {
   // Eliminar parámetros spam
   if (hasSpamParams) {
     paramsToDelete.forEach(param => searchParams.delete(param));
-    
+
     // Construir nueva URL sin parámetros spam
     const cleanSearch = searchParams.toString();
     url.search = cleanSearch ? `?${cleanSearch}` : '';
-    
-    // Log para debugging (opcional)
-    console.log(`[Middleware] Limpiando params spam: ${pathname}${search} → ${url.pathname}${url.search}`);
-    
+
     // Redirect 301 permanente a URL limpia
     return NextResponse.redirect(url, { status: 301 });
   }
 
   // -------------------------------------------------------------------------
-  // 3. FORZAR HTTPS Y WWW
+  // 3. NORMALIZAR EL DOMINIO CANÓNICO (www)
   // -------------------------------------------------------------------------
-  
+
   /**
-   * Verifica y fuerza el formato canónico: https://www.dominio.com
-   * Solo aplica en producción (no en localhost)
+   * Red de seguridad por si la regla de Cloudflare se llegara a quitar.
+   * Cloudflare ya resuelve hoy grupodiapsa.com y grupodiapsa.com.mx con
+   * un 301 hacia www.grupodiapsa.com.mx.
+   *
+   * No se fuerza el protocolo aquí: la terminación TLS ocurre en
+   * Cloudflare y el origen recibe la petición en claro, así que
+   * redirigir a https:// desde el origen puede producir un bucle.
+   * HTTPS lo garantizan Cloudflare y el proxy inverso.
    */
   const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
-  
-  if (!isLocalhost && CANONICAL_DOMAIN) {
-    let needsRedirect = false;
-    
-    // Verificar si necesita HTTPS
-    if (FORCE_HTTPS && url.protocol === 'http:') {
-      url.protocol = 'https:';
-      needsRedirect = true;
-    }
-    
-    // Verificar si necesita WWW o si el hostname es incorrecto
-    if (FORCE_WWW && hostname !== CANONICAL_DOMAIN) {
-      // Casos a manejar:
-      // - dominio.com → www.dominio.com
-      // - http://dominio.com → https://www.dominio.com
-      // - https://dominio.com → https://www.dominio.com
-      
-      const hostnameWithoutWww = hostname.replace(/^www\./, '');
-      const canonicalWithoutWww = CANONICAL_DOMAIN.replace(/^www\./, '');
-      
-      // Solo redirigir si es el mismo dominio base pero sin www
-      if (hostnameWithoutWww === canonicalWithoutWww) {
-        url.hostname = CANONICAL_DOMAIN;
-        needsRedirect = true;
-      }
-    }
-    
-    if (needsRedirect) {
-      console.log(`[Middleware] Forzando HTTPS/WWW: ${request.url} → ${url.toString()}`);
+
+  if (!isLocalhost && FORCE_WWW && hostname !== CANONICAL_DOMAIN) {
+    const hostnameWithoutWww = hostname.replace(/^www\./, '');
+    const canonicalWithoutWww = CANONICAL_DOMAIN.replace(/^www\./, '');
+
+    // Solo redirigir si es el mismo dominio base pero sin www
+    if (hostnameWithoutWww === canonicalWithoutWww) {
+      url.hostname = CANONICAL_DOMAIN;
       return NextResponse.redirect(url, { status: 301 });
     }
   }
@@ -167,7 +150,7 @@ export function middleware(request: NextRequest) {
   // -------------------------------------------------------------------------
   // 4. PERMITIR TRÁFICO LEGÍTIMO
   // -------------------------------------------------------------------------
-  
+
   /**
    * Si llegamos aquí, la URL es legítima
    * Continuar con el procesamiento normal de Next.js
@@ -181,7 +164,7 @@ export function middleware(request: NextRequest) {
 
 /**
  * Configuración de rutas donde se aplicará el middleware
- * 
+ *
  * Excluye:
  * - /api/* - API routes
  * - /_next/* - Recursos internos de Next.js
