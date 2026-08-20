@@ -35,64 +35,9 @@ const slides: Slide[] = [
     imageContain: true,
     bg: "/images/screen.png",
   },
-  {
-    id: 1,
-    badge: "Monitoreo Continuo · IoT Industrial",
-    title: "SENSORES INTELIGENTES",
-    titleHighlight: "24/7 EN TU MAQUINARIA",
-    description:
-      "Detecta vibración, temperatura y corriente en tiempo real. Anticipa paros no planeados con análisis basado en inteligencia artificial.",
-    cta: { label: "Ver monitoreo continuo", href: "/servicios/monitoreo-continuo" },
-    ctaSecondary: { label: "Solicitar demo", href: "/#contacto" },
-    image: "/images/header-sensores.png",
-    imageAlt: "Sensor IoT de vibración instalado en maquinaria industrial",
-    imageContain: false,
-    bg: "/images/fondo-mantenimiento.webp",
-    stats: [
-      { value: "24/7", label: "Monitoreo" },
-      { value: "IoT", label: "Conectado" },
-      { value: "IA", label: "Analítica" },
-    ],
-  },
-  {
-    id: 2,
-    badge: "Detección de Fugas · Termografía Industrial · Alianza con Hertzinno",
-    title: "CÁMARAS ACÚSTICAS",
-    titleHighlight: "Y TÉRMICAS INDUSTRIALES",
-    description:
-      "Visualiza fugas de gas, arcos eléctricos y anomalías térmicas invisibles al ojo humano. Tecnología de vanguardia para la seguridad de tus plantas.",
-    cta: { label: "Explorar productos", href: "/productos" },
-    ctaSecondary: { label: "Cotizar", href: "/#contacto" },
-    image: "/images/header-camaras.png",
-    imageAlt: "Cámara acústica para detección de fugas de gas industrial",
-    imageContain: true,
-    bg: "/images/fondo-mantenimiento.webp",
-    stats: [
-      { value: "Gas", label: "Fugas" },
-      { value: "IR", label: "Térmico" },
-      { value: "UV", label: "Eléctrico" },
-    ],
-  },
-  {
-    id: 3,
-    badge: "Certificaciones ISO y SAE · Cursos · Asesorías · Webinar · Talleres",
-    title: "CERTIFICACIONES EN MANTENIMIENTO",
-    titleHighlight: "PREDICTIVO Y CONFIABILIDAD",
-    description:
-      "Forma a tu equipo con expertos en herramientas predictivas bajo normativas internacionales (ISO y SAE). Diseñamos cursos personalizados según tu necesidad, con metodologías creadas por especialistas para incrementar la confiabilidad de tus operaciones.",
-    cta: { label: "Ver todos los cursos", href: "/cursos" },
-    ctaSecondary: { label: "Solicitar Información", href: "#contacto" },
-    image: "/images/itzam-gold-coin.png",
-    imageAlt: "Moneda dorada de instituto ITZAM",
-    imageContain: true,
-    bg: "/images/fondo-mantenimiento.webp",
-    stats: [
-      { value: "+50", label: "Cursos" },
-      { value: "ISO", label: "Certificados" },
-      { value: "Online", label: "Webinars" },
-      { value: "ITZAM", label: "Partner" },
-    ],
-  },
+  // Un solo mensaje en el hero (decisión de simplificación 2026-08-19):
+  // el carrusel diluía la oferta principal rotando cámaras y cursos con el
+  // mismo peso que el servicio que más contrata la industria.
 ];
 
 const AUTOPLAY_MS = 5000;

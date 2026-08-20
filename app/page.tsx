@@ -2,16 +2,10 @@ import type { Metadata } from "next";
 import Hero from "@/components/organisms/Hero";
 import AboutUs from "@/components/organisms/AboutUs";
 import ServicesOverview from "@/components/organisms/ServicesOverview";
-import TabsSection from "@/components/organisms/TabsSection";
 import CasosExitoTeaser from "@/components/organisms/CasosExitoTeaser";
-import IdapIntro from "@/components/organisms/IdapIntro";
-import CursosTeaser from "@/components/organisms/CursosTeaser";
 import { Clients } from "@/components/organisms/Clients";
-import GalleryTeaser from "@/components/organisms/GalleryTeaser";
 import ContactForm from "@/components/organisms/ContactForm";
-import AdSection from "@/components/organisms/AdSection";
-import { getFeaturedAnnouncements, getFeaturedBlogs, getFeaturedSuccessCases } from "@/lib/api/posts";
-import BlogSection from "@/components/organisms/BlogSection";
+import { getFeaturedSuccessCases } from "@/lib/api/posts";
 
 const OG_IMAGE = "/images/og-images/og-image.jpg";
 
@@ -63,10 +57,12 @@ export const metadata: Metadata = {
   },
 };
 
+// Home simplificada (decisión 2026-08-19, docs/designs/plan-captacion-clientes.md):
+// primero lo que más contrata la industria (servicios), luego prueba social y
+// contacto. Cursos, blog, IDAP, anuncios y galería salen de la home — siguen
+// accesibles desde el footer y sus rutas propias.
 export default async function Home() {
-  const announcements = await getFeaturedAnnouncements();
   const cases = await getFeaturedSuccessCases();
-  const blogs = await getFeaturedBlogs();
 
   return (
     <main>
@@ -86,16 +82,10 @@ export default async function Home() {
           </p>
         </div>
       </section>
-      <AboutUs />
-      <AdSection advertisements={announcements} />
-      <CursosTeaser />
-      <BlogSection blogs={blogs} />
       <ServicesOverview />
-      <IdapIntro />
-      <TabsSection />
-      <CasosExitoTeaser cases={cases} />
       <Clients />
-      <GalleryTeaser />
+      <AboutUs />
+      <CasosExitoTeaser cases={cases} />
       <section id="contacto">
         <ContactForm />
       </section>

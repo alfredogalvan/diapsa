@@ -8,6 +8,10 @@ import Dropdown from "@/components/atoms/Dropdown";
 import Link from "next/link";
 import services from '@/data/servicios.json'
 
+// Líneas ganadoras con acceso directo en el menú; el resto vive en el dropdown.
+const DIRECT_LINKS = ["/servicios/monitoreo-condicion", "/servicios/deteccion-gas"];
+const masServicios = services.filter((s) => !DIRECT_LINKS.includes(s.href));
+
 export default function NavBar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,27 +39,24 @@ export default function NavBar() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden lg:flex items-center space-x-8 text-white">
-                            <NavLink href="/acerca-de">
-                                Acerca de
+                            <NavLink href="/servicios/monitoreo-condicion">
+                                Monitoreo de Condición
+                            </NavLink>
+                            <NavLink href="/servicios/deteccion-gas">
+                                Detección de Gas
                             </NavLink>
                             <Dropdown
-                                trigger="Servicios"
-                                items={services}
+                                trigger="Más servicios"
+                                items={masServicios}
                             />
                             <NavLink href="/productos">
-                                Productos
-                            </NavLink>
-                            <NavLink href="/metodologia">
-                                Metodología
-                            </NavLink>
-                            <NavLink href="/cursos">
-                                Cursos
+                                Equipos y Cámaras
                             </NavLink>
                             <NavLink href="/casos-exito">
-                                Resultados
+                                Casos de Éxito
                             </NavLink>
-                            <NavLink href="/blog">
-                                Blog
+                            <NavLink href="/acerca-de">
+                                Empresa
                             </NavLink>
                         </div>
                     </div>
@@ -66,7 +67,7 @@ export default function NavBar() {
                         <div className="hidden lg:block">
                             <Link href="/contacto">
                                 <Button variant="primary" ghost ghostVariant="auto">
-                                    Contactanos
+                                    Cotizar
                                 </Button>
                             </Link>
                         </div>
@@ -146,20 +147,28 @@ export default function NavBar() {
                 {isMobileMenuOpen && (
                     <div className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-white/10 shadow-xl">
                         <div className="flex flex-col space-y-1 px-4 py-4">
+                            {/* Servicios principales — acceso directo */}
                             <Link
-                                href="/acerca-de"
+                                href="/servicios/monitoreo-condicion"
                                 className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Acerca de
+                                Monitoreo de Condición
+                            </Link>
+                            <Link
+                                href="/servicios/deteccion-gas"
+                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Detección de Gas
                             </Link>
 
-                            {/* Mobile Services Section */}
+                            {/* Más servicios */}
                             <div className="py-2">
                                 <p className="text-white/60 text-xs uppercase font-semibold px-4 mb-2">
-                                    Servicios
+                                    Más servicios
                                 </p>
-                                {services.map((item, index) => (
+                                {masServicios.map((item, index) => (
                                     <Link
                                         key={index}
                                         href={item.href}
@@ -170,46 +179,34 @@ export default function NavBar() {
                                     </Link>
                                 ))}
                             </div>
-                            {/* Mobile Products Section */}
 
                             <Link
                                 href="/productos"
                                 className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Productos
-                            </Link>
-
-
-
-                            <Link
-                                href="/metodologia"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Metodología
-                            </Link>
-
-                            <Link
-                                href="/cursos"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Cursos
+                                Equipos y Cámaras
                             </Link>
                             <Link
                                 href="/casos-exito"
                                 className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Resultados
+                                Casos de Éxito
+                            </Link>
+                            <Link
+                                href="/acerca-de"
+                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Empresa
                             </Link>
 
                             {/* Mobile CTA */}
                             <div className="pt-4 pb-2 px-4">
                                 <Link href="/contacto" onClick={() => setIsMobileMenuOpen(false)}>
                                     <Button variant="primary" ghost ghostVariant="auto">
-                                        Contactanos
+                                        Cotizar
                                     </Button>
                                 </Link>
                             </div>
