@@ -103,18 +103,35 @@ export default async function Home() {
           </p>
         </div>
       </section>
-      {/* Primero lo que más contrata la industria */}
+      {/* La home sigue el mismo orden que el menú:
+          Monitoreo → Cursos → Más servicios → Casos de Éxito → Empresa.
+          Nota: Detección de Gas y Equipos están en el menú pero aún no
+          tienen sección propia en la home. */}
+
+      {/* Monitoreo */}
       <ServicesOverview />
+
+      {/* Cursos */}
+      <CursosTeaser />
+
+      {/* Prueba social: logos de clientes como puente de confianza */}
       <Clients />
-      <AboutUs />
-      {cases.length > 0 && <CasosExitoTeaser cases={cases} />}
+
+      {/* Más servicios */}
       <IdapIntro />
       <TabsSection />
-      {/* Contenido de apoyo: sigue en la home, más abajo */}
+
+      {/* Casos de Éxito */}
+      {cases.length > 0 && <CasosExitoTeaser cases={cases} />}
+
+      {/* Empresa */}
+      <AboutUs />
+
+      {/* Contenido de apoyo */}
       {announcements.length > 0 && <AdSection advertisements={announcements} />}
-      <CursosTeaser />
       {blogs.length > 0 && <BlogSection blogs={blogs} />}
       <GalleryTeaser />
+
       <section id="contacto">
         <ContactForm />
       </section>
