@@ -2,10 +2,16 @@ import type { Metadata } from "next";
 import Hero from "@/components/organisms/Hero";
 import AboutUs from "@/components/organisms/AboutUs";
 import ServicesOverview from "@/components/organisms/ServicesOverview";
+import TabsSection from "@/components/organisms/TabsSection";
 import CasosExitoTeaser from "@/components/organisms/CasosExitoTeaser";
+import IdapIntro from "@/components/organisms/IdapIntro";
+import CursosTeaser from "@/components/organisms/CursosTeaser";
 import { Clients } from "@/components/organisms/Clients";
+import GalleryTeaser from "@/components/organisms/GalleryTeaser";
 import ContactForm from "@/components/organisms/ContactForm";
-import { getFeaturedSuccessCases } from "@/lib/api/posts";
+import AdSection from "@/components/organisms/AdSection";
+import BlogSection from "@/components/organisms/BlogSection";
+import { getFeaturedAnnouncements, getFeaturedBlogs, getFeaturedSuccessCases } from "@/lib/api/posts";
 
 const OG_IMAGE = "/images/og-images/og-image.jpg";
 
@@ -62,7 +68,22 @@ export const metadata: Metadata = {
 // contacto. Cursos, blog, IDAP, anuncios y galería salen de la home — siguen
 // accesibles desde el footer y sus rutas propias.
 export default async function Home() {
-  const cases = await getFeaturedSuccessCases();
+  // El CMS no debe poder tumbar la home: si alguna llamada falla, la página
+  // carga igual y solo se omite la sección que dependía de esos datos.
+  const [announcements, cases, blogs] = await Promise.all([
+    getFeaturedAnnouncements().catch((error) => {
+      console.error("[home] No se pudieron cargar los anuncios:", error);
+      return [];
+    }),
+    getFeaturedSuccessCases().catch((error) => {
+      console.error("[home] No se pudieron cargar los casos de éxito:", error);
+      return [];
+    }),
+    getFeaturedBlogs().catch((error) => {
+      console.error("[home] No se pudieron cargar las entradas de blog:", error);
+      return [];
+    }),
+  ]);
 
   return (
     <main>
@@ -82,10 +103,18 @@ export default async function Home() {
           </p>
         </div>
       </section>
+      {/* Primero lo que más contrata la industria */}
       <ServicesOverview />
       <Clients />
       <AboutUs />
-      <CasosExitoTeaser cases={cases} />
+      {cases.length > 0 && <CasosExitoTeaser cases={cases} />}
+      <IdapIntro />
+      <TabsSection />
+      {/* Contenido de apoyo: sigue en la home, más abajo */}
+      {announcements.length > 0 && <AdSection advertisements={announcements} />}
+      <CursosTeaser />
+      {blogs.length > 0 && <BlogSection blogs={blogs} />}
+      <GalleryTeaser />
       <section id="contacto">
         <ContactForm />
       </section>

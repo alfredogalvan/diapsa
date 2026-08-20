@@ -31,16 +31,16 @@ export default function NavBar() {
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="flex items-center justify-between py-3 sm:py-4">
                     {/* Left Side: Logo + Desktop Navigation */}
-                    <div className="flex items-center space-x-12">
+                    <div className="flex items-center gap-6 xl:gap-10 min-w-0">
                         {/* Logo */}
-                        <Link href="/" className="flex items-center z-50">
+                        <Link href="/" className="flex items-center z-50 shrink-0">
                             <Logo />
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden lg:flex items-center space-x-8 text-white">
+                        <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-white whitespace-nowrap">
                             <NavLink href="/servicios/monitoreo-condicion">
-                                Monitoreo de Condición
+                                Monitoreo
                             </NavLink>
                             <NavLink href="/servicios/deteccion-gas">
                                 Detección de Gas
@@ -50,7 +50,7 @@ export default function NavBar() {
                                 items={masServicios}
                             />
                             <NavLink href="/productos">
-                                Equipos y Cámaras
+                                Equipos
                             </NavLink>
                             <NavLink href="/casos-exito">
                                 Casos de Éxito
