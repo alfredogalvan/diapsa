@@ -42,16 +42,19 @@ export default function NavBar() {
                             <NavLink href="/servicios/monitoreo-condicion">
                                 Monitoreo
                             </NavLink>
+                            <NavLink href="/cursos">
+                                Cursos
+                            </NavLink>
                             <NavLink href="/servicios/deteccion-gas">
                                 Detección de Gas
+                            </NavLink>
+                            <NavLink href="/productos">
+                                Equipos
                             </NavLink>
                             <Dropdown
                                 trigger="Más servicios"
                                 items={masServicios}
                             />
-                            <NavLink href="/productos">
-                                Equipos
-                            </NavLink>
                             <NavLink href="/casos-exito">
                                 Casos de Éxito
                             </NavLink>
@@ -147,13 +150,20 @@ export default function NavBar() {
                 {isMobileMenuOpen && (
                     <div className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-white/10 shadow-xl">
                         <div className="flex flex-col space-y-1 px-4 py-4">
-                            {/* Servicios principales — acceso directo */}
+                            {/* Accesos directos — mismo orden que en escritorio */}
                             <Link
                                 href="/servicios/monitoreo-condicion"
                                 className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Monitoreo de Condición
+                                Monitoreo
+                            </Link>
+                            <Link
+                                href="/cursos"
+                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Cursos
                             </Link>
                             <Link
                                 href="/servicios/deteccion-gas"
@@ -161,6 +171,13 @@ export default function NavBar() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Detección de Gas
+                            </Link>
+                            <Link
+                                href="/productos"
+                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Equipos
                             </Link>
 
                             {/* Más servicios */}
@@ -180,13 +197,6 @@ export default function NavBar() {
                                 ))}
                             </div>
 
-                            <Link
-                                href="/productos"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Equipos y Cámaras
-                            </Link>
                             <Link
                                 href="/casos-exito"
                                 className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
