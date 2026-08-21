@@ -12,6 +12,17 @@ import services from '@/data/servicios.json'
 const DIRECT_LINKS = ["/servicios/monitoreo-condicion", "/servicios/deteccion-gas"];
 const masServicios = services.filter((s) => !DIRECT_LINKS.includes(s.href));
 
+// Todo lo institucional cuelga de "Empresa" en vez de ocupar la tira principal.
+const empresaLinks = [
+    { label: "Acerca de Nosotros", href: "/acerca-de" },
+    { label: "Metodología", href: "/metodologia" },
+    { label: "Galería", href: "/acerca-de#galeria" },
+    { label: "Blog", href: "/blog" },
+    { label: "Webinar", href: "/webinar" },
+    { label: "Folleto digital", href: "/folletodigital" },
+    { label: "Contacto", href: "/contacto" },
+];
+
 export default function NavBar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -58,9 +69,10 @@ export default function NavBar() {
                             <NavLink href="/casos-exito">
                                 Casos de Éxito
                             </NavLink>
-                            <NavLink href="/acerca-de">
-                                Empresa
-                            </NavLink>
+                            <Dropdown
+                                trigger="Empresa"
+                                items={empresaLinks}
+                            />
                         </div>
                     </div>
 
@@ -204,13 +216,23 @@ export default function NavBar() {
                             >
                                 Casos de Éxito
                             </Link>
-                            <Link
-                                href="/acerca-de"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Empresa
-                            </Link>
+
+                            {/* Empresa */}
+                            <div className="py-2">
+                                <p className="text-white/60 text-xs uppercase font-semibold px-4 mb-2">
+                                    Empresa
+                                </p>
+                                {empresaLinks.map((item, index) => (
+                                    <Link
+                                        key={index}
+                                        href={item.href}
+                                        className="text-white hover:text-secondary transition-colors py-2.5 px-6 block rounded-lg hover:bg-white/5"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
+                            </div>
 
                             {/* Mobile CTA */}
                             <div className="pt-4 pb-2 px-4">
