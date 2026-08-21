@@ -9,7 +9,7 @@ import { getFeaturedSuccessCases } from "@/lib/api/posts";
 import CasosExitoTeaser from "@/components/organisms/CasosExitoTeaser";
 
 export const metadata: Metadata = {
-  title: "Nuestra Metodologíaaaa",
+  title: "Nuestra Metodología",
   description:
     "Metodología DIAPSA 360°: Un enfoque sistemático para maximizar la confiabilidad de tus equipos. Diagnóstico integral, análisis predictivo y estrategias de mantenimiento personalizadas.",
   keywords: [
