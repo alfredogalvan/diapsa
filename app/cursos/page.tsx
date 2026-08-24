@@ -20,8 +20,13 @@ export const metadata: Metadata = {
 };
 
 export default async function CursosPage() {
-  const coursesResponse = await getCourses();
-  const courses = coursesResponse.data;
+  // Si el CMS no responde, la página carga con el encabezado y sin listado,
+  // en vez de devolver un error 500.
+  const coursesResponse = await getCourses().catch((error) => {
+    console.error("[cursos] No se pudo cargar el catálogo:", error);
+    return null;
+  });
+  const courses = coursesResponse?.data ?? [];
   const coursesByType = groupCoursesByType(courses);
 
   return (
