@@ -8,11 +8,16 @@ import Script from "next/script";
  * (grabaciones de sesión y mapas de calor), que es lo que hace falta para
  * entender por qué el formulario no se llena.
  *
- * Seguro de publicar sin configurar: si NEXT_PUBLIC_CLARITY_ID no está puesto,
- * este componente no renderiza nada y el sitio no carga script alguno.
+ * El ID del proyecto NO es un secreto: aparece en el código fuente de cualquier
+ * sitio que use Clarity. Por eso va como valor por defecto aquí y no depende de
+ * que la variable esté configurada en el servidor de producción. Se puede
+ * sobrescribir por entorno con NEXT_PUBLIC_CLARITY_ID, o desactivar del todo
+ * poniendo esa variable vacía (por ejemplo en staging).
  */
+const ID_POR_DEFECTO = "y82bx4lh8t"; // proyecto "Pagina de DIAPSA"
+
 export default function ClarityAnalytics() {
-  const id = process.env.NEXT_PUBLIC_CLARITY_ID;
+  const id = process.env.NEXT_PUBLIC_CLARITY_ID ?? ID_POR_DEFECTO;
 
   if (!id) return null;
 
