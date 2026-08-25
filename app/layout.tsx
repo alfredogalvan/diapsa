@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
 import WhatsAppButton from "@/components/atoms/WhatsAppButton";
+import ClarityAnalytics from "@/components/atoms/ClarityAnalytics";
 import JsonLd, {
   organizationSchema,
   localBusinessSchema,
@@ -137,6 +138,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsAppButton etiqueta="WhatsApp" />
+        <ClarityAnalytics />
       </body>
     </html>
   );
