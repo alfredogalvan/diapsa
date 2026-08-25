@@ -41,7 +41,12 @@ async function getAllProducts(): Promise<Product[]> {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
-  const now = new Date();
+  // Fecha de última revisión del contenido que no trae fecha propia del CMS.
+  // Antes aquí iba `new Date()`, evaluado en CADA petición: el sitemap le decía
+  // a Google que todas las URLs habían cambiado hoy, en cada rastreo. Eso es
+  // señal de baja calidad y enseña al buscador a ignorar nuestras fechas.
+  // Actualiza esta constante cuando cambies contenido de páginas estáticas.
+  const ULTIMA_REVISION = new Date("2026-08-24T00:00:00Z");
   const [blogs, courses, categories, products] = await Promise.all([
     getBlogs(),
     getCourses(),
@@ -53,37 +58,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: SITE_CONFIG.baseUrl,
-      lastModified: now,
+      lastModified: ULTIMA_REVISION,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_CONFIG.baseUrl}/acerca-de`,
-      lastModified: now,
+      lastModified: ULTIMA_REVISION,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_CONFIG.baseUrl}/metodologia`,
-      lastModified: now,
+      lastModified: ULTIMA_REVISION,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_CONFIG.baseUrl}/cursos`,
-      lastModified: now,
+      lastModified: ULTIMA_REVISION,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${SITE_CONFIG.baseUrl}/servicios`,
-      lastModified: now,
+      lastModified: ULTIMA_REVISION,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${SITE_CONFIG.baseUrl}/productos`,
-      lastModified: now,
+      lastModified: ULTIMA_REVISION,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -92,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Páginas de servicios
   const servicePages: MetadataRoute.Sitemap = getServiceHrefs(serviciosData).map((href) => ({
     url: `${SITE_CONFIG.baseUrl}${href}`,
-    lastModified: now,
+    lastModified: ULTIMA_REVISION,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -100,14 +105,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const categoryPages: MetadataRoute.Sitemap = [...new Set(getRootCategorySlugs(categories))].map((slug) => ({
     url: `${SITE_CONFIG.baseUrl}/productos/${slug}`,
-    lastModified: now,
+    lastModified: ULTIMA_REVISION,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${SITE_CONFIG.baseUrl}/productos/${product.category.slug}/${product.slug}`,
-    lastModified: now,
+    lastModified: ULTIMA_REVISION,
     changeFrequency: "monthly" as const,
     priority: 0.8, // Aumentado de 0.7 → 0.8 (son páginas de conversión)
   }));
@@ -121,8 +126,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const cursosPages: MetadataRoute.Sitemap = courses.data.map((course) => ({
     url: `${SITE_CONFIG.baseUrl}/cursos/${course.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.7
+    lastModified: ULTIMA_REVISION, // faltaba por completo
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }))
 
   return [...staticPages, ...servicePages, ...categoryPages, ...productPages, ...blogPages, ...cursosPages];
