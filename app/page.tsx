@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/organisms/Hero";
 import AboutUs from "@/components/organisms/AboutUs";
 import ServicesOverview from "@/components/organisms/ServicesOverview";
+import GasYEquiposSection from "@/components/organisms/GasYEquiposSection";
 import TabsSection from "@/components/organisms/TabsSection";
 import CasosExitoTeaser from "@/components/organisms/CasosExitoTeaser";
 import IdapIntro from "@/components/organisms/IdapIntro";
@@ -113,6 +114,9 @@ export default async function Home() {
 
       {/* Cursos */}
       <CursosTeaser />
+
+      {/* Detección de Gas y Equipos — las otras dos puertas del menú */}
+      <GasYEquiposSection />
 
       {/* Prueba social: logos de clientes como puente de confianza */}
       <Clients />
