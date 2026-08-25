@@ -8,9 +8,9 @@ import Dropdown from "@/components/atoms/Dropdown";
 import Link from "next/link";
 import services from '@/data/servicios.json'
 
-// Líneas ganadoras con acceso directo en el menú; el resto vive en el dropdown.
-const DIRECT_LINKS = ["/servicios/monitoreo-condicion", "/servicios/deteccion-gas"];
-const masServicios = services.filter((s) => !DIRECT_LINKS.includes(s.href));
+// Menú de 5 entradas (2026-08-25). Antes había 7, con "Monitoreo" y "Detección
+// de Gas" sueltos arriba y un cajón de sastre llamado "Más servicios". Ahora
+// todos los servicios viven bajo una sola entrada: Servicios.
 
 // Todo lo institucional cuelga de "Empresa" en vez de ocupar la tira principal.
 const empresaLinks = [
@@ -50,22 +50,16 @@ export default function NavBar() {
 
                         {/* Desktop Navigation */}
                         <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-white whitespace-nowrap">
-                            <NavLink href="/servicios/monitoreo-condicion">
-                                Monitoreo
-                            </NavLink>
+                            <Dropdown
+                                trigger="Servicios"
+                                items={services}
+                            />
                             <NavLink href="/cursos">
                                 Cursos
-                            </NavLink>
-                            <NavLink href="/servicios/deteccion-gas">
-                                Detección de Gas
                             </NavLink>
                             <NavLink href="/productos">
                                 Equipos
                             </NavLink>
-                            <Dropdown
-                                trigger="Más servicios"
-                                items={masServicios}
-                            />
                             <NavLink href="/casos-exito">
                                 Casos de Éxito
                             </NavLink>
@@ -162,42 +156,12 @@ export default function NavBar() {
                 {isMobileMenuOpen && (
                     <div className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-white/10 shadow-xl">
                         <div className="flex flex-col space-y-1 px-4 py-4">
-                            {/* Accesos directos — mismo orden que en escritorio */}
-                            <Link
-                                href="/servicios/monitoreo-condicion"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Monitoreo
-                            </Link>
-                            <Link
-                                href="/cursos"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Cursos
-                            </Link>
-                            <Link
-                                href="/servicios/deteccion-gas"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Detección de Gas
-                            </Link>
-                            <Link
-                                href="/productos"
-                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                Equipos
-                            </Link>
-
-                            {/* Más servicios */}
+                            {/* Servicios — mismo agrupamiento que en escritorio */}
                             <div className="py-2">
                                 <p className="text-white/60 text-xs uppercase font-semibold px-4 mb-2">
-                                    Más servicios
+                                    Servicios
                                 </p>
-                                {masServicios.map((item, index) => (
+                                {services.map((item, index) => (
                                     <Link
                                         key={index}
                                         href={item.href}
@@ -208,6 +172,21 @@ export default function NavBar() {
                                     </Link>
                                 ))}
                             </div>
+
+                            <Link
+                                href="/cursos"
+                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Cursos
+                            </Link>
+                            <Link
+                                href="/productos"
+                                className="text-white hover:text-secondary transition-colors py-3 px-4 rounded-lg hover:bg-white/5"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Equipos
+                            </Link>
 
                             <Link
                                 href="/casos-exito"
