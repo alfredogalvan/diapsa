@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
+import WhatsAppButton from "@/components/atoms/WhatsAppButton";
 import JsonLd, {
   organizationSchema,
   localBusinessSchema,
@@ -135,6 +136,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <WhatsAppButton etiqueta="WhatsApp" />
       </body>
     </html>
   );
