@@ -56,7 +56,7 @@ export default function AboutUs() {
 
         {/* Columna derecha */}
         <div className="text-white text-center">
-          <h3 className="text-secondary text-2xl lg:text-3xl font-semibold mb-6">
+          <h3 className="text-secondary text-xl lg:text-2xl font-semibold mb-6">
             Nuestra misión:
           </h3>
           <p className="text-lg lg:text-xl text-white/90 whitespace-pre-line">
