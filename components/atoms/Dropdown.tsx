@@ -36,7 +36,7 @@ export default function Dropdown({ trigger, items, className = "" }: DropdownPro
     <div className={`relative ${className}`} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 hover:text-secondary transition-all duration-200 ease-out group"
+        className="flex min-h-11 items-center gap-1 py-2.5 hover:text-secondary transition-all duration-200 ease-out group"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >

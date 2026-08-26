@@ -91,7 +91,7 @@ export default function NavBar() {
                                     href="https://www.facebook.com/diapsa/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-6 h-6 bg-white hover:bg-secondary flex items-center justify-center transition-all duration-200 rounded group"
+                                    className="w-9 h-9 bg-white hover:bg-secondary flex items-center justify-center transition-all duration-200 rounded group"
                                     aria-label="Facebook"
                                 >
                                     <svg
@@ -106,7 +106,7 @@ export default function NavBar() {
                                     href="https://www.linkedin.com/company/grupodiapsa"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-6 h-6 bg-white hover:bg-secondary flex items-center justify-center transition-all duration-200 rounded group"
+                                    className="w-9 h-9 bg-white hover:bg-secondary flex items-center justify-center transition-all duration-200 rounded group"
                                     aria-label="LinkedIn"
                                 >
                                     <svg
