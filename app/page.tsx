@@ -3,6 +3,7 @@ import Hero from "@/components/organisms/Hero";
 import AboutUs from "@/components/organisms/AboutUs";
 import ServicesOverview from "@/components/organisms/ServicesOverview";
 import GasYEquiposSection from "@/components/organisms/GasYEquiposSection";
+import Reveal from "@/components/atoms/Reveal";
 import TabsSection from "@/components/organisms/TabsSection";
 import CasosExitoTeaser from "@/components/organisms/CasosExitoTeaser";
 import IdapIntro from "@/components/organisms/IdapIntro";
@@ -109,34 +110,38 @@ export default async function Home() {
           Nota: Detección de Gas y Equipos están en el menú pero aún no
           tienen sección propia en la home. */}
 
+      {/* Cada sección aparece al entrar en pantalla (fundido + subida corta).
+          El Hero queda fuera a propósito: animar lo que ya está visible al
+          cargar retrasa la primera impresión y penaliza el LCP. */}
+
       {/* Monitoreo */}
-      <ServicesOverview />
+      <Reveal><ServicesOverview /></Reveal>
 
       {/* Cursos */}
-      <CursosTeaser />
+      <Reveal><CursosTeaser /></Reveal>
 
       {/* Detección de Gas y Equipos — las otras dos puertas del menú */}
-      <GasYEquiposSection />
+      <Reveal><GasYEquiposSection /></Reveal>
 
       {/* Bloque de credibilidad: logos de clientes + los números de DIAPSA.
           AboutUs volvió aquí arriba el 2026-08-26. Había quedado casi al final
           por seguir el orden del menú (Empresa es la última entrada), pero sus
           cifras (+50,000 fallas, +1,500 servicios, +20 años) son argumento de
           venta, no información institucional: se pierden hasta abajo. */}
-      <Clients />
-      <AboutUs />
+      <Reveal><Clients /></Reveal>
+      <Reveal><AboutUs /></Reveal>
 
       {/* Más servicios */}
-      <IdapIntro />
-      <TabsSection />
+      <Reveal><IdapIntro /></Reveal>
+      <Reveal><TabsSection /></Reveal>
 
       {/* Casos de Éxito */}
-      {cases.length > 0 && <CasosExitoTeaser cases={cases} />}
+      {cases.length > 0 && <Reveal><CasosExitoTeaser cases={cases} /></Reveal>}
 
       {/* Contenido de apoyo */}
-      {announcements.length > 0 && <AdSection advertisements={announcements} />}
-      {blogs.length > 0 && <BlogSection blogs={blogs} />}
-      <GalleryTeaser />
+      {announcements.length > 0 && <Reveal><AdSection advertisements={announcements} /></Reveal>}
+      {blogs.length > 0 && <Reveal><BlogSection blogs={blogs} /></Reveal>}
+      <Reveal><GalleryTeaser /></Reveal>
 
       <section id="contacto">
         <ContactForm />
