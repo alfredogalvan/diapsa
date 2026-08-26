@@ -9,7 +9,7 @@ import { GallerySection } from "@/components/organisms/GallerySection";
 
 
 export const metadata: Metadata = {
-  title: "Acerca de Grupo DIAPSA",
+  title: "Acerca de Nosotros",
   description:
     "Grupo DIAPSA es especialista en mantenimiento predictivo, monitoreo de condicion y servicios de mantenimiento para Mexico y Sudamerica.",
   keywords: [

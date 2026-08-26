@@ -8,7 +8,7 @@ import ContactForm from "@/components/organisms/ContactForm";
 const OG_IMAGE = "/images/og-images/og-image-diapsa-start.jpg";
 
 export const metadata: Metadata = {
-    title: "DIAPSA START",
+    title: "DIAPSA START: Implementa Monitoreo de Condición en tu Planta",
     description: "Programa para iniciar o fortalecer el monitoreo de condición con capacitación, diagnóstico situacional, mediciones y gestión de datos.",
     keywords: [
         "DIAPSA START",

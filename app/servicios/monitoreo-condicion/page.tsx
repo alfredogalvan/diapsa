@@ -14,7 +14,7 @@ import MCReportTypes from "@/components/organisms/MCReportTypes";
 const OG_IMAGE = "/images/og-images/og-image-monitoreo-condicion.jpg";
 
 export const metadata: Metadata = {
-    title: "Monitoreo de Condición | Grupo DIAPSA",
+    title: "Monitoreo de Condición: Vibraciones, Termografía y Ultrasonido",
     description:
         "Consigue operación continua sin paros repentinos ni gastos innecesarios. Más de 20 años protegiendo activos industriales con termografía, vibraciones, ultrasonido y diagnóstico de maquinaria.",
     keywords: [
