@@ -118,8 +118,13 @@ export default async function Home() {
       {/* Detección de Gas y Equipos — las otras dos puertas del menú */}
       <GasYEquiposSection />
 
-      {/* Prueba social: logos de clientes como puente de confianza */}
+      {/* Bloque de credibilidad: logos de clientes + los números de DIAPSA.
+          AboutUs volvió aquí arriba el 2026-08-26. Había quedado casi al final
+          por seguir el orden del menú (Empresa es la última entrada), pero sus
+          cifras (+50,000 fallas, +1,500 servicios, +20 años) son argumento de
+          venta, no información institucional: se pierden hasta abajo. */}
       <Clients />
+      <AboutUs />
 
       {/* Más servicios */}
       <IdapIntro />
@@ -127,9 +132,6 @@ export default async function Home() {
 
       {/* Casos de Éxito */}
       {cases.length > 0 && <CasosExitoTeaser cases={cases} />}
-
-      {/* Empresa */}
-      <AboutUs />
 
       {/* Contenido de apoyo */}
       {announcements.length > 0 && <AdSection advertisements={announcements} />}
