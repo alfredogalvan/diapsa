@@ -8,7 +8,11 @@
  */
 
 const NUMERO = "528145903792"; // +52 81 4590 3792
-const MENSAJE = "Hola, vengo del sitio de DIAPSA y quiero información sobre sus servicios.";
+
+// Mensaje prellenado. Corto a propósito: entre más largo, más gente lo borra
+// antes de enviarlo. Habla en el lenguaje del comprador (gerente de planta o
+// de mantenimiento) en vez de describir de dónde viene.
+const MENSAJE = "Hola, necesito información para mi planta.";
 
 type Props = {
   /** Texto opcional junto al ícono (solo escritorio). */
