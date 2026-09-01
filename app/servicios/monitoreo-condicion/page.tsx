@@ -16,7 +16,7 @@ const OG_IMAGE = "/images/og-images/og-image-monitoreo-condicion.jpg";
 export const metadata: Metadata = {
     title: "Monitoreo de Condición: Vibraciones, Termografía y Ultrasonido",
     description:
-        "Consigue operación continua sin paros repentinos ni gastos innecesarios. Más de 20 años protegiendo activos industriales con termografía, vibraciones, ultrasonido y diagnóstico de maquinaria.",
+        "Detecta fallas antes del paro con termografía, análisis de vibraciones, ultrasonido y análisis de aceite. Más de 50,000 fallas encontradas en 20 años.",
     keywords: [
         "monitoreo de condición industrial",
         "mantenimiento predictivo México",

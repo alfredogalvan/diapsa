@@ -9,7 +9,7 @@ const OG_IMAGE = "/images/og-images/og-image-diapsa-start.jpg";
 
 export const metadata: Metadata = {
     title: "DIAPSA START: Implementa Monitoreo de Condición en tu Planta",
-    description: "Programa para iniciar o fortalecer el monitoreo de condición con capacitación, diagnóstico situacional, mediciones y gestión de datos.",
+    description: "¿Tu planta todavía apaga incendios? DIAPSA START implementa el monitoreo de condición paso a paso: diagnóstico, mediciones, capacitación y gestión de datos.",
     keywords: [
         "DIAPSA START",
         "monitoreo de condición desde cero",

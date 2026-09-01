@@ -7,7 +7,7 @@ import { groupCoursesByType } from "@/lib/utils/groupCourses";
 
 export const metadata: Metadata = {
   title: "Cursos y Capacitación",
-  description: "Capacitación profesional certificada en mantenimiento predictivo, termografía infrarroja, análisis de vibraciones y ultrasonido industrial. Certif icaciones nivel I, II y III.",
+  description: "Certifícate en termografía, análisis de vibraciones y ultrasonido (niveles I, II y III) con instructores que diagnostican maquinaria real todos los días.",
   alternates: {
     canonical: "/cursos",
   },
