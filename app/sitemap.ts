@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // a Google que todas las URLs habían cambiado hoy, en cada rastreo. Eso es
   // señal de baja calidad y enseña al buscador a ignorar nuestras fechas.
   // Actualiza esta constante cuando cambies contenido de páginas estáticas.
-  const ULTIMA_REVISION = new Date("2026-08-24T00:00:00Z");
+  const ULTIMA_REVISION = new Date("2026-09-01T00:00:00Z");
   const [blogs, courses, categories, products] = await Promise.all([
     getBlogs(),
     getCourses(),

@@ -35,6 +35,11 @@ export interface RelatedProducts {
   items: RelatedProduct[];
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface Servicio {
   id: string;
   slug: string;
@@ -43,4 +48,10 @@ export interface Servicio {
   header: ServiceHeader;
   content: ServiceContent;
   relatedProducts: RelatedProducts;
+  /** Meta descripción para Google. Si falta, se usa header.subtitle
+      (que también es el subtítulo visible del hero). */
+  seoDescription?: string;
+  /** Preguntas frecuentes. Si existen, la página las muestra y emite
+      schema FAQPage (elegible para resultado enriquecido en Google). */
+  faq?: FaqItem[];
 }

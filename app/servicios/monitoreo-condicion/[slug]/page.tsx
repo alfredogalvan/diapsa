@@ -5,6 +5,7 @@ import type { Servicio } from "@/types/servicio";
 import JsonLd, {
     createServiceSchema,
     createBreadcrumbSchema,
+    createFaqSchema,
 } from "@/components/atoms/JsonLd";
 import ContactForm from "@/components/organisms/ContactForm";
 import CursosTeaser from "@/components/organisms/CursosTeaser";
@@ -61,16 +62,20 @@ export async function generateMetadata({
         "DIAPSA",
     ];
 
+    // La descripción para Google puede ser más larga y vendedora que el
+    // subtítulo visible del hero; por eso se separan.
+    const descripcion = service.seoDescription ?? service.header.subtitle;
+
     return {
         title: service.header.title,
-        description: service.header.subtitle,
+        description: descripcion,
         keywords,
         alternates: {
             canonical: `${SITE_CONFIG.baseUrl}/servicios/monitoreo-condicion/${slug}`,
         },
         openGraph: {
             title: `${service.header.title} | Grupo DIAPSA`,
-            description: service.header.subtitle,
+            description: descripcion,
             url: `${SITE_CONFIG.baseUrl}/servicios/monitoreo-condicion/${slug}`,
             type: "website",
             locale: "es_MX",
@@ -89,7 +94,7 @@ export async function generateMetadata({
             card: "summary_large_image",
             site: "@grupodiapsa",
             title: `${service.header.title} | Grupo DIAPSA`,
-            description: service.header.subtitle,
+            description: descripcion,
             images: [OG_IMAGE],
         },
     };
@@ -122,16 +127,22 @@ export default async function ServicePage({
         { name: service.header.title, url: `/servicios/monitoreo-condicion/${slug}` },
     ];
     const breadcrumbJsonLd = createBreadcrumbSchema(breadcrumbItems);
+    // Solo si el JSON del servicio trae preguntas frecuentes.
+    const faqJsonLd = service.faq?.length ? createFaqSchema(service.faq) : null;
     const overviewTitle =
         service.content.title || `Servicio especializado de ${service.header.title}`;
     const overviewSubtitle =
         service.content.subtitle || service.header.subtitle;
-    const detailItems = service.content.items.slice(0, 3);
+    // Antes había un .slice(0, 3) que descartaba en silencio cualquier
+    // contenido extra del JSON. Se renderizan todos: la cuadrícula de 3
+    // columnas simplemente agrega renglones.
+    const detailItems = service.content.items;
 
     return (
         <main>
             <JsonLd data={serviceJsonLd} />
             <JsonLd data={breadcrumbJsonLd} />
+            {faqJsonLd && <JsonLd data={faqJsonLd} />}
             {/* Page Header with Breadcrumb */}
             <PageHeader
                 title={service.header.title}
@@ -294,6 +305,38 @@ export default async function ServicePage({
                 subtitle={service.relatedProducts.subtitle}
                 items={service.relatedProducts.items}
             /> */}
+
+            {/* Preguntas frecuentes: responden las búsquedas de cola larga
+                ("qué es", "cada cuánto", "qué norma", "cuánto cuesta") y
+                alimentan el schema FAQPage de arriba. <details> nativo:
+                acordeón sin JavaScript y contenido siempre en el HTML. */}
+            {service.faq && service.faq.length > 0 && (
+                <section className="w-full bg-white py-16 lg:py-24">
+                    <div className="max-w-4xl mx-auto px-6">
+                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-10 leading-tight">
+                            Preguntas <span className="text-secondary">frecuentes</span>
+                        </h2>
+                        <div className="divide-y divide-gray-200 border-y border-gray-200">
+                            {service.faq.map((item) => (
+                                <details key={item.question} className="group py-5">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold text-primary [&::-webkit-details-marker]:hidden">
+                                        {item.question}
+                                        <span
+                                            aria-hidden="true"
+                                            className="shrink-0 text-secondary text-2xl font-extrabold transition-transform duration-200 group-open:rotate-45"
+                                        >
+                                            +
+                                        </span>
+                                    </summary>
+                                    <p className="mt-3 text-tertiary text-base lg:text-lg leading-relaxed">
+                                        {item.answer}
+                                    </p>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <CursosTeaser />
 
