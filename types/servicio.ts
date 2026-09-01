@@ -40,6 +40,13 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface ServiceCta {
+  title: string;
+  text: string;
+  /** Mensaje prellenado para el enlace de WhatsApp. */
+  whatsappMessage: string;
+}
+
 export interface Servicio {
   id: string;
   slug: string;
@@ -54,4 +61,6 @@ export interface Servicio {
   /** Preguntas frecuentes. Si existen, la página las muestra y emite
       schema FAQPage (elegible para resultado enriquecido en Google). */
   faq?: FaqItem[];
+  /** Llamado a la acción específico del servicio (banda tras el FAQ). */
+  cta?: ServiceCta;
 }

@@ -46,6 +46,8 @@ export const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
+    telephone: SITE_CONFIG.contact.phone,
+    email: SITE_CONFIG.contact.email,
     availableLanguage: ["Spanish"],
   },
   sameAs: [
@@ -70,6 +72,7 @@ export const localBusinessSchema = {
   "@type": "LocalBusiness",
   "@id": `${SITE_CONFIG.baseUrl}/#organization`,
   name: "Grupo DIAPSA",
+  telephone: SITE_CONFIG.contact.phone,
   image: `${SITE_CONFIG.baseUrl}/images/logo-diapsa.webp`,
   url: SITE_CONFIG.baseUrl,
   description:

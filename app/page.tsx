@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Hero from "@/components/organisms/Hero";
 import AboutUs from "@/components/organisms/AboutUs";
 import ServicesOverview from "@/components/organisms/ServicesOverview";
@@ -98,9 +99,19 @@ export default async function Home() {
           <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4">
             Mantenimiento predictivo y monitoreo de condición para Sudamérica
           </h2>
+          {/* El enlace a análisis de vibraciones no es decorativo: es la
+              consulta sin marca que más nos busca en Google y la home es la
+              página con más autoridad del sitio. Un enlace interno con el
+              ancla exacta le pasa relevancia a esa página. */}
           <p className="text-tertiary text-lg leading-relaxed max-w-3xl mx-auto">
-            Grupo DIAPSA brinda servicios de mantenimiento industrial, monitoreo de condición,
-            diagnostico de maquinaria y confiabilidad de activos a plantas en Mexico y toda
+            Grupo DIAPSA brinda servicios de mantenimiento industrial, monitoreo de condición,{" "}
+            <Link
+              href="/servicios/monitoreo-condicion/vibraciones-mecanicas"
+              className="text-primary font-semibold underline decoration-secondary decoration-2 underline-offset-4 hover:text-secondary transition-colors"
+            >
+              análisis de vibraciones
+            </Link>
+            , diagnóstico de maquinaria y confiabilidad de activos a plantas en México y toda
             Sudamérica.
           </p>
         </div>

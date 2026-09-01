@@ -338,10 +338,45 @@ export default async function ServicePage({
                 </section>
             )}
 
+            {/* Llamado a la acción específico del servicio. Va justo después
+                del FAQ porque la última pregunta ("¿cuánto cuesta?") deja al
+                lector a un paso de pedir cotización: WhatsApp para el que
+                escribe, ancla al formulario para el que prefiere correo. */}
+            {service.cta && (
+                <section className="w-full bg-secondary py-14 lg:py-20">
+                    <div className="max-w-4xl mx-auto px-6 text-center">
+                        <h2 className="text-3xl lg:text-4xl font-extrabold text-primary mb-4 leading-tight">
+                            {service.cta.title}
+                        </h2>
+                        <p className="text-primary/80 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+                            {service.cta.text}
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a
+                                href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 bg-primary text-white font-bold px-8 py-3.5 rounded-xs hover:bg-white hover:text-primary transition-all duration-300 shadow-md"
+                            >
+                                Cotizar por WhatsApp
+                            </a>
+                            <a
+                                href="#contacto"
+                                className="inline-flex items-center gap-2 border-2 border-primary text-primary font-bold px-8 py-3 rounded-xs hover:bg-primary hover:text-white transition-all duration-300"
+                            >
+                                Prefiero el formulario
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            )}
+
             <CursosTeaser />
 
             {/* <CoursesPromo /> */}
-            <ContactForm />
+            <section id="contacto">
+                <ContactForm />
+            </section>
         </main>
     );
 }

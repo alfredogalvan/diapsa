@@ -7,7 +7,9 @@
  * no tenía ni un solo enlace a WhatsApp.
  */
 
-const NUMERO = "528145903792"; // +52 81 4590 3792
+import { SITE_CONFIG } from "@/lib/constants";
+
+const NUMERO = SITE_CONFIG.contact.whatsapp;
 
 // Mensaje prellenado. Corto a propósito: entre más largo, más gente lo borra
 // antes de enviarlo. Habla en el lenguaje del comprador (gerente de planta o

@@ -28,7 +28,9 @@ export const SITE_CONFIG = {
    */
   contact: {
     email: "info@grupodiapsa.com.mx",
-    phone: "+52 (844) 123 4567", // Update with real number
+    phone: "+52 81 4590 3792",
+    /** Solo dígitos con lada de país, formato que exige wa.me. */
+    whatsapp: "528145903792",
   },
   
   /**

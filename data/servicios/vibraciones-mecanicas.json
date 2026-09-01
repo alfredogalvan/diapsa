@@ -85,6 +85,11 @@
       "answer": "Depende del número de equipos, su ubicación y si se combina con otras técnicas como termografía o ultrasonido. Compártenos el listado de tus equipos y te preparamos una propuesta a la medida, sin compromiso."
     }
   ],
+  "cta": {
+    "title": "¿Cuántos equipos rotativos críticos tiene tu planta?",
+    "text": "Compártenos tu listado de equipos y te preparamos una ruta de medición con propuesta a la medida, sin compromiso.",
+    "whatsappMessage": "Hola, quiero cotizar análisis de vibraciones para mi planta."
+  },
   "relatedProducts": {
     "title": "Productos Relacionados",
     "subtitle": "Equipos y soluciones complementarias",
