@@ -162,14 +162,25 @@ export default function NavBar() {
                                     Servicios
                                 </p>
                                 {services.map((item, index) => (
-                                    <Link
-                                        key={index}
-                                        href={item.href}
-                                        className="text-white hover:text-secondary transition-colors py-2.5 px-6 block rounded-lg hover:bg-white/5"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                    >
-                                        {item.label}
-                                    </Link>
+                                    <div key={index}>
+                                        <Link
+                                            href={item.href}
+                                            className="text-white hover:text-secondary transition-colors py-2.5 px-6 block rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            {item.label}
+                                        </Link>
+                                        {"children" in item && item.children?.map((child) => (
+                                            <Link
+                                                key={child.href}
+                                                href={child.href}
+                                                className="text-white/80 hover:text-secondary transition-colors py-2 pl-10 pr-6 block text-sm rounded-lg hover:bg-white/5"
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                            >
+                                                {child.label}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 ))}
                             </div>
 
