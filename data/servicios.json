@@ -22,6 +22,18 @@
             {
                 "label": "Análisis de Ultrasonido",
                 "href": "/servicios/monitoreo-condicion/analisis-de-ultrasonido"
+            },
+            {
+                "label": "Análisis de Aceite",
+                "href": "/servicios/monitoreo-condicion/analisis-de-aceite"
+            },
+            {
+                "label": "Tierras Físicas",
+                "href": "/servicios/monitoreo-condicion/tierras-fisicas"
+            },
+            {
+                "label": "Estudios de Arco Eléctrico",
+                "href": "/servicios/monitoreo-condicion/arco-electrico"
             }
         ]
     },

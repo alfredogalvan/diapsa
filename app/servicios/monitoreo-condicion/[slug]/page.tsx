@@ -17,9 +17,12 @@ const OG_IMAGE = "/images/og-images/og-image-monitoreo-condicion.jpg";
 const serviceSlugs = [
     "termografia-infrarroja",
     "vibraciones-mecanicas",
+    "analisis-de-aceite",
     "diagnostico-de-maquinaria",
     "analisis-de-ultrasonido",
     "estudios-electricos",
+    "tierras-fisicas",
+    "arco-electrico",
 ];
 
 // Generar parámetros estáticos para pre-renderizado
