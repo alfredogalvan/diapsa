@@ -8,6 +8,7 @@ import JsonLd, {
     createFaqSchema,
 } from "@/components/atoms/JsonLd";
 import ContactForm from "@/components/organisms/ContactForm";
+import ServiceProof from "@/components/organisms/ServiceProof";
 import CursosTeaser from "@/components/organisms/CursosTeaser";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -147,6 +148,34 @@ export default async function ServicePage({
                 subtitle={service.header.subtitle}
                 breadcrumbs={service.breadcrumbs}
             />
+            {/* Barra de cotización pegada al hero. Antes el primer botón de
+                acción aparecía hasta después del FAQ, cuatro pantallas abajo;
+                quien llega de Google decide en los primeros segundos. */}
+            {service.cta && (
+                <div className="w-full bg-white border-b border-gray-100 shadow-sm">
+                    <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5">
+                        {service.certificacion && (
+                            <span className="text-tertiary text-sm font-semibold">
+                                {service.certificacion}
+                            </span>
+                        )}
+                        <a
+                            href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=${encodeURIComponent(service.cta.whatsappMessage)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-primary text-white font-bold px-6 py-2.5 rounded-xs hover:bg-secondary hover:text-primary transition-all duration-300"
+                        >
+                            Cotizar por WhatsApp
+                        </a>
+                        <a
+                            href="#contacto"
+                            className="inline-flex items-center gap-2 border-2 border-primary text-primary font-bold px-6 py-2 rounded-xs hover:bg-primary hover:text-white transition-all duration-300"
+                        >
+                            Solicitar propuesta
+                        </a>
+                    </div>
+                </div>
+            )}
             {/* Content Section */}
             <section className="w-full bg-white py-16 lg:py-24">
                 <div className="max-w-7xl mx-auto px-6">
@@ -213,6 +242,8 @@ export default async function ServicePage({
                     </div>
                 </div>
             </section>
+
+            <ServiceProof certificacion={service.certificacion} />
 
             <section className="w-full bg-gray-50 py-16 lg:py-24">
                 <div className="max-w-7xl mx-auto px-6">
@@ -303,6 +334,36 @@ export default async function ServicePage({
                 subtitle={service.relatedProducts.subtitle}
                 items={service.relatedProducts.items}
             /> */}
+
+            {/* Evidencia visual: fotos reales de analistas de DIAPSA en campo.
+                Valen más que cualquier adjetivo; vienen del JSON del servicio. */}
+            {service.galeria && service.galeria.length > 0 && (
+                <section className="w-full bg-white py-16 lg:py-24">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="mb-10">
+                            <h2 className="text-3xl lg:text-4xl font-extrabold text-primary leading-tight">
+                                DIAPSA <span className="text-secondary">en campo</span>
+                            </h2>
+                            <p className="text-tertiary text-lg mt-2 max-w-2xl">
+                                Nuestros analistas, nuestros equipos y mediciones reales. Sin fotos de banco de imágenes.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
+                            {service.galeria.map((foto) => (
+                                <div key={foto.src} className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-md">
+                                    <Image
+                                        src={foto.src}
+                                        alt={foto.alt}
+                                        fill
+                                        className="object-cover hover:scale-105 transition-transform duration-500"
+                                        sizes="(max-width: 640px) 100vw, 33vw"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* Preguntas frecuentes: responden las búsquedas de cola larga
                 ("qué es", "cada cuánto", "qué norma", "cuánto cuesta") y

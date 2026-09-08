@@ -40,6 +40,11 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface GaleriaFoto {
+  src: string;
+  alt: string;
+}
+
 export interface ServiceCta {
   title: string;
   text: string;
@@ -63,4 +68,8 @@ export interface Servicio {
   faq?: FaqItem[];
   /** Llamado a la acción específico del servicio (banda tras el FAQ). */
   cta?: ServiceCta;
+  /** Certificación a resaltar en la banda de cifras, ej. "Analistas Categoría III · ISO 18436-2". */
+  certificacion?: string;
+  /** Fotos reales de campo; si existen, la página muestra la franja "DIAPSA en campo". */
+  galeria?: GaleriaFoto[];
 }

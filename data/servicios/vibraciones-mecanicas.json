@@ -29,7 +29,7 @@
   "content": {
     "title": "¿Qué es el Análisis de Vibraciones?",
     "subtitle": "Cada falla en desarrollo deja una firma distinta en el espectro de vibración. Medirla y saber leerla permite detectar el problema semanas o meses antes de que pare el equipo.",
-    "image": "/images/disciplinas/vibraciones-img.jpg",
+    "image": "/images/gallery/campo-img-4.jpg",
     "items": [
       {
         "id": "aplicaciones",
@@ -83,6 +83,21 @@
     {
       "question": "¿Cuánto cuesta un servicio de análisis de vibraciones?",
       "answer": "Depende del número de equipos, su ubicación y si se combina con otras técnicas como termografía o ultrasonido. Compártenos el listado de tus equipos y te preparamos una propuesta a la medida, sin compromiso."
+    }
+  ],
+  "certificacion": "Analistas Categoría III · ISO 18436-2",
+  "galeria": [
+    {
+      "src": "/images/gallery/campo-img-4.jpg",
+      "alt": "Analista de DIAPSA midiendo vibración en un motor eléctrico con analizador de vibraciones"
+    },
+    {
+      "src": "/images/gallery/campo-img-2.jpg",
+      "alt": "Técnicos de DIAPSA realizando análisis de vibraciones en un tren motor-ventilador industrial"
+    },
+    {
+      "src": "/images/gallery/campo-img-5.jpg",
+      "alt": "Medición de vibración en motor vertical durante una ruta de monitoreo de condición"
     }
   ],
   "cta": {
